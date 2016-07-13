@@ -1,0 +1,27 @@
+@import  '../../variable';
+
+/*.wblg-app {*/
+
+:host {
+
+    height: $app-height;
+    width: $app-width;
+    
+    @include flex-main(column);
+    @include flex-aling(center, strech);
+
+    min-height: $app-min-height;
+    min-width:  $app-min-width;
+
+    border: 2px solid $base-color-dark;
+    box-shadow: 2px 2px 2px 2px lighten($color: $base-color-dark, $amount: 50);
+
+    background-color: $background-color;
+    color: $base-color-dark;
+    margin: auto;
+
+}
+
+.router-page {
+     @include flex-child(auto, 1);
+}

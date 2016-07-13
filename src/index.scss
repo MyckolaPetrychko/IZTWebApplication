@@ -1,0 +1,96 @@
+//--> include fonts
+@import  'variable';
+
+@include include-font($base-font-name, 'Lora-Regular.ttf');
+@include include-font($base-font-name, 'Lora-Bold.ttf', $bold: bold);
+@include include-font($base-font-name, 'Lora-Italic.ttf', $style: italic);
+@include include-font($base-font-name, 'Lora-BoldItalic.ttf', bold, italic);
+
+@font-face {
+    font-family: $base-font-name;
+    src: url('assets/fonts/Lora-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-family: $base-font-name;
+}
+
+body {
+    margin: $margins;
+    padding: $paddings;
+    background-color: $base-color-light;
+    @include flex-main(column);
+    @include flex-aling(center, center);
+
+    font-size: $base-font-size;
+    box-sizing: border-box;
+
+}
+
+.wblg-main {
+    height: $app-height;
+    width: $app-width;
+    
+    @include flex-main(column);
+}
+
+.spinner {
+  width: 250px;
+  height: 250px;
+  background-color: #b3bbb5;
+
+  margin: auto auto;
+  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+  0% { -webkit-transform: perspective(250px) }
+  50% { -webkit-transform: perspective(250px) rotateY(180deg) }
+  100% { -webkit-transform: perspective(250px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes sk-rotateplane {
+  0% { 
+    transform: perspective(250px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(250px) rotateX(0deg) rotateY(0deg) 
+  } 50% { 
+    transform: perspective(250px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(250px) rotateX(-180.1deg) rotateY(0deg) 
+  } 100% { 
+    transform: perspective(250px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(250px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
+
+@import './app/shared/button/button.component.scss';
+
+.accepted-traider {
+    font-style: italic;
+    color: $error-color;
+}
+
+.accepted-employeer {
+    font-style: italic;
+            color:  $base-color-dark;
+
+    // color: #ffae00; // darken($warn-color, 25);
+
+}
+
+.accepted-traider, 
+.accepted-employeer {
+    &:hover {
+        border-bottom: 1px solid $base-color-dark;
+        color:  $base-color-dark;
+        font-style: normal;
+    }
+}

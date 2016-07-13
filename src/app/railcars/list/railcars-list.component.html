@@ -1,0 +1,126 @@
+<header class="title">
+    <h1 *ngIf="!selected" class="text "> List of railcars</h1>
+    <h1 *ngIf="selected" class="text "> Selected railcar {{selected.transportnumber}} </h1>
+    <button class="btn" (click)="refreshData()"> Refresh {{toRequestLast}}</button>
+    <button class="btn">Reset Filters</button>
+    <button class="btn">View</button>
+</header>
+<div class="filter">
+    <div class="text-div">
+        <!--<div class="div-input-view">-->
+            <!--<label>sendernname</label>-->
+            <!--<input type="text" />-->
+            <!--<li *ngFor="let city of cities | filterSender" >
+                {{city.label}}
+            </li>-->
+            <wblg-combobox *ngFor="let f_item of FiltersData" [label] = "f_item.label" 
+            [value]="f_item.value" 
+            [dropdown]="f_item.dropdown" [data]="f_item.data"></wblg-combobox>
+                      
+         <!--</div>-->
+<!--
+        <div class="div-input-view">
+            <label>transportnumber</label>
+            <input />
+       </div>
+
+        <div class="div-input-view">
+            <label>invoicenumber</label>
+            <input />
+        </div>
+
+        <div class="div-input-view">
+            <label>stationname</label>
+            <input />
+        </div>
+
+        <div class="div-input-view">
+            <label>cropfullname</label>
+             <input />
+       </div>-->
+    </div>
+
+    <div class="date-div">
+        <div class="div-input-view">
+            <label>From</label>
+            <input type="date" name="datestart" [(ngModel)] = "dateStart"/>
+        </div>
+        <!--<div class="div-input-view">
+            <label>To</label>
+            <div>
+                <input type="date" />
+            </div>
+        </div>-->
+    </div>
+</div>
+<div ngif="IsNotNull">
+<ag-grid-ng2   #agGrid class="ag-fresh " style="height: 175px;width: 100%;"
+[gridOptions]="gridOptions" 
+[rowData] = "RailcarList" 
+   >
+      </ag-grid-ng2>
+
+<!--<div id="table_railcars" class="table-scroll" (window:resize)="onResize()">
+    <table class="table-view">
+        <thead class="thead-view">
+            <tr class="tr-view">
+                <th class="td-view" *ngFor="let column of HeaderData[0].columns;" [attr.rowspan]="column.rowspan? column.rowspan : 1" [attr.colspan]="column.colspan? column.colspan : 1">
+                    {{column.header}}
+                </th>
+            </tr>
+            <tr class="tr-view">
+                <th class="td-view" *ngFor="let column of HeaderData[1].columns;" [attr.rowspan]="column.rowspan? column.rowspan : 1" [attr.colspan]="column.colspan? column.colspan : 1">
+                    {{column.header}}
+                </th>
+            </tr>
+            <tr class="tr-view">
+                <th class="td-view" *ngFor="let column of ColunmInfo; let i=index">
+                    <div [style.width.px]="column.width">{{i+1}}</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tbody-view" [style.height]="heightTable">
+            <tr class="tr-view " [class.tr-view-active]="data.transportnumber === selected.transportnumber " *ngFor="let data of RailcarList"
+                (click)="selected=data" [class]="'grid-status-' + data.state">
+                <td class="td-view" *ngFor="let column of ColunmInfo">
+                    <div [ngSwitch]="column.field" [style.width.px]="column.width">
+                        <template ngSwitchCase="transportnumber">
+                            <i class="fa fa-train fa-pull-left fa-border" aria-hidden="true"></i> {{data[column.field]}}
+                        </template>
+                        <template ngSwitchCase="sampleroutdate">
+                            {{data[column.field] | date:"dd.MM.y"}}
+                        </template>
+                        <template ngSwitchCase="gmopresence">
+                            {{data[column.field]? '+': '-'}}
+                        </template>
+                        <template ngSwitchCase="certificatedate">
+                            {{data[column.field] | date:"dd.MM.y"}}
+                        </template>
+                        <template ngSwitchCase="grosstime">
+                            {{data[column.field] | date:"dd.MM.y HH:mm"}}
+                        </template>
+                        <template ngSwitchCase="deviationtime">
+                            {{data[column.field] | date:"dd.MM.y HH:mm"}}
+                        </template>
+                        <template ngSwitchCase="taretime">
+                            {{data[column.field] | date:"dd.MM.y HH:mm"}}
+                        </template>
+                        <template ngSwitchCase="permissiontime">
+                            {{data[column.field] | date:"dd.MM.y HH:mm"}}
+                        </template>
+                        <template ngSwitchCase="overtime">
+                            {{data[column.field] | date:"HH:mm"}}
+                        </template>
+                        <template ngSwitchDefault>
+                            <span>  {{data[column.field]}} </span>
+                        </template>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+
+        </tfoot>
+    </table>-->
+
+</div>

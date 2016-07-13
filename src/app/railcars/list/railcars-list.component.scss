@@ -1,0 +1,205 @@
+:host {
+    flex-grow: 9;
+    flex-shrink: 1;
+    min-height: 225px;
+    /*flex-basis: 225px;*/
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+        flex: 1 25px;
+        min-height: 25px;
+                max-height: 40px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        /*align-items: flex-end;*/
+        border-bottom: 3px double rgba(50,50,50,1);
+        background-color:lightgray;
+}
+
+.title .text {
+    display: flex;
+    align-items: flex-end;
+    flex-grow: 6;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0;
+    text-align: left;
+}
+.title .btn {
+    flex-grow: 1;
+    margin: 2px;
+    min-width: 5em;
+    max-width: 10em;
+} 
+
+.filter {
+     flex: 2 50px;
+     min-height: 50px;
+     max-height: 70px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.filter > .date-div {
+    flex-basis: 200px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.filter > .text-div {
+    flex-grow: 3;
+   
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.div-input-view {
+    /*flex-basis: 110px;*/
+    margin: auto 5px;
+    display: flex;
+    flex-direction: column;
+}
+.div-input-view input,
+.div-input-view label,
+.div-input-view select {
+    display: inline-block;
+    width: 100%;
+}
+.div-input-view label {
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+/*Check table*/
+.table-scroll {
+    min-height: 175px;
+    max-height: 437.5px;
+    /*width: 100%;*/
+    flex-grow: 7;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.table-view {
+    table-layout: fixed;
+    border-spacing: 0;
+    border-collapse: collapse;
+    font-size: 0.8em;
+    line-height: 0.9em;
+    overflow:hidden;
+    font-weight: normal;
+    font-style: normal;
+}
+.thead-view {    
+    display: inline-block;
+    margin-right: 20px; 
+    height: 60px;
+
+    border:1px solid #222;
+    border-top-width: 2px;
+    font-weight: bold;
+}
+
+.thead-view .tr-view {
+    height: 22px;
+    background-color: #ddd;
+    border-right: 1px solid #222;
+}
+
+.thead-view .tr-view:last-child {
+    height: auto;
+    font-size: 0.8em;
+}
+
+.thead-view .td-view {
+    padding: 2px 8px;
+}
+.tbody-view {
+     display: block;
+     border: 1px solid #222;
+     border-top: none;
+     border-right: none;
+     overflow-y: scroll;
+     min-height: 105px;
+     max-height: 367.5px;
+}
+
+.tr-view {
+    background-color: #fefefe;
+    height: 30px;
+}
+
+.tbody-view .tr-view:hover {
+     background-color: #6aa9f1;
+}
+
+.tr-view-active {
+    background-color: #aaa;
+    color: whitesmoke;
+}
+
+.td-view {
+    /*display: inline-block;*/
+    min-width: 1px;
+    min-height: 1px;
+    border-left: 1px solid #222;
+    border-bottom: 1px solid #222;
+
+    padding: 4px 8px;
+    text-align: center;
+}
+
+.td-view div {
+    display: inline-block;
+    vertical-align: center;
+}
+.tbody-view > .tr-view > .td-view:last-child {
+    border-right: 2px solid #222;
+}
+
+
+
+
+
+
+
+
+/*.grid-alarmed { */
+.grid-status-1 {
+    background-color: rgb(242, 29, 29);
+}
+
+/*.grid-accepted*/
+.grid-status-2 {
+    background-color: rgba(255, 252, 111, 0.5);
+}
+
+/*.grid-returned {*/
+.grid-status-3 {
+    background-color: rgba(241, 71, 71, 0.5);
+}
+
+/*.grid-deleted {*/
+.grid-status-4 {
+    background-color: rgba(226, 38, 38, 0.5);
+}
+
+/*.grid-weighted {*/
+.grid-status-5 {
+    background-color: rgba(179, 179, 179, 0.5);
+}
+
+/*.grid-success {*/
+.grid-status-0 {
+    background-color: rgba(50, 205, 50, 0.5);
+}

@@ -1,0 +1,64 @@
+<div id="table_railcars" class="table-scroll" (window:resize)="onResize()">
+    <table class="table-view">
+        <thead class="thead-view">
+            <tr class="tr-view"  *ngFor="let h of headers;">
+                <th class="td-view" 
+                *ngFor="let column of h.columns;" 
+                [attr.rowspan]="column.rowspan? column.rowspan : 1" 
+                [attr.colspan]="column.colspan? column.colspan : 1">
+                    {{column.header | translate}}
+                </th>
+            </tr>
+           
+            <tr class="tr-view">
+                <th class="td-view" *ngFor="let column of viewedColunms; let i=index" [style.width]="column.width">
+                    <div [style.width]="column.width">{{i+1}}</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tbody-view" [style.height]="heightTable">
+            <tr class="tr-view " [class.tr-view-active]="data.isActive " *ngFor="let data of dataList"
+                (click)="selected=data; data.isActive = ! data.isActive" [class]="setRowClass(data)">
+                <td class="td-view" *ngFor="let column of viewedColunms" [style.width]="column.width">
+                    <!--<div [ngSwitch]="column.field" [style.width]="column.width">-->
+                        <!--<template ngSwitchCase="transportnumber">
+                            <i class="fa fa-train fa-pull-left fa-border" aria-hidden="true"></i> {{data[column.field]}}
+                        </template>
+                        <template ngSwitchCase="sampleroutdate">
+                            {{data[column.field] | date:"dd.MM.y"}}
+                        </template>
+                        <template ngSwitchCase="gmopresence">
+                            {{data[column.field]? '+': '-'}}
+                        </template>
+                        <template ngSwitchCase="certificatedate">
+                            {{data[column.field] | date:"dd.MM.y"}}
+                        </template>
+                        <template ngSwitchCase="grosstime">
+                            {{data[column.field] | date:"dd.MM.y HH:mm"}}
+                        </template>
+                        <template ngSwitchCase="deviationtime">
+                            {{data[column.field] | date:"dd.MM.y HH:mm"}}
+                        </template>
+                        <template ngSwitchCase="taretime">
+                            {{data[column.field] | date:"dd.MM.y HH:mm"}}
+                        </template>
+                        <template ngSwitchCase="permissiontime">
+                            {{data[column.field] | date:"dd.MM.y HH:mm"}}
+                        </template>
+                        <template ngSwitchCase="overtime">
+                            {{data[column.field] | date:"HH:mm"}}
+                        </template>
+                        <template ngSwitchDefault>
+                            <span>  {{data[column.field]}} </span>
+                        </template>-->
+                           <div [style.width]="column.width">  {{data[column.field]}} </div>
+                    <!--</div>-->
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+
+        </tfoot>
+    </table>
+
+</div>

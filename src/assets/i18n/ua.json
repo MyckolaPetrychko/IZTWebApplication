@@ -1,0 +1,38 @@
+{
+    "APPNAME": "IZT ua",
+    "APP": {
+            "TITLE": "Title IZT ua"
+    },
+    "COMPANY": {
+        "NAME": "Іллічівський зерновий термінал"
+    },
+    "DEVELOPER": {
+        "COMPANY": "ІнновіннПром"
+    },
+
+    "NAV": {
+        "RAILCARS": "Вагони",
+        "REPORT": "Звіти",
+        "SETTINGS": "Налаштування",
+        "USERS": "Користувач"
+    },
+
+    "SUBNAV": {
+        "ADD": "Додати",
+        "EDIT": "Редагувати",
+        "DELETE": "Видалити",
+        "VIEW": "Вигляд",
+        "REFRESH": "Оновити"
+    },
+
+    "TABLE": {
+        "proprietor" : "Proprietor",
+"supplier":"supplier",
+"carloadNumber":"carload Number",
+"shimpentDate":"shimpen tDate",
+"station":"station",
+"culture":"culture",
+"reasonText":"reason Text",
+"reasonDate":"reason Date"
+    }
+}

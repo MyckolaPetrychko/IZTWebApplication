@@ -1,0 +1,37 @@
+<!--<div class="combobox">
+<label class="label">{{label}}</label>
+<div dropdown>
+    <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="value">
+        <span class="input-group-btn" dropdownToggle>
+            <button type="button" class="btn btn-default">  
+                    <i class="icon fa fa-caret-down"></i>
+            </button>
+        </span>
+    </div>
+</div>
+<ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
+    <li role="menuitem" class="dropdown-item" *ngFor="let item of data">{{item}}</li>
+</ul>
+</div>-->
+
+<label class="label-combobox " [class.active]="isOpenedMenu"   [class.is-data]="value">{{label}}</label>
+<div class="combobox" >
+    <div class="combobox-toogle" [class.active]="isOpenedMenu" 
+    [class.is-data]="value"
+    (click)="isOpenedMenu = true;"  >
+        <input type="text" class="combobox-input" [(ngModel)]="value" (onChange)="valueChange.emit(value)">
+        <span class="combobox-caret ">
+              <i class="icon fa fa-caret-down"></i>
+        </span>
+    </div>
+    <ul role="menu" class="combobox-menu" *ngIf="dropdown">
+        <li role="menuitem" class="combobox-item" 
+        *ngFor="let item of (data | valueFilter:value)" 
+        (click)="value=item;isOpenedMenu = false;"
+        [class.active]="value===item">
+           {{item}}
+        </li>
+    </ul>
+
+</div>

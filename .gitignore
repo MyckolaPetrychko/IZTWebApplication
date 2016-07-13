@@ -1,0 +1,37 @@
+#ignore nmp package
+node_modules/*
+
+
+# inore vsCode 
+.vscode/*
+
+#ignore typings
+typings/*
+
+#ignore testdata
+#ignore img
+src/assets/api/*
+src/assets/img/*
+
+#ignore all generate *.js and *js.map
+/realese/*
+
+#ignore system files
+.directory
+
+#ignore logs
+logs
+*.log
+
+#ignore js
+src/**/*.js
+src/**/*.js.map
+!src/SjsLoader.js
+!lite-serve.js
+
+#ignore realese and build
+build/**
+realese/**
+
+# ignore txt
+*.txt

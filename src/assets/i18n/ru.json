@@ -1,0 +1,14 @@
+ {   "COMPANY": {
+        "NAME": "ИЗТ"
+    },
+    "DEVELOPER": {
+        "COMPANY": "ИнновиннПром"
+    },
+
+    "NAV": {
+        "RAILCARS": "Вагоны",
+        "REPORT": "Отчеты",
+        "SETTINGS": "Настройки",
+        "USERS": "Пользователи"
+    }
+ }

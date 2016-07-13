@@ -1,0 +1,17 @@
+
+<div *ngIf="!isAuth" class="wblg-footer">
+        <span class="blocks">'Refresh data: ' + 'time ' <i class="fa fa-check-square-o" aria-hidden="true"></i></span>
+
+    <span class="blocks">{{'Current user' + username + ' from ' + company}}</span>
+    <div class="blocks div-lang">
+    <label for="lang-select"> {{'LANG' | translate}}</label>
+    <select id="lang-select"  [(ngModel)]="currLang" (change) = "changeCurrentLanguage($event.target.value)">
+        <option *ngFor="let l of language" [value]="l"> {{l}} </option>
+    </select>
+
+</div>
+</div>
+<div *ngIf="isAuth" class="wblg-message">
+    {{'DEVELOP.COMPANY.NAME' | translate}}
+</div>
+

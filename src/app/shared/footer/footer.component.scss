@@ -1,0 +1,56 @@
+@import '../../../variable';
+
+:host {
+    @include flex-main(row);
+    @include flex-child($footer-base-height);
+    @include flex-aling(flex-start, center);
+    height: $footer-base-height;
+    max-height: $footer-base-height;
+    min-height: $footer-base-height;
+    margin: $footer-margin;
+    font-size: 0.8 * $base-font-size;
+    
+    background-color: $base-color-dark;
+    color: $base-color-light;
+
+    .btn {
+        min-height: none;
+    }
+}
+
+.wblg-footer {
+    @include flex-main(row);
+    @include flex-aling(space-between, center);
+    @include flex-child(auto, 1, 1);
+
+    .blocks {
+        margin: 5px;
+    }
+
+    .blocks:first-child {
+        margin-left: 2px; 
+    }
+}
+
+.wblg-message {
+    font-size: $base-font-size;
+    @include titled();
+    @include flex-child(auto, 1, 1);
+}
+
+.div-lang {
+    margin:0 5px;
+
+    select {
+        // font-size: 0.7 * $base-font-size;
+        background: $base-color-light;
+        border: none;
+        color: $base-color-dark;
+        padding: 0 4px;
+        margin: 1;
+
+        // &:hover {
+        //     @include hovered-dark();
+        // }
+    }
+}

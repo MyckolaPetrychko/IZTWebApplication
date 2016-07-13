@@ -1,0 +1,23 @@
+{
+    "APPNAME": "IZT en",
+    "APP": {
+        "TITLE":  "Title IZT en"
+    },
+
+
+    "COMPANY": {
+        "NAME": "IZT"
+    },
+    "DEVELOPER": {
+        "COMPANY": "InnovinnProm"
+    },
+
+    "NAV": {
+        "RAILCARS": "Railcars",
+        "REPORT": "Reports",
+        "SETTINGS": "Settings",
+        "USERS": "User"
+    }
+
+
+}

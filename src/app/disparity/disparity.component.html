@@ -1,0 +1,41 @@
+<header class="wblg-sub-title">
+    <span class="text"> {{ 'Current disparity' }} 
+        <span *ngIf="isNotNull"> {{ accepted }} / {{total}}</span>
+    </span>
+    <div>
+        <button class="btn btn-light" [disabled]="!isNotNull"> Accept </button>
+        <button class="btn btn-light" (click)="refreshData()"> Refresh {{toRequestLast}}</button>
+    </div>
+</header>
+
+<div *ngIf="isNotNull" style="width: 100%">
+<ag-grid-ng2   #agGrid class="ag-fresh " style="height: 175px; width: 100%;"
+[gridOptions]="gridOptions" 
+[rowData] = "DisparityList" 
+   >
+      </ag-grid-ng2>
+</div>
+    <!--TODO: ErrorModal-->
+    <div class = "error-message"  *ngIf="!isNotNull" >
+    <div class="title"> 
+        <span class="fa-stack" aria-hidden="true"> 
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-remove fa-stack-1x fa-inverse"></i>
+        </span>
+        {{ ' Error '}} 
+    </div>
+    <div class="txt">  
+           {{ message }} 
+    </div>
+</div>
+    <!--<div class="info-message" *ngIf="!isNotNull">
+        <div class="title">
+            <span class="fa-stack" aria-hidden="true"> 
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-info fa-stack-1x fa-inverse"></i>
+        </span> {{'Info text'}}
+        </div>
+        <div class="txt">
+            {{ message }}
+        </div>
+    </div>-->
