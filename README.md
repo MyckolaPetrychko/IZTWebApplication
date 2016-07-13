@@ -5,7 +5,7 @@
 To install preparating (Необхідні інструменти)
 
 ```bash
-install node.js
+apt-get install node.js
 npm install -g gulp # install build system GulpJs
 npm install -g npm  # update npm
 ```
