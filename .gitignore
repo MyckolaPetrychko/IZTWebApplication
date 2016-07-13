@@ -33,5 +33,6 @@ src/**/*.js.map
 build/**
 realese/**
 
-# ignore txt
+# ignore txt, *.zip
 *.txt
+*.zip
