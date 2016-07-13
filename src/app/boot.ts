@@ -21,12 +21,12 @@ bootstrap(AppComponent, [
     HTTP_PROVIDERS,
     AuthService,
     AuthAdminGuard,
-     AuthGuard , 
-    { provide: LocationStrategy, useClass: HashLocationStrategy }] //, [
+     AuthGuard 
+    // { provide: LocationStrategy, useClass: HashLocationStrategy }] //, [
          //   HTTP_PROVIDERS,
         // not required, but recommended to have 1 unique instance of your service
 //TRANSLATE_PROVIDERS
-//]
+]
 )
     .then(success => console.log(`Bootstrap success`))
     .catch(error => console.log(error));
