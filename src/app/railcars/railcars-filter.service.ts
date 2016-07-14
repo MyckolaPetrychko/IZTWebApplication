@@ -87,7 +87,7 @@ export class DataFilterRailcarService {
         }
 
         return this._http.get(SendersApi)
-            .map(res => <string[]>res.json())
+            .map(res => <string[]>res.json().map((item: any) => item.clientfullname))
             // TODO: #debug | RailcarService
             .do(data => {
                 console.debug('Senders' +

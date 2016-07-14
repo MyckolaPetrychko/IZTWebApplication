@@ -34,5 +34,13 @@
 "culture":"culture",
 "reasonText":"reason Text",
 "reasonDate":"reason Date"
+    },
+
+    "LABEL": {
+        "FROM" : "from",
+        "TO": " to "
+
     }
+
+
 }
