@@ -25,8 +25,8 @@ bootstrap(AppComponent, [
      AuthGuard,
     //  BS_VIEW_PROVIDERS,
        disableDeprecatedForms(), 
-  provideForms()
-    // { provide: LocationStrategy, useClass: HashLocationStrategy }] //, [
+  provideForms(),
+    { provide: LocationStrategy, useClass: HashLocationStrategy } //, [
          //   HTTP_PROVIDERS,
         // not required, but recommended to have 1 unique instance of your service
 //TRANSLATE_PROVIDERS
