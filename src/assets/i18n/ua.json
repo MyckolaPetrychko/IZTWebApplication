@@ -1,7 +1,7 @@
 {
     "APPNAME": "IZT ua",
     "APP": {
-            "TITLE": "Title IZT ua"
+        "TITLE": "Title IZT ua"
     },
     "COMPANY": {
         "NAME": "Іллічівський зерновий термінал"
@@ -9,14 +9,12 @@
     "DEVELOPER": {
         "COMPANY": "ІнновіннПром"
     },
-
     "NAV": {
         "RAILCARS": "Вагони",
         "REPORT": "Звіти",
         "SETTINGS": "Налаштування",
         "USERS": "Користувач"
     },
-
     "SUBNAV": {
         "ADD": "Додати",
         "EDIT": "Редагувати",
@@ -24,23 +22,50 @@
         "VIEW": "Вигляд",
         "REFRESH": "Оновити"
     },
-
     "TABLE": {
-        "proprietor" : "Proprietor",
-"supplier":"supplier",
-"carloadNumber":"carload Number",
-"shimpentDate":"shimpen tDate",
-"station":"station",
-"culture":"culture",
-"reasonText":"reason Text",
-"reasonDate":"reason Date"
+        "ownername": "Владелец", 
+        "providername": "Поставщик",
+        "transportnumber": "Номер вагона  VARCHAR(31)",
+        "invoicenumber": "Номер наклaдной VARCHAR(30) ",
+        "sampleroutdate": "Дата отгрузки DATE",
+        "sendernname": "Экспедитор (отправитель) VARCHAR(100) ",
+        "stationname": "Станция VARCHAR(128)",
+        "cropfullname": "Культура VARCHAR(100)",
+        "gmopresence": "Наличие ГМО VARCHAR(10)",
+        "certificatenumber": "Сертификат качества INTEGER",
+        "certificatedate": "Дата внесения сертификата качества",
+        "snnumber": "Протокол безопасности VARCHAR(30)",
+        "invoicegross": "Брутто по накладной, кг INTEGER",
+        "invoicetare": "Тара по накладной, кг INTEGER",
+        "invoicenet": "Нетто по накладной, кг INTEGER",
+        "deviationtime": " Обнаружение несоответсвия на ИЗТ TIMESTAMP",
+        "taretime": "Взешивание по таре   TIMESTAMP",
+        "gross": "Бруттто на ИЗТ, кг    INTEGER",
+        "tare": "Тара на изт, кг   INTEGER",
+        "net": "Нетто на ИЗТ, кг INTEGER",
+        "grossdeficite": "Разница по брутто, кг INTEGER",
+        "netdeficite": "Разница по нетто, кг, INTEGER",
+        "scaletypename": "Способ определения веса при отгрузке, VARCHAR(10)",
+        "deviationdescription": "Причина задержки выгрузки вагона, VARCHAR(100)",
+        "permission": "Решение по ситуации",
+        "permissiondescription": ", решение, ",
+        "permissiontime": " дата, время ",
+        "permissionusername": " Ф,И,О",
+        "remark": "Примечание, VARCHAR(100)",
+        "waitingtime": "Время ожидания решения, TIME",
+        "overtime": "Время доп. маневровых работ, TIMESTAMP",
+        "certificatepresence": "Наличие сертификата качества, VARCHAR(10)",
+        "snpresence": "Наличие протокола безопасности,VARCHAR(10)",
+        "grosstime": "Взвешивание по брутто TIMESTAMP",
+        "carloadNumber": "carload Number",
+        "shimpentDate": "shimpen tDate",
+        "station": "station",
+        "culture": "culture",
+        "reasonText": "reason Text",
+        "reasonDate": "reason Date"
     },
-
     "LABEL": {
-        "FROM" : "from",
+        "FROM": "from",
         "TO": " to "
-
     }
-
-
 }
