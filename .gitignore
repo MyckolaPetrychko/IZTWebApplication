@@ -10,7 +10,6 @@ typings/*
 
 #ignore testdata
 #ignore img
-src/assets/api/*
 src/assets/img/*
 
 #ignore all generate *.js and *js.map
