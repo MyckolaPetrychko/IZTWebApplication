@@ -1,15 +1,23 @@
 @import '../../variable';
 
+:host {
+    @include flex-main(column);
+    @include flex-child( $app-page-routed-height, $grow: 1);
+
+    height: $app-page-routed-height;
+    max-height:  $app-page-routed-height;
+} 
+
 .wblg-sub-nav {
     background-color: $base-hover-color;
     color: $base-color-dark;
-    height:  30px;
-    min-height: 30px;
-    max-height: 30px;
+    height:  $app-subnav-height;
+    min-height: $app-subnav-height;
+    max-height: $app-subnav-height;
 
     @include flex-main(row);
     @include flex-aling(flex-start, center);
-    @include flex-child(30px);
+    @include flex-child($app-subnav-height);
 
 
     .btn {
@@ -19,17 +27,37 @@
 }
 
 .wblg-sub-title {
-        background-color: $base-color-dark;
+    background-color: $base-color-dark;
     color: $base-color-light;
 
-    height: 20px;
-    min-height: 20px;
-    max-height: 20px;
+    height: $app-subtitle-height;
+    min-height: $app-subtitle-height;
+    max-height: $app-subtitle-height;
 
-        @include flex-main(row);
+    @include flex-main(row);
     @include flex-aling(flex-start, center);
-    @include flex-child(20px);
+    @include flex-child($app-subtitle-height);
 
     @include titled();
 
 }
+
+.wblg-railcar-list {
+    @include flex-child($app-block-railcar-list, 3);
+            // min-height: $app-block-railcar-list;
+
+}
+
+.wblg-railcar-disparity {
+        @include flex-child($app-block-railcar-disparity, 1);
+                // min-height: $app-block-railcar-disparity;
+
+
+}
+
+.wblg-disparity-list {
+        @include flex-child($app-block-disparity-list, 2);
+        // min-height: $app-block-disparity-list;
+
+}
+
