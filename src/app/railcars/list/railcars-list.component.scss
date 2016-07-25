@@ -1,205 +1,129 @@
+@import '../../variable';
+
+
 :host {
-    flex-grow: 9;
-    flex-shrink: 1;
-    min-height: 225px;
-    /*flex-basis: 225px;*/
-    overflow: hidden;
+    @include flex-main(column);
+    // @include flex-child(225px, 9, 1);
 
-    display: flex;
-    flex-direction: column;
+    // min-height: 255px;
 }
 
-.title {
-        flex: 1 25px;
-        min-height: 25px;
-                max-height: 40px;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: flex-end;
-        /*align-items: flex-end;*/
-        border-bottom: 3px double rgba(50,50,50,1);
-        background-color:lightgray;
+.wblg-sub-title {
+    background-color: $base-color-dark;
+    color: $base-color-light;
+
+    height: 25px;
+    min-height: 25px;
+    max-height: 25px;
+
+    @include flex-main(row);
+    @include flex-aling(space-between, center);
+    @include flex-child(25px);
+
+    @include titled();
+
+    .btn, .div-input-view {
+        padding: 2px 4px;
+        margin: 2px 5px;    
+     }
+    
+     .btn {
+         max-width: 10em;
+     }
+    .date-div {
+        align-self: stretch;
+        @include flex-main(row);
+        @include flex-child(50%);
+        @include flex-aling(flex-end, stretch);
+    }
+
 }
 
-.title .text {
-    display: flex;
-    align-items: flex-end;
-    flex-grow: 6;
-    font-size: 1em;
-    font-weight: bold;
-    margin: 0;
-    text-align: left;
-}
-.title .btn {
-    flex-grow: 1;
-    margin: 2px;
-    min-width: 5em;
-    max-width: 10em;
-} 
+
 
 .filter {
-     flex: 2 50px;
-     min-height: 50px;
-     max-height: 70px;
+    @include flex-main(row);
+    @include flex-child(50px);
+    @include flex-aling( space-between, center);
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.filter > .date-div {
-    flex-basis: 200px; 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.filter {
+    @include flex-child($grow: 1);
 }
 
-.filter > .text-div {
-    flex-grow: 3;
-   
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
 
-.div-input-view {
-    /*flex-basis: 110px;*/
-    margin: auto 5px;
-    display: flex;
-    flex-direction: column;
-}
-.div-input-view input,
-.div-input-view label,
-.div-input-view select {
-    display: inline-block;
-    width: 100%;
-}
-.div-input-view label {
-    font-size: 0.9em;
-    font-style: italic;
-}
-
-/*Check table*/
-.table-scroll {
-    min-height: 175px;
-    max-height: 437.5px;
-    /*width: 100%;*/
-    flex-grow: 7;
-    overflow-x: scroll;
-    overflow-y: hidden;
+    .btn {
+        max-height: 40px;
+        margin: auto 10px;
+    }
 }
 
 .table-view {
-    table-layout: fixed;
-    border-spacing: 0;
-    border-collapse: collapse;
-    font-size: 0.8em;
-    line-height: 0.9em;
-    overflow:hidden;
-    font-weight: normal;
-    font-style: normal;
+    // min-height: $app-table-disparity-list;
+    height: $app-table-railcar-list;
+    min-height: $app-table-railcar-list;
+    width: 100%;
+    @include flex-child($app-table-railcar-list, 1);
 }
-.thead-view {    
+
+
+.div-input-view {
+    /*flex-basis: 110px;*/
+    @include flex-main(row);
+    @include flex-aling(center, center);
+    margin: auto 4px;
+    // display: flex;
+    // flex-direction: column;
+}
+
+.div-input-view input,
+.div-input-view select,
+.div-input-view my-date-picker  {
     display: inline-block;
-    margin-right: 20px; 
-    height: 60px;
-
-    border:1px solid #222;
-    border-top-width: 2px;
-    font-weight: bold;
+    // width: 100%;
 }
 
-.thead-view .tr-view {
-    height: 22px;
-    background-color: #ddd;
-    border-right: 1px solid #222;
-}
-
-.thead-view .tr-view:last-child {
-    height: auto;
-    font-size: 0.8em;
-}
-
-.thead-view .td-view {
-    padding: 2px 8px;
-}
-.tbody-view {
-     display: block;
-     border: 1px solid #222;
-     border-top: none;
-     border-right: none;
-     overflow-y: scroll;
-     min-height: 105px;
-     max-height: 367.5px;
-}
-
-.tr-view {
-    background-color: #fefefe;
-    height: 30px;
-}
-
-.tbody-view .tr-view:hover {
-     background-color: #6aa9f1;
-}
-
-.tr-view-active {
-    background-color: #aaa;
-    color: whitesmoke;
-}
-
-.td-view {
-    /*display: inline-block;*/
-    min-width: 1px;
-    min-height: 1px;
-    border-left: 1px solid #222;
-    border-bottom: 1px solid #222;
-
-    padding: 4px 8px;
-    text-align: center;
-}
-
-.td-view div {
-    display: inline-block;
-    vertical-align: center;
-}
-.tbody-view > .tr-view > .td-view:last-child {
-    border-right: 2px solid #222;
+.div-input-view label {
+    font-size: 0.9em;
+    font-style: italic;
+    margin: auto 4px;
 }
 
 
 
+// // TODO: ErrorModal
+// .error-message {
+//     @include flex-main(column);
+//     box-shadow: 3px 3px 3px 3px $error-color;
+//     margin: 10px 20px;
+//     padding: 10px;
+//     padding-bottom: 20px;
+//     .title {
+//         font-size: 1.5 * $base-font-size;
+//         @include titled;
+//         //border: 2px solid $error-color;
+//         text-decoration: underline;
 
+//     }
+//     .txt {
+//         margin-left: 50px;
+//     }
+// }
 
+.info-message {
+    @include flex-main(column);
+    box-shadow: 3px 3px 3px 3px $info-color;
+    margin: 10px 20px;
+    padding: 10px;
+    padding-bottom: 20px;
+    .title {
+        font-size: 1.5 * $base-font-size;
+        @include titled;
+        //border: 2px solid $error-color;
+        text-decoration: underline;
 
-
-
-/*.grid-alarmed { */
-.grid-status-1 {
-    background-color: rgb(242, 29, 29);
+    }
+    .txt {
+        margin-left: 50px;
+    }
 }
 
-/*.grid-accepted*/
-.grid-status-2 {
-    background-color: rgba(255, 252, 111, 0.5);
-}
-
-/*.grid-returned {*/
-.grid-status-3 {
-    background-color: rgba(241, 71, 71, 0.5);
-}
-
-/*.grid-deleted {*/
-.grid-status-4 {
-    background-color: rgba(226, 38, 38, 0.5);
-}
-
-/*.grid-weighted {*/
-.grid-status-5 {
-    background-color: rgba(179, 179, 179, 0.5);
-}
-
-/*.grid-success {*/
-.grid-status-0 {
-    background-color: rgba(50, 205, 50, 0.5);
-}
