@@ -1,0 +1,29 @@
+<!--TODO: ErrorModal-->
+<div class="message" [class]="typeClass"  [class.modal]="modal" *ngIf="visible">
+    <div class="title">
+        <span class="fa-stack" aria-hidden="true"> 
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-stack-1x fa-inverse" [class]="iconClass"></i>
+        </span> {{ typeTitle | translate }}
+    </div>
+    <div class="txt">
+        {{ mess }}
+    </div>
+    <div class="footer" *ngIf="modal">
+        <button (click)="ok();">{{'BTN.OK' | translate}}</button>
+        <button (click)="cancel();">{{'BTN.CANCEL' | translate}}</button>
+     </div>
+</div>
+
+
+<!--<div class="info-message" *ngIf="!isNotNull">
+        <div class="title">
+            <span class="fa-stack" aria-hidden="true"> 
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-info fa-stack-1x fa-inverse"></i>
+        </span> {{'Info text'}}
+        </div>
+        <div class="txt">
+            {{ message }}
+        </div>
+    </div>-->

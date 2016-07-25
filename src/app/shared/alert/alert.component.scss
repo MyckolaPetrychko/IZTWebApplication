@@ -1,0 +1,50 @@
+@import '../../../variable';
+
+
+.message {
+    @include flex-main(column);
+    margin: 10px 20px;
+    padding: 10px;
+    padding-bottom: 20px;
+    .title {
+        font-size: 1.5 * $base-font-size;
+        @include titled;
+        //border: 2px solid $error-color;
+        text-decoration: underline;
+
+    }
+    .txt {
+        margin-left: 50px;
+    }
+
+    .footer {
+       margin-left: 50px;
+       margin-top: 50px;
+       @include flex-align(center, center);
+    }
+
+}
+
+.modal {
+    position: absolute;
+    left: 30%;
+    top: 30%;
+    width: 40%;
+}
+
+
+.error-message {
+    box-shadow: 3px 3px 3px 3px $error-color;
+}
+
+.info-message {
+    box-shadow: 3px 3px 3px 3px $info-color;
+}
+
+.warn-message {
+    box-shadow: 3px 3px 3px 3px $warn-color;
+}
+
+.bug-message {
+    box-shadow: 3px 3px 3px 3px $base-hover-color;
+}
