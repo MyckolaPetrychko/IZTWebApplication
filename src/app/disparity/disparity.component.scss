@@ -3,22 +3,22 @@
 
 :host {
     @include flex-main(column);
-    @include flex-child(150px, 6, 1);
+    @include flex-child($app-block-disparity-list, 1);
 
-    max-height: 150px;
+    min-height: $app-block-disparity-list,;
 }
 
 .wblg-sub-title {
     background-color: $base-color-dark;
     color: $base-color-light;
 
-    height: 25px;
-    min-height: 25px;
-    max-height: 25px;
+    height: $app-subtitle-height;
+    min-height: $app-subtitle-height;
+    max-height: $app-subtitle-height;
 
     @include flex-main(row);
     @include flex-aling(space-between, center);
-    @include flex-child(25px);
+    @include flex-child($app-subtitle-height);
 
     @include titled();
 
@@ -30,11 +30,14 @@
     }
 
 }
-// .table-view {
-//     flex-grow: 5;
-//     min-height: 125px;
-//     overflow: scroll;
-// }
+
+.table-view {
+    // min-height: $app-table-disparity-list;
+    height: $app-table-disparity-list;
+    min-height: $app-table-disparity-list;
+    width: 100%;
+    @include flex-child($app-table-disparity-list, 1);
+}
 
 
 
