@@ -1,1 +1,7 @@
-This is Admin page
+<div class="wblg-sub-nav">
+  	<button class="btn btn-light" (click)="defineActiveButton('add')"> <i class="fa fa-plus"></i> {{'ADD USER'}}</button>
+   	<button class="btn btn-light" (click)="defineActiveButton('edit')"> <i class="fa fa-edit"></i> {{'EDIT USER'}}</button>
+    <button class="btn btn-light" (click)="defineActiveButton('delete')"> <i class="fa fa-remove"></i> {{'DELETE USER'}}</button>
+</div>
+
+<wblg-userlist [(selectedButton)]="selectedButton"></wblg-userlist>

@@ -1,0 +1,19 @@
+@import '../../variable';
+
+.wblg-sub-nav {
+    background-color: $base-hover-color;
+    color: $base-color-dark;
+    height:  30px;
+    min-height: 30px;
+    max-height: 30px;
+
+    @include flex-main(row);
+    @include flex-aling(flex-start, center);
+    @include flex-child(30px);
+
+
+    .btn {
+        max-height: 25px;
+        margin:0 5px;
+    }
+}

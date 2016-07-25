@@ -1,0 +1,17 @@
+<div class="filter">
+    <div class="text-div">
+        <wblg-combobox *ngFor="let f_item of FiltersData" [label]="f_item.label" [value]="f_item.value" [dropdown]="f_item.dropdown"
+            [data]="f_item.data"></wblg-combobox>
+    </div>
+</div>
+
+<div class="container">
+    <div id="grid">
+        <ag-grid-ng2 #agGrid class="ag-fresh" style="height: 350px; width: 100%;" [gridOptions]="gridOptions" [rowData]="UsersList"
+            (rowClicked)="onCellClicked($event)">
+        </ag-grid-ng2>
+    </div>
+
+    <user-detail class="form" [UsersList]="UsersList" [currentData]="currentData" [(visible)]="selectedButton" (selectedButton)="hideForm()"
+        *ngIf="selectedButton === 'add' || selectedButton === 'edit'"></user-detail>
+</div>
