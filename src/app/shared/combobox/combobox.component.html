@@ -1,0 +1,24 @@
+<label class="label-combobox ">
+    {{label}}
+</label>
+
+<div class="combobox">
+    <div class="combobox-toogle" [class.active]="isOpenedMenu" [class.is-data]="value">
+        <input type="text" 
+                class="combobox-input" 
+                [(ngModel)]="value"
+                (blur) = "setValue(value)" 
+                (focus) = "ToogleMenu(true)">
+        <span class="combobox-caret " (click)="ToogleMenu(!isOpenedMenu)">
+              <i class="icon fa" [ngClass]="{'fa-caret-down': !value && dropdown,'fa-remove': value}"></i>
+        </span>
+    </div>
+
+    <ul role="menu" *ngIf="dropdown && isOpenedMenu" class="combobox-menu">
+        <li role="menuitem" class="combobox-item" *ngFor="let item of (data | valueFilter:value)" 
+            (click)="SelectElement(item)"
+            [class.active]="value===item">
+            {{item}}
+        </li>
+    </ul>
+</div>
