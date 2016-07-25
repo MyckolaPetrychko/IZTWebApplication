@@ -145,10 +145,18 @@
 	background: -ms-linear-gradient( #814326, #5e311c);
 	background: linear-gradient( #814326, #5e311c);
 	border-bottom: 1px solid #5e311c;
+ 
+  white-space: normal;
+}
+.ag-scrolls .ag-header-container
+{
+    white-space: normal;
 }
 .ag-fresh .ag-header-cell {
-	border-right: 1px solid #5e311c;
+	border-right: 1px solid #fff;
 }
+
+
 .ag-fresh .ag-header-cell-moving .ag-header-cell-label {
   opacity: 0.5;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
@@ -166,6 +174,20 @@
 .ag-fresh .ag-header-cell-label {
   padding: 8px 4px 8px 4px;
 }
+/* TODO my*/
+.ag-fresh .ag-header-text,
+.ag-fresh .ag-header-group-text
+ {
+  display: inline-block;
+}
+.ag-fresh .ag-header-cell-label,
+.ag-fresh .ag-header-group-cell-label
+ {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1em;
+  }
+
 .ag-fresh .ag-header-cell-text {
   padding-left: 2px;
 }
@@ -215,7 +237,7 @@
 	background-color: #f9f3e7;
 }
 .ag-fresh .ag-row-selected {
-  background-color: #b0e0e6;
+  background-color: #b0e0e6 !important;
 }
 .ag-fresh .ag-floating-top .ag-row {
   background-color: #f0f0f0;

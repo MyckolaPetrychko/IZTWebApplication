@@ -13,7 +13,6 @@ import { appRouterProviders } from './main/main.routers';
 import { AppComponent } from './main/main.component';
 import { AuthService } from './user/auth.service';
 import { AuthAdminGuard, AuthGuard } from './user/auth.guard';
-// import { BS_VIEW_PROVIDERS } from 'ng2-bootstrap';
 
 enableProdMode();
 

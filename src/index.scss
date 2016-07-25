@@ -40,6 +40,18 @@ body {
     width: $app-width;
     
     @include flex-main(column);
+    @include flex-aling(center, stretch);
+
+    min-height: $app-min-height;
+    min-width:  $app-min-width;
+
+    border:$base-border-width solid $base-color-dark;
+    box-shadow: $base-border-width $base-border-width $base-border-width $base-border-width
+     lighten($color: $base-color-dark, $amount: 50);
+
+    background-color: $background-color;
+    color: $base-color-dark;
+    margin: auto;
 }
 
 .spinner {
@@ -80,7 +92,7 @@ body {
 
 .accepted-employeer {
     font-style: italic;
-            color:  $base-color-dark;
+            color: darken($color: $success-color, $amount: 50) ;
 
     // color: #ffae00; // darken($warn-color, 25);
 
@@ -93,4 +105,55 @@ body {
         color:  $base-color-dark;
         font-style: normal;
     }
+}
+
+.table-cell-right {
+    text-align: right;
+}
+.table-cell-left {
+    text-align: left;
+}
+.table-cell-center {
+    text-align: center;
+}
+.table-cell-icon {
+    position: absolute;
+    left: 2;
+    margin: 2px;   
+}
+
+// color-style
+$success-color: #9ad6a6;
+$error-color: #ff3434;
+$warn-color: #fffaae;
+$info-color: #7ebcd9;
+
+.grid-alarmed { 
+// .grid-status-1 {
+    background-color: rgba(242, 29, 29, 0.7) !important ;
+}
+
+.grid-routed {
+// .grid-status-2 {
+    background-color: rgba(255, 252, 111, 0.5) !important ;
+}
+
+.grid-returned {
+// .grid-status-3 {
+    background-color: rgba(241, 71, 71, 0.5) !important ;
+}
+
+.grid-deleted {
+// .grid-status-4 {
+    background-color: rgba(226, 38, 38, 0.5) !important ;
+}
+
+.grid-accepted {
+// .grid-status-5 {
+    background-color: rgba(179, 179, 179, 0.5) !important ;
+}
+
+.grid-success {
+// .grid-status-0 {
+    background-color: rgba(50, 205, 50, 0.5) !important ;
 }
