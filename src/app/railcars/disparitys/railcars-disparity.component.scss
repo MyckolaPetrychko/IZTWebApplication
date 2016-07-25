@@ -3,9 +3,9 @@
 
 :host {
     @include flex-main(column);
-    @include flex-child(125px, 6, 1);
+    // @include flex-child(125px, 6, 1);
 
-    min-height: 125px;
+    // min-height: 125px;
 }
 
 .wblg-sub-title {
@@ -30,11 +30,13 @@
     }
 
 }
-// .table-view {
-//     flex-grow: 5;
-//     min-height: 125px;
-//     overflow: scroll;
-// }
+.table-view {
+    // min-height: $app-table-disparity-list;
+    height: $app-table-railcar-disparity;
+    min-height: $app-table-railcar-disparity;
+    width: 100%;
+    @include flex-child($app-table-railcar-disparity, 1);
+}
 
 
 

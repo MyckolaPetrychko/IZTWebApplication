@@ -8,13 +8,13 @@
 </header>
 
 <!--<div class="table-view">-->
-    <div *ngIf="isNotNull" style="width: 100%;">
-<ag-grid-ng2   #agGrid class="ag-fresh " style="height: 175px;width: 100%;"
+    <!--<div *ngIf="isNotNull" style="width: 100%;">-->
+<ag-grid-ng2   #agGrid class="ag-fresh table-view" 
 [gridOptions]="gridOptions" 
 [rowData] = "DisparityList" 
    >
       </ag-grid-ng2>
-    </div>
+    <!--</div>-->
 
     <div *ngIf="!isNotNull">
         {{ message }}
