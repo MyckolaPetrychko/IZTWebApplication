@@ -94,6 +94,10 @@ $footer-margin: 0;
     justify-content: $row-aling;
      
 }
+@mixin flex-align($row-aling, $col-aling) {
+    align-items: $col-aling;
+    justify-content: $row-aling;
+}
 
 @mixin flex-child($base-size: auto, $grow : 0, $shrink: 1) {
     flex-basis: $base-size;
