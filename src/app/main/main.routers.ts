@@ -11,17 +11,17 @@ import { AuthAdminGuard } from '../user/auth.guard';
 
 
 const routes: RouterConfig = [
-    {
-  path: '',
-  redirectTo: '/login',
-  pathMatch: 'full'
+  {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
   },
-  
-  { path: 'report', component: ReportRailcarComponent,   canActivate: [AuthGuard] },
-  { path: 'settings', component: SettingsComponent,   canActivate: [AuthAdminGuard] },
-  { path: 'railcars', component: RailcarsComponent,   canActivate: [AuthGuard] },
+
+  { path: 'report', component: ReportRailcarComponent, canActivate: [AuthGuard] },
+  { path: 'settings', component: SettingsComponent, canActivate: [AuthAdminGuard] },
+  { path: 'railcars', component: RailcarsComponent, canActivate: [AuthGuard] },
   { path: 'login', component: UserLoginComponent },
-  { path: 'profile', component: UserProfileComponent,   canActivate: [AuthGuard] }
+  { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard] }
 ];
 
 export const appRouterProviders = [
