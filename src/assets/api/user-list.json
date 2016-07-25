@@ -1,0 +1,18 @@
+[
+    {
+        "id": "1",
+        "login": "user",
+        "username": "user",
+        "email": "test@innovinn.ua",
+        "company": "Innovinn",
+        "role": "user"
+    },
+    {
+        "id": "2",
+        "login": "admin",
+        "username": "user",
+        "email": "test@innovinn.ua",
+        "company": "Playtika",
+        "role": "admin"
+    }
+]

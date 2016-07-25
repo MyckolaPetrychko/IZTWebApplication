@@ -1,5 +1,5 @@
-var fallback = require('connect-history-api-fallback');
-var log = require('connect-logger');
+//var fallback = require('connect-history-api-fallback');
+//var log = require('connect-logger');
 
 module.exports = {
   "port": 8000,
@@ -11,7 +11,7 @@ module.exports = {
   },
   "server": {
     "baseDir": "./build",
-    "browser": ["google-chrome"],
+    "browser": ["google-chrome"] /*,
     "middleware": [
       log({ format: '%date %status %method %url' }),
       fallback({
@@ -19,6 +19,6 @@ module.exports = {
         // systemjs workaround
         htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'] 
       })
-    ]
+    ]*/
   }
 };
