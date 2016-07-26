@@ -5,7 +5,11 @@ import {TranslateService,
     TranslatePipe,
     TranslateLoader,
     TranslateStaticLoader} from 'ng2-translate';
+
+
 import { LocalStorageService } from '../railcars/storage.service';
+import { NotifyService } from '../shared/notify.server';
+
 
 import { Component, OnInit, provide } from '@angular/core';
 
@@ -36,7 +40,8 @@ import {
         },
         // use TranslateService here, and not TRANSLATE_PROVIDERS (which will define a default TranslateStaticLoader)
         TranslateService,
-        LocalStorageService
+        LocalStorageService,
+        NotifyService
     ]
 })
 export class AppComponent implements OnInit {

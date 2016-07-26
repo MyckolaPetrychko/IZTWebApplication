@@ -40,6 +40,7 @@ export class AlertComponent implements OnInit {
     @Input() set open(_visible: boolean) {
         this.visible = _visible || false;
     }
+    
     @Input() modal: boolean;
 
     @Output() openChange = new EventEmitter();
