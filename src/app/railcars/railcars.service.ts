@@ -11,7 +11,8 @@ import {
     Http,
     Response,
     Headers,
-    RequestOptions
+    RequestOptions,
+    URLSearchParams
 } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
@@ -64,19 +65,55 @@ export class RailcarService {
      * 
      * @returns {Observable<IRailcarModel[]> array of railcars}
      */
-    public getRailcarList(): Observable<any> {
+    public getRailcarList(  _begindate: number = 1,
+                            _enddate: number = 0,
+
+                            _astorageid: number = 1,
+                            _showallowners: number = 0,
+
+                            _shownotreceived: number = 0,
+                            _showweighted: number = 0,
+                            _showremoterecords: number = 0,
+                            _showdeleted: number = 0,
+
+                            _filter_transportnumber: string = '',
+                            _filter_invoicenumber: string = '',
+                            _filter_sendernname: string = '',
+                            _filter_stationname: string = '',
+                            _filter_cropname: string = ''
+                        ): Observable<any> {
+        let params: URLSearchParams = new URLSearchParams();
+
+        if (_begindate) { params.set('begindate', '' + _begindate); }
+        if (_enddate) { params.set('enddate', '' + _enddate); }
+
+        if (_astorageid) { params.set('astorageid', '' + _astorageid); }
+        if (_showallowners) { params.set('showallowners', '' + _showallowners); }
+
+        if (_shownotreceived) { params.set('shownotreceived', '' + _shownotreceived); }
+        if (_showweighted) { params.set('showweighted', '' + _showweighted); }
+        if (_showremoterecords) { params.set('showremoterecords', '' + _showremoterecords); }
+        if (_showdeleted) { params.set('showdeleted', '' + _showdeleted); }
+
+        if (_filter_transportnumber !== '') { params.set('filter_transportnumber', _filter_transportnumber); }
+        if (_filter_invoicenumber !== '') { params.set('filter_invoicenumber', _filter_invoicenumber); }
+        if (_filter_sendernname !== '') { params.set('filter_sendernname', _filter_sendernname); }
+        if (_filter_stationname !== '') { params.set('filter_stationname', _filter_stationname); }
+        if (_filter_cropname !== '') { params.set('filter_cropname', _filter_cropname); }
+
+
         if (this._role === 'anonym') {
             // TODO: #translate | RailcarService
             return Observable.throw('User is not authorized');
         }
 
-        return this._http.get(RailcarListApi)
+        return this._http.get(RailcarListApi, { search: params })
             .map(res => <IRailcarModel[]>res.json())
             // TODO: #debug | RailcarService
             .do(data => {
                 console.debug('RailcarList' +
                     '\nUrl: ' + RailcarListApi +
-                    '\nData: ' + JSON.stringify(data));
+                    '\nData: ' + JSON.stringify(data.length));
             })
             .catch(this.handleError);
     }
@@ -100,8 +137,7 @@ export class RailcarService {
             // TODO: #debug | RailcarService
             .do(data => {
                 console.debug('RailcarId' +
-                    '\nUrl: ' + urlRailcarIdApi +
-                    '\nData: ' + JSON.stringify(data));
+                    '\nUrl: ' + urlRailcarIdApi +        '\nData: ' + JSON.stringify(data));
             })
             .catch(this.handleError);
     }
