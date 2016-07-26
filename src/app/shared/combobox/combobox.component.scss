@@ -25,10 +25,17 @@ $combobox-input-width: 140px;
 .label-combobox {
     @include flex-child($combobox-height);
     @include flex-main(row);
-    @include flex-aling(flex-start, flex-end);
+    @include flex-align(flex-start, flex-end);
 
     color: $base-color-dark;
-}
+        min-width: ($combobox-input-width + $combobox-down-arror-width );
+
+        & > span {
+    white-space: nowrap;
+    overflow: hidden;
+   text-overflow: ellipsis;
+        }
+    }
 
 .combobox {
    @include flex-child($combobox-height, 1);

@@ -6,6 +6,7 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { ValueFilterPipe } from '../pipes/value-filter.pipe';
+import { TranslatePipe } from 'ng2-translate';
 
 @Component({
     moduleId: module.id,
@@ -13,7 +14,7 @@ import { ValueFilterPipe } from '../pipes/value-filter.pipe';
     templateUrl: './combobox.component.html',
     styleUrls: ['./combobox.component.css'],
     directives: [NgIf, NgClass],
-    pipes: [ValueFilterPipe]
+    pipes: [ValueFilterPipe, TranslatePipe]
 })
 
 
