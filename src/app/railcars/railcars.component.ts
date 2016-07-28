@@ -10,6 +10,8 @@ import { DisparityRailcarComponent } from './disparitys/railcars-disparity.compo
 import { RailcarListComponent } from './list/railcars-list.component';
 
 import { RailcarProvide } from './railcars.provide'
+import { NotifyService } from '../shared/notify.server';
+
 
 @Component({
     moduleId: module.id,
@@ -24,8 +26,27 @@ import { RailcarProvide } from './railcars.provide'
      providers: [RailcarProvide],
 })
 export class RailcarsComponent implements OnInit {
-    constructor() { }
+   private refreshAll : number;
 
-    ngOnInit() { }
+    constructor(private _notify : NotifyService) { 
+
+    }
+
+    ngOnInit() {
+        this.refreshAll = 3;
+     }
+
+     public setRefresh(): void  {
+         this._notify.refreshData();
+
+         console.log( 'refresh');
+         
+     }
+     setSelectedRailcars (data : any) {
+         console.log(data);
+         
+     }
+
+     
 
 }

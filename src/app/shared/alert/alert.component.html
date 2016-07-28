@@ -1,13 +1,13 @@
 <!--TODO: ErrorModal-->
-<div class="message" [class]="typeClass"  [class.modal]="modal" *ngIf="visible">
+<div class="message" [ngClass]="typeClass"  [class.modal]="modal" *ngIf="visible">
     <div class="title">
         <span class="fa-stack" aria-hidden="true"> 
               <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-stack-1x fa-inverse" [class]="iconClass"></i>
+              <i class="fa fa-stack-1x fa-inverse "  [ngClass]="iconClass" ></i>
         </span> {{ typeTitle | translate }}
     </div>
     <div class="txt">
-        {{ mess }}
+        {{ mess | translate}}
     </div>
     <div class="footer" *ngIf="modal">
         <button (click)="ok();">{{'BTN.OK' | translate}}</button>

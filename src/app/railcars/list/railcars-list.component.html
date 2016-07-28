@@ -4,7 +4,7 @@
         <div class="div-input-view">
             <label> {{ 'LABEL.FROM'| translate}} </label>
             <div>
-                <my-date-picker [options]="myDatePickerOptions" (dateChanged)="log($event);" [selDate]="dateStart">
+                <my-date-picker [options]="myDatePickerOptions" (dateChanged)="setDateStart($event);" [selDate]="dateStart">
                 </my-date-picker>
             </div>
         </div>
@@ -12,7 +12,7 @@
         <div class="div-input-view">
             <label>{{ 'LABEL.TO'| translate}} </label>
             <div>
-                <my-date-picker [options]="myDatePickerOptions" (dateChanged)="log($event);" [selDate]="dateEnd">
+                <my-date-picker [options]="myDatePickerOptions" (dateChanged)="setDateEnd($event);" [selDate]="dateEnd">
                 </my-date-picker>
             </div>
         </div>
@@ -21,7 +21,7 @@
 
 <div class="filter">
     <div class="filter">
-        <wblg-combobox *ngFor="let f_item of FiltersData" [label]="f_item.label" [(value)]="f_item.value" (valueChange)="f_item.value = $event; log(f_item.value)"
+        <wblg-combobox *ngFor="let f_item of FiltersData" [label]="f_item.label" [(value)]="f_item.value" (valueChange)="f_item.value = $event;"
             [dropdown]="f_item.dropdown" [data]="f_item.data">
         </wblg-combobox>
     </div>
@@ -31,8 +31,8 @@
 </div>
 
 
-<!--<div *ngIf="isNotNull">-->
-<ag-grid-ng2 #agGrid class="ag-fresh table-view" [gridOptions]="gridOptions" [rowData]="RailcarList">
+<!--<div >-->
+<ag-grid-ng2 #agGrid class="ag-fresh table-view" *ngIf="isNotNull" [gridOptions]="gridOptions" [rowData]="RailcarList">
 </ag-grid-ng2>
 <!--</div>-->
 
@@ -48,14 +48,16 @@
         {{ message }}
     </div>
 </div>-->
+
+<wblg-alert [message]  = "message"  [type]="'info'"  [modal]="false" [open]="!isNotNull" ></wblg-alert>
 <!--<div class="info-message" *ngIf="!isNotNull">
-        <div class="title">
-            <span class="fa-stack" aria-hidden="true"> 
+    <div class="title">
+        <span class="fa-stack" aria-hidden="true"> 
               <i class="fa fa-circle fa-stack-2x"></i>
               <i class="fa fa-info fa-stack-1x fa-inverse"></i>
-        </span> {{'Info text'}}
-        </div>
-        <div class="txt">
-            {{ message }}
-        </div>
-    </div>-->
+        </span> {{'ALERT.INFO' | translate}}
+    </div>
+    <div class="txt">
+        {{ message | translate}}
+    </div>
+</div>-->

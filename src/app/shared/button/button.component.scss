@@ -19,6 +19,8 @@
     vertical-align: middle;
     text-align: center;
     text-decoration: none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 
     &:focus {
         outline: none;
