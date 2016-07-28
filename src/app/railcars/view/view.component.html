@@ -1,0 +1,24 @@
+<form>
+    <h2 style="text-align: center; ">Виберіть параметри перегляду</h2>
+    <div class="rows">
+        <h3>Тип:</h3>
+        <p>
+            <input id="allinfo" class="radio" type="radio" checked name="typeview" />
+            <label for="allinfo">Вся інформація</label>
+
+            <input #print class="radio" id="print" type="radio" name="typeview" />
+            <label for="print">Вигляд при друці</label>
+        </p>
+    </div>
+    <h3>Параметри:</h3>
+    <div class="rows columns">
+        <div *ngFor="let item of propertiesName">
+            <label [attr.for]="item">
+            <input class="checkbox" type="checkbox" [id]="item" [(ngModel)]="cols[item]" [name]="item" />{{ 'TABLE.' + item | translate}}</label>
+        </div>
+
+    </div>
+    <div class="submit">
+        <button class="btn btn-light" (click)="onSave(print)"> <i class="fa fa-save"></i>Save changes</button>
+    </div>
+</form>
