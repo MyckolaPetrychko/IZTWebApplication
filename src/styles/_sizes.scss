@@ -1,0 +1,58 @@
+@import '../_variable';
+
+.wblg-main {
+  height: $app-height;
+  width: $app-width;
+  @include flex-main(column);
+  @include flex-aling(center, stretch);
+  min-height: $app-min-height;
+  min-width: $app-min-width;
+  border: $base-border-width solid $base-color-dark;
+  box-shadow: $base-border-width $base-border-width $base-border-width $base-border-width lighten($color: $base-color-dark, $amount: 50);
+  background-color: $background-color;
+  color: $base-color-dark;
+  margin: auto;
+}
+
+.table-railcar-list-view {
+    @include flex-child($app-table-railcar-list, 1);
+    height: calc(100% - #{$app-subtitle-height});
+    min-height: $app-table-railcar-list;
+    width: 100%;
+}
+
+.table-railcar-disparity-view {
+  @include flex-child($app-table-railcar-disparity, 1);
+  height: $app-table-railcar-disparity;
+  min-height: $app-table-railcar-disparity;
+  width: 100%;
+}
+
+.table-disparity-list-view {
+  @include flex-child($app-table-disparity-list, 1);
+  height: calc(100% - #{$app-subtitle-height});
+  min-height: $app-table-disparity-list;
+  width: 100%;
+}
+
+.wblg-railcar-list {
+    position: relative;
+
+  @include flex-child($app-block-railcar-list, 3);
+  min-height: $app-block-railcar-list;
+  height: $app-block-railcar-list;
+}
+
+.wblg-railcar-disparity {
+  @include flex-child($app-block-railcar-disparity, 1);
+  min-height: $app-block-railcar-disparity;
+  height: $app-block-railcar-disparity;
+}
+
+.wblg-disparity-list {
+      position: relative;
+
+  @include flex-child($app-block-disparity-list, 2);
+      min-height: $app-block-disparity-list;
+      height: $app-block-disparity-list;
+}

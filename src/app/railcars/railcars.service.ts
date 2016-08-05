@@ -24,9 +24,11 @@ import 'rxjs/add/operator/do';
 
 
 import { IRailcarModel } from './railcars.model';
+import { IRailcarDisparityModel } from './routed-child/railcar-disparity/railcar-disparity.model';
 import {
     RailcarListApi,
-    RailcarIdApi
+    RailcarIdApi,
+    RailcarIdDisparityApi
 } from './railcars.constant';
 
 
@@ -65,23 +67,23 @@ export class RailcarService {
      * 
      * @returns {Observable<IRailcarModel[]> array of railcars}
      */
-    public getRailcarList(  _begindate: number = 1,
-                            _enddate: number = 0,
+    public getRailcarList(_begindate: number = 1,
+        _enddate: number = null,
 
-                            _astorageid: number = 1,
-                            _showallowners: number = 0,
+        _astorageid: number = 1,
+        _showallowners: number = 0,
 
-                            _shownotreceived: number = 0,
-                            _showweighted: number = 0,
-                            _showremoterecords: number = 0,
-                            _showdeleted: number = 0,
+        _shownotreceived: number = 0,
+        _showweighted: number = 0,
+        _showremoterecords: number = 0,
+        _showdeleted: number = 0,
 
-                            _filter_transportnumber: string = '',
-                            _filter_invoicenumber: string = '',
-                            _filter_sendernname: string = '',
-                            _filter_stationname: string = '',
-                            _filter_cropname: string = ''
-                        ): Observable<any> {
+        _filter_transportnumber: string = '',
+        _filter_invoicenumber: string = '',
+        _filter_sendernname: string = '',
+        _filter_stationname: string = '',
+        _filter_cropname: string = ''
+    ): Observable<any> {
         let params: URLSearchParams = new URLSearchParams();
 
         if (_begindate) { params.set('begindate', '' + _begindate); }
@@ -119,6 +121,25 @@ export class RailcarService {
     }
 
 
+    public getRailcarDisparityList(railcarId: string): Observable<any> {
+        if (this._role === 'anonym') {
+            // TODO: #translate | RailcarService
+            return Observable.throw('User is not authorized');
+        }
+
+        let urlRailcarIdDisparityApi = RailcarIdDisparityApi.replace('%railcarID%', railcarId);
+
+        return this._http.get(urlRailcarIdDisparityApi)
+            .map(res => <IRailcarDisparityModel[]>res.json())
+            // TODO: #debug | RailcarService
+            .do(data => {
+                console.debug('RailcarIdDisparityApi' +
+                    '\nUrl: ' + urlRailcarIdDisparityApi +
+                    '\nData: ' + JSON.stringify(data.length));
+            })
+            .catch(this.handleError);
+    }
+
     /**
      * Function to get one railcar selected by id :
      * Http: GET RailcarIdApi
@@ -137,7 +158,7 @@ export class RailcarService {
             // TODO: #debug | RailcarService
             .do(data => {
                 console.debug('RailcarId' +
-                    '\nUrl: ' + urlRailcarIdApi +        '\nData: ' + JSON.stringify(data));
+                    '\nUrl: ' + urlRailcarIdApi + '\nData: ' + JSON.stringify(data));
             })
             .catch(this.handleError);
     }

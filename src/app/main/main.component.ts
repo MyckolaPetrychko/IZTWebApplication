@@ -7,14 +7,16 @@ import {TranslateService,
     TranslateStaticLoader} from 'ng2-translate';
 
 
-import { LocalStorageService } from '../railcars/storage.service';
+import { LocalStorageService } from '../shared/storage.service';
 import { NotifyService } from '../shared/notify.server';
 
 
 import { Component, OnInit, provide } from '@angular/core';
 
 
-import {RailcarsComponent} from '../railcars/railcars.component';
+// import { RailcarsComponent } from '../railcars/railcar-main-page/railcars.component';
+import { DataFilterService } from '../filters-data/filter-data.service';
+import { RailcarProvide } from '../railcars/railcars.provide';
 
 import {
     FooterComponent
@@ -28,7 +30,7 @@ import {
     selector: 'wblg-main',
     templateUrl: 'main.component.html',
     styleUrls: ['main.component.css'],
-    directives: [FooterComponent, NavComponent, RailcarsComponent, ROUTER_DIRECTIVES],
+    directives: [FooterComponent, NavComponent, ROUTER_DIRECTIVES],
     pipes: [TranslatePipe],
     providers: [
         // HTTP_PROVIDERS,
@@ -41,7 +43,9 @@ import {
         // use TranslateService here, and not TRANSLATE_PROVIDERS (which will define a default TranslateStaticLoader)
         TranslateService,
         LocalStorageService,
-        NotifyService
+        NotifyService,
+        RailcarProvide,
+        DataFilterService
     ]
 })
 export class AppComponent implements OnInit {

@@ -1,29 +1,17 @@
 <!--TODO: ErrorModal-->
-<div class="message" [ngClass]="typeClass"  [class.modal]="modal" *ngIf="visible">
+<div class="alert-message" [ngClass]="typeClass"  [class.alert-modal]="modal"  [class.alert-small]="small" 
+[class.alert-big]="big" *ngIf="visible">
     <div class="title">
         <span class="fa-stack" aria-hidden="true"> 
               <i class="fa fa-circle fa-stack-2x"></i>
               <i class="fa fa-stack-1x fa-inverse "  [ngClass]="iconClass" ></i>
-        </span> {{ typeTitle | translate }}
+        </span> <span class="header">{{ typeTitle | translate }}</span>
+       <i class="close-icon fa fa-close" (click)="close()" *ngIf="closeBtn" ></i>
     </div>
     <div class="txt">
+        <span class="icons" aria-hidden="true"> 
+              <i class="fa"  [ngClass]="iconClass" ></i>
+        </span> 
         {{ mess | translate}}
     </div>
-    <div class="footer" *ngIf="modal">
-        <button (click)="ok();">{{'BTN.OK' | translate}}</button>
-        <button (click)="cancel();">{{'BTN.CANCEL' | translate}}</button>
-     </div>
 </div>
-
-
-<!--<div class="info-message" *ngIf="!isNotNull">
-        <div class="title">
-            <span class="fa-stack" aria-hidden="true"> 
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-info fa-stack-1x fa-inverse"></i>
-        </span> {{'Info text'}}
-        </div>
-        <div class="txt">
-            {{ message }}
-        </div>
-    </div>-->

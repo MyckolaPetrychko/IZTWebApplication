@@ -1,7 +1,7 @@
 export interface IAuthUser {
     login?: string;
     pass?: string;
-    group?: string;
+    role?: string;
  
     username?: string;
     company?: string;

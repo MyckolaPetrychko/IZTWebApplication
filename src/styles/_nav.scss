@@ -1,0 +1,58 @@
+ @import '../_variable.scss';
+
+ .wblg-sub-nav {
+    background-color: $base-hover-color;
+    color: $base-color-dark;
+    height:  $app-subnav-height;
+    min-height: $app-subnav-height;
+    max-height: $app-subnav-height;
+
+    @include flex-main(row);
+    @include flex-aling(flex-start, center);
+    @include flex-child($app-subnav-height);
+
+
+    .btn {
+        max-height: 25px;
+        margin:0 5px;
+    }
+}
+
+
+
+.wblg-sub-title {
+    background-color: $base-color-dark;
+    color: $base-color-light;
+
+    height: $app-subtitle-height;
+    min-height: $app-subtitle-height;
+    max-height: $app-subtitle-height;
+
+    @include flex-main(row);
+    @include flex-aling(space-between, center);
+    @include flex-child($app-subtitle-height);
+
+    @include titled();
+
+    .btn {
+        padding: 2px 4px;
+        margin: 2px 5px;    
+        max-width: 10em;
+      }
+
+     .date-div {
+        align-self: stretch;
+        margin-right: 2px;
+        @include flex-main(row);
+        @include flex-child(50%);
+        @include flex-aling(flex-end, stretch);
+
+        .form-field {
+            margin: auto 0;
+            
+            padding: 0;
+            @include flex-child();
+        }
+    }
+}
+

@@ -1,0 +1,142 @@
+.form-main {
+    @include flex-child($grow: 1);
+
+    @include flex-align ( space-between, stretch); 
+    margin: 2px;
+    border: 1px solid $base-color-dark;
+}
+
+.form-cols {
+    @include flex-main(column);
+}
+
+.form-rows {
+    @include flex-main(row);
+}
+
+.form-fieldset {
+    margin: 0;
+    border: none;
+    @include flex-child( $grow: 1);
+    @include flex-align ( space-around, stretch); 
+}
+
+.form-field {
+    @include flex-align (flex-start, stretch);  
+    @include flex-child($grow: 1);
+    
+    border-left: 2px solid $base-color-dark;
+    padding: 4px;
+    margin: 2px 10px;
+    font-style: italic;
+
+    // validation 
+    &.warn-message {
+       border-left: 2px solid $warn-color;
+       & > .label-control {
+            color: $warn-color;
+      }
+    }
+
+    &.error-message {
+        border-left: 2px solid $error-color;
+                .label-control {
+            color: $error-color;
+        }
+    }
+
+    &.success-message {
+        border-left: 2px solid $success-color;
+       
+        & > .label-control {
+            color: $success-color;
+        }
+    }
+
+    &.info-message {
+        border-left: 2px solid darken($info-color, 15);
+       
+        & > .label-control {
+            color: darken($info-color, 15);
+        }
+    }
+
+    // wrapper
+    &.form-rows {
+         .div-control {
+             @include flex-child(55%, 1);
+         }
+
+         .label-control {
+             @include flex-child(45%, 1);
+         }
+    }
+    &.form-cols {
+         & > .div-control {
+             @include flex-child($grow: 1);
+         }
+
+         & > .label-control {
+             @include flex-child($grow: 1);
+         }
+    }
+
+    .div-control {
+        @include flex-align(center, flex-start);
+        margin: 0;
+
+        & > * {
+            width: 100%;
+        }
+    }
+
+    input[type=file] {
+        background-color: $base-color-light;
+    }
+       
+    input[type=checkbox] {
+        height: $base-font-size;
+        width:  $base-font-size;
+        margin-right: 2px;
+    }
+
+    textarea {
+        resize: none;
+        @include flex-child($grow: 1);
+    }
+
+    .label-control {
+        @include flex-main(row);
+        @include flex-align(flex-start, center);
+        min-width: 0;
+        
+        & > .span-overflow {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .label-near {
+                @include flex-main(row);
+        @include flex-align(flex-start, center);
+        margin-right: 4px;
+        margin-left: 4px;
+        min-width: 2em;
+    }
+    .margin-label {
+        margin-left: 45%;
+    }
+
+
+}
+
+.form-footer {
+     @include flex-child(30%);
+     @include flex-align( flex-end, stretch);
+     margin: 2px 10px;
+
+     .btn {
+           margin-right: 2px;
+     }
+}

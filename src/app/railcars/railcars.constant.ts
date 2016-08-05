@@ -18,9 +18,12 @@
  * @example 'api/railcar/%railcarID%';
  */
 // TODO: RailcarConstant | test data
-export let RailcarIdApi   = 'assets/api/railcar_%railcarID%.json';
+export let RailcarIdApi   = 'assets/api/railcar/%railcarID%.json';
 
-export let SendersApi   = 'assets/api/clients/senders.json';
-export let StationsApi   = 'assets/api/station.json';
-export let CulturesApi   = 'assets/api/crop.json';
-
+/**
+ * @export RailcarIdDisparityApi
+ * @param {string} RailcarIdDisparityApi Url api to ge get railcar disparity by id
+ * @example 'api/railcar/%railcarID%/disparity';
+ */
+// TODO: RailcarConstant | test data
+export let RailcarIdDisparityApi   = 'assets/api/railcar/%railcarID%-disparity.json';

@@ -1,0 +1,27 @@
+<div class="wblg-sub-nav unprintable" >
+	<button class="btn btn-light" [routerLink]="['/railcars', 'add']" >
+		  <i class="fa fa-plus"></i> {{'SUBNAV.ADD' | translate}}
+	</button>
+	<button class="btn btn-light" [routerLink]="['/railcars', 'file']" > 
+		  <i class="fa fa-plus"></i> {{'SUBNAV.LOAD' | translate}}
+	</button>
+
+	<button class="btn btn-light" [routerLink]="['/railcars', '1']" > 
+		   <i class="fa fa-edit"></i> {{'SUBNAV.EDIT' | translate}}
+	</button>
+	<button class="btn btn-light">
+		 <i class="fa fa-remove"></i> 	{{'SUBNAV.DELETE' | translate}}
+	</button>
+	<button class="btn btn-light"  [routerLink]="['/railcars', 'view']">
+		    <i class="fa fa-bars"></i> {{'SUBNAV.VIEW' | translate}}
+	</button>
+
+	<button class="btn btn-light" (click)="setRefresh()"> 
+		   <i class="fa fa-refresh" ></i> {{'SUBNAV.REFRESH' | translate}}
+	</button>
+</div>
+
+<router-outlet class="set-child-class-by"></router-outlet>
+<div></div> 
+
+<wblg-disparity-list class="wblg-disparity-list  unprintable"></wblg-disparity-list>

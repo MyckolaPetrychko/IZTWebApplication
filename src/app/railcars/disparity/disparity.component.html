@@ -1,0 +1,83 @@
+<header class="wblg-sub-title">
+    <span class="text"> {{ 'Current disparity' | translate}} 
+        <span *ngIf="isNotNull"> {{ accepted }} / {{total}}</span>
+    </span>
+    <div>
+        <button class="btn btn-light" [disabled]="!isSelected" [class.disabled]="!isSelected" (click)="openModal(true)">
+           <i class="fa fa-check-square-o" aria-hidden="true"></i> {{ 'BUTTON.ACCEPRT' | translate }} </button>
+    </div>
+</header>
+
+<!-- Table -->
+<ag-grid-ng2 #agGrid class="ag-fresh table-disparity-list-view" [gridOptions]="gridOptions" [rowData]="DisparityList" *ngIf="isNotNull && !isHidden">
+</ag-grid-ng2>
+
+<!-- Alert -->
+<wblg-alert [message]="message" [type]="type" big="true" modal="true" [open]="!isNotNull && !isHidden">
+</wblg-alert>
+
+<!-- Modal -->
+<wblg-modal type="info" [(open)]="modal" id="madalId" close="true">
+    <span class="header">{{ 'TITLE.DISPARITYACCEPTMODAL' | translate}}</span>
+    <div class="txt" *ngIf="selected?.transportnumber">
+        <form class="form-main form-cols" >
+            <!-- TODO: Bookmark | RailcarsElement | manual add block | clients -->
+            <div role="group" class="form-fieldset form-cols">
+                <div class="form-field form-rows">
+                    <label class="label-control" for="transportnumber"> 
+                        <span class = "span-overflow"> {{ 'TABLE.transportnumber' | translate}} </span>
+                    </label>
+                    <div class="div-control form-cols">
+                        <input type="text" [value]="selected.transportnumber" id="transportnumber" disabled />
+                    </div>
+                </div>
+                <div class="form-field form-rows">
+                    <label for="cropfullname" class="label-control"> 
+                        <span class = "span-overflow"> {{ 'TABLE.cropfullname' | translate}}</span>
+                    </label>
+                    <div class="div-control form-cols">
+                        <input type="text" [value]="selected.cropfullname" id="cropfullname" disabled/>
+                    </div>
+                </div>
+                <div class="form-field form-rows">
+                    <label for="deviationdescription" class="label-control"> 
+                        <span class = "span-overflow"> {{ 'TABLE.deviationdescription' | translate}}</span>
+                    </label>
+                    <div class="div-control form-cols">
+                        <textarea [value]="selected.deviationdescription" id="deviationdescription" disabled></textarea>
+                    </div>
+                </div>
+
+                <div class="divider-horz" *ngIf="selected.permissiontime"></div>
+
+                <div class="form-field form-rows" *ngIf="selected.permissiontime">
+                    <label for="permissiontime" class="label-control"> 
+                        <span class = "span-overflow"> {{ 'TABLE.permissiontime'  | translate}}</span>
+                    </label>
+                    <div class="div-control form-cols">
+                        <textarea [value]="selected.permissiontime | date:'dd.MM.yyyy HH:mm'" id="permissiontime" disabled></textarea>
+                    </div>
+                </div>
+
+                <div class="form-field form-rows" *ngIf="selected.permissiontime">
+                    <label for="permissionusername" class="label-control"> 
+                        <span class = "span-overflow"> {{ 'TABLE.permissionusername' | translate}}</span>
+                    </label>
+                    <div class="div-control form-cols">
+                        <textarea [value]="selected.permissionusername" id="permissionusername" disabled></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <wblg-alert [message]="'ERROR.MUSSBETRAIDERACCEPTED'" type="warn" small="true" [open]="!selected.permissiontime && isEmployyer && !isTraider"></wblg-alert>
+        <wblg-alert [message]="'ERROR.MUSSBEEMPLOYEERACCEPTED'" type="warn" small="true" [open]="selected.permissiontime && isTraider && !isEmployyer"></wblg-alert>
+    </div>
+    <div class="footer" *ngIf="selected?.transportnumber">
+        <button class="btn btn-light" (click)="ok();" [disabled]="(!selected.permissiontime && isEmployyer && !isTraider) || (selected.permissiontime && isTraider && !isEmployyer)  ">
+            <i class="fa fa-check" aria-hidden="true"></i> {{ 'BTN.OK' | translate}}
+            </button>
+        <button class="btn btn-light" (click)="cancel();"> 
+            <i class="fa fa-undo" aria-hidden="true"></i> {{ 'BTN.CANCEL' | translate}}
+            </button>
+    </div>
+</wblg-modal>

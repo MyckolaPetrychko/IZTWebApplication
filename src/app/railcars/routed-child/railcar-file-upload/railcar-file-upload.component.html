@@ -1,0 +1,43 @@
+<header class="wblg-sub-title">
+    {{ 'RAILCAR.FILE_UPLOAD' | translate }}
+</header>
+
+<form class="form-main form-cols" #uploadForm="ngForm">
+    <!-- TODO: Bookmark | RailcarsElement | file add block -->
+    <div role="group" class="form-fieldset form-rows fixed-2x-subtitle ">
+        <div class="form-field form-rows">
+            <div class="div-control form-cols">
+                <input type="file" accept=".xml" name="fileRailcars" (change)="readNow($event)">
+            </div>
+        </div>
+
+        <div class="form-footer btns">
+            <button class="btn btn-light" [class.btn-active]="!isDisableTextContentEditor" (click)="setDisableTextContentEditor()"> 
+               <i class="fa fa-edit" aria-hidden="true"></i> 
+               {{ 'BUTTON.DISABLEDTEXTEDITOR' | translate}}
+            </button>
+            <a download="filename" href="url" class="btn btn-light" (click)="save();">
+                <i class="fa fa-save" aria-hidden="true"></i> {{'BUTTON.SAVE' | translate }}
+            </a>
+            <button class="btn btn-dark" (click)="load();"> 
+                 <i class="fa fa-upload" aria-hidden="true"></i> 
+                 {{ 'BUTTON.FILE_UPLOAD' | translate}}
+            </button>
+        </div>
+    </div>
+
+    <div class="divider-horz"></div>
+
+    <div role="group" class="form-fieldset form-cols">
+        <div class="form-field form-rows">
+            <div class="div-control form-cols">
+                <textarea [(ngModel)]="content" name="content" class="panels" placeholder="{{'FILENOTSELECTED' | translate}}" [disabled]="isDisableTextContentEditor">
+                  </textarea>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+<!--<wblg-alert [message]  = "message"  [type]="'info'"  [modal]="false" [open]="!isVisible" ></wblg-alert>-->

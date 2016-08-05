@@ -1,0 +1,73 @@
+@import '../_variable.scss';
+
+.table-to-confirm-traider {
+    color: $error-color;
+}
+
+.table-to-confirm-employeer {
+    color: darken($color: $success-color, $amount: 45) ;
+
+}
+
+.table-to-confirm-traider, 
+.table-to-confirm-employeer {
+    &:hover {
+        border-bottom: 1px solid $base-color-dark;
+        color:  $base-color-dark;
+        font-style: normal;
+    }
+}
+
+.table-cell-right {
+    text-align: right;
+}
+.table-cell-left {
+    text-align: left;
+}
+.table-cell-center {
+    text-align: center;
+}
+.table-cell-icon {
+    position: absolute;
+    left: 2;
+    margin: 2px;   
+}
+
+
+.grid-alarmed { 
+// .grid-status-1 {
+    background-color: rgba($error-color, 0.7) !important ;
+    // background-color: rgba(242, 29, 29, 0.7) !important ;
+}
+
+.grid-routed {
+// .grid-status-2 {
+    background-color: rgba(lighten($warn-color, 0.7), 0.5) !important ;
+    // background-color: rgba(255, 252, 111, 0.5) !important ;
+}
+
+.grid-returned {
+// .grid-status-3 {
+    background-color: rgba($error-color, 0.25) !important ;
+    // background-color: rgba(241, 71, 71, 0.5) !important ;
+}
+
+.grid-deleted {
+// .grid-status-4 {
+    background-color: rgba($error-color, 0.5) !important ;
+    // background-color: rgba(226, 38, 38, 0.5) !important ;
+}
+
+.grid-accepted {
+// .grid-status-5 {
+    background-color: rgba($base-hover-color, 0.5) !important ;
+    // background-color: rgba(179, 179, 179, 0.5) !important ;
+}
+
+.grid-success {
+// .grid-status-0 {
+    background-color: rgba($success-color, 0.5) !important ;
+    // background-color: rgba(50, 205, 50, 0.5) !important ;
+}
+
+

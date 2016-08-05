@@ -1,0 +1,63 @@
+@import '../_variable.scss';
+
+
+
+
+
+
+
+.self-end {
+    align-self: flex-end;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.grow-all {
+    @include flex-child($grow: 1);
+}
+
+.btns {
+        @include flex-main(row);
+        @include flex-child($grow: 1);
+        @include flex-align(  flex-end, center);
+
+        .btn {
+            min-width: 8em;
+            min-height: 25px;
+        }
+
+        .btn-checked {
+            margin: auto;
+        }
+}
+
+.fixed-2x-subtitle  {
+    max-height: 2 * $app-subtitle-height;
+    @include flex-child(2 * $app-subtitle-height);
+    min-height: 2 * $app-subtitle-height;
+}
+.fixed-3x-subtitle  {
+    max-height: 3 * $app-subtitle-height;
+    @include flex-child(3 * $app-subtitle-height);
+    min-height: 3 * $app-subtitle-height;
+}
+.fixed-4x-subtitle  {
+    max-height: 4 * $app-subtitle-height;
+    @include flex-child(4 * $app-subtitle-height);
+    min-height: 4 * $app-subtitle-height;
+}
+
+.divider-horz {
+    border-top: 1px solid $base-color-dark;
+    height: 1px;
+    max-height: 1px;
+    margin: 2px 10px;
+}
+
+
+/*TODO: from .wblg-railcar-list */
+
+
+

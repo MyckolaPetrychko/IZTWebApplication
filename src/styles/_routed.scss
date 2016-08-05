@@ -1,0 +1,25 @@
+ @import  '../_variable.scss';
+
+ .set-main-class-by + *,
+.wblg-page-routed {
+      position: relative;
+
+    @include flex-main(column);
+    @include flex-child( $app-page-routed-height, $grow: 1);
+
+    height: $app-page-routed-height;
+    max-height:  $app-page-routed-height;
+} 
+
+.set-child-class-by + *,
+.wblg-railcar-child {
+      position: relative;
+
+    $temp: ($app-block-railcar-list + $app-block-railcar-disparity );
+    @include flex-child($temp, 4);
+    min-height:  $temp;
+
+    @include flex-main(column);
+    @include flex-align(center, stretch);
+}
+

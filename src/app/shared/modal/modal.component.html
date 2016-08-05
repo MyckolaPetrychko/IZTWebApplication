@@ -1,0 +1,12 @@
+<!--TODO: ErrorModal-->
+<div class="alert-message alert-modal  alert-modality " [ngClass]="typeClass" *ngIf="visible"  >
+    <div class="title">
+        <span class="fa-stack" aria-hidden="true"> 
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-stack-1x fa-inverse "  [ngClass]="iconClass" ></i>
+        </span> <ng-content select=".header"></ng-content>   
+        <i class="close-icon fa fa-close" (click)="close()" *ngIf="closeBtn" ></i>
+    </div>
+    <ng-content select=".txt"></ng-content>
+    <ng-content select=".footer"></ng-content>
+</div>

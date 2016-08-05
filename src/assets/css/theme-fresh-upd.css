@@ -1,7 +1,7 @@
 .ag-fresh {
-  line-height: 1.4;
+  line-height: 1em;
   font-family: "Lora", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   color: #5e311c;
 /* this is for the rowGroupPanel, that appears along the top of the grid */
 /* this is for the column drops that appear in the toolPanel */
@@ -172,7 +172,7 @@
   border-bottom: 1px solid #fff;
 }
 .ag-fresh .ag-header-cell-label {
-  padding: 8px 4px 8px 4px;
+  padding: 4px 2px 4px 2px;
 }
 /* TODO my*/
 .ag-fresh .ag-header-text,
@@ -189,11 +189,11 @@
   }
 
 .ag-fresh .ag-header-cell-text {
-  padding-left: 2px;
+  padding-left: 1px;
 }
 .ag-fresh .ag-header-group-cell-label {
-  padding: 4px;
-  padding-left: 10px;
+  padding: 2px;
+  padding-left: 5px;
 }
 .ag-fresh .ag-header-group-text {
   margin-right: 2px;

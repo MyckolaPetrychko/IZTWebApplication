@@ -4,19 +4,13 @@ import { AuthService }         from './auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    roles: string[];
     constructor(private authService: AuthService, private router: Router) {
-        this.roles = [];
-        this.roles.push('traider');
-        this.roles.push('employeer');
-        this.roles.push('user');
-        this.roles.push('admin');
 
     }
 
     canActivate() {
 
-        if (this.authService.isAuth(this.roles)) { return true; }
+        if (this.authService.isAuth('user')) { return true; }
         this.router.navigate(['/login']);
         return false;
     }
@@ -31,7 +25,7 @@ export class AuthAdminGuard implements CanActivate {
         this.roles.push('admin');
    }
     canActivate() {
-        if (this.authService.isAuth(this.roles)) { return true; }
+        if (this.authService.isAuth('admin')) { return true; }
         this.router.navigate(['/login']);
         return false;
     }

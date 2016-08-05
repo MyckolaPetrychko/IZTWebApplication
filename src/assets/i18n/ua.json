@@ -62,5 +62,9 @@
     "LABEL": {
         "FROM": "from",
         "TO": " to "
+    },
+
+    "VALUE" : {
+        "REQUIRED": "Pole obov`azkove dla zapovnenennya"
     }
 }

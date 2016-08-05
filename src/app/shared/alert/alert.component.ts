@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange } from '@angular/core';
 import { NgClass, NgIf } from '@angular/common';
 import { TranslatePipe } from 'ng2-translate';
 
@@ -7,45 +7,35 @@ import { TranslatePipe } from 'ng2-translate';
     moduleId: module.id,
     selector: 'wblg-alert',
     templateUrl: 'alert.component.html',
-    styleUrls: ['alert.component.css'],
+    // styleUrls: ['alert.component.css'],
     directives: [NgClass, NgIf],
     pipes: [TranslatePipe]
 })
 
-export class AlertComponent implements OnInit {
+export class AlertComponent implements OnInit, OnChanges {
     @Input() set type(_type: string) {
-        if (_type === 'info') {
-            this.iconClass = 'fa-info';
-            this.typeClass = 'info-message';
-            this.typeTitle = 'ALERT.INFO';
-        } else if (_type === 'warn') {
-            this.iconClass = 'fa-warning';
-            this.typeClass = 'warning-message';
-            this.typeTitle = 'ALERT.WARNING';
-
-        } else if (_type === 'error') {
-            this.iconClass = 'fa-remove';
-            this.typeClass = 'error-message';
-            this.typeTitle = 'ALERT.ERROR';
-
-        } else {
-            this.iconClass = 'fa-bug';
-            this.typeClass = 'bug-message';
-            this.typeTitle = 'ALERT.BUG';
-        }
+        this.setType(_type);
     }
+
+    @Input() set time ( _t: number) {
+        window.setTimeout(() => {
+            this.open = false;
+        }, _t * 1000);
+    } 
+
     @Input() set message(_message: string) {
-        this.mess = _message;
+        this.setMess(_message);
     }
     @Input() set open(_visible: boolean) {
         this.visible = _visible || false;
     }
-    
-    @Input() modal: boolean;
+
+    @Input('close') closeBtn: boolean;
+    @Input() small : boolean = false;
+    @Input() big: boolean = false;
+    @Input() modal: boolean = false;
 
     @Output() openChange = new EventEmitter();
-    @Output() OkPressed = new EventEmitter();
-    @Output() CancelPressed = new EventEmitter();
 
     private visible: boolean;
 
@@ -53,6 +43,7 @@ export class AlertComponent implements OnInit {
     private typeTitle: string;
     private iconClass: string;
     private typeClass: string;
+    private timerClose : any;
 
     constructor() {
         this.visible = false;
@@ -62,19 +53,51 @@ export class AlertComponent implements OnInit {
 
     ngOnInit() {
         console.log(this.type + ' ' + this.visible);
-
-
     }
-
-    public ok(): void {
-        this.OkPressed.emit('true');
+    
+    ngOnChanges(changes : { [prop:string] : SimpleChange }) {
+         for (let propName in changes) {
+             if ( propName === 'type') {
+                 this.setType(changes[propName].currentValue);
+             } else if ( propName === 'message') {
+                 this.setMess(changes[propName].currentValue);
+             }
+             console.log(propName + ':' + changes[propName].currentValue);
+        }
+    }
+    
+    public close():void {
         this.visible = false;
         this.openChange.emit(false);
     }
 
-    public cancel(): void {
-        this.CancelPressed.emit('true');
-        this.visible = false;
-        this.openChange.emit(false);
+    private setType(_type:string) {
+        if (_type === 'info') {
+            this.iconClass = 'fa-info';
+            this.typeClass = 'alert-info-message';
+            this.typeTitle = 'ALERT.INFO';
+        } else if (_type === 'warn') {
+            this.iconClass = 'fa-warning';
+            this.typeClass = 'alert-warn-message';
+            this.typeTitle = 'ALERT.WARNING';
+
+        } else if (_type === 'error') {
+            this.iconClass = 'fa-remove';
+            this.typeClass = 'alert-error-message';
+            this.typeTitle = 'ALERT.ERROR';
+
+        } else {
+            this.iconClass = 'fa-bug';
+            this.typeClass = 'alert-bug-message';
+            this.typeTitle = 'ALERT.BUG';
+        }
+    }
+
+    private setMess(_mess : string) {
+        if (this.big) {
+            this.typeTitle = _mess;
+        } else {
+            this.mess = _mess;
+        }
     }
 }

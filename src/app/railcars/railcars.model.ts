@@ -229,17 +229,20 @@ export interface IRailcarModel {
     snpresence?:            string;  //Наличие протокола безопасности,VARCHAR(10)
 
     confirmationtime?:      Date;    //TIMESTAMP
+    confirmationusername? : string;   // VARCHAR
+    grosstime?:             Date;    //TIMESTAMP
     inventoryid?:           number;  //INTEGER
     regdate?:               Date;    //DATE
+    state?:                 number;  //INTEGER
+
+    // TODO: not noting
     invoiceid?:             number;  //INTEGER
-    grosstime?:             Date;    //TIMESTAMP
     ownerid?:               number;  //INTEGER
     providerid?:            number;  //INTEGER
     samplerqualityid?:      number;  //INTEGER
     labqualityid?:          number;  //INTEGER
     storageid?:             number;  //INTEGER
     contractid?:            number;  //INTEGER
-    state?:                 number;  //INTEGER
     senderqualityid?:       number;  //INTEGER
     exporterid?:            number;  //INTEGER
     stationid?:             number;  //INTEGER
@@ -284,11 +287,11 @@ export interface IRailcarModel {
     certificatepresence?:   string;  //Наличие сертификата качества, VARCHAR(10)
     snpresence?:            string;  //Наличие протокола безопасности,VARCHAR(10)
     grosstime?:             Date;    //Взвешивание по брутто TIMESTAMP
-
-
     confirmationtime?:      Date;    //TIMESTAMP
     inventoryid?:           number;  //INTEGER
     regdate?:               Date;    //DATE
+    state?:                 number;  //INTEGER
+
     invoiceid?:             number;  //INTEGER
     ownerid?:               number;  //INTEGER
     providerid?:            number;  //INTEGER
@@ -296,7 +299,6 @@ export interface IRailcarModel {
     labqualityid?:          number;  //INTEGER
     storageid?:             number;  //INTEGER
     contractid?:            number;  //INTEGER
-    state?:                 number;  //INTEGER
     senderqualityid?:       number;  //INTEGER
     exporterid?:            number;  //INTEGER
     stationid?:             number;  //INTEGER

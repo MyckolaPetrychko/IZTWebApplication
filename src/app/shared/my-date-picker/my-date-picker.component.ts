@@ -1,27 +1,44 @@
-import {Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChange, ElementRef} from '@angular/core';
-import {NgIf, NgFor, NgClass, NgStyle, NgModel} from '@angular/common';
+import {Component, Input, Output, EventEmitter, OnInit, OnDestroy,
+    ElementRef, Provider, forwardRef} from '@angular/core';
+import {NgIf, NgFor, NgClass, NgStyle, NgModel } from '@angular/common';
 import {IMyDate, IMyMonth, IMyWeek, IMyDayLabels, IMyMonthLabels, IMyLocales, IMyOptions} from './interfaces/index';
 
+import { TranslatePipe, TranslateService, LangChangeEvent } from 'ng2-translate';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Subscription } from 'rxjs/Subscription';
+
+const noop = () => {
+    // noop
+};
+
+export const DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => MyDatePicker),
+    multi: true
+};
 
 @Component({
     moduleId: module.id,
     selector: 'my-date-picker',
     directives: [NgIf, NgFor, NgClass, NgStyle],
-    // styles: ['./my-date-picker.component.css'],
-    templateUrl: './my-date-picker.component.html'
+    templateUrl: './my-date-picker.component.html',
+    providers: [DATEPICKER_CONTROL_VALUE_ACCESSOR]
 })
 
-export class MyDatePicker implements OnInit, OnChanges {
-    @Input() options: any;
-    @Input() locale: string;
-    @Input() defaultMonth: string;
-    @Input() selDate: string;
-    @Output() dateChanged: EventEmitter<Object> = new EventEmitter();
+export class MyDatePicker implements OnInit, ControlValueAccessor, OnDestroy {
+    public options: any;
+
+    @Input('id') idName: string = 'calendarID';
+    @Input() inline: boolean = false;
+    @Input() clear: boolean = true;
+    @Input() endDate: boolean = false;
 
     showSelector: boolean = false;
+
     visibleMonth: IMyMonth = { monthTxt: '', monthNbr: 0, year: 0 };
     defaultDate: IMyDate = { year: 0, month: 0, day: 0 };
     selectedDate: IMyDate = { year: 0, month: 0, day: 0 };
+
     weekDays: Array<string> = [];
     dates: Array<Object> = [];
     selectionDayTxt: string = '';
@@ -34,43 +51,94 @@ export class MyDatePicker implements OnInit, OnChanges {
 
     // Default options
     dayLabels: IMyDayLabels = { su: 'Sun', mo: 'Mon', tu: 'Tue', we: 'Wed', th: 'Thu', fr: 'Fri', sa: 'Sat' };
-    monthLabels: IMyMonthLabels = { 1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May',
-                                     6: 'Jun', 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec' };
-    dateFormat: string = 'yyyy-mm-dd'
+    monthLabels: IMyMonthLabels = {
+        1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May',
+        6: 'Jun', 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'
+    };
+    dateFormat: string = 'yyyy-mm-dd';
     todayBtnTxt: string = 'Today';
     firstDayOfWeek: string = 'mo';
     sunHighlight: boolean = true;
-    height: string = '34px';
+    height: string = '20px';
     width: string = '100%';
     disableUntil: IMyDate = { year: 0, month: 0, day: 0 };
     disableSince: IMyDate = { year: 0, month: 0, day: 0 };
     disableWeekends: boolean = false;
-    inline: boolean = false;
+    // inline: boolean = false;
+
+    //Placeholders for the callbacks which are later providesd
+    //by the Control Value Accessor
+    private onTouchedCallback: () => void = noop;
+    private onChangeCallback: (_: any) => void = noop;
+
+    //The internal data model
+    private innerValue: Date = null;
+    private _subTranslate: Subscription;
 
     private _locales: IMyLocales = {
         'ja': {
             dayLabels: { su: '日', mo: '月', tu: '火', we: '水', th: '木', fr: '金', sa: '土' },
-            monthLabels: { 1: '１月', 2: '２月', 3: '３月', 4: '４月', 5: '５月',
-                           6: '６月', 7: '７月', 8: '８月', 9: '９月', 10: '１０月', 11: '１１月', 12: '１２月' },
+            monthLabels: {
+                1: '１月', 2: '２月', 3: '３月', 4: '４月', 5: '５月',
+                6: '６月', 7: '７月', 8: '８月', 9: '９月', 10: '１０月', 11: '１１月', 12: '１２月'
+            },
             dateFormat: 'yyyy.mm.dd',
             todayBtnTxt: '今日',
             sunHighlight: false
         },
         'fr': {
             dayLabels: { su: 'Dim', mo: 'Lun', tu: 'Mar', we: 'Mer', th: 'Jeu', fr: 'Ven', sa: 'Sam' },
-            monthLabels: { 1: 'Jan', 2: 'Fév', 3: 'Mar', 4: 'Avr', 5: 'Mai', 6: 'Juin',
-                         7: 'Juil', 8: 'Aoû', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Déc' },
+            monthLabels: {
+                1: 'Jan', 2: 'Fév', 3: 'Mar', 4: 'Avr', 5: 'Mai', 6: 'Juin',
+                7: 'Juil', 8: 'Aoû', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Déc'
+            },
             dateFormat: 'dd/mm/yyyy',
-            todayBtnTxt: 'Aujourd\'hui'
+            todayBtnTxt: 'Aujourd\'hui',
+            firstDayOfWeek: 'su',
+            sunHighlight: true
+
+        },
+        'ua': {
+            dayLabels: { su: 'Нд', mo: 'Пн', tu: 'Вт', we: 'Ср', th: 'Чт', fr: 'Пт', sa: 'Сб' },
+            monthLabels: {
+                1: 'Січ.', 2: 'Лют.', 3: 'Бер.', 4: 'Квіт.', 5: 'Трав.', 6: 'Черв.',
+                7: 'Лип.', 8: 'Серп.', 9: 'Вер.', 10: 'Жовт.', 11: 'Лист.', 12: 'Груд.'
+            },
+            dateFormat: 'dd.mm.yyyy',
+            todayBtnTxt: 'Сьогодні',
+            firstDayOfWeek: 'mo',
+            sunHighlight: true
+        },
+        'ru': {
+            dayLabels: { su: 'Вс', mo: 'Пн', tu: 'Вт', we: 'Ср', th: 'Чт', fr: 'Пт', sa: 'Сб' },
+            monthLabels: {
+                1: 'Янв.', 2: 'Февр.', 3: 'Март', 4: 'Апр.', 5: 'Май', 6: 'Июнь',
+                7: 'Июль', 8: 'Авг.', 9: 'Сент.', 10: 'Окт.', 11: 'Нояб.', 12: 'Дек.'
+            },
+            dateFormat: 'dd.mm.yyyy',
+            todayBtnTxt: 'Сегодня',
+            firstDayOfWeek: 'mo',
+            sunHighlight: true
+        },
+        'en': {
+            dayLabels: { su: 'Sun', mo: 'Mon', tu: 'Tue', we: 'Wed', th: 'Thu', fr: 'Fri', sa: 'Sat' },
+            monthLabels: {
+                1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May',
+                6: 'Jun', 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'
+            },
+            dateFormat: 'yyyy-mm-dd',
+            todayBtnTxt: 'Today',
+            firstDayOfWeek: 'su',
+            sunHighlight: true
         }
     };
 
-    constructor(public elem: ElementRef) {
+    constructor(public elem: ElementRef, private _translate: TranslateService) {
         this.today = new Date();
         let doc = document.getElementsByTagName('html')[0];
         doc.addEventListener('click', (event) => {
-            if (this.showSelector && event.target 
-                && this.elem.nativeElement !== event.target 
+            if (this.showSelector && event.target
+                && this.elem.nativeElement !== event.target
                 && !this.elem.nativeElement.contains(event.target)) {
                 this.showSelector = false;
             }
@@ -78,17 +146,34 @@ export class MyDatePicker implements OnInit, OnChanges {
     }
 
     ngOnInit() {
+        this._subTranslate = this._translate.onLangChange.subscribe((event: LangChangeEvent) => {
+            this.changeLocale();
+        });
+
+        if (this.inline) {
+            this.openBtnClicked();
+        }
+
+        this.changeLocale();
+    }
+
+    ngOnDestroy() {
+        this._subTranslate.unsubscribe();
+    }
+
+    public changeLocale(): void {
         let localeOptions: IMyOptions = {};
-        if (this.locale && this._locales.hasOwnProperty(this.locale)) {
-            localeOptions = this._locales[this.locale];
+        let locale = this._translate.currentLang;
+        if (locale && this._locales.hasOwnProperty(locale)) {
+            localeOptions = this._locales[locale];
         }
 
         // the relatively ugly casts to any in this loop are needed to
         // avoid tsc errors when noImplicitAny is true.
-        let optionprops = ['dayLabels', 'monthLabels', 'dateFormat', 
-                            'todayBtnTxt', 'firstDayOfWeek', 'sunHighlight', 
-                            'disableUntil', 'disableSince', 'disableWeekends',
-                             'height', 'width', 'inline'];
+        let optionprops = ['dayLabels', 'monthLabels', 'dateFormat',
+            'todayBtnTxt', 'firstDayOfWeek', 'sunHighlight',
+            'disableUntil', 'disableSince', 'disableWeekends',
+            'height', 'width', 'inline'];
         let noptionprops = optionprops.length;
         for (let i = 0; i < noptionprops; i++) {
             let propname = optionprops[i];
@@ -100,7 +185,8 @@ export class MyDatePicker implements OnInit, OnChanges {
                 }
             }
         }
-
+        this.selectionDayTxt = this.formatDate(this.selectedDate);
+        this.weekDays = [];
         let days = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa'];
         this.dayIdx = days.indexOf(this.firstDayOfWeek);
         if (this.dayIdx !== -1) {
@@ -110,27 +196,16 @@ export class MyDatePicker implements OnInit, OnChanges {
                 idx = days[idx] === 'sa' ? 0 : idx + 1;
             }
         }
-
-        if (this.inline) {
-            this.openBtnClicked();
-        }
-    }
-
-    ngOnChanges(changes: { [propName: string]: SimpleChange }) {
-        if (changes.hasOwnProperty('selDate')) {
-            this.selectionDayTxt = changes['selDate'].currentValue;
-            this.selectedDate = this._parseDate(this.selectionDayTxt);
-        }
-
-        if (changes.hasOwnProperty('defaultMonth')) {
-            this.defaultDate = this._parseDate(changes['defaultMonth'].currentValue);
-        }
     }
 
     removeBtnClicked(): void {
         this.selectionDayTxt = '';
-        this.selectedDate = { year: 0, month: 0, day: 0 };
-        this.dateChanged.emit({ date: {}, formatted: this.selectionDayTxt, epoc: 0 });
+        this.innerValue = null;
+        //    this.value = null;
+        this.onChangeCallback(this.innerValue);
+
+        // this.selectedDate = { year: 0, month: 0, day: 0 };
+        // this.dateChanged.emit({ date: {}, formatted: this.selectionDayTxt, epoc: 0 });
     }
 
     openBtnClicked(): void {
@@ -198,10 +273,18 @@ export class MyDatePicker implements OnInit, OnChanges {
         let m = this.today.getMonth() + 1;
         let y = this.today.getFullYear();
         this.selectDate({ day: this.today.getDate(), month: m, year: y });
+
         if (this.inline) {
             this.visibleMonth = { monthTxt: this.monthLabels[m], monthNbr: m, year: y };
             this.createMonth(m, y);
         }
+        if (this.endDate) {
+            this.innerValue = new Date(y, this.today.getMonth(), this.today.getDate(), 23, 59, 59, 999);
+        } else {
+            this.innerValue = new Date(y, this.today.getMonth(), this.today.getDate(), 0, 0, 0, 0);
+        }
+        this.onChangeCallback(this.innerValue);
+
     }
 
     cellClicked(cell: any): void {
@@ -222,10 +305,17 @@ export class MyDatePicker implements OnInit, OnChanges {
         this.selectedDate = { day: date.day, month: date.month, year: date.year };
         this.selectionDayTxt = this.formatDate(this.selectedDate);
         this.showSelector = false;
-        let epoc = new Date(this.selectedDate.year, 
-                            this.selectedDate.month, 
-                            this.selectedDate.day, 0, 0, 0, 0).getTime() / 1000.0;
-        this.dateChanged.emit({ date: this.selectedDate, formatted: this.selectionDayTxt, epoc: epoc });
+
+        if (this.endDate) {
+            this.innerValue = new Date(this.selectedDate.year,
+                this.selectedDate.month - 1,
+                this.selectedDate.day, 23, 59, 59, 999);
+        } else {
+            this.innerValue = new Date(this.selectedDate.year,
+                this.selectedDate.month - 1,
+                this.selectedDate.day, 0, 0, 0, 0);
+        }
+        this.onChangeCallback(this.innerValue);
     }
 
     preZero(val: string): string {
@@ -272,23 +362,23 @@ export class MyDatePicker implements OnInit, OnChanges {
 
     isCurrDay(d: number, m: number, y: number, cmo: any): boolean {
         // Check is a given date the current date
-        return d === this.today.getDate() 
-                && m === this.today.getMonth() + 1 
-                && y === this.today.getFullYear() && cmo === 2;
+        return d === this.today.getDate()
+            && m === this.today.getMonth() + 1
+            && y === this.today.getFullYear() && cmo === 2;
     }
 
     isDisabledDay(date: IMyDate): boolean {
         // Check is a given date <= disabledUntil or given date >= disabledSince or disabled weekend
         let givenDate = this.getTimeInMilliseconds(date);
-        if (this.disableUntil.year !== 0 
-            && this.disableUntil.month !== 0 
-            && this.disableUntil.day !== 0 
+        if (this.disableUntil.year !== 0
+            && this.disableUntil.month !== 0
+            && this.disableUntil.day !== 0
             && givenDate <= this.getTimeInMilliseconds(this.disableUntil)) {
             return true;
         }
-        if (this.disableSince.year !== 0 
-            && this.disableSince.month !== 0 
-            && this.disableSince.day !== 0 
+        if (this.disableSince.year !== 0
+            && this.disableSince.month !== 0
+            && this.disableSince.day !== 0
             && givenDate >= this.getTimeInMilliseconds(this.disableSince)) {
             return true;
         }
@@ -332,11 +422,13 @@ export class MyDatePicker implements OnInit, OnChanges {
                 // Previous month
                 for (var j = pm; j <= dInPrevM; j++) {
                     let date: IMyDate = { year: y, month: m - 1, day: j };
-                    week.push({ dateObj: date, 
-                                cmo: cmo, 
-                                currDay: this.isCurrDay(j, m, y, cmo), 
-                                dayNbr: this.getDayNumber(date), 
-                                disabled: this.isDisabledDay(date) });
+                    week.push({
+                        dateObj: date,
+                        cmo: cmo,
+                        currDay: this.isCurrDay(j, m, y, cmo),
+                        dayNbr: this.getDayNumber(date),
+                        disabled: this.isDisabledDay(date)
+                    });
                 }
 
                 cmo = this.CURR_MONTH;
@@ -344,14 +436,16 @@ export class MyDatePicker implements OnInit, OnChanges {
                 var daysLeft = 7 - week.length;
                 for (var j = 0; j < daysLeft; j++) {
                     let date: IMyDate = { year: y, month: m, day: dayNbr };
-                    week.push({ dateObj: date, 
-                                cmo: cmo,
-                                currDay: this.isCurrDay(dayNbr, m, y, cmo),
-                                 dayNbr: this.getDayNumber(date),
-                                  disabled: this.isDisabledDay(date) });
+                    week.push({
+                        dateObj: date,
+                        cmo: cmo,
+                        currDay: this.isCurrDay(dayNbr, m, y, cmo),
+                        dayNbr: this.getDayNumber(date),
+                        disabled: this.isDisabledDay(date)
+                    });
                     dayNbr++;
                 }
-            }  else {
+            } else {
                 // Rest of the weeks
                 for (var j = 1; j < 8; j++) {
                     if (dayNbr > dInThisM) {
@@ -360,11 +454,13 @@ export class MyDatePicker implements OnInit, OnChanges {
                         cmo = this.NEXT_MONTH;
                     }
                     let date: IMyDate = { year: y, month: cmo === this.CURR_MONTH ? m : m + 1, day: dayNbr };
-                    week.push({ dateObj: date,
-                             cmo: cmo,
-                              currDay: this.isCurrDay(dayNbr, m, y, cmo), 
-                              dayNbr: this.getDayNumber(date),
-                               disabled: this.isDisabledDay(date) });
+                    week.push({
+                        dateObj: date,
+                        cmo: cmo,
+                        currDay: this.isCurrDay(dayNbr, m, y, cmo),
+                        dayNbr: this.getDayNumber(date),
+                        disabled: this.isDisabledDay(date)
+                    });
                     dayNbr++;
                 }
             }
@@ -372,23 +468,21 @@ export class MyDatePicker implements OnInit, OnChanges {
         }
     }
 
-    private _parseDate(ds: string): IMyDate {
-        let rv: IMyDate = { day: 0, month: 0, year: 0 };
-        if (ds !== '') {
-            let fmt = this.options && this.options.dateFormat !== undefined ? this.options.dateFormat : this.dateFormat;
-            let dpos = fmt.indexOf('dd');
-            if (dpos >= 0) {
-                rv.day = parseInt(ds.substring(dpos, dpos + 2));
-            }
-            let mpos = fmt.indexOf('mm');
-            if (mpos >= 0) { 
-                rv.month = parseInt(ds.substring(mpos, mpos + 2));
-            }
-            let ypos = fmt.indexOf('yyyy');
-            if (ypos >= 0) {
-                rv.year = parseInt(ds.substring(ypos, ypos + 4));
-            }
+    //From ControlValueAccessor interface
+    writeValue(value: any) {
+        if (value !== this.innerValue) {
+            this.innerValue = value;
+            this.selectDate({ year: value.getFullYear(), month: value.getMonth() + 1, day: value.getDay() });
         }
-        return rv;
+    }
+
+    //From ControlValueAccessor interface
+    registerOnChange(fn: any) {
+        this.onChangeCallback = fn;
+    }
+
+    //From ControlValueAccessor interface
+    registerOnTouched(fn: any) {
+        this.onTouchedCallback = fn;
     }
 }

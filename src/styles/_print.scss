@@ -1,0 +1,35 @@
+ @media print { /* Стиль для печати */
+   * {
+        color: #000;
+        background-color: #fff;
+        border-color: #666;
+        box-shadow: none;
+       // display: none;
+       width: none;
+    height: none;
+   }
+
+// TODO: check style ag-fresh and view all
+
+   .printable {
+       display: inline-block;
+ table, .ag-fresh { page-break-after:auto }
+  tr, .ag-row    { page-break-inside:avoid; page-break-after:auto }
+  td, .ag-cell    { page-break-inside:avoid; page-break-after:auto }
+  thead, .ag-header-container { display:table-header-group }
+  tfoot { display:table-footer-group }
+       * {
+                  display: inline-block;
+
+       }
+   }
+
+   .unprintable {
+       display: none;
+
+       * {
+                  display: none;
+
+       }
+   }
+}

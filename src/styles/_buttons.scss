@@ -1,0 +1,141 @@
+@import '../variable';
+
+
+.btn {
+    padding: 4px 8px;
+    min-width: 120px;
+    min-height: 20px;
+
+
+    // font-size: $base-font-size;
+    @include titled();
+
+    border: 1px solid rgba($base-color-dark, 0.35);
+    cursor: pointer;
+    
+    box-sizing: border-box;
+    border-radius: 2px;
+
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.btn-dark {
+    background-image: linear-gradient(to bottom, $base-color-dark 0%, lighten($base-color-dark, 10%)  11%, lighten($base-color-dark, 15%) 96%);
+    color: $base-color-light;
+   
+    &:hover {
+             color: $base-hover-color;
+    }
+
+    &:active {
+        @extend .btn-active;
+
+    }
+
+
+}
+
+.btn-light {
+    background-image: linear-gradient(to bottom, $base-color-light 0%, darken($base-color-light, 1%)  11%, darken($base-color-light, 8%) 96%);
+    color: $base-color-dark;
+
+    &:hover {
+            color: darken($base-hover-color, 40%);
+    }
+   
+    &:active {
+                 @extend .btn-active;
+    }
+}
+
+.btn-flat {
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 0;
+
+}
+
+ .btn-flat.btn-light {
+    background-image: none;
+    background-color: $base-color-light;
+    border-color: $base-color-dark; 
+   
+    &:hover {
+            border-color: darken($base-hover-color, 40%);
+    }
+    &:active {
+         @extend .btn-flat.btn-active;
+    }
+ }
+
+.btn-flat.btn-dark {
+    background-image: none;
+    background-color: $base-color-dark;
+    border-color: $base-color-light;; 
+    
+    &:hover {
+        border-color: $base-hover-color;
+    }
+    &:active {
+         @extend .btn-flat.btn-active;
+    }
+
+}
+
+.btn-active {
+    background-image: linear-gradient(to bottom,
+     lighten($base-active-color, 10%) 0%, 
+    lighten($base-active-color, 5%)  11%,
+     darken($base-active-color, 2%) 96%);
+}
+
+
+
+.btn-active:hover {
+    color: darken($base-hover-color, 40%);
+    border-color:  darken($base-hover-color, 40%);
+}
+
+.btn-flat.btn-active {
+     background-image: none;
+     background-color: $base-active-color;
+    //  @include actived-back();
+}
+
+.btn-checked {
+   background-image: linear-gradient(to bottom,
+     lighten($warn-color, 10%) 0%, 
+    lighten($warn-color, 5%)  11%,
+     darken($warn-color, 2%) 96%);
+}
+.btn-checked.btn-flat {
+    border-image: none;
+    background-color: $warn-color;
+}
+
+.btn-active.btn-checked {
+    background-image: linear-gradient(to bottom,
+     lighten($success-color, 10%) 0%, 
+     lighten($success-color, 5%)  11%,
+     darken($success-color, 2%) 96%);
+}
+
+.btn-active.btn-flat.btn-checked {
+    border-image: none;
+    background-color: $success-color;
+}
+
+.btn:disabled {
+    border: 2px solid $base-hover-color;
+    color: $base-hover-color;
+    font-size: 0.9 * $base-font-size;
+    cursor: default;
+}

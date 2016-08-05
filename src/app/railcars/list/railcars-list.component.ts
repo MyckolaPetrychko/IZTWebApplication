@@ -27,9 +27,9 @@ import { RailcarService } from '../railcars.service';
 import { RailcarProvide } from '../railcars.provide';
 
 import { ComboboxComponent } from '../../shared/combobox/combobox.component';
-import { DataFilterRailcarService } from '../railcars-filter.service';
-import { LocalStorageService } from '../storage.service';
+import { LocalStorageService } from '../../shared/storage.service';
 import { NotifyService } from '../../shared/notify.server';
+import { DataFilterService } from '../../filters-data/filter-data.service';
 
 @Component({
     moduleId: module.id,
@@ -37,8 +37,7 @@ import { NotifyService } from '../../shared/notify.server';
     templateUrl: './railcars-list.component.html',
     styleUrls: ['./railcars-list.component.css'],
     directives: [NgIf, NgClass, ComboboxComponent, AgGridNg2, MyDatePicker, FORM_DIRECTIVES, AlertComponent],
-    pipes: [TranslatePipe],
-    providers: [DataFilterRailcarService]
+    pipes: [TranslatePipe]
 })
 export class RailcarListComponent implements OnInit, OnDestroy, OnChanges {
     public RailcarList: IRailcarModel[];
@@ -81,7 +80,7 @@ export class RailcarListComponent implements OnInit, OnDestroy, OnChanges {
 
 
     constructor(private _railcar: RailcarService,
-        private _filters: DataFilterRailcarService,
+        private _filters: DataFilterService,
         private _storage: LocalStorageService,
         private _notify: NotifyService,
         private _translate: TranslateService
@@ -245,7 +244,7 @@ export class RailcarListComponent implements OnInit, OnDestroy, OnChanges {
     private changeViews(): void {
         let _strg = this._storage.getViewFromStorage();
         if (_strg) {
-            this.showalarmed = (_strg.showalarmed) ? 1 : 0;
+            // this.showalarmed = (_strg.showalarmed) ? 1 : 0;
             this.showdeleted = (_strg.showdeleted) ? 1 : 0;
             this.shownotreceived = (_strg.shownotreceived) ? 1 : 0;
             this.showremoterecords = (_strg.showremoterecords) ? 1 : 0;
@@ -537,10 +536,6 @@ export class RailcarListComponent implements OnInit, OnDestroy, OnChanges {
             rowDeselection: true,
             rowSelection: 'single',
             enableColResize: true,
-            onGridReady: () => {
-
-
-            },
             headerCellRenderer: (params: any) => {
                 let txtGroup = document.getElementsByClassName('ag-header-group-text');
                 for (let i = 0; i < txtGroup.length; i++) {

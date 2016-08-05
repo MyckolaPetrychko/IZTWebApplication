@@ -1,0 +1,68 @@
+<header class="wblg-sub-title">
+    {{ 'Params' | translate }}
+    <div class="btns">
+        <!--<button class="btn btn-light" (click)="save()"> Save </button>-->
+        <!--<button class="btn btn-light" [class.btn-active]="isVisibleAddAsFile" (click)="setVisibleAddAsFile()"> {{'BUTTON.LOADFILE' | translate}}</button>-->
+    </div>
+</header>
+
+
+<form class="form-main form-cols" #viewForm="ngForm">
+    <!-- TODO: Bookmark | RailcarsElement | manual add block | base-data numbers -->
+    <div role="group" class="form-fieldset form-rows fixed-3x-subtitle ">
+        <div role="group" class="form-fieldset form-rows btns">
+            <div class="btns">
+                <button type="button" class="btn btn-checked btn-light" *ngFor="let item of propertiesBase" (click)="changeProperty(item)"
+                    [class.btn-active]="cols[item]"> {{ item | translate}} </button>
+                <!--<div class="form-field form-rows" *ngFor="let item of propertiesBase">
+                <label [attr.for]="item" class="label-control ">   
+                        <input type="checkbox" [id]="item" [(ngModel)]="cols[item]" [name]="item" />
+                        <span class = "span-overflow"> {{ item | translate}} </span>
+              </label>
+            </div>-->
+            </div>
+        </div>
+        <!-- TODO: Bookmark | RailcarsElement | manual add block | footer-->
+        <div class=" form-footer form-cols ">
+            <div class="btns">
+                <button class="btn btn-dark" (click)="onSave()"><i class="fa fa-save"></i> {{'BUTTON.SAVE' | translate}} </button>
+                <button class="btn btn-light"><i class="fa fa-hand-o-up"></i> {{'BUTTON.SELECTALL' | translate}}</button>
+                <button class="btn btn-light"><i class="fa fa-mail-reply"></i> {{'BUTTON.CANCEL' | translate}}</button>
+
+            </div>
+            <div class="div-control form-cols">
+                <wblg-alert [message]="'VALUE.INFOVIEW'" [type]="'info'" [small]="true" [modal]="false" [open]="true">
+                </wblg-alert>
+            </div>
+
+        </div>
+        <!-- end footer-->
+    </div>
+    <!-- end base-data numbers -->
+
+
+    <!-- TODO: Bookmark | RailcarsElement | manual add block | divider -->
+    <div class="divider-horz"></div>
+
+    <!-- TODO: Bookmark | RailcarsElement | manual add block | clients -->
+    <div role="group" class="form-fieldset form-rows">
+        <div role="group" class="form-fieldset form-cols">
+            <!-- TODO: Bookmark | ViewElement | -->
+            <div class="form-field form-rows" *ngFor="let item of propertiesColsPart1">
+                <label [attr.for]="item" class="label-control " (click)="onSave()">   
+                        <input type="checkbox" [id]="item" [(ngModel)]="cols.cols[item]" [name]="item" />
+                        <span class = "span-overflow"> {{ 'TABLE.' + item | translate}} </span>
+              </label>
+            </div>
+        </div>
+        <div role="group" class="form-fieldset form-cols">
+            <!-- TODO: Bookmark | ViewElement | -->
+            <div class="form-field form-rows" *ngFor="let item of propertiesColsPart2">
+                <label [attr.for]="item" class="label-control " (click)="onSave()">   
+                        <input type="checkbox" [id]="item" [(ngModel)]="cols.cols[item]" [name]="item" />
+                        <span class = "span-overflow"> {{ 'TABLE.' + item | translate}} </span>
+              </label>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,16 +1,13 @@
-<label class="label-combobox ">
-    <span> {{label | translate}} </span>
-</label>
-
 <div class="combobox">
-    <div class="combobox-toogle" [class.active]="isOpenedMenu" [class.is-data]="value">
+    <div class="combobox-toogle" [class.active]="isOpenedMenu">
         <input type="text" 
                 class="combobox-input" 
                 [(ngModel)]="value"
-                (blur) = "setValue(value)" 
-                (focus) = "ToogleMenu(true)">
+                (blur) = "onBlur(value)" 
+                (focus) = "ToogleMenu(true)"
+                [id]="idName" />
         <span class="combobox-caret " (click)="ToogleMenu(!isOpenedMenu)">
-              <i class="icon fa" [ngClass]="{'fa-caret-down': !value && dropdown,'fa-remove': value}"></i>
+              <i class="fa" [ngClass]="{'fa-caret-down': !value && dropdown,'fa-remove': value}"></i>
         </span>
     </div>
 

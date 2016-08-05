@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import {
     Http,
     Response,
@@ -22,43 +22,42 @@ import 'rxjs/add/operator/map';
 
 import {UserLoginApi, UserLogoutApi } from './auth.constant';
 import { IAuthUser } from './auth-user.model';
+import { USER_ROLES, IUserRoles } from './user-roles.model';
 
 @Injectable()
 export class AuthService {
 
     public _isLogined : boolean; 
-    private _role: string;
+    // public user : IAuthUser;
+    public role: string;
+    private _roles: IUserRoles;
 
     constructor(private _http: Http) { 
-        this._role='anonym';
-        this._isLogined = false;
+        // ROD: remove debug
+        this.role = 'admin';
+        this._roles = USER_ROLES;
+        this._isLogined = true;
     }
 
     public login(user : string, pass: string): any {
         // let _url = UserLoginApi.replace('%login%', user).replace('%password%', pass);
-        this._role = user;
+        this.role = user;
         this._isLogined = true;
-        console.log(this._role + ' ' + this._isLogined );
         
     }
 
-    public isAuth( roles : string [] ) {
-        let res : boolean;//Observable<boolean>;
-
+    public isAuth( _role : string  ) {
+        let res : boolean;
         if ( !this._isLogined ) {
-            // res = Observable.of(false);
             res = false;
         } else {
-            res = (roles.indexOf(this._role) === -1)? false : true;
-            // res = Observable.of(roles.indexOf(this._role) === -1);
+            res = (this._roles[_role].indexOf(this.role) === -1)? false : true;
         }
-        console.log('auth is' + JSON.stringify(roles) + ',' + this._role + ',' 
-        + this._isLogined + '\n res' + JSON.stringify(res));
         return res;
     }
 
     public logout() {
-                this._role = 'anonym';
+        this.role = 'anonym';
         this._isLogined = false;
     }
 

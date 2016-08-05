@@ -69,6 +69,8 @@ export class DataFilterService {
             // TODO: #translate | RailcarService
             return Observable.throw('User is not authorized');
         }
+        return this._getFiltersHttp(SendersApi.url, SendersApi.filterValue);
+
     }
 
     public getCulturesList(): Observable<any> {

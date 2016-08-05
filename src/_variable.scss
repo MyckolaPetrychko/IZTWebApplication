@@ -10,20 +10,21 @@ $base-color-light: #ffffff;
 
 //--> base hovers and active
 $base-hover-color: #d5cac4;
-$base-active-color: #7ebcd9;
+$base-disabled-color: #ccc;
+$base-active-color: #316fff;
+
 $base-ha-border-width: 2px;
 $base-border-width: 2px;
 
 // color-style
 $success-color: #9ad6a6;
 $error-color: #ff3434;
-$warn-color: #fffaae;
+$warn-color: #f49d52;// #fffaae;
 $info-color: #7ebcd9;
-
-
 
 // fonts
 $base-font-size: 14px;
+$base-line-height: 1.1;
 $base-font-name: Lora;
 $base-font-path: 'assets/fonts/';
 
@@ -46,16 +47,18 @@ $app-footer-height: 20px;   // 20 * 1 //summ = 215px
 $app-table-header-height: 75px; // 3 * 75
 $app-table-row-height: 20px;    // 10 * 20 // 240+200+200 = 640px
 
+$app-page-routed-height:        calc( 100% - #{($app-nav-height + $app-footer-height)} );
+$app-page-main-height:          100%;
 $app-table-railcar-list:      $app-table-header-height + 5 * $app-table-row-height;
 $app-table-railcar-disparity: $app-table-header-height + 2 * $app-table-row-height;
-$app-table-disparity-list:    $app-table-header-height + 3 * $app-table-row-height;
+$app-table-disparity-list:    $app-table-header-height + 4 * $app-table-row-height;
 
 $app-block-railcar-list:      $app-table-railcar-list + $app-subtitle-height + $app-filter-height;
 $app-block-railcar-disparity: $app-table-railcar-disparity + $app-subtitle-height;
 $app-block-disparity-list:    $app-table-disparity-list + $app-subtitle-height;
 
-$app-page-routed-height: calc( 100% - #{($app-nav-height + $app-footer-height)} );
-$app-page-main-height: 100%;
+// $app-page-routed-height: calc( 100% - #{($app-nav-height + $app-footer-height)} );
+// $app-page-main-height: 100%;
 
 // app-size
 $margins: 0;

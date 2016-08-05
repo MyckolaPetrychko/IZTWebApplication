@@ -8,45 +8,21 @@ $combobox-down-arror-width: 20px;
 $combobox-input-width: 140px;
 
 :host {
-    // @include flex-main(column);
-    // @include flex-aling(flex-end, flex-start);
-    // @include flex-child( ($combobox-input-width + $combobox-down-arror-width) );
     display: inline-block;
-    margin: auto 2 * $combobox-margin;
     position: relative;
+    width:100%;
+        box-sizing: border-box;
 
-    min-width: ($combobox-input-width + $combobox-down-arror-width );
-    width: 14%;
-        font-size: $base-font-size;
-    font-style: italic;
 }
 
-
-.label-combobox {
-    @include flex-child($combobox-height);
-    @include flex-main(row);
-    @include flex-align(flex-start, flex-end);
-
-    color: $base-color-dark;
-        min-width: ($combobox-input-width + $combobox-down-arror-width );
-
-        & > span {
-    white-space: nowrap;
-    overflow: hidden;
-   text-overflow: ellipsis;
-        }
-    }
-
 .combobox {
-   @include flex-child($combobox-height, 1);
-   @include flex-main(column);
+//    @include flex-child($grow: 1);
+//    @include flex-main(column);
 //    @include flex-aling(flex-start, flex-center);
 
-   height: $combobox-height;
-   max-height: $combobox-height;
+//    height: $combobox-height;
+//    max-height: $combobox-height;
     width: 100%;
-
-
     position: relative;
     /*border: 1px solid #222;*/
 }
@@ -56,31 +32,35 @@ $combobox-input-width: 140px;
     @include flex-aling(space-between, center);
     // @include flex-child(($combobox-input-width + $combobox-down-arror-width) );
     position: relative;
-    width: 100%;
-    border: 2px solid $base-color-dark;
     background-color: $base-color-dark;
+  
 }
 
 .combobox-input {
     // @include flex-main(row);
     // max-width: 10em;
-    // @include flex-child($combobox-input-width);
+    @include flex-child($grow: 1);
     display: inline-block;
 
     // min-width:$combobox-input-width; 
-    // height: 100%;
-    border: none;
-    min-width: $combobox-input-width;
+    // border: none;
+    // min-width: $combobox-input-width;
     width: calc( 100% - #{$combobox-down-arror-width} );
+        margin: 0;
+        box-sizing: border-box;
+
 }
 
 .combobox-caret {
-    text-align: center;
-    // @include flex-child($combobox-down-arror-width);
-    align-self: center;
-    width: $combobox-down-arror-width;
+    @include flex-child($combobox-down-arror-width);
+    // align-self: center;
+    display: inline-block;
+    margin: 0;
+        width: $combobox-down-arror-width - 4px;
     cursor: pointer;
     color: $background-color;
+    text-align: center;
+
 }
 
 
@@ -91,6 +71,7 @@ $combobox-input-width: 140px;
     // display: flex;
     position: absolute;
     top:  $combobox-height;
+    border: 1px solid $base-color-dark;
         // flex-direction: column;
     // align-items: stretch;
     // justify-content: space-between;
