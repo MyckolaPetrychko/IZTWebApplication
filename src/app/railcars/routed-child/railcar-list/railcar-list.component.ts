@@ -33,13 +33,6 @@ import { DataFilterService } from '../../../filters-data/filter-data.service';
 
 import { RailcarDisparityComponent } from '../railcar-disparity/railcar-disparity.component';
 
-// interface FilterInterface {
-//     value: string,
-//     label: string,
-//     dropdown: boolean,
-//     data: string[]
-// }
-
 @Component({
     moduleId: module.id,
     selector: 'wblg-railcar-list',
@@ -51,7 +44,6 @@ import { RailcarDisparityComponent } from '../railcar-disparity/railcar-disparit
 export class RailcarListComponent implements OnInit, OnDestroy {
     public RailcarList: IRailcarModel[];
     public selected: IRailcarModel;
-    @Output('selectedItem') selectedItem: EventEmitter<IRailcarModel> = new EventEmitter();
     public isNotNull: boolean;
     public isFullPage: boolean;
 
@@ -64,9 +56,6 @@ export class RailcarListComponent implements OnInit, OnDestroy {
     };
 
     public message: string;
-
-
-
     private FiltersData: any[];
     private columnDefs: any;
     private gridOptions: GridOptions;
@@ -660,13 +649,21 @@ export class RailcarListComponent implements OnInit, OnDestroy {
                 } else {
                     this.selected = _sel[0];
                 }
-                // console.log(_sel[0]);
-                                // console.log(this.selected);
-
                 this._notify.selectedRailcar(this.selected);
                 // this.selectedItem.next(event.node.data);
             },
-
+            onGridReady:()=> {
+                // this._notify.selectedAnnonced.subscribe((data: any)=>{
+                    //  this.selected = <IRailcarModel> data;
+                    //  if (this.selected && this.selected.inventoryid) {
+                        //  this.gridOptions.api.forEachNode((_node) => {
+                            //  if ( _node.data.inventoryid === this.selected.inventoryid) {
+                                //  _node.setSelected(true, true);
+                            //  }
+                        //  });
+                    //  }
+                // })
+            },
             suppressMovableColumns: true,
             suppressLoadingOverlay: true,
             suppressNoRowsOverlay: true

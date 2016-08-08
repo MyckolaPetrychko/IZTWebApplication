@@ -266,7 +266,7 @@ export class DisparityListComponent implements OnInit, OnDestroy {
                 return this.translateHeaderName(params);
             },
             getRowClass: (params: any) => {
-                console.log(params.node.data.permissiontime);
+                // console.log(params.node.data.permissiontime);
                 return (params.node.data.permissiontime === null)? 
                         'table-to-confirm-traider ' :'table-to-confirm-employeer ';
             },
