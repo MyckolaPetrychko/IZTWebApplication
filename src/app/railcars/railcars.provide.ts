@@ -12,6 +12,8 @@ import { provide }        from '@angular/core';
 
 import { RailcarService } from './railcars.service';
 import { RailcarFactory } from './railcars.factory';
+import { AuthService } from '../user/auth.service';
+
 
 /**
   *  Provider to service by railcar, 
@@ -26,6 +28,6 @@ export let RailcarProvide = provide(
     RailcarService,
     {
         useFactory: RailcarFactory,
-        deps:       [Http]
+        deps:       [Http, AuthService]
     }
 );

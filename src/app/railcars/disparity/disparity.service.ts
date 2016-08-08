@@ -24,7 +24,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
 
-
+import { AuthService } from '../../user/auth.service';
 // Application
 import {
     IDisparityModel
@@ -44,15 +44,15 @@ import {
 export class DisparityService {
     // private _role: string;
 
-    constructor(private _http: Http, private _role : string) {
+    constructor(private _http: Http, private _auth : AuthService) {
 
     }
 
     // getDisparityListCurrent(): Observable<IDisparityModel[]> {
     getDisparityListCurrent(): Observable<any> {
-        if (this._role === 'anonym') {
+        if (!this._auth.isAuth('user')) {
              return Observable.throw('CONNECTION.USERISNOTAUTH'); 
-            }
+       }
         return this._http.get(DisparityListCurrentApi)
             .map(res => <IDisparityModel[]>res.json())
             .do(data => {
@@ -70,7 +70,7 @@ export class DisparityService {
     //                                disparityID: string): Observable<IDisparityAcceptModel> {
     setDisparityRailcarAcceptApi(railcarID: string,
         disparityID: string): Observable<any> {
-         if (this._role === 'anonym') {
+        if (!this._auth.isAuth('user')) {
              return Observable.throw('CONNECTION.USERISNOTAUTH'); 
           }
 

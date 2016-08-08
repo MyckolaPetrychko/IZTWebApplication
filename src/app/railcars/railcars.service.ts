@@ -31,6 +31,7 @@ import {
     RailcarIdDisparityApi
 } from './railcars.constant';
 
+import { AuthService } from '../user/auth.service';
 
 
 /**
@@ -42,22 +43,13 @@ import {
 @Injectable()
 export class RailcarService {
     /**
-     * Property to role of current user
-     * 
-     * @private
-     * @type {string}
-     */
-    private _role: string;
-
-
-    /**
      * Creates an instance of RailcarService.
      * 
      * @param {Http} _http - Angular2 http module
+     * @param {AuthService} _auth - authen service
      */
-    constructor(private _http: Http) {
+    constructor(private _http: Http, private _auth : AuthService) {
         // TODO: RailcarService | check roles as constant
-        this._role = 'admin';
     }
 
 
@@ -104,9 +96,9 @@ export class RailcarService {
         if (_filter_cropname !== '') { params.set('filter_cropname', _filter_cropname); }
 
 
-        if (this._role === 'anonym') {
+        if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService
-            return Observable.throw('User is not authorized');
+             return Observable.throw('CONNECTION.USERISNOTAUTH'); 
         }
 
         return this._http.get(RailcarListApi, { search: params })
@@ -122,9 +114,9 @@ export class RailcarService {
 
 
     public getRailcarDisparityList(railcarId: string): Observable<any> {
-        if (this._role === 'anonym') {
+        if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService
-            return Observable.throw('User is not authorized');
+             return Observable.throw('CONNECTION.USERISNOTAUTH'); 
         }
 
         let urlRailcarIdDisparityApi = RailcarIdDisparityApi.replace('%railcarID%', railcarId);
@@ -148,9 +140,9 @@ export class RailcarService {
      * @returns {Observable<IRailcarModel> railcar model }
      */
     public getRailcarId(railcarId: string): Observable<any> {
-        if (this._role === 'anonym') {
+        if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService
-            return Observable.throw('User is not authorized');
+             return Observable.throw('CONNECTION.USERISNOTAUTH'); 
         }
         let urlRailcarIdApi = RailcarIdApi.replace('%railcarID%', railcarId);
         return this._http.get(urlRailcarIdApi)
@@ -175,9 +167,13 @@ export class RailcarService {
      */
     public addRailcar(_railcar: IRailcarModel): Observable<any> {
         // TODO: RailcarService | change to only traider muss add new railcar
-        if (this._role !== 'anonym') {
+        if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService
-            return Observable.throw('User is not authorized');
+             return Observable.throw('CONNECTION.USERISNOTAUTH'); 
+        }
+                if (!this._auth.isAuth('trader')) {
+            // TODO: #translate | RailcarService
+             return Observable.throw('CONNECTION.USERISNOTTRADER'); 
         }
         let body = JSON.stringify(_railcar);
         let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -206,9 +202,13 @@ export class RailcarService {
      */
     public updateRailcar(_railcar: IRailcarModel): Observable<any> {
         // TODO: RailcarService | change to only traider muss add new railcar
-        if (this._role !== 'anonym') {
+        if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService
-            return Observable.throw('User is not authorized');
+             return Observable.throw('CONNECTION.USERISNOTAUTH'); 
+        }
+                if (!this._auth.isAuth('trader')) {
+            // TODO: #translate | RailcarService
+             return Observable.throw('CONNECTION.USERISNOTTRADER'); 
         }
         // TODO:  RailcarService | check id by railcar
         let url = RailcarIdApi.replace('%railcarID%', _railcar.transportnumber);
@@ -237,9 +237,13 @@ export class RailcarService {
      */
     public deleteRailcar(railcarId: string): Observable<any> {
         // TODO: RailcarService | change to only traider muss add new railcar
-        if (this._role !== 'anonym') {
+        if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService
-            return Observable.throw('User is not authorized');
+             return Observable.throw('CONNECTION.USERISNOTAUTH'); 
+        }
+        if (!this._auth.isAuth('trader')) {
+            // TODO: #translate | RailcarService
+             return Observable.throw('CONNECTION.USERISNOTTRADER'); 
         }
         let url = RailcarIdApi.replace('%railcarID%', railcarId);
         let headers = new Headers({ 'Content-Type': 'application/json' });

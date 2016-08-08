@@ -11,5 +11,5 @@ import { Http }               from '@angular/http';
 
 // factory to create service
 export let DisparityFactory = (http: Http, auth : AuthService) => {
-  return new DisparityService(http, auth.role);
+  return new DisparityService(http, auth);
 }
