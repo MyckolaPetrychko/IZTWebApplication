@@ -28,7 +28,8 @@ import { IRailcarDisparityModel } from './routed-child/railcar-disparity/railcar
 import {
     RailcarListApi,
     RailcarIdApi,
-    RailcarIdDisparityApi
+    RailcarIdDisparityApi,
+    RailcarFileApi
 } from './railcars.constant';
 
 import { AuthService } from '../user/auth.service';
@@ -48,7 +49,7 @@ export class RailcarService {
      * @param {Http} _http - Angular2 http module
      * @param {AuthService} _auth - authen service
      */
-    constructor(private _http: Http, private _auth : AuthService) {
+    constructor(private _http: Http, private _auth: AuthService) {
         // TODO: RailcarService | check roles as constant
     }
 
@@ -98,7 +99,7 @@ export class RailcarService {
 
         if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService
-             return Observable.throw('CONNECTION.USERISNOTAUTH'); 
+            return Observable.throw('CONNECTION.USERISNOTAUTH');
         }
 
         return this._http.get(RailcarListApi, { search: params })
@@ -116,7 +117,7 @@ export class RailcarService {
     public getRailcarDisparityList(railcarId: string): Observable<any> {
         if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService
-             return Observable.throw('CONNECTION.USERISNOTAUTH'); 
+            return Observable.throw('CONNECTION.USERISNOTAUTH');
         }
 
         let urlRailcarIdDisparityApi = RailcarIdDisparityApi.replace('%railcarID%', railcarId);
@@ -142,7 +143,7 @@ export class RailcarService {
     public getRailcarId(railcarId: string): Observable<any> {
         if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService
-             return Observable.throw('CONNECTION.USERISNOTAUTH'); 
+            return Observable.throw('CONNECTION.USERISNOTAUTH');
         }
         let urlRailcarIdApi = RailcarIdApi.replace('%railcarID%', railcarId);
         return this._http.get(urlRailcarIdApi)
@@ -169,11 +170,11 @@ export class RailcarService {
         // TODO: RailcarService | change to only traider muss add new railcar
         if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService
-             return Observable.throw('CONNECTION.USERISNOTAUTH'); 
+            return Observable.throw('CONNECTION.USERISNOTAUTH');
         }
-                if (!this._auth.isAuth('trader')) {
+        if (!this._auth.isAuth('trader')) {
             // TODO: #translate | RailcarService
-             return Observable.throw('CONNECTION.USERISNOTTRADER'); 
+            return Observable.throw('CONNECTION.USERISNOTTRADER');
         }
         let body = JSON.stringify(_railcar);
         let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -204,11 +205,11 @@ export class RailcarService {
         // TODO: RailcarService | change to only traider muss add new railcar
         if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService
-             return Observable.throw('CONNECTION.USERISNOTAUTH'); 
+            return Observable.throw('CONNECTION.USERISNOTAUTH');
         }
-                if (!this._auth.isAuth('trader')) {
+        if (!this._auth.isAuth('trader')) {
             // TODO: #translate | RailcarService
-             return Observable.throw('CONNECTION.USERISNOTTRADER'); 
+            return Observable.throw('CONNECTION.USERISNOTTRADER');
         }
         // TODO:  RailcarService | check id by railcar
         let url = RailcarIdApi.replace('%railcarID%', _railcar.transportnumber);
@@ -236,14 +237,13 @@ export class RailcarService {
      * @returns {Observable<any> - result of delete railcarId }
      */
     public deleteRailcar(railcarId: string): Observable<any> {
-        // TODO: RailcarService | change to only traider muss add new railcar
         if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService
-             return Observable.throw('CONNECTION.USERISNOTAUTH'); 
+            return Observable.throw('CONNECTION.USERISNOTAUTH');
         }
         if (!this._auth.isAuth('trader')) {
             // TODO: #translate | RailcarService
-             return Observable.throw('CONNECTION.USERISNOTTRADER'); 
+            return Observable.throw('CONNECTION.USERISNOTTRADER');
         }
         let url = RailcarIdApi.replace('%railcarID%', railcarId);
         let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -259,6 +259,34 @@ export class RailcarService {
             .catch(this.handleError);
     }
 
+    /**
+     * Api to parse xml file railcar into json IRailcarModel
+     * 
+     * @param {string} file - xml file 
+     * @returns {Observable<any>} - parset json
+     */
+    public getRailcarFile(file: string): Observable<any> {
+        if (!this._auth.isAuth('user')) {
+            // TODO: #translate | RailcarService
+            return Observable.throw('CONNECTION.USERISNOTAUTH');
+        }
+        if (!this._auth.isAuth('trader')) {
+            // TODO: #translate | RailcarService
+            return Observable.throw('CONNECTION.USERISNOTTRADER');
+        }
+        let headers = new Headers({ 'Content-Type': 'application/xml' });
+        let options = new RequestOptions({ headers: headers });
+        let body = JSON.stringify(file);
+
+        return this._http.post(RailcarFileApi, body, options)
+            // TODO: #debug | RailcarService
+            .do(data => {
+                console.debug('RailcarFileApi' +
+                    '\nUrl: ' + RailcarListApi +
+                    '\nData: ' + JSON.stringify(data));
+            })
+            .catch(this.handleError);
+    }
 
     /**
      * Function to handle all errors connection to server

@@ -231,7 +231,7 @@ export interface IRailcarModel {
     confirmationtime?:      Date;    //TIMESTAMP
     confirmationusername? : string;   // VARCHAR
     grosstime?:             Date;    //TIMESTAMP
-    inventoryid?:           number;  //INTEGER
+    inventoryid:           number;  //INTEGER
     regdate?:               Date;    //DATE
     state?:                 number;  //INTEGER
 

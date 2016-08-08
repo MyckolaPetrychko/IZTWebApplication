@@ -27,3 +27,11 @@ export let RailcarIdApi   = 'assets/api/railcar/%railcarID%.json';
  */
 // TODO: RailcarConstant | test data
 export let RailcarIdDisparityApi   = 'assets/api/railcar/%railcarID%-disparity.json';
+
+/**
+ * @export RailcarFileApi
+ * @param {string} RailcarFileApi Url api to ge get railcar file
+ * @example 'api/railcar/file';
+ */
+// TODO: RailcarConstant | test data
+export let RailcarFileApi   = 'assets/api/railcar/%railcarID%.json';
