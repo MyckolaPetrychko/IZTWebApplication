@@ -21,10 +21,22 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
 import {
-    SendersApi, CulturesApi, StationsApi
-
+    SendersApi,
+    ProvidersApi,
+    OwnersApi,
+    StationsApi,
+    StoragesApi,
+    ScalesTypeApi,
+    CulturesApi,
+    CulturesClassesApi,
+    CulturesSortesApi
 } from './filter-data.constant';
 
+import { AuthService } from '../user/auth.service';
+export interface IDataModel {
+    id: string | number,
+    name: string
+}
 
 
 /**
@@ -35,59 +47,83 @@ import {
  */
 @Injectable()
 export class DataFilterService {
-    /**
-     * Property to role of current user
-     * 
-     * @private
-     * @type {string}
-     */
-    private _role: string;
-
 
     /**
      * Creates an instance of DataFilterService.
      * 
      * @param {Http} _http - Angular2 http module
      */
-    constructor(private _http: Http) {
-        // TODO: RailcarService | check roles as constant
-        this._role = 'admin';
-    }
+    constructor(private _http: Http, private _auth: AuthService) {
 
-
-    public getStationsList(): Observable<any> {
-        if (this._role === 'anonym') {
-            // TODO: #translate | RailcarService
-            return Observable.throw('User is not authorized');
-        }
-
-        return this._getFiltersHttp(StationsApi.url, StationsApi.filterValue);
     }
 
     public getSendersList(): Observable<any> {
-        if (this._role === 'anonym') {
-            // TODO: #translate | RailcarService
-            return Observable.throw('User is not authorized');
-        }
-        return this._getFiltersHttp(SendersApi.url, SendersApi.filterValue);
+        return this._getFiltersHttp(SendersApi.url,
+            SendersApi.idValue,
+            SendersApi.nameValue);
 
+    }
+    public getOwnersList(): Observable<any> {
+        return this._getFiltersHttp(OwnersApi.url,
+            OwnersApi.idValue,
+            OwnersApi.nameValue);
+
+    }
+    public getProvidersList(): Observable<any> {
+        return this._getFiltersHttp(ProvidersApi.url,
+            ProvidersApi.idValue,
+            ProvidersApi.nameValue);
+
+    }
+    public getStoragessList(): Observable<any> {
+        return this._getFiltersHttp(StoragesApi.url,
+            StoragesApi.idValue,
+            StoragesApi.nameValue);
+    }
+
+    public getScalesTypeList(): Observable<any> {
+        return this._getFiltersHttp(ScalesTypeApi.url,
+            ScalesTypeApi.idValue,
+            ScalesTypeApi.nameValue);
+    }
+    public getStationsList(): Observable<any> {
+        return this._getFiltersHttp(StationsApi.url,
+            StationsApi.idValue,
+            StationsApi.nameValue);
     }
 
     public getCulturesList(): Observable<any> {
-        if (this._role === 'anonym') {
-            // TODO: #translate | RailcarService
-            return Observable.throw('User is not authorized');
-        }
-        return this._getFiltersHttp(CulturesApi.url, CulturesApi.filterValue);
+        return this._getFiltersHttp(CulturesApi.url,
+            CulturesApi.idValue,
+            CulturesApi.nameValue);
+    }
+    public getCultureClassesList(): Observable<any> {
+        return this._getFiltersHttp(CulturesClassesApi.url,
+            CulturesClassesApi.idValue,
+            CulturesClassesApi.nameValue);
+    }
+    public getCultureSortesList(): Observable<any> {
+        return this._getFiltersHttp(CulturesSortesApi.url,
+            CulturesSortesApi.idValue,
+            CulturesSortesApi.nameValue);
     }
 
 
+    private _getFiltersHttp(url: string, id: string = undefined, name: string = undefined): Observable<any> {
+        if (!this._auth.isAuth('user')) {
+            return Observable.throw('CONNECTION.USER_NOT_AUTH');
+        }
 
-    private _getFiltersHttp(url:string, value: string = undefined) {
-            return this._http.get(url)
-            .map(res => <string[]>res.json().map((item: any) => (value === undefined) ? item :  item[value]))
-            // TODO: #debug | RailcarService
-            .do(data => {
+        return this._http.get(url)
+            .map(res => <IDataModel[]>(res.json().map((item: any) => {
+                if (id && name) {
+                    let _it: IDataModel;
+                        _it.id      = item[id];
+                        _it.name    = item[name];
+                    return _it;
+                }
+            })))
+            .do((data: any): void => {
                 console.debug('Data Filtes' +
                     '\nUrl: ' + url +
                     '\nData: ' + JSON.stringify(data));
