@@ -1,0 +1,17 @@
+[
+    {
+        "scaletypeid": 0,
+        "scaletypename": "scaletype 0",
+        "state": 0
+    },
+    {
+        "scaletypeid": 1,
+        "scaletypename": "scaletype 1",
+        "state": 1
+    },
+    {
+        "scaletypeid": 2,
+        "scaletypename": "scaletype 2",
+        "state": 1
+    }
+]

@@ -1,0 +1,17 @@
+[
+    {
+        "classid": 0,
+        "classname": "class 0",
+        "state": 0
+    },
+    {
+        "classid": 1,
+        "classname": "class 1",
+        "state": 1
+    },
+    {
+        "classid": 2,
+        "classname": "class 2",
+        "state": 1
+    }
+]

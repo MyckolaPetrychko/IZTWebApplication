@@ -1,0 +1,17 @@
+[
+    {
+        "clientid": 0,
+        "clientfullname": "Owner 0",
+        "issender": 1
+    },
+    { 
+        "clientid": 1,
+        "clientfullname": "Owner 1",
+        "issender": 1
+    },
+    {
+        "clientid": 2,
+        "clientfullname": "Owner 2",
+        "issender": 1
+    }
+]

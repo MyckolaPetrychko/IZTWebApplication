@@ -5,9 +5,10 @@ import {HTTP_PROVIDERS} from '@angular/http';
 import { disableDeprecatedForms, provideForms } from '@angular/forms';
 
 import {  provide } from '@angular/core';
+
 // Add these symbols to override the `LocationStrategy`
 import { LocationStrategy,
-         HashLocationStrategy } from '@angular/common';
+    HashLocationStrategy } from '@angular/common';
 
 import { appRouterProviders } from './main/main.routers';
 import { AppComponent } from './main/main.component';
@@ -21,15 +22,11 @@ bootstrap(AppComponent, [
     HTTP_PROVIDERS,
     AuthService,
     AuthAdminGuard,
-     AuthGuard,
-    //  BS_VIEW_PROVIDERS,
-       disableDeprecatedForms(), 
-  provideForms(),
-    { provide: LocationStrategy, useClass: HashLocationStrategy } //, [
-         //   HTTP_PROVIDERS,
-        // not required, but recommended to have 1 unique instance of your service
-//TRANSLATE_PROVIDERS
-]
-)
+    AuthGuard,
+
+    disableDeprecatedForms(),
+    provideForms(),
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
+])
     .then(success => console.log(`Bootstrap success`))
     .catch(error => console.log(error));

@@ -1,4 +1,10 @@
     {
+        "invoicedater": 1467352313000,
+        "cropname": "Кукуруза 3 кл. корм.",
+        "classname": "3 кл.",
+        "sortname": "корм.",
+        "classid": 2,
+        "sortid": 1,
         "ownername": "GLENCORE GRAIN BV",
         "providername": "Agro Import OU",
         "transportnumber": "95669354",

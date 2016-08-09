@@ -1,0 +1,17 @@
+[
+    {
+        "sortid": 0,
+        "sortname": "sort 0",
+        "state": 0
+    },
+    {
+        "sortid": 1,
+        "sortname": "sort 1",
+        "state": 1
+    },
+    {
+        "sortid": 2,
+        "sortname": "sort 2",
+        "state": 1
+    }
+]

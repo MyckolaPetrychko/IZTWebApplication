@@ -1,0 +1,14 @@
+[
+    {
+        "storageid": 0,
+        "storagename": "storage 0"
+    },
+    { 
+        "storageid": 1,
+        "storagename": "storage 1"
+    },
+    {
+        "storageid": 2,
+        "storagename": "storage 2"
+    }
+]

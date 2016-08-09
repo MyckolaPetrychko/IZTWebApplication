@@ -1,18 +1,17 @@
 [
     {
-   "cropid": 0,
-   "cropname": "Crop 0",
-   "state": 0
-
-},
-{
-   "cropid": 1,
-   "cropname": "Crop 1",
-   "state": 1
-},
-{
-   "cropid": 2,
-   "cropname": "Crop 2",
-   "state": 1
-}
+        "cropid": 0,
+        "cropname": "Crop 0",
+        "state": 0
+    },
+    {
+        "cropid": 1,
+        "cropname": "Crop 1",
+        "state": 1
+    },
+    {
+        "cropid": 2,
+        "cropname": "Crop 2",
+        "state": 1
+    }
 ]
