@@ -6,7 +6,7 @@ const noop = () => {
     // 'noop';
 };
 
-export const INPUT_CONTROL_VALUE_ACCESSOR: any = {
+export const WBLG_INPUT_CONTROL_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => InputComponent),
     multi: true
@@ -17,7 +17,7 @@ export const INPUT_CONTROL_VALUE_ACCESSOR: any = {
     selector: 'wblg-input',
     templateUrl: './input.component.html',
     directives: [NgIf, NgClass],
-    providers: [INPUT_CONTROL_VALUE_ACCESSOR]
+    providers: [WBLG_INPUT_CONTROL_VALUE_ACCESSOR]
 })
 
 
