@@ -1,25 +1,27 @@
-export interface FiltersApiConfig {
+interface FiltersApiConfig {
     url: string,
     idValue: string,
     nameValue: string
 }
-
 
 export let SendersApi: FiltersApiConfig = {
     url: 'assets/api/clients/senders.json',
     idValue: 'clientid',
     nameValue: 'clientfullname'
 }
+
 export let OwnersApi: FiltersApiConfig = {
     url: 'assets/api/clients/owners.json',
     idValue: 'clientid',
     nameValue: 'clientfullname'
 }
+
 export let ProvidersApi: FiltersApiConfig = {
     url: 'assets/api/clients/providers.json',
     idValue: 'clientid',
     nameValue: 'clientfullname'
 }
+
 export let StationsApi: FiltersApiConfig = {
     url: 'assets/api/station.json',
     idValue: 'stationid',

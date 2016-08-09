@@ -1,62 +1,75 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
-import { NgIf } from '@angular/common'
-//import { DROPDOWN_DIRECTIVES } from 'ng2-bootstrap/components/dropdown';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter,  Provider, forwardRef } from '@angular/core';
+import { NgIf, NgClass } from '@angular/common'
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
-import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+const noop = () => {
+    // 'noop';
+};
 
-import { ValueFilterPipe } from '../pipes/value-filter.pipe';
+export const INPUT_CONTROL_VALUE_ACCESSOR: any = {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => InputComponent),
+    multi: true
+};
 
 @Component({
     moduleId: module.id,
-    selector: 'wblg-combobox',
-    templateUrl: 'input.component.html',
-    styleUrls: ['input.component.css'],
-    directives: [ NgIf ],
-    pipes: [ValueFilterPipe]
+    selector: 'wblg-input',
+    templateUrl: './input.component.html',
+    directives: [NgIf, NgClass],
+    providers: [INPUT_CONTROL_VALUE_ACCESSOR]
 })
 
 
-export class ComboboxComponent implements OnInit {
-    @Input() data: string[] = [];
+export class InputComponent implements ControlValueAccessor {
+    @Input('id') idName: string = 'inputID';
 
-    @Input() label: string;
-    @Input() value: string;
-    @Output() valueChange = new EventEmitter();
+    //The internal data model
+    private innerValue: any = '';
 
-    @Input() dropdown: boolean = false;
+    //Placeholders for the callbacks which are later providesd
+    //by the Control Value Accessor
+    private onTouchedCallback: () => void = noop;
+    private onChangeCallback: (_: any) => void = noop;
 
-    private message: string;
-    private isOpenedMenu: boolean;
-
-
-    constructor(private _http: Http) {
-        this.data = [];
-      //  this.remote = false;
-        this.message = '';
-        console.log('Wblg-constrcuto');
+    constructor() {
+        // constructor
     }
 
-    ngOnInit() {
-      /*  if (this.remote) {
-            this._http.get(this.remoteUrl)
-                .map(res => <string[]>res.json())
-                // TODO: #debug | Combobox
-                .do(data => {
-                    console.debug('Input Dropdown ' +
-                        '\nUrl: ' + this.remoteUrl +
-                        '\nData: ' + JSON.stringify(data));
-                })
-                .subscribe(res => {
-                    this.data = res;
 
-                },
-                err => {
-                    this.data = ['No data fetched'];
-                    this.message =  'No data fetched';
-                });
-        } */
+    //get accessor
+    get value(): any {
+        return this.innerValue;
+    };
+
+    //set accessor including call the onchange callback
+    set value(v: any) {
+        if (v !== this.innerValue) {
+            this.innerValue = v;
+            this.onChangeCallback(v);
+        }
     }
 
+    //Set touched on blur
+    onBlur() {
+        this.onTouchedCallback();
+    }
+
+    //From ControlValueAccessor interface
+    writeValue(value: any) {
+        if (value !== this.innerValue) {
+            this.innerValue = value;
+        }
+    }
+
+    //From ControlValueAccessor interface
+    registerOnChange(fn: any) {
+        this.onChangeCallback = fn;
+    }
+
+    //From ControlValueAccessor interface
+    registerOnTouched(fn: any) {
+        this.onTouchedCallback = fn;
+    }
 }
 

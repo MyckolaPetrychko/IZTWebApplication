@@ -26,9 +26,10 @@ import { AlertComponent } from '../../../shared/alert/alert.component';
 import { IRailcarModel } from '../../railcars.model';
 import { RailcarService } from '../../railcars.service';
 
-import { ComboboxComponent } from '../../../shared/combobox/combobox.component';
-import { LocalStorageService } from '../../../shared/storage.service';
-import { NotifyService } from '../../../shared/notify.server';
+import { DataComboboxComponent } from '../../../shared/data-combobox/data-combobox.component';
+import {InputComponent} from '../../../shared/input/input.component';
+import { LocalStorageService } from '../../../common/servises/storage.service';
+import { NotifyService } from '../../../common/servises/notify.server';
 import { DataFilterService } from '../../../filters-data/filter-data.service';
 
 import { RailcarDisparityComponent } from '../railcar-disparity/railcar-disparity.component';
@@ -37,8 +38,8 @@ import { RailcarDisparityComponent } from '../railcar-disparity/railcar-disparit
     moduleId: module.id,
     selector: 'wblg-railcar-list',
     templateUrl: './railcar-list.component.html',
-    directives: [NgIf, NgClass, ComboboxComponent, AgGridNg2, MyDatePicker,
-        FORM_DIRECTIVES, AlertComponent, RailcarDisparityComponent],
+    directives: [NgIf, NgClass, DataComboboxComponent, AgGridNg2, MyDatePicker,
+        FORM_DIRECTIVES, AlertComponent, RailcarDisparityComponent, InputComponent],
     pipes: [TranslatePipe]
 })
 export class RailcarListComponent implements OnInit, OnDestroy {

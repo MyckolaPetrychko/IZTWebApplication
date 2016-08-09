@@ -33,7 +33,7 @@ import {
 } from './railcars.constant';
 
 import { AuthService } from '../user/auth.service';
-
+import { handleError } from '../common/variable/error-handler.function';
 
 /**
  * Service to work with railcars
@@ -107,10 +107,11 @@ export class RailcarService {
             // TODO: #debug | RailcarService
             .do(data => {
                 console.debug('RailcarList' +
-                    '\nUrl: ' + RailcarListApi +
-                    '\nData: ' + JSON.stringify(data.length));
+                            '\nUrl: ' + RailcarListApi +
+                            '\nData Len: ' + data.length + 
+                              '\nData: ' + JSON.stringify(data[0]));
             })
-            .catch(this.handleError);
+            .catch(handleError);
     }
 
 
@@ -130,7 +131,7 @@ export class RailcarService {
                     '\nUrl: ' + urlRailcarIdDisparityApi +
                     '\nData: ' + JSON.stringify(data.length));
             })
-            .catch(this.handleError);
+            .catch(handleError);
     }
 
     /**
@@ -153,7 +154,7 @@ export class RailcarService {
                 console.debug('RailcarId' +
                     '\nUrl: ' + urlRailcarIdApi + '\nData: ' + JSON.stringify(data));
             })
-            .catch(this.handleError);
+            .catch(handleError);
     }
 
 
@@ -188,7 +189,7 @@ export class RailcarService {
                     '\nUrl: ' + RailcarListApi +
                     '\nData: ' + JSON.stringify(data));
             })
-            .catch(this.handleError);
+            .catch(handleError);
     }
 
 
@@ -225,7 +226,7 @@ export class RailcarService {
                     '\nUrl: ' + RailcarListApi +
                     '\nData: ' + JSON.stringify(data));
             })
-            .catch(this.handleError);
+            .catch(handleError);
     }
 
 
@@ -236,6 +237,7 @@ export class RailcarService {
      * @param {string} railcarId - id for delete railcar
      * @returns {Observable<any> - result of delete railcarId }
      */
+     
     public deleteRailcar(railcarId: string): Observable<any> {
         if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService
@@ -256,7 +258,7 @@ export class RailcarService {
                     '\nUrl: ' + RailcarListApi +
                     '\nData: ' + JSON.stringify(data));
             })
-            .catch(this.handleError);
+            .catch(handleError);
     }
 
     /**
@@ -282,32 +284,12 @@ export class RailcarService {
             // TODO: #debug | RailcarService
             .do(data => {
                 console.debug('RailcarFileApi' +
-                    '\nUrl: ' + RailcarListApi +
-                    '\nData: ' + JSON.stringify(data));
+                              '\nUrl: ' + RailcarFileApi +
+                              '\nData Len: ' + 1 + 
+                              '\nData: ' + JSON.stringify(data));
             })
-            .catch(this.handleError);
+            .catch(handleError);
     }
 
-    /**
-     * Function to handle all errors connection to server
-     * 
-     * @private
-     * @param {*} err - error as result request to server
-     * @returns {Observable<string> - text of error}
-     */
-    private handleError(err: any): Observable<string> {
-        // TODO: #translate | RailcarService
-        let message: string;
-        if (err.message) {
-            message = err.message;
-        } else {
-            message = (err.status) ?
-                `${err.status} : ${err.statusText}` :
-                'Server connection error';
-        }
-
-        console.error(message);
-        return Observable.throw(message);
-    }
 }
 

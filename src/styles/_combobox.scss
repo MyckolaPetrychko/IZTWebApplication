@@ -1,0 +1,83 @@
+@import '../_variable.scss';
+$combobox-height: 20px;
+$combobox-down-arror-width: 20px;
+
+.combobox {
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+
+  .combobox-toogle {
+    @include flex-main(row);
+    @include flex-aling(space-between, center);
+    position: relative;
+    background-color: $base-color-dark;
+  }
+
+  .combobox-input {
+    @include flex-child($grow: 1);
+    display: inline-block;
+    width: calc(100% - #{$combobox-down-arror-width});
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .combobox-caret {
+    @include flex-child($combobox-down-arror-width);
+    display: inline-block;
+    margin: 0;
+    width: $combobox-down-arror-width - 4px;
+    cursor: pointer;
+    color: $background-color;
+    text-align: center;
+  }
+
+  .combobox-menu {
+    @include flex-main(column);
+    @include flex-aling(space-between, stretch);
+    position: absolute;
+    top: $combobox-height;
+    border: 1px solid $base-color-dark;
+    z-index: 100;
+    min-width: 200px;
+    background-color: $base-color-light;
+    color: $base-color-dark;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .combobox-item {
+    padding: 4px 4px;
+  }
+
+  .combobox-toogle:hover,
+  .combobox-item:hover {
+    color: $base-hover-color;
+    outline: 2px solid $base-hover-color;
+  }
+
+  .combobox-item:active,
+  .combobox-toogle:active,
+  .active {
+    background-color: $base-active-color;
+    color: $base-color-light;
+    outline: 2px solid $base-color-light;
+  }
+
+  .label-combobox + .active {
+    color: $base-active-color;
+    background-color: none;
+    outline: none;
+  }
+
+  .is-data {
+    color: $base-active-color;
+    border: 2px solid $base-active-color;
+    background-color: none;
+  }
+
+  .is-data.label-combobox {
+    border: none;
+  }
+}

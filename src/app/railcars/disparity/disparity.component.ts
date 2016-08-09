@@ -11,7 +11,7 @@ import { TranslatePipe, TranslateService, LangChangeEvent } from 'ng2-translate'
 
 import { DisparityProvide } from './disparity.provider';
 import { DisparityService } from './disparity.service';
-import { NotifyService } from '../../shared/notify.server';
+import { NotifyService } from '../../common/servises/notify.server';
 
 import { IDisparityModel } from './disparity.model';
 import { AlertComponent } from '../../shared/alert/alert.component';

@@ -5,7 +5,7 @@ import { TranslatePipe } from 'ng2-translate';
 
 
 import { DisparityListComponent } from '../disparity/disparity.component';
-import { NotifyService } from '../../shared/notify.server';
+import { NotifyService } from '../../common/servises/notify.server';
 
 
 @Component({

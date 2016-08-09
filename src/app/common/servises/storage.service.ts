@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 
-import { VisibilityConf } from '../railcars/routed-child/railcar-view/view.model';
+import { VisibilityConf } from '../../railcars/routed-child/railcar-view/view.model';
 
 @Injectable()
 export class LocalStorageService {

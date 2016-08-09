@@ -7,8 +7,8 @@ import {TranslateService,
     TranslateStaticLoader} from 'ng2-translate';
 
 
-import { LocalStorageService } from '../shared/storage.service';
-import { NotifyService } from '../shared/notify.server';
+import { LocalStorageService } from '../common/servises/storage.service';
+import { NotifyService } from '../common/servises/notify.server';
 
 
 import { Component, OnInit, provide } from '@angular/core';

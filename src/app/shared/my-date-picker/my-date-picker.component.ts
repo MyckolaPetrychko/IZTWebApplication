@@ -469,7 +469,7 @@ export class MyDatePicker implements OnInit, ControlValueAccessor, OnDestroy {
     }
 
     //From ControlValueAccessor interface
-    writeValue(value: any) {
+    writeValue(value: Date) {
         if (value !== this.innerValue) {
             this.innerValue = value;
             this.selectDate({ year: value.getFullYear(), month: value.getMonth() + 1, day: value.getDay() });

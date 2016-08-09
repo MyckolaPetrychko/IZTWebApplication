@@ -13,8 +13,6 @@ export class NotifyService {
     private refreshInfoSource = new Subject<{}>();
     private selectedSource = new Subject<{}>();
 
-
-
     constructor() {
         // Observable string streams
         this.refreshAnnonced = this.refreshInfoSource.asObservable();

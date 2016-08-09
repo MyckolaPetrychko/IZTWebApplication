@@ -6,7 +6,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 // import { Http } from '@angular/http';
 // import { Observable } from 'rxjs/Observable';
 
-import { ValueFilterPipe } from '../pipes/value-filter.pipe';
+import { ValueFilterPipe } from '../../common/pipes/value-filter.pipe';
 import { TranslatePipe } from 'ng2-translate';
 
 const noop = () => {
@@ -24,7 +24,7 @@ export const COMBOBOX_CONTROL_VALUE_ACCESSOR: any = {
     moduleId: module.id,
     selector: 'wblg-combobox',
     templateUrl: './combobox.component.html',
-    styleUrls: ['./combobox.component.css'],
+    // styleUrls: ['./combobox.component.css'],
     directives: [NgIf, NgClass],
     pipes: [ValueFilterPipe, TranslatePipe],
     providers: [COMBOBOX_CONTROL_VALUE_ACCESSOR]

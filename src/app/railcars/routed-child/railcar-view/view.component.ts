@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
-import { LocalStorageService } from '../../../shared/storage.service';
+import { LocalStorageService } from '../../../common/servises/storage.service';
 import { VisibilityConf } from './view.model';
 import {  TranslatePipe } from 'ng2-translate';
 import { AlertComponent } from '../../../shared/alert/alert.component';

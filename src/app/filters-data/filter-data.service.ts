@@ -1,6 +1,8 @@
-/**
- * @author Maryna Duda maryna.duda@innovinnpromm.com
- * @date 18.07.2016 14:11:07
+/*
+ * @author Марина Усатюк maryna.duda@innovinnprom.com
+ * @date 09.08.2016 11:04:00
+ *
+ * Copyright (c) 2016 ИННОВИННПРОМ
  */
 
 import {
@@ -12,13 +14,17 @@ import {
     Http,
     Response,
     Headers,
-    RequestOptions
+    RequestOptions,
+
 } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
+
+import { AuthService } from '../user/auth.service';
+import { handleError } from '../common/variable/error-handler.function';
 
 import {
     SendersApi,
@@ -32,12 +38,7 @@ import {
     CulturesSortesApi
 } from './filter-data.constant';
 
-import { AuthService } from '../user/auth.service';
-export interface IDataModel {
-    id: string | number,
-    name: string
-}
-
+import {IDataModel} from './data.model';
 
 /**
  * Service to work with data filters
@@ -47,110 +48,147 @@ export interface IDataModel {
  */
 @Injectable()
 export class DataFilterService {
-
     /**
      * Creates an instance of DataFilterService.
      * 
      * @param {Http} _http - Angular2 http module
+     * @param {AuthService} _auth - authenticationServise
      */
     constructor(private _http: Http, private _auth: AuthService) {
 
     }
 
-    public getSendersList(): Observable<any> {
+    /**
+     * 
+     * 
+     * @returns {(Observable<IDataModel | string>)}
+     */
+    public getSendersList(): Observable<IDataModel | string> {
         return this._getFiltersHttp(SendersApi.url,
             SendersApi.idValue,
             SendersApi.nameValue);
-
     }
-    public getOwnersList(): Observable<any> {
+
+    /**
+     * 
+     * 
+     * @returns {(Observable<IDataModel | string>)}
+     */
+    public getOwnersList(): Observable<IDataModel | string> {
         return this._getFiltersHttp(OwnersApi.url,
             OwnersApi.idValue,
             OwnersApi.nameValue);
 
     }
-    public getProvidersList(): Observable<any> {
+    /**
+     * 
+     * 
+     * @returns {(Observable<IDataModel | string>)}
+     */
+    public getProvidersList(): Observable<IDataModel | string> {
         return this._getFiltersHttp(ProvidersApi.url,
             ProvidersApi.idValue,
             ProvidersApi.nameValue);
 
     }
-    public getStoragessList(): Observable<any> {
+
+    /**
+     * 
+     * 
+     * @returns {(Observable<IDataModel | string>)}
+     */
+    public getStoragessList(): Observable<IDataModel | string> {
         return this._getFiltersHttp(StoragesApi.url,
             StoragesApi.idValue,
             StoragesApi.nameValue);
     }
 
-    public getScalesTypeList(): Observable<any> {
+    /**
+     * 
+     * 
+     * @returns {(Observable<IDataModel | string>)}
+     */
+    public getScalesTypeList(): Observable<IDataModel | string> {
         return this._getFiltersHttp(ScalesTypeApi.url,
             ScalesTypeApi.idValue,
             ScalesTypeApi.nameValue);
     }
-    public getStationsList(): Observable<any> {
+    /**
+     * 
+     * 
+     * @returns {(Observable<IDataModel | string>)}
+     */
+    public getStationsList(): Observable<IDataModel | string> {
         return this._getFiltersHttp(StationsApi.url,
             StationsApi.idValue,
             StationsApi.nameValue);
     }
 
-    public getCulturesList(): Observable<any> {
+    /**
+     * 
+     * 
+     * @returns {(Observable<IDataModel | string>)}
+     */
+    public getCulturesList(): Observable<IDataModel | string> {
         return this._getFiltersHttp(CulturesApi.url,
             CulturesApi.idValue,
             CulturesApi.nameValue);
     }
-    public getCultureClassesList(): Observable<any> {
+
+    /**
+     * 
+     * 
+     * @returns {(Observable<IDataModel | string>)}
+     */
+    public getCultureClassesList(): Observable<IDataModel | string> {
         return this._getFiltersHttp(CulturesClassesApi.url,
             CulturesClassesApi.idValue,
             CulturesClassesApi.nameValue);
     }
-    public getCultureSortesList(): Observable<any> {
+
+    /**
+     * 
+     * 
+     * @returns {(Observable<IDataModel | string>)}
+     */
+    public getCultureSortesList(): Observable<IDataModel | string> {
         return this._getFiltersHttp(CulturesSortesApi.url,
             CulturesSortesApi.idValue,
             CulturesSortesApi.nameValue);
     }
 
-
-    private _getFiltersHttp(url: string, id: string = undefined, name: string = undefined): Observable<any> {
+    /**
+     * 
+     * 
+     * @private
+     * @param {string} url
+     * @param {string} [id=undefined]
+     * @param {string} [name=undefined]
+     * @returns {(Observable<IDataModel | string>)}
+     */
+    private _getFiltersHttp(url: string,
+        id: string = undefined,
+        name: string = undefined)
+        : Observable<IDataModel | string> {
         if (!this._auth.isAuth('user')) {
             return Observable.throw('CONNECTION.USER_NOT_AUTH');
         }
 
         return this._http.get(url)
-            .map(res => <IDataModel[]>(res.json().map((item: any) => {
+            .map(res => <IDataModel[]>(res.json().map((item: { [name: string]: string }): IDataModel => {
                 if (id && name) {
-                    let _it: IDataModel;
-                        _it.id      = item[id];
-                        _it.name    = item[name];
+                    let _it: IDataModel = <IDataModel>{};
+                    _it.id = item[id];
+                    _it.name = item[name];
                     return _it;
                 }
             })))
-            .do((data: any): void => {
-                console.debug('Data Filtes' +
-                    '\nUrl: ' + url +
-                    '\nData: ' + JSON.stringify(data));
+            .do((data: IDataModel[]): void => {
+                console.debug('Data Filtes:' +
+                              '\nUrl: ' + url +
+                              '\nData Len: ' + data.length + 
+                              '\nData: ' + JSON.stringify(data[0]));
             })
-            .catch(this.handleError);
-    }
-
-    /**
-     * Function to handle all errors connection to server
-     * 
-     * @private
-     * @param {*} err - error as result request to server
-     * @returns {Observable<string> - text of error}
-     */
-    private handleError(err: any): Observable<string> {
-        // TODO: #translate | RailcarService
-        let message: string;
-        if (err.message) {
-            message = err.message;
-        } else {
-            message = (err.status) ?
-                `${err.status} : ${err.statusText}` :
-                'Server connection error';
-        }
-
-        console.error(message);
-        return Observable.throw(message);
+            .catch(handleError);
     }
 }
-
