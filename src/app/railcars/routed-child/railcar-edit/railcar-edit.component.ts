@@ -15,7 +15,8 @@ import { TranslatePipe }  from 'ng2-translate';
 import { RailcarService } from '../../railcars.service';
 import { IRailcarModel } from '../../railcars.model';
 
-import { ComboboxComponent } from '../.././../shared/combobox/combobox.component';
+import {IDataModel} from '../../../filters-data/data.model';
+import { DataComboboxComponent } from '../.././../shared/data-combobox/data-combobox.component';
 import { AlertComponent } from '../../../shared/alert/alert.component';
 import { MyDatePicker } from '../../../shared/my-date-picker/my-date-picker.component';
 
@@ -26,36 +27,32 @@ import { DataFilterService } from '../../../filters-data/filter-data.service';
     selector: 'wblg-railcar-edit',
     templateUrl: 'railcar-edit.component.html',
     pipes: [TranslatePipe, JsonPipe],
-    directives: [ComboboxComponent, AlertComponent, FORM_DIRECTIVES, NgIf, NgClass, MyDatePicker] 
+    directives: [DataComboboxComponent, AlertComponent, FORM_DIRECTIVES, NgIf, NgClass, MyDatePicker]
 })
 
 export class RailcarEditComponent implements OnInit, OnDestroy {
     public railcar: IRailcarModel;
     public id: string;
+    public isAddMode: boolean;
 
 
     //--> files name
-
-    public isVisibleElement : boolean;
-
-
-
-
+    public isVisibleElement: boolean;
     private message = 'MESS.LOADING';
 
 
 
-    private _senders : any;
-    private _owners: any;
-    private _providers: any;
+    private _senders: IDataModel[];
+    private _owners: IDataModel[];
+    private _providers: IDataModel[];
 
-    private _srorages: any;
-    private _stations: any;
-   
-    private _cultures: any;
-    private _classes: any;
-    private _sorts: any;
-    private _scales: any;
+    private _srorages: IDataModel[];
+    private _stations: IDataModel[];
+
+    private _cultures: IDataModel[];
+    private _classes: IDataModel[];
+    private _sorts: IDataModel[];
+    private _scales: IDataModel[];
 
 
 
@@ -66,49 +63,31 @@ export class RailcarEditComponent implements OnInit, OnDestroy {
         private _route: Router,
         private _railcars: RailcarService,
         private _filters: DataFilterService) {
-            this.isVisibleElement = false;
-            this.railcar = <IRailcarModel>{};
+        this.isVisibleElement = false;
+        this.railcar = <IRailcarModel>{};
 
     }
 
     ngOnInit() {
         this._subscribeRouter = this._router.params.subscribe(params => {
             this.id = params['id'];
-            if (this.id) {
-            this._railcars.getRailcarId(this.id).subscribe((val) => {
-                this.railcar = val;
-            }, (err: any) => {
-                this.message = err;
-            })
+            this.isAddMode = true;
+
+            if (this.id !== 'add') {
+                this.isAddMode = false;
+                this._railcars.getRailcarId(this.id).subscribe((val) => {
+                    console.log(val);
+                    this.railcar = val;
+                }, (err: any) => {
+                    this.message = err;
+                })
             }
-                this.isVisibleElement = true;
+            this.isVisibleElement = true;
         });
+        this.loadDataForFilters();
 
-        this._filters.getCulturesList().subscribe((val) => {
-            this._cultures = val;
-            this._classes = val;
-            this._sorts =val;
 
-        });
 
-        this._filters.getStationsList().subscribe((val) => {
-            console.log(val);
-            
-            this._stations = val;
-        });
-
-        this._filters.getSendersList().subscribe((val)=> {
-            this._senders = val;
-            this._owners = val;
-            this._providers = val;
-            this._srorages = val;
-        });
-
-        this._filters.getCulturesList().subscribe((val) => {
-            this._srorages = ['storage 1', 'storage default'];
-            this._scales = ['scale 1', 'scale default'];
-        });
-    
     }
 
     ngOnDestroy() {
@@ -116,9 +95,37 @@ export class RailcarEditComponent implements OnInit, OnDestroy {
     }
 
 
-    public setDateEpoch( data: any, value: string) : void {
-        this.railcar[value] = data.epoc;
-    }
+    private loadDataForFilters(): void {
+        this._filters.getCulturesList().subscribe((val: IDataModel[]): void => {
+            this._cultures = <IDataModel[]>val;
+        });
+        this._filters.getCultureClassesList().subscribe((val: IDataModel[]): void => {
+            this._classes = <IDataModel[]>val;
+        });
+        this._filters.getCultureSortesList().subscribe((val: IDataModel[]): void => {
+            this._sorts = <IDataModel[]>val;
+        });
 
+        this._filters.getStationsList().subscribe((val: IDataModel[]): void => {
+            this._stations = val;
+        });
+        this._filters.getScalesTypeList().subscribe((val: IDataModel[]): void => {
+            this._scales = val;
+        });
+        this._filters.getStoragessList().subscribe((val: IDataModel[]): void => {
+            this._srorages = val;
+        });
+
+        this._filters.getSendersList().subscribe((val: IDataModel[]): void => {
+            this._senders = val;
+        });
+        this._filters.getOwnersList().subscribe((val: IDataModel[]): void => {
+            this._owners = val;
+        });
+        this._filters.getProvidersList().subscribe((val: IDataModel[]): void => {
+            this._providers = val;
+        });
+
+    }
 }
 
