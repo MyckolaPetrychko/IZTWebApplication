@@ -120,7 +120,7 @@ export class DisparityService {
         // In a real world app, we might use a remote logging infrastructure
         // We'd also dig deeper into the error to get a better message
         let errMsg = (err.message) ? err.message :
-            err.status ? `${err.status} - ${err.statusText}` : 'CONNECTION.SERVERERROR';
+            err.status ? `${err.status} - ${err.statusText}` : 'CONNECTION.SERVER_ERROR';
         console.error(errMsg); // log to console instead
         return Observable.throw(errMsg);
     }

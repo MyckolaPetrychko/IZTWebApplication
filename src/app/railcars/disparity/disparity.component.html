@@ -4,7 +4,7 @@
     </span>
     <div>
         <button class="btn btn-light" [disabled]="!isSelected" [class.disabled]="!isSelected" (click)="openModal(true)">
-           <i class="fa fa-check-square-o" aria-hidden="true"></i> {{ 'BUTTON.ACCEPRT' | translate }} </button>
+           <i class="fa fa-check-square-o" aria-hidden="true"></i> {{ 'BUTTON.ACCEPT' | translate }} </button>
     </div>
 </header>
 
@@ -18,7 +18,7 @@
 
 <!-- Modal -->
 <wblg-modal type="info" [(open)]="modal" id="madalId" close="true">
-    <span class="header">{{ 'TITLE.DISPARITYACCEPTMODAL' | translate}}</span>
+    <span class="header">{{ 'TITLE.DISPARITY_ACCEPT_MODAL' | translate}}</span>
     <div class="txt" *ngIf="selected?.transportnumber">
         <form class="form-main form-cols" >
             <!-- TODO: Bookmark | RailcarsElement | manual add block | clients -->
@@ -69,15 +69,15 @@
                 </div>
             </div>
         </form>
-        <wblg-alert [message]="'ERROR.MUSSBETRAIDERACCEPTED'" type="warn" small="true" [open]="!selected.permissiontime && isEmployyer && !isTraider"></wblg-alert>
-        <wblg-alert [message]="'ERROR.MUSSBEEMPLOYEERACCEPTED'" type="warn" small="true" [open]="selected.permissiontime && isTraider && !isEmployyer"></wblg-alert>
+        <wblg-alert [message]="'ERROR.MUSS_BE_TRAIDER_ACCEPTED'" type="warn" small="true" [open]="!selected.permissiontime && isEmployyer && !isTraider"></wblg-alert>
+        <wblg-alert [message]="'ERROR.MUSS_BE_EMPLOYEER_ACCEPTED'" type="warn" small="true" [open]="selected.permissiontime && isTraider && !isEmployyer"></wblg-alert>
     </div>
     <div class="footer" *ngIf="selected?.transportnumber">
         <button class="btn btn-light" (click)="ok();" [disabled]="(!selected.permissiontime && isEmployyer && !isTraider) || (selected.permissiontime && isTraider && !isEmployyer)  ">
-            <i class="fa fa-check" aria-hidden="true"></i> {{ 'BTN.OK' | translate}}
+            <i class="fa fa-check" aria-hidden="true"></i> {{ 'BUTTON.OK' | translate}}
             </button>
         <button class="btn btn-light" (click)="cancel();"> 
-            <i class="fa fa-undo" aria-hidden="true"></i> {{ 'BTN.CANCEL' | translate}}
+            <i class="fa fa-undo" aria-hidden="true"></i> {{ 'BUTTON.CANCEL' | translate}}
             </button>
     </div>
 </wblg-modal>

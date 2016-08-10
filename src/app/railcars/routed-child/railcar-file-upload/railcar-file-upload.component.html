@@ -14,7 +14,7 @@
         <div class="form-footer btns">
             <button class="btn btn-light" [class.btn-active]="!isDisableTextContentEditor" (click)="setDisableTextContentEditor()"> 
                <i class="fa fa-edit" aria-hidden="true"></i> 
-               {{ 'BUTTON.DISABLEDTEXTEDITOR' | translate}}
+               {{ 'BUTTON.DISABLED_TEXT_EDITOR' | translate}}
             </button>
             <a [attr.download]="fname" [href]="url" class="btn btn-light" >
                 <i class="fa fa-save" aria-hidden="true"></i> {{'BUTTON.SAVE' | translate }}
@@ -31,7 +31,7 @@
     <div role="group" class="form-fieldset form-cols">
         <div class="form-field form-rows">
             <div class="div-control form-cols">
-                <textarea [ngModel]="content"  (ngModelChange)="save($event)" name="content" class="panels" placeholder="{{'FILENOTSELECTED' | translate}}" [disabled]="isDisableTextContentEditor">
+                <textarea [ngModel]="content"  (ngModelChange)="save($event)" name="content" class="panels" placeholder="{{'FILE_NOT_SELECTED' | translate}}" [disabled]="isDisableTextContentEditor">
                   </textarea>
             </div>
         </div>

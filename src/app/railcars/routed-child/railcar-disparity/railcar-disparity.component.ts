@@ -198,7 +198,7 @@ export class RailcarDisparityComponent implements OnInit, OnDestroy, OnChanges {
         } else {
             this.isNotNull = false;
             this.type = 'info';
-            this.message = 'ERROR.NOTSELECTED';
+            this.message = 'ERROR.NOT_SELECTED';
         }
     }
 

@@ -1,6 +1,6 @@
 import { Component, Input, Output, OnInit, EventEmitter, OnChanges } from '@angular/core';
 
-import { ComboboxComponent } from '../../shared/input/input.component';
+import { ComboboxComponent } from '../../shared/combobox/combobox.component';
 import { AgGridNg2 } from 'ag-grid-ng2/main';
 import { GridOptions } from 'ag-grid/main';
 import { IAuthUser } from './user-list.model';

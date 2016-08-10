@@ -99,7 +99,7 @@ export class RailcarService {
 
         if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USERISNOTAUTH');
+            return Observable.throw('CONNECTION.USER_NOT_AUTH');
         }
 
         return this._http.get(RailcarListApi, { search: params })
@@ -118,7 +118,7 @@ export class RailcarService {
     public getRailcarDisparityList(railcarId: string): Observable<any> {
         if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USERISNOTAUTH');
+            return Observable.throw('CONNECTION.USER_NOT_AUTH');
         }
 
         let urlRailcarIdDisparityApi = RailcarIdDisparityApi.replace('%railcarID%', railcarId);
@@ -144,7 +144,7 @@ export class RailcarService {
     public getRailcarId(railcarId: string): Observable<any> {
         if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USERISNOTAUTH');
+            return Observable.throw('CONNECTION.USER_NOT_AUTH');
         }
         let urlRailcarIdApi = RailcarIdApi.replace('%railcarID%', railcarId);
         return this._http.get(urlRailcarIdApi)
@@ -171,11 +171,11 @@ export class RailcarService {
         // TODO: RailcarService | change to only traider muss add new railcar
         if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USERISNOTAUTH');
+            return Observable.throw('CONNECTION.USER_NOT_AUTH');
         }
         if (!this._auth.isAuth('trader')) {
             // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USERISNOTTRADER');
+            return Observable.throw('CONNECTION.USER_IS_NOT_TRADER');
         }
         let body = JSON.stringify(_railcar);
         let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -206,11 +206,11 @@ export class RailcarService {
         // TODO: RailcarService | change to only traider muss add new railcar
         if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USERISNOTAUTH');
+            return Observable.throw('CONNECTION.USER_NOT_AUTH');
         }
         if (!this._auth.isAuth('trader')) {
             // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USERISNOTTRADER');
+            return Observable.throw('CONNECTION.USER_IS_NOT_TRADER');
         }
         // TODO:  RailcarService | check id by railcar
         let url = RailcarIdApi.replace('%railcarID%', _railcar.transportnumber);
@@ -241,11 +241,11 @@ export class RailcarService {
     public deleteRailcar(railcarId: string): Observable<any> {
         if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USERISNOTAUTH');
+            return Observable.throw('CONNECTION.USER_NOT_AUTH');
         }
         if (!this._auth.isAuth('trader')) {
             // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USERISNOTTRADER');
+            return Observable.throw('CONNECTION.USER_IS_NOT_TRADER');
         }
         let url = RailcarIdApi.replace('%railcarID%', railcarId);
         let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -270,11 +270,11 @@ export class RailcarService {
     public getRailcarFile(file: string): Observable<any> {
         if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USERISNOTAUTH');
+            return Observable.throw('CONNECTION.USER_NOT_AUTH');
         }
         if (!this._auth.isAuth('trader')) {
             // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USERISNOTTRADER');
+            return Observable.throw('CONNECTION.USER_IS_NOT_TRADER');
         }
         let headers = new Headers({ 'Content-Type': 'application/xml' });
         let options = new RequestOptions({ headers: headers });
@@ -292,4 +292,3 @@ export class RailcarService {
     }
 
 }
-

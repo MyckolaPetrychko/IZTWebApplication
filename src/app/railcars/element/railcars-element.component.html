@@ -20,10 +20,10 @@
             <div class="form-footer btns">
                 <button class="btn btn-dark">Load</button>
                 <button class="btn btn-dark" [class.btn-active]="!isDisableTextContentEditor" (click)="setDisableTextContentEditor()"> 
-                               {{ 'BUTTON.DISABLEDTEXTEDITOR' | translate}}
+                               {{ 'BUTTON.DISABLED_TEXT_EDITOR' | translate}}
                 </button>
                 <a download="filename" href="url" class="btn btn-dark">
-                   {{'SAVE' | translate }}
+                   {{'BUTTON.SAVE' | translate }}
                 </a>
             </div>
         </div>
@@ -104,8 +104,8 @@
             <!-- TODO: Bookmark | RailcarsElement | manual add block | footer-->
             <div class=" form-footer form-cols ">
                 <div class="btns">
-                    <button class="btn btn-dark">Save</button>
-                    <button class="btn btn-light">Cancel</button>
+                    <button class="btn btn-dark">{{ 'BUTTON.SAVE'| translate }}</button>
+                    <button class="btn btn-light">{{ 'BUTTON.CANCEL'| translate }}</button>
                 </div>
                 <div class="div-control form-cols">
                     <wblg-alert [message]="'VALUE.REQUIRED'" [type]="'warn'" [small]="true" [modal]="false" [open]="true">  </wblg-alert>

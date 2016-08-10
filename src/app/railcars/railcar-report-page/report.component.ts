@@ -6,7 +6,7 @@ import { RailcarListComponent } from '../routed-child/railcar-list/railcar-list.
     moduleId: module.id,
     selector: 'report-railcar',
     templateUrl: 'report.component.html',
-    styleUrls: ['./report.component.css'],
+    // styleUrls: ['./report.component.css'],
     directives: [RailcarListComponent],
     pipes: [TranslatePipe] 
 })
