@@ -26,13 +26,15 @@ export const DATA_COMBOBOX_CONTROL_VALUE_ACCESSOR: any = {
 })
 
 export class DataComboboxComponent implements ControlValueAccessor {
-    @Input() data: IDataModel[];
+
     @Input() dropdown: boolean = false;
     @Input('id') idName: string = 'comboboxID';
 
     @Input() prop: string = 'id';
     @Input() display: string = 'name';
 
+    private selectProperty: string;
+    private dataList: IDataModel[];
     private filterValue: string;
     private selectedValue: IDataModel = <IDataModel>{};
     private isOpenedMenu: boolean;
@@ -46,11 +48,28 @@ export class DataComboboxComponent implements ControlValueAccessor {
         this.data = [];
     }
 
+    @Input()
+    set data(_d: IDataModel[]) {
+      if (_d)  { this.dataList = _d; 
+    
+      if (this.selectProperty && this.selectProperty !== '') {
+                for (var i = 0; i < this.dataList.length; i++) {
+                    if (this.dataList[i][this.prop] === this.selectProperty) {
+                        this.SelectElement(this.dataList[i]);
+                        break;
+                    }
+                }
+            }
+      }
+    }
+
     public SelectElement(elem: IDataModel): void {
         this.selectedValue = elem;
         if (!elem) {
-            this.filterValue = '';
+            this.selectProperty = null;
+            this.filterValue = null;
         } else {
+            this.selectProperty = elem[this.prop];
             this.filterValue = elem[this.display];
         }
         this.ToogleMenu(false);
@@ -59,16 +78,16 @@ export class DataComboboxComponent implements ControlValueAccessor {
     public ToogleMenu(state: boolean): void {
         if (state) {
             this.selectedValue = <IDataModel>{};
-            this.filterValue = '';
+            this.filterValue = null;
         }
         if (this.dropdown) {
             this.isOpenedMenu = state;
-        } 
+        }
 
-        if ( this.selectedValue) {
-        this.onChangeCallback(this.selectedValue[this.prop]);
+        if (this.selectedValue) {
+            this.onChangeCallback(this.selectedValue[this.prop]);
         } else {
-            this.onChangeCallback('');
+            this.onChangeCallback(null);
         }
     }
 
@@ -96,10 +115,14 @@ export class DataComboboxComponent implements ControlValueAccessor {
     writeValue(value: string) {
         console.log(value + ' first');
         if (value !== this.selectedValue[this.prop]) {
-            for (var i = 0; i < this.data.length; i++) {
-                if (this.data[i][this.prop] === value) {
-                    this.SelectElement(this.data[i]);
-                    break;
+
+            this.selectProperty = value;
+            if (this.dataList.length > 0) {
+                for (var i = 0; i < this.dataList.length; i++) {
+                    if (this.dataList[i][this.prop] === value) {
+                        this.SelectElement(this.dataList[i]);
+                        break;
+                    }
                 }
             }
         }

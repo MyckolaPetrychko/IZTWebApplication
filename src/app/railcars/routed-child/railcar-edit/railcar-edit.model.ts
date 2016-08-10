@@ -56,7 +56,7 @@ export interface IRaicarEditModel {
      * 
      * @type {string}
      */
-    sendernname?: string;  //Экспедитор (отправитель) VARCHAR(100)
+    sendername?: string;  //Экспедитор (отправитель) VARCHAR(100)
     senderid?: number;  //INTEGER
 
     /**
@@ -82,6 +82,7 @@ export interface IRaicarEditModel {
 
     cropid?: number;  //INTEGER
     cropname?: string;  //INTEGER
+cropyear?:number;
 
     classid?: number;  //INTEGER
     classname?: string;  //INTEGER

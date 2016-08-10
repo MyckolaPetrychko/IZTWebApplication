@@ -63,7 +63,7 @@ export class DataFilterService {
      * 
      * @returns {(Observable<IDataModel | string>)}
      */
-    public getSendersList(): Observable<IDataModel | string> {
+    public getSendersList(): Observable<IDataModel[]  | string> {
         return this._getFiltersHttp(SendersApi.url,
             SendersApi.idValue,
             SendersApi.nameValue);
@@ -74,7 +74,7 @@ export class DataFilterService {
      * 
      * @returns {(Observable<IDataModel | string>)}
      */
-    public getOwnersList(): Observable<IDataModel | string> {
+    public getOwnersList(): Observable<IDataModel[]  | string> {
         return this._getFiltersHttp(OwnersApi.url,
             OwnersApi.idValue,
             OwnersApi.nameValue);
@@ -85,7 +85,7 @@ export class DataFilterService {
      * 
      * @returns {(Observable<IDataModel | string>)}
      */
-    public getProvidersList(): Observable<IDataModel | string> {
+    public getProvidersList(): Observable<IDataModel[]  | string> {
         return this._getFiltersHttp(ProvidersApi.url,
             ProvidersApi.idValue,
             ProvidersApi.nameValue);
@@ -97,7 +97,7 @@ export class DataFilterService {
      * 
      * @returns {(Observable<IDataModel | string>)}
      */
-    public getStoragessList(): Observable<IDataModel | string> {
+    public getStoragessList(): Observable<IDataModel[]  | string> {
         return this._getFiltersHttp(StoragesApi.url,
             StoragesApi.idValue,
             StoragesApi.nameValue);
@@ -108,7 +108,7 @@ export class DataFilterService {
      * 
      * @returns {(Observable<IDataModel | string>)}
      */
-    public getScalesTypeList(): Observable<IDataModel | string> {
+    public getScalesTypeList(): Observable<IDataModel[]  | string> {
         return this._getFiltersHttp(ScalesTypeApi.url,
             ScalesTypeApi.idValue,
             ScalesTypeApi.nameValue);
@@ -118,7 +118,7 @@ export class DataFilterService {
      * 
      * @returns {(Observable<IDataModel | string>)}
      */
-    public getStationsList(): Observable<IDataModel | string> {
+    public getStationsList(): Observable<IDataModel[]  | string> {
         return this._getFiltersHttp(StationsApi.url,
             StationsApi.idValue,
             StationsApi.nameValue);
@@ -129,7 +129,7 @@ export class DataFilterService {
      * 
      * @returns {(Observable<IDataModel | string>)}
      */
-    public getCulturesList(): Observable<IDataModel | string> {
+    public getCulturesList(): Observable<IDataModel[]  | string> {
         return this._getFiltersHttp(CulturesApi.url,
             CulturesApi.idValue,
             CulturesApi.nameValue);
@@ -140,7 +140,7 @@ export class DataFilterService {
      * 
      * @returns {(Observable<IDataModel | string>)}
      */
-    public getCultureClassesList(): Observable<IDataModel | string> {
+    public getCultureClassesList(): Observable<IDataModel[]  | string> {
         return this._getFiltersHttp(CulturesClassesApi.url,
             CulturesClassesApi.idValue,
             CulturesClassesApi.nameValue);
@@ -151,7 +151,7 @@ export class DataFilterService {
      * 
      * @returns {(Observable<IDataModel | string>)}
      */
-    public getCultureSortesList(): Observable<IDataModel | string> {
+    public getCultureSortesList(): Observable<IDataModel[] | string> {
         return this._getFiltersHttp(CulturesSortesApi.url,
             CulturesSortesApi.idValue,
             CulturesSortesApi.nameValue);
@@ -164,12 +164,12 @@ export class DataFilterService {
      * @param {string} url
      * @param {string} [id=undefined]
      * @param {string} [name=undefined]
-     * @returns {(Observable<IDataModel | string>)}
+     * @returns {(Observable<IDataModel[] | string>)}
      */
     private _getFiltersHttp(url: string,
         id: string = undefined,
         name: string = undefined)
-        : Observable<IDataModel | string> {
+        : Observable<IDataModel[] | string> {
         if (!this._auth.isAuth('user')) {
             return Observable.throw('CONNECTION.USER_NOT_AUTH');
         }

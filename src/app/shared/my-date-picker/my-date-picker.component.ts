@@ -30,7 +30,7 @@ export class MyDatePicker implements OnInit, ControlValueAccessor, OnDestroy {
 
     @Input('id') idName: string = 'calendarID';
     @Input() inline: boolean = false;
-    @Input() clear: boolean = true;
+    @Input() clear: boolean = false;
     @Input() endDate: boolean = false;
 
     showSelector: boolean = false;
@@ -469,10 +469,13 @@ export class MyDatePicker implements OnInit, ControlValueAccessor, OnDestroy {
     }
 
     //From ControlValueAccessor interface
-    writeValue(value: Date) {
-        if (value !== this.innerValue) {
-            this.innerValue = value;
-            this.selectDate({ year: value.getFullYear(), month: value.getMonth() + 1, day: value.getDay() });
+    writeValue(value: number | string | Date) {
+        let val: Date = new Date(+value);
+        if (value === null || value === undefined) {
+           this.removeBtnClicked();
+        } else  if (val !== this.innerValue) {
+            this.innerValue = val;
+            this.selectDate({ year: val.getFullYear(), month: val.getMonth() + 1, day: val.getDay() });
         }
     }
 

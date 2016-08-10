@@ -6,10 +6,10 @@
         </span>
     </div>
     <ul role="menu" *ngIf="dropdown && isOpenedMenu" class="combobox-menu" >
-         <li role="menuitem" class="combobox-item"  (click)="SelectElement()" *ngIf="(data | dataFilter :filterValue :display).length === 0">
+         <li role="menuitem" class="combobox-item"  (click)="SelectElement()" *ngIf="(dataList | dataFilter :filterValue :display).length === 0">
             {{'COMBOBOX.NO_DATA' | translate}}
         </li>
-        <li role="menuitem" class="combobox-item" *ngFor="let item of (data | dataFilter :filterValue :display)" 
+        <li role="menuitem" class="combobox-item" *ngFor="let item of (dataList | dataFilter :filterValue :display)" 
         (click)="SelectElement(item)" [class.active]="isActive(item)">
             {{item[display]}}
         </li>
