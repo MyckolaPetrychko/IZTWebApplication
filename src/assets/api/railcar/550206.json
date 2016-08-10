@@ -1,5 +1,5 @@
     {
-        "invoicedater": 1467352313000,
+        "invoicedate": 1467352313000,
         "cropname": "Кукуруза 3 кл. корм.",
         "classname": "3 кл.",
         "sortname": "корм.",
@@ -53,5 +53,6 @@
         "exporterid": 0,
         "stationid": 0,
         "senderid": 0,
-        "cropid": 4
+        "cropid": 4,
+        "cropyear": 2017
     }
