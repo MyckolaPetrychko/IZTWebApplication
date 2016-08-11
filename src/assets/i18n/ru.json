@@ -1,6 +1,14 @@
- {   "COMPANY": {
+ {   
+    "APPNAME": "IZT ua",
+    
+    "APP": {
+        "TITLE": "Title IZT ua"
+    },
+
+     "COMPANY": {
         "NAME": "ИЗТ"
     },
+
     "DEVELOPER": {
         "COMPANY": "ИнновиннПром"
     },
@@ -18,6 +26,74 @@
         "DELETE": "Удалить",
         "VIEW": "Вид",
         "PRINT": "Удалить",
-        "REFRESH": "Обновить"
+        "REFRESH": "Обновить",
+
+        "ACCEPT": "Принять",
+        "OK": "OK",
+        "CANCEL": "Отменить",
+        "LOADFILE": "Скачать файл",
+        "DISABLED_TEXT_EDITOR": "Режим редактирования файла",
+        "FILE_UPLOAD": "Отправить на сервер",
+        "SAVE": "Сохранить",
+        "FILTER": "Фильтр",
+        "SELECTALL": "Выбрать все",
+
+        "ADD_USER": "Добавить пользователя",
+        "EDIT_USER": "Редактировать пользователя",
+        "DELETE_USER": "Удалить пользователя"
+    },
+    "TABLE": {
+        "ownername": "Владелец", 
+        "providername": "Поставщик",
+        "transportnumber": "Номер вагона  ",
+        "invoicenumber": "Номер наклaдной  ",
+        "sampleroutdate": "Дата отгрузки ",
+        "sendernname": "Экспедитор (отправитель)",
+        "stationname": "Станция ",
+        "cropfullname": "Культура ",
+        "gmopresence": "Наличие ГМО ",
+        "certificatenumber": "Сертификат качества ",
+        "certificatedate": "Дата внесения сертификата качества",
+        "snnumber": "Протокол безопасности ",
+        "invoicegross": "Брутто по накладной, кг ",
+        "invoicetare": "Тара по накладной, кг ",
+        "invoicenet": "Нетто по накладной, кг ",
+        "deviationtime": " Обнаружение несоответсвия на ИЗТ",
+        "taretime": "Взешивание по таре   ",
+        "gross": "Бруттто на ИЗТ, кг    ",
+        "tare": "Тара на изт, кг   ",
+        "net": "Нетто на ИЗТ, кг ",
+        "grossdeficite": "Разница по брутто, кг ",
+        "netdeficite": "Разница по нетто, кг",
+        "scaletypename": "Способ определения веса при отгрузке",
+        "deviationdescription": "Причина задержки выгрузки вагона",
+        "permission": "Решение по ситуации",
+        "permissiondescription": " решение ",
+        "permissiontime": " дата, время ",
+        "permissionusername": " Ф,И,О",
+        "remark": "Примечание",
+        "waitingtime": "Время ожидания решения",
+        "overtime": "Время доп. маневровых работ",
+        "certificatepresence": "Наличие сертификата качества",
+        "snpresence": "Наличие протокола безопасности",
+        "grosstime": "Взвешивание по брутто"
+
+    },
+    "LABEL": {
+        "FROM": "с",
+        "TO": " по ",
+        "LIST_OF_RAILCARS": "Список железнодорожных вагонов",
+        "PARAMS": "Params",
+        "CURRENT_USER": "Текущий пользователь",
+        "LANG": "Язык"
+    },
+
+    "VALUE" : {
+        "REQUIRED": "Поле обязательное для заполнения"
+    },
+
+    "RAILCAR" : {
+        "FILE_UPLOAD": "Отправить на сервер", 
+        "LIST_OF_RAILCARS": "Список железнодорожных вагонов"
     }
  }
