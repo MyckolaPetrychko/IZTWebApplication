@@ -22,7 +22,21 @@
         "DELETE": "Видалити",
         "VIEW": "Вигляд",
         "PRINT": "Друкувати",
-        "REFRESH": "Оновити"
+        "REFRESH": "Оновити",
+
+        "ACCEPT": "Прийняти",
+        "OK": "OK",
+        "CANCEL": "Скасувати",
+        "LOADFILE": "Завантажити файл",
+        "DISABLED_TEXT_EDITOR": "Режим редагування файлу",
+        "FILE_UPLOAD": "Відправити на сервер",
+        "SAVE": "Зберегти",
+        "FILTER": "Фільтр",
+        "SELECTALL": "Вибрати всі",
+
+        "ADD_USER": "Додати користувача",
+        "EDIT_USER": "Редагувати користувача",
+        "DELETE_USER": "Видалити користувача"
     },
     "TABLE": {
         "ownername": "Владелец", 
@@ -62,11 +76,20 @@
 
     },
     "LABEL": {
-        "FROM": "from",
-        "TO": " to "
+        "FROM": "з",
+        "TO": " до ",
+        "LIST_OF_RAILCARS": "Список залізничних вагонів",
+        "PARAMS": "Params",
+        "CURRENT_USER": "Поточний користувач",
+        "LANG": "Мова"
     },
 
     "VALUE" : {
-        "REQUIRED": "Pole obov`azkove dla zapovnenennya"
+        "REQUIRED": "Поле обов'язкове для заповнення"
+    },
+
+    "RAILCAR" : {
+        "FILE_UPLOAD": "FILE_UPLOAD", 
+        "LIST_OF_RAILCARS": "LIST_OF_RAILCARS"
     }
 }

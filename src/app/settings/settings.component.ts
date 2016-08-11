@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { TranslatePipe } from 'ng2-translate';
+import { NgIf, NgClass, JsonPipe } from '@angular/common';
 import { DropDownListComponent } from './userlist/user-list.component';
 
 @Component({
@@ -7,7 +8,8 @@ import { DropDownListComponent } from './userlist/user-list.component';
     selector: 'wblg-settings',
     templateUrl: './settings.component.html',
     styleUrls: ['./settings.component.css'],
-    directives: [DropDownListComponent]
+    directives: [DropDownListComponent],
+    pipes: [TranslatePipe, JsonPipe]
 })
 export class SettingsComponent implements OnInit {
     selectedButton: string;
