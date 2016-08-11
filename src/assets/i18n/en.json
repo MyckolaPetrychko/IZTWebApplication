@@ -4,7 +4,6 @@
         "TITLE":  "Title IZT en"
     },
 
-
     "COMPANY": {
         "NAME": "IZT"
     },
@@ -17,6 +16,84 @@
         "REPORT": "Reports",
         "SETTINGS": "Settings",
         "USERS": "User"
+    },
+
+    "BUTTON": {
+        "ADD": "Add",
+        "LOAD": "Load",
+        "EDIT": "Edit",
+        "DELETE": "Delete",
+        "VIEW": "View",
+        "PRINT": "Print",
+        "REFRESH": "Refresh",
+
+        "ACCEPT": "Accept",
+        "OK": "OK",
+        "CANCEL": "Cancel",
+        "LOADFILE": "Download",
+        "DISABLED_TEXT_EDITOR": "File edit mode",
+        "FILE_UPLOAD": "Send to server",
+        "SAVE": "Save",
+        "FILTER": "Filter",
+        "SELECTALL": "Select all",
+
+        "ADD_USER": "Add user",
+        "EDIT_USER": "Edit user",
+        "DELETE_USER": "Delete user"
+    },
+    "TABLE": {
+        "ownername": "Owner", 
+        "providername": "Provider",
+        "transportnumber": "Carriage number  ",
+        "invoicenumber": "Invoice number  ",
+        "sampleroutdate": "Shipping date ",
+        "sendernname": "Forwarder (sender)",
+        "stationname": "Station ",
+        "cropfullname": "Culture ",
+        "gmopresence": "Availability GMO ",
+        "certificatenumber": "Quality certificate number ",
+        "certificatedate": "Date of quality certificate ",
+        "snnumber": "Security protocol ",
+        "invoicegross": "Gross invoice, kg ",
+        "invoicetare": "The product of the invoice, kg ",
+        "invoicenet": "Net invoice, kg ",
+        "deviationtime": " Finding discrepancies in the IZT",
+        "taretime": "Weighing on the packaging   ",
+        "gross": "Gross on IZT, kg    ",
+        "tare": "Packaging on IZT, kg   ",
+        "net": "Net on IZT, kg ",
+        "grossdeficite": "The difference in the gross, kg ",
+        "netdeficite": "The difference in net, kg",
+        "scaletypename": "The method for determining the weight of the shipment",
+        "deviationdescription": "The reason for the delay wagon unloading",
+        "permission": "Decisions on the situation",
+        "permissiondescription": " Solution ",
+        "permissiontime": " Date, time ",
+        "permissionusername": " Full name",
+        "remark": "Note",
+        "waitingtime": "Timeout solutions",
+        "overtime": "Additional shunting time",
+        "certificatepresence": "Presence qualities certificate",
+        "snpresence": "Presence security protocol",
+        "grosstime": "Weighing on gross"
+
+    },
+    "LABEL": {
+        "FROM": "from",
+        "TO": " to ",
+        "LIST_OF_RAILCARS": "List of railcars",
+        "PARAMS": "Params",
+        "CURRENT_USER": "Current user",
+        "LANG": "Language"
+    },
+
+    "VALUE" : {
+        "REQUIRED": "This field is required"
+    },
+
+    "RAILCAR" : {
+        "FILE_UPLOAD": "Upload file", 
+        "LIST_OF_RAILCARS": "List of railcars"
     }
 
 
