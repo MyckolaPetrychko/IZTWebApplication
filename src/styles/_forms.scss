@@ -100,7 +100,28 @@
         margin-right: 2px;
     }
 
-    textarea {
+    .txtarea  {
+        background-color: white;
+        color: inherit;
+        border: 2px solid lightgray;
+        white-space: pre-wrap;
+        overflow-y: scroll;
+        overflow-x: scroll;
+    }  
+    .txtarea:hover, .txtarea:focus {
+        border-color: lightblue;
+    }  
+
+.txtarea:empty:not(:focus):before {
+    content: attr(codePlaceholder);
+}
+
+    .disabled {
+        background-color: #ebebe4;
+        color: inherit;
+    }
+
+    textarea, .txtarea {
         resize: none;
         @include flex-child($grow: 1);
     }

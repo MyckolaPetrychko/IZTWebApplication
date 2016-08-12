@@ -34,4 +34,4 @@ export let RailcarIdDisparityApi   = 'assets/api/railcar/%railcarID%-disparity.j
  * @example 'api/railcar/file';
  */
 // TODO: RailcarConstant | test data
-export let RailcarFileApi   = 'assets/api/railcar/%railcarID%.json';
+export let RailcarFileApi   = 'assets/api/railcar/add.json';
