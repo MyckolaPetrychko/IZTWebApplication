@@ -17,17 +17,18 @@ export class AlertComponent implements OnInit, OnChanges {
         this.setType(_type);
     }
 
-    @Input() set time ( _t: number) {
-        window.setTimeout(() => {
-            this.open = false;
-        }, _t * 1000);
-    } 
-
+    @Input() time  : string | number;
     @Input() set message(_message: string) {
         this.setMess(_message);
     }
     @Input() set open(_visible: boolean) {
         this.visible = _visible || false;
+        
+        if (this.time > 0) {
+            window.setTimeout(() => {
+            this.close();
+        }, +this.time * 1000);
+        }
     }
 
     @Input('close') closeBtn: boolean;
@@ -49,6 +50,7 @@ export class AlertComponent implements OnInit, OnChanges {
         this.visible = false;
         this.type = 'info';
         this.modal = false;
+        this.timerClose = 0;
     }
 
     ngOnInit() {
@@ -67,6 +69,7 @@ export class AlertComponent implements OnInit, OnChanges {
     }
     
     public close():void {
+        // this.time = 5;
         this.visible = false;
         this.openChange.emit(false);
     }

@@ -185,7 +185,7 @@ export class MyDatePicker implements OnInit, ControlValueAccessor, OnDestroy {
                 }
             }
         }
-        this.selectionDayTxt = this.formatDate(this.selectedDate);
+        if (this.selectedDate.year !== 0) { this.selectionDayTxt = this.formatDate(this.selectedDate); }
         this.weekDays = [];
         let days = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa'];
         this.dayIdx = days.indexOf(this.firstDayOfWeek);
@@ -201,11 +201,7 @@ export class MyDatePicker implements OnInit, ControlValueAccessor, OnDestroy {
     removeBtnClicked(): void {
         this.selectionDayTxt = '';
         this.innerValue = null;
-        //    this.value = null;
         this.onChangeCallback(this.innerValue);
-
-        // this.selectedDate = { year: 0, month: 0, day: 0 };
-        // this.dateChanged.emit({ date: {}, formatted: this.selectionDayTxt, epoc: 0 });
     }
 
     openBtnClicked(): void {
@@ -471,11 +467,11 @@ export class MyDatePicker implements OnInit, ControlValueAccessor, OnDestroy {
     //From ControlValueAccessor interface
     writeValue(value: number | string | Date) {
         let val: Date = new Date(+value);
-        if (value === null || value === undefined) {
-           this.removeBtnClicked();
-        } else  if (val !== this.innerValue) {
+        if (value && value !== null && value !== undefined && val) {
             this.innerValue = val;
             this.selectDate({ year: val.getFullYear(), month: val.getMonth() + 1, day: val.getDay() });
+        } else   {
+           this.removeBtnClicked();
         }
     }
 

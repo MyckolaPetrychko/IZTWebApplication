@@ -50,9 +50,10 @@ export class DataComboboxComponent implements ControlValueAccessor {
 
     @Input()
     set data(_d: IDataModel[]) {
-      if (_d)  { this.dataList = _d; 
-    
-      if (this.selectProperty && this.selectProperty !== '') {
+        if (_d) {
+        this.dataList = _d;
+
+            if (this.selectProperty && this.selectProperty !== '') {
                 for (var i = 0; i < this.dataList.length; i++) {
                     if (this.dataList[i][this.prop] === this.selectProperty) {
                         this.SelectElement(this.dataList[i]);
@@ -60,7 +61,7 @@ export class DataComboboxComponent implements ControlValueAccessor {
                     }
                 }
             }
-      }
+        }
     }
 
     public SelectElement(elem: IDataModel): void {
@@ -113,18 +114,21 @@ export class DataComboboxComponent implements ControlValueAccessor {
 
     //From ControlValueAccessor interface
     writeValue(value: string) {
-        console.log(value + ' first');
-        if (value !== this.selectedValue[this.prop]) {
-
-            this.selectProperty = value;
-            if (this.dataList.length > 0) {
-                for (var i = 0; i < this.dataList.length; i++) {
-                    if (this.dataList[i][this.prop] === value) {
-                        this.SelectElement(this.dataList[i]);
-                        break;
+        // console.log(value + ' first');
+        if ((value !== undefined) && (value !== null)) {
+            if (value !== this.selectedValue[this.prop]) {
+                this.selectProperty = value;
+                if (this.dataList.length > 0) {
+                    for (var i = 0; i < this.dataList.length; i++) {
+                        if (this.dataList[i][this.prop] === value) {
+                            this.SelectElement(this.dataList[i]);
+                            break;
+                        }
                     }
                 }
             }
+        } else {
+            this.SelectElement(<IDataModel>{});
         }
     }
 
