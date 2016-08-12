@@ -5,7 +5,7 @@
  */
 
 
-export interface IRaicarEditModel {
+export interface IRailcarEditModel {
 
     /**
      * Номер вагона  VARCHAR(31)

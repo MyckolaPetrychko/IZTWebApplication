@@ -81,3 +81,14 @@ body {
 
 
 @import './styles/_print.scss';
+
+
+.S {color:coral}/* Строки красные */
+.C { color:darkgray}/* Комменты оранжевые */
+.R { 
+  font-weight: normal;
+ }
+
+
+.func {color:seagreen}/* Юзер-функции синие */
+.kwrd {font-weight: bold}/* Ключевые слова полужирные */

@@ -1,7 +1,7 @@
-<header class="wblg-sub-title heigh2x">
-    {{ 'Add | edit railcars http:#/railcar/add;template=1;' | translate }}
+<header class="wblg-sub-title">
+    {{ 'TITLE.RAILCAR.'+ typeMode | translate }}
     <div class="btns">
-        <button class="btn btn-light" (click)="clone()"> use ass template </button>
+        <button class="btn btn-light" (click)="setTemplate()" *ngIf="useTemplate"> {{ 'BUTTON.USE_TEMPLATE'| translate}} </button>
         <!--<button class="btn btn-light" [class.btn-active]="isVisibleAddAsFile" (click)="setVisibleAddAsFile()"> {{'BUTTON.LOADFILE' | translate}}</button>-->
     </div>
 </header>
@@ -13,7 +13,7 @@
 
         <!-- TODO: Bookmark | RailcarsElement | manual add block | transportnumber -->
         <div role="group" class="form-fieldset form-cols ">
-            <div class="form-field form-rows" [ngClass]="{ 'error-message':!transportnumber.valid}">
+            <div class="form-field form-rows" [ngClass]="{'error-message':!transportnumber.valid}">
                 <label class="label-control" for="transportnumber"> 
                         <span class = "span-overflow"> {{ 'TABLE.transportnumber' | translate}} </span>
                         <wblg-alert  type="warn" small="true" [open]="transportnumber.errors?.required"></wblg-alert>
@@ -68,11 +68,11 @@
         <!-- TODO: Bookmark | RailcarsElement | manual add block | footer-->
         <div class=" form-footer form-cols ">
             <div class="btns">
-                <button class="btn btn-light">
+                <button type="submit"  class="btn btn-light">
                     <i class="fa fa-save" aria-hidden="true"></i> {{'BUTTON.SAVE' | translate }}
                     </button>
-                <button class="btn btn-light" (click)="cancel();"> 
-            <i class="fa fa-undo" aria-hidden="true"></i> {{ 'BUTTON.CANCEL' | translate}}
+                <button type="button" class="btn btn-light" (click)="cancel()" > 
+            <i class="fa fa-undo" aria-hidden="true"></i> {{ 'BUTTON.RESET' | translate}}
             </button>
             </div>
             <div class="div-control form-cols">
@@ -165,11 +165,10 @@
             <div class="form-field form-rows" [ngClass]="{ 'error-message':!storagename.valid}">
                 <label class="label-control" for="storagename"> 
                          <span  class = "span-overflow">{{ 'TABLE.storagename' | translate}}</span>
-                         <wblg-alert [type]="'warn'" [small]="true" [modal]="false" [open]="storagename.errors?.required"></wblg-alert>
+                         <wblg-alert type="warn" small="true" [open]="storagename.errors?.required"></wblg-alert>
                     </label>
                 <div class="div-control form-cols">
-                    <wblg-combobox-data [(ngModel)]="railcar.storageid" name="storagename" #storagename="ngModel" required [dropdown]="true"
-                        id="storagename" [data]="_srorages"></wblg-combobox-data>
+                    <wblg-combobox-data [(ngModel)]="railcar.storageid" name="storagename" #storagename="ngModel" required dropdown="true" id="storagename" [data]="_srorages"></wblg-combobox-data>
                 </div>
             </div>
 
@@ -287,5 +286,6 @@
 </form>
 
 
+<wblg-alert [message]="message" [type]="type" modal="true" [(open)]="visibility"  [time]="time" close="true"> </wblg-alert>
 
 <!--<wblg-alert [message]  = "message"  [type]="'info'"  [modal]="false" [open]="!isVisible" ></wblg-alert>-->

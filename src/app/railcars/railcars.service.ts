@@ -17,7 +17,7 @@ import {
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
-// import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/debounceTime';
 // import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
@@ -280,7 +280,8 @@ export class RailcarService {
         let options = new RequestOptions({ headers: headers });
         let body = JSON.stringify(file);
 
-        return this._http.post(RailcarFileApi, body, options)
+        return this._http.get(RailcarFileApi, options).debounceTime(5000)
+        .map((data: Response): string => { return data.text(); })
             // TODO: #debug | RailcarService
             .do(data => {
                 console.debug('RailcarFileApi' +
@@ -289,6 +290,15 @@ export class RailcarService {
                               '\nData: ' + JSON.stringify(data));
             })
             .catch(handleError);
+        // return this._http.post(RailcarFileApi, body, options)
+        //     // TODO: #debug | RailcarService
+        //     .do(data => {
+        //         console.debug('RailcarFileApi' +
+        //                       '\nUrl: ' + RailcarFileApi +
+        //                       '\nData Len: ' + 1 + 
+        //                       '\nData: ' + JSON.stringify(data));
+        //     })
+        //     .catch(handleError);
     }
 
 }

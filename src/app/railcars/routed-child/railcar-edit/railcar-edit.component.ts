@@ -13,7 +13,7 @@ import { TranslatePipe }  from 'ng2-translate';
 
 
 import { RailcarService } from '../../railcars.service';
-import { IRailcarModel } from '../../railcars.model';
+import { IRailcarEditModel } from './railcar-edit.model';
 
 import {IDataModel} from '../../../filters-data/data.model';
 import { DataComboboxComponent } from '../.././../shared/data-combobox/data-combobox.component';
@@ -31,29 +31,30 @@ import { DataFilterService } from '../../../filters-data/filter-data.service';
 })
 
 export class RailcarEditComponent implements OnInit, OnDestroy {
-    public railcar: IRailcarModel;
+    public railcar: IRailcarEditModel;
     public id: string;
-    public isAddMode: boolean;
 
 
-    //--> files name
-    public isVisibleElement: boolean;
-    private message = 'MESS.LOADING';
+    private typeMode : string;
 
-
+    private template: IRailcarEditModel;
+    private useTemplate: boolean;
 
     private _senders: IDataModel[];
     private _owners: IDataModel[];
     private _providers: IDataModel[];
-
     private _srorages: IDataModel[];
     private _stations: IDataModel[];
-
     private _cultures: IDataModel[];
     private _classes: IDataModel[];
     private _sorts: IDataModel[];
     private _scales: IDataModel[];
 
+
+    private message: string;
+    private visibility: boolean;
+    private type: string;
+    private time: number;
 
 
     private _subscribeRouter: Subscription;
@@ -63,30 +64,32 @@ export class RailcarEditComponent implements OnInit, OnDestroy {
         private _route: Router,
         private _railcars: RailcarService,
         private _filters: DataFilterService) {
-        this.isVisibleElement = false;
-        this.railcar = <IRailcarModel>{};
+        this.railcar = <IRailcarEditModel>{};
+        this.template  = <IRailcarEditModel>{};
+
+        this.visibility = false;
+        this.useTemplate = false;
 
     }
 
     ngOnInit() {
         this._subscribeRouter = this._router.params.subscribe(params => {
             this.id = params['id'];
-            this.isAddMode = true;
-
             if (this.id !== 'add') {
-                this.isAddMode = false;
-                this._railcars.getRailcarId(this.id).subscribe((val) => {
-                    console.log(val);
-                    this.railcar = val;
-                }, (err: any) => {
-                    this.message = err;
-                })
+                 this.typeMode = 'EDIT';
+                 this.useTemplate = false;
+
+                    this.getRailcar(this.id);
+
+            } else {
+                 this.typeMode = 'ADD';
+                 this.railcar = <IRailcarEditModel>{};
+                this.useTemplate = true;
+                  this.getRailcar('550205');
+
             }
-            this.isVisibleElement = true;
         });
         this.loadDataForFilters();
-
-
 
     }
 
@@ -95,7 +98,51 @@ export class RailcarEditComponent implements OnInit, OnDestroy {
     }
 
 
-    private loadDataForFilters(): void {
+    private getRailcar(id:string) {
+         this.setMessage('MESSAGE.LOADING', 5);
+        this._railcars.getRailcarId(id).subscribe(
+            (val: IRailcarEditModel) : void => {
+                     if (!this.useTemplate) {
+                         this.railcar = val;
+                     } else {
+                        this.template = val;
+                     }
+                }, (err: string) => {
+                    this.setMessage(err, 0, 'error');
+                });
+            }
+
+            private setTemplate(): void {
+                this.railcar = this.template;
+                console.log(this.template);
+                let unprop : Array<string>;
+                unprop = [ 'inventoryid', 
+                'transportnumber',
+                'sampleroutdate',
+                'invoicenumber',
+                'invoicedate',
+                'invoicenet',
+                'invoicegross',
+                'invoicetare'];
+
+                unprop.forEach((prop: string) : void => {
+                    this.railcar[prop] = null;
+                });
+                                console.log(this.railcar);
+
+            }
+
+            private cancel() {
+                if (this.typeMode === 'ADD') {
+                    // TODO: 
+                     this.railcar = <IRailcarEditModel> {};
+                } else {
+                    // TODO:
+                    
+                }
+            }
+
+    private  loadDataForFilters(): void {
         this._filters.getCulturesList().subscribe((val: IDataModel[]): void => {
             this._cultures = <IDataModel[]>val;
         });
@@ -126,6 +173,13 @@ export class RailcarEditComponent implements OnInit, OnDestroy {
             this._providers = val;
         });
 
+    }
+
+    private setMessage(_mess: string, _time: number, _type: string = 'info'): void {
+        this.message = _mess;
+        this.time = _time;
+        this.type = _type;
+        this.visibility = true;
     }
 }
 
