@@ -1,28 +1,36 @@
+<!-- TODO: FIX | @todo large width files -->
 <header class="wblg-sub-title">
-    {{ 'RAILCAR.FILE_UPLOAD' | translate }}
+    {{ 'TITLE.RAILCAR.FILE_UPLOAD' | translate }}
 </header>
 
 <form class="form-main form-cols" #uploadForm="ngForm">
     <!-- TODO: Bookmark | RailcarsElement | file add block -->
-    <div role="group" class="form-fieldset form-rows fixed-2x-subtitle ">
+    <div role="group" class="form-fieldset form-rows fixed-3x-subtitle">
         <div class="form-field form-rows">
             <div class="div-control form-cols">
-                <input type="file" accept=".xml" name="fileRailcars" (change)="readNow($event)">
+                <input type="file" accept=".xml" name="fileRailcars" (change)="readNow($event.target)">
             </div>
         </div>
 
-        <div class="form-footer btns">
-            <button class="btn btn-light" [class.btn-active]="!isDisableTextContentEditor" (click)="setDisableTextContentEditor()"> 
-               <i class="fa fa-edit" aria-hidden="true"></i> 
-               {{ 'BUTTON.DISABLED_TEXT_EDITOR' | translate}}
+        <div class="form-footer form-cols" *ngIf="content">
+            <div class="btns">
+                <button class="btn btn-light " [ngClass]="editBtnClass" (click)="setDisabledEditor(!isDisabledEditor)"> 
+               <i class="fa" [ngClass]="editBtnIconClass" aria-hidden="true"></i> 
+               {{ 'CHECKBOX.EDIT_MODE' | translate}}
             </button>
-            <a [attr.download]="fname" [href]="url" class="btn btn-light" >
-                <i class="fa fa-save" aria-hidden="true"></i> {{'BUTTON.SAVE' | translate }}
-            </a>
-            <button class="btn btn-dark" (click)="load();"> 
+                <a [attr.download]="fname" [href]="url" class="btn btn-light" *ngIf="fname">
+                    <i class="fa fa-save" aria-hidden="true"></i> {{'BUTTON.SAVE' | translate }}
+                </a>
+                <button class="btn btn-dark" (click)="load();" > 
                  <i class="fa fa-upload" aria-hidden="true"></i> 
-                 {{ 'BUTTON.FILE_UPLOAD' | translate}}
+                 {{ 'BUTTON.SEND' | translate}}
             </button>
+            </div>
+            <div class="div-control form-rows">
+                <wblg-alert message="TOOLTIP.CLICK_TO_SAVE_BTN" type="info" small="true" open="true"></wblg-alert>
+                <wblg-alert message="TOOLTIP.CLICK_TO_EDIT_BTN" type="info" small="true" open="true"></wblg-alert>
+                <wblg-alert message="TOOLTIP.CLICK_TO_SEND_BTN" type="info" small="true" open="true"></wblg-alert>
+            </div>
         </div>
     </div>
 
@@ -31,13 +39,13 @@
     <div role="group" class="form-fieldset form-cols">
         <div class="form-field form-rows">
             <div class="div-control form-cols">
-                <textarea [ngModel]="content"  (ngModelChange)="save($event)" name="content" class="panels" placeholder="{{'FILE_NOT_SELECTED' | translate}}" [disabled]="isDisableTextContentEditor">
-                  </textarea>
+                <code class="txtarea" [class.disabled]="isDisabledEditor" [attr.contenteditable]="!isDisabledEditor" [innerHTML]="contentSpan" (input)="changeSpannedText($event.target)" 
+                (blur)="syntaxInputText()"
+                [attr.codePlaceholder]="'PLACEHOLDER.FILE_SELECT' | translate">
+                  </code>
             </div>
         </div>
     </div>
 </form>
 
-
-
-<!--<wblg-alert [message]  = "message"  [type]="'info'"  [modal]="false" [open]="!isVisible" ></wblg-alert>-->
+<wblg-alert [message]="message" [type]="type" modal="true" [(open)]="visibility"  [time]="time" close="true"> </wblg-alert>
