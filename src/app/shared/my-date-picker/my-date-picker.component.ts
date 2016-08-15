@@ -24,7 +24,6 @@ export const DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
     templateUrl: './my-date-picker.component.html',
     providers: [DATEPICKER_CONTROL_VALUE_ACCESSOR]
 })
-
 export class MyDatePicker implements OnInit, ControlValueAccessor, OnDestroy {
     public options: any;
 
@@ -171,10 +170,9 @@ export class MyDatePicker implements OnInit, ControlValueAccessor, OnDestroy {
         // the relatively ugly casts to any in this loop are needed to
         // avoid tsc errors when noImplicitAny is true.
         let optionprops = ['dayLabels', 'monthLabels', 'dateFormat',
-            'todayBtnTxt', 'firstDayOfWeek', 'sunHighlight',
-            'disableUntil', 'disableSince', 'disableWeekends',
-            'height', 'width', 'inline'];
+            'todayBtnTxt', 'firstDayOfWeek', 'sunHighlight'];
         let noptionprops = optionprops.length;
+
         for (let i = 0; i < noptionprops; i++) {
             let propname = optionprops[i];
             if (this.options && (<any>this.options)[propname] !== undefined) {
@@ -200,6 +198,7 @@ export class MyDatePicker implements OnInit, ControlValueAccessor, OnDestroy {
 
     removeBtnClicked(): void {
         this.selectionDayTxt = '';
+        this.selectedDate = <IMyDate>{ day: 0, month: 0, year: 0 };
         this.innerValue = null;
         this.onChangeCallback(this.innerValue);
     }
@@ -298,19 +297,19 @@ export class MyDatePicker implements OnInit, ControlValueAccessor, OnDestroy {
     }
 
     selectDate(date: any): void {
-        this.selectedDate = { day: date.day, month: date.month, year: date.year };
-        this.selectionDayTxt = this.formatDate(this.selectedDate);
-        this.showSelector = false;
+           this.selectedDate = { day: date.day, month: date.month, year: date.year };
+            this.selectionDayTxt = this.formatDate(this.selectedDate);
+            this.showSelector = false;
 
-        if (this.endDate) {
-            this.innerValue = new Date(this.selectedDate.year,
-                this.selectedDate.month - 1,
-                this.selectedDate.day, 23, 59, 59, 999);
-        } else {
-            this.innerValue = new Date(this.selectedDate.year,
-                this.selectedDate.month - 1,
-                this.selectedDate.day, 0, 0, 0, 0);
-        }
+            if (this.endDate) {
+                this.innerValue = new Date(this.selectedDate.year,
+                    this.selectedDate.month - 1,
+                    this.selectedDate.day, 23, 59, 59, 999);
+            } else {
+                this.innerValue = new Date(this.selectedDate.year,
+                    this.selectedDate.month - 1,
+                    this.selectedDate.day, 0, 0, 0, 0);
+            }
         this.onChangeCallback(this.innerValue);
     }
 
@@ -467,11 +466,12 @@ export class MyDatePicker implements OnInit, ControlValueAccessor, OnDestroy {
     //From ControlValueAccessor interface
     writeValue(value: number | string | Date) {
         let val: Date = new Date(+value);
+        console.log(val);
         if (value && value !== null && value !== undefined && val) {
             this.innerValue = val;
             this.selectDate({ year: val.getFullYear(), month: val.getMonth() + 1, day: val.getDay() });
-        } else   {
-           this.removeBtnClicked();
+        } else {
+            this.removeBtnClicked();
         }
     }
 
