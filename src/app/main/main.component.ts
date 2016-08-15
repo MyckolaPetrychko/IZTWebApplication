@@ -24,6 +24,7 @@ import {
 import {
     NavComponent
 } from '../shared/nav/nav.component';
+import {SelectRailcarService} from '../common/servises/select-railcar.service';
 
 @Component({
     moduleId: module.id,
@@ -45,7 +46,8 @@ import {
         LocalStorageService,
         NotifyService,
         RailcarProvide,
-        DataFilterService
+        DataFilterService,
+        SelectRailcarService
     ]
 })
 export class AppComponent implements OnInit {
