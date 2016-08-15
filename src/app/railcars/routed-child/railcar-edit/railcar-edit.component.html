@@ -5,7 +5,7 @@
     </div>
 </header>
 
-<form class="form-main form-cols" #railcarsForm="ngForm">
+<form class="form-main form-cols" #railcarsForm="ngForm" [class.disabled-form]="disableForm">
     <!-- TODO: Bookmark | RailcarsElement | manual add block | base-data numbers -->
     <div role="group" class="form-fieldset form-rows fixed-3x-subtitle ">
         <!-- TODO: Bookmark | RailcarsElement | manual add block | transportnumber -->
@@ -16,9 +16,9 @@
                         <wblg-alert  type="warn" small="true" [open]="transportnumber.errors?.required"></wblg-alert>
                     </label>
                 <div class="div-control form-cols">
-                    <input type="text" [(ngModel)]="railcar.transportnumber" id="transportnumber" name="transportnumber"
-                        #transportnumber="ngModel" required="true" minlength="8" />
-                    <wblg-alert [message]="'VALUE.ERROR'" type="error" small="true" [open]="!transportnumber.valid && !transportnumber.errors?.required">
+                    <input type="number" [(ngModel)]="railcar.transportnumber" id="transportnumber" name="transportnumber"
+                        #transportnumber="ngModel" required="true" railcarNumber />
+                    <wblg-alert [message]="'MESSAGE.VALUE_WITH_ERROR'" type="error" small="true" [open]="!transportnumber.valid && !transportnumber.errors?.required">
                     </wblg-alert>
                 </div>
             </div>
@@ -100,7 +100,7 @@
             <div class="form-field form-rows" [ngClass]="{ 'error-message':!ownername.valid}">
                 <label class="label-control" for="ownername"> 
                          <span class = "span-overflow">{{ 'TABLE.ownername' | translate}} </span>
-                         <wblg-alert [type]="'warn'" [small]="true" [modal]="false" [open]="ownername.errors?.required">
+                         <wblg-alert type="warn" small="true"  [open]="ownername.errors?.required">
                         </wblg-alert>
                      </label>
                 <div class="div-control form-cols">
@@ -114,7 +114,7 @@
             <div class="form-field form-rows" [ngClass]="{ 'error-message':!providername.valid}">
                 <label class="label-control" for="providername"> 
                          <span class = "span-overflow">{{ 'TABLE.providername' | translate}} </span>
-                         <wblg-alert [type]="'warn'" [small]="true" [modal]="false" [open]="providername.errors?.required">
+                         <wblg-alert type="warn" small="true"  [open]="providername.errors?.required">
                         </wblg-alert>
                      </label>
                 <div class="div-control form-cols">
@@ -142,7 +142,7 @@
             <div class="form-field form-rows" [ngClass]="{ 'error-message':!contractid.valid}">
                 <label class="label-control" for="contractid"> 
                         <span class = "span-overflow"> {{ 'TABLE.contractid' | translate}}</span> 
-                        <wblg-alert  [type]="'warn'" [small]="true" [modal]="false" [open]="contractid.errors?.required"></wblg-alert>
+                        <wblg-alert  type="warn" small="true"  [open]="contractid.errors?.required"></wblg-alert>
                      </label>
                 <div class="div-control form-cols">
                     <input [(ngModel)]="railcar.contractid" id="contractid" name="contractid" #contractid="ngModel">
@@ -180,7 +180,7 @@
             <div class="form-field form-rows" [ngClass]="{ 'error-message':!scaletypename.valid}">
                 <label for="scaletypename" class="label-control">
                         <span class = "span-overflow">{{ 'TABLE.scaletypename' | translate}} </span>
-                        <wblg-alert  [type]="'warn'" [small]="true" [modal]="false" [open]="scaletypename.errors?.required"></wblg-alert>
+                        <wblg-alert  type="warn" small="true"  [open]="scaletypename.errors?.required"></wblg-alert>
                     </label>
                 <div class="div-control form-cols">
                     <wblg-combobox-data [(ngModel)]="railcar.scaletypeid" name="scaletypename" #scaletypename="ngModel"
@@ -212,7 +212,7 @@
             <div class="form-field form-rows" [ngClass]="{ 'error-message':!classname.valid}">
                 <label for="classname" class="label-control"> 
                         <span class = "span-overflow"> {{ 'TABLE.classname' | translate}}</span>
-                         <wblg-alert  [type]="'warn'" [small]="true" [modal]="false" [open]="classname.errors?.required"></wblg-alert>
+                         <wblg-alert  type="warn" small="true" [open]="classname.errors?.required"></wblg-alert>
                     </label>
                 <div class="div-control form-cols">
                     <wblg-combobox-data [(ngModel)]="railcar.classid" name="classname" #classname="ngModel"
@@ -225,7 +225,7 @@
             <div class="form-field form-rows" [ngClass]="{ 'error-message':!sortname.valid}">
                 <label for="sortname" class="label-control"> 
                         <span class = "span-overflow"> {{ 'TABLE.sortname' | translate}}</span>
-                         <wblg-alert  [type]="'warn'" [small]="true" [modal]="false" [open]="sortname.errors?.required"></wblg-alert>
+                         <wblg-alert  type="warn" small="true" [open]="sortname.errors?.required"></wblg-alert>
                     </label>
                 <div class="div-control form-cols">
                     <wblg-combobox-data [(ngModel)]="railcar.sortid" name="sortname" #sortname="ngModel"
@@ -238,11 +238,13 @@
             <div class="form-field form-rows" [ngClass]="{ 'error-message':!cropyear.valid}">
                 <label class="label-control" for="cropyear">
                         <span class = "span-overflow"> {{ 'TABLE.cropyear' | translate}} </span>  
-                        <wblg-alert [type]="'warn'" [small]="true" [modal]="false" [open]="cropyear.errors?.required"> </wblg-alert>
+                        <wblg-alert type="warn" small="true"  [open]="cropyear.errors?.required"> </wblg-alert>
                     </label>
                 <div class="div-control form-cols">
-                    <input type="text" [(ngModel)]="railcar.cropyear" name="cropyear" #cropyear="ngModel"
-                        required id="cropyear">
+                    <input type="number" [(ngModel)]="railcar.cropyear" name="cropyear" #cropyear="ngModel"
+                        required id="cropyear" pattern="\d{4}">
+                    <wblg-alert [message]="'MESSAGE.YEAR_ERROR_WRITE'" type="error" small="true" [open]="!cropyear.valid && !cropyear.errors?.required">
+                    </wblg-alert>
                 </div>
             </div>
 
@@ -260,38 +262,37 @@
             <div class="form-field form-rows" [ngClass]="{ 'error-message':!invoicetare.valid}">
                 <label class="label-control" for="invoicetare"> 
                          <span class = "span-overflow">{{ 'TABLE.invoicetare' | translate}}</span>
-                          <wblg-alert [type]="'warn'" [small]="true" [modal]="false" [open]="invoicetare.errors?.required"> </wblg-alert>
+                          <wblg-alert type="warn" small="true" [open]="invoicetare.errors?.required"> </wblg-alert>
                     </label>
                 <div class="div-control form-cols">
-                    <input type="text" [(ngModel)]="railcar.invoicetare" name="invoicetare" #invoicetare="ngModel"
-                        required id="invoicetare">
+                    <input type="number" [(ngModel)]="railcar.invoicetare" name="invoicetare" #invoicetare="ngModel"
+                        required id="invoicetare" (change)="setGrossWeight()">
                 </div>
             </div>
 
             <!-- TODO: Bookmark | RailcarsElement | manual add block | cultures & weight/invoicenet -->
             <div class="form-field form-rows" [ngClass]="{ 'error-message':!invoicenet.valid}">
                 <label class="label-control" for="invoicenet"> 
-                         <span class = "span-overflow">{{ 'TABLE.invoicenet' | translate}}</span>
-                          <wblg-alert [type]="'warn'" [small]="true" [modal]="false" [open]="invoicenet.errors?.required"> </wblg-alert>
-                    </label>
+                     <span class = "span-overflow">{{ 'TABLE.invoicenet' | translate}}</span>
+                     <wblg-alert type="warn" small="true" [open]="invoicenet.errors?.required"> </wblg-alert>
+                 </label>
                 <div class="div-control form-cols">
-                    <input type="text" [(ngModel)]="railcar.invoicenet" name="invoicenet" #invoicenet="ngModel"
-                        required id="invoicenet">
+                    <input type="number" [(ngModel)]="railcar.invoicenet" name="invoicenet" #invoicenet="ngModel"
+                        required id="invoicenet" (change)="setGrossWeight()">
                 </div>
             </div>
 
             <!-- TODO: Bookmark | RailcarsElement | manual add block | cultures & weight/invoicegross -->
             <div class="form-field form-rows" [ngClass]="{ 'error-message':!invoicegross.valid}">
                 <label class="label-control" for="invoicegross"> 
-                         <span class = "span-overflow">
+                     <span class = "span-overflow">
                              {{ 'TABLE.invoicegross' | translate}}
-                          </span>
-                          <wblg-alert [type]="'warn'" [small]="true" [modal]="false" [open]="invoicegross.errors?.required"> </wblg-alert>
+                      </span>
+                       <wblg-alert type="warn" small="true" [open]="invoicegross.errors?.required"> </wblg-alert>
                     </label>
                 <div class="div-control form-cols">
-                    <input type="text" 
-                    [(ngModel)]="railcar.invoicegross" name="invoicegross" #invoicegross="ngModel"
-                        required id="invoicegross">
+                    <input type="number" [(ngModel)]="railcar.invoicegross" name="invoicegross" #invoicegross="ngModel"
+                         id="invoicegross" required="required">
                 </div>
             </div>
         </div>
@@ -304,4 +305,4 @@
 <wblg-alert [message]="message" [type]="type" modal="true" [(open)]="visibility"
     [time]="time" close="true"> </wblg-alert>
 
-<!--<wblg-alert [message]  = "message"  [type]="'info'"  [modal]="false" [open]="!isVisible" ></wblg-alert>-->
+<!--<wblg-alert [message]  = "message"  [type]="'info'"   [open]="!isVisible" ></wblg-alert>-->

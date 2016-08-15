@@ -469,7 +469,7 @@ export class MyDatePicker implements OnInit, ControlValueAccessor, OnDestroy {
         console.log(val);
         if (value && value !== null && value !== undefined && val) {
             this.innerValue = val;
-            this.selectDate({ year: val.getFullYear(), month: val.getMonth() + 1, day: val.getDay() });
+            this.selectDate({ year: val.getFullYear(), month: val.getMonth() + 1, day: val.getDate() });
         } else {
             this.removeBtnClicked();
         }
