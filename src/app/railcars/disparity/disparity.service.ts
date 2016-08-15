@@ -51,7 +51,7 @@ export class DisparityService {
     // getDisparityListCurrent(): Observable<IDisparityModel[]> {
     getDisparityListCurrent(): Observable<any> {
         if (!this._auth.isAuth('user')) {
-             return Observable.throw('CONNECTION.USERISNOTAUTH'); 
+             return Observable.throw('CONNECTION.USER_NOT_AUTH'); 
        }
         return this._http.get(DisparityListCurrentApi)
             .map(res => <IDisparityModel[]>res.json())
@@ -71,7 +71,7 @@ export class DisparityService {
     setDisparityRailcarAcceptApi(railcarID: string,
         disparityID: string): Observable<any> {
         if (!this._auth.isAuth('user')) {
-             return Observable.throw('CONNECTION.USERISNOTAUTH'); 
+             return Observable.throw('CONNECTION.USER_NOT_AUTH'); 
           }
 
         let urlDisparityRailcarAcceptApi = DisparityAcceptApi

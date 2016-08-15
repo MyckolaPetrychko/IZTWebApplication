@@ -27,9 +27,10 @@
         "VIEW": "Вид",
         "PRINT": "Удалить",
         "REFRESH": "Обновить",
+        "RESET": "Сбросить изменения",
 
         "ACCEPT": "Принять",
-        "OK": "OK",
+        "OK": "Подтвердить",
         "CANCEL": "Отменить",
         "LOADFILE": "Скачать файл",
         "DISABLED_TEXT_EDITOR": "Режим редактирования файла",
@@ -40,7 +41,8 @@
 
         "ADD_USER": "Добавить пользователя",
         "EDIT_USER": "Редактировать пользователя",
-        "DELETE_USER": "Удалить пользователя"
+        "DELETE_USER": "Удалить пользователя",
+        "USE_TEMPLATE": "Использовать шаблон"
     },
     "TABLE": {
         "ownername": "Владелец", 
@@ -76,16 +78,22 @@
         "overtime": "Время доп. маневровых работ",
         "certificatepresence": "Наличие сертификата качества",
         "snpresence": "Наличие протокола безопасности",
-        "grosstime": "Взвешивание по брутто"
-
+        "grosstime": "Взвешивание по брутто",
+        "regdate": "Дата регистрации",
+        "confirmation": "Разрешение на выгрузку",
+        "confirmationtime": "Дата, время",
+        "confirmationusername": "Ф.И.О.",
+        "LOADING": "Загрузка"
     },
     "LABEL": {
         "FROM": "с",
         "TO": " по ",
         "LIST_OF_RAILCARS": "Список железнодорожных вагонов",
         "PARAMS": "Params",
-        "CURRENT_USER": "Текущий пользователь",
-        "LANG": "Язык"
+        "CURRENT_USER": "Текущий пользователь: {{ username}} из {{ company }}",
+        "LANG": "Язык",
+        "REFRESH_DATA": "Дата последнего обновления: {{ time }}",
+        "CURRENT_DISPARITY": "Текущие несоответствия"
     },
 
     "VALUE" : {
@@ -95,5 +103,47 @@
     "RAILCAR" : {
         "FILE_UPLOAD": "Отправить на сервер", 
         "LIST_OF_RAILCARS": "Список железнодорожных вагонов"
+    },
+
+    "ALERT" : {
+        "INFO": "Инфо",
+        "WARNING": "Предупреждение",
+        "ERROR": "Ошибка",
+        "BUG": "Баг"
+    },
+
+    "CONNECTION" : {
+        "NOT_FOUND": "Ошибка соединения",
+        "SERVER_CONNECTION_ERROR": "Ошибка соединения с сервером",
+        "BAD_REQUEST": "Некорректный запрос",
+        "USER_NOT_AUTH": "Пользователь не авторизован",
+        "USER_AUTH_TIMEOUT": "Превышено время ожидания запроса",
+        "CONFLICT_ERROR": "Одновременное редактирование"
+    },
+
+    "ERROR" : {
+        "MUSS_BE_TRAIDER_ACCEPTED": "Нужно подтверждение трейдера",
+        "MUSS_BE_EMPLOYEER_ACCEPTED": "Нужно подтверждение работодателя",
+        "NOT_SELECTED": "Не выбрано вагон"
+    },
+
+    "MESSAGE" : {
+        "LOADING": "Загрузка",
+        "RAILCAR" : {
+            "SUCCES_ADDET": "Успешно дабавлено",
+            "SUCCES_EDIT": "Успешно отредактировано",
+            "TEMPLATE_NOT_SET": "Шаблон не установлен"
+        }
+    },
+    
+    "TITLE" : {
+        "RAILCAR": {
+            "FILE_UPLOAD": "Отправить на сервер"
+        },
+        "DISPARITY_ACCEPT_MODAL": "Подтверждение несоответствий"
+    },
+
+    "PLACEHOLDER" : {
+        "FILE_SELECT": "Выберите файл"
     }
  }

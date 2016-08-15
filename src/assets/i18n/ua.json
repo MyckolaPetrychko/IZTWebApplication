@@ -24,20 +24,22 @@
         "VIEW": "Вигляд",
         "PRINT": "Друкувати",
         "REFRESH": "Оновити",
+        "RESET": "Скинути зміни",
 
         "ACCEPT": "Прийняти",
-        "OK": "OK",
+        "OK": "Підтвердити",
         "CANCEL": "Скасувати",
         "LOADFILE": "Завантажити файл",
         "DISABLED_TEXT_EDITOR": "Режим редагування файлу",
         "FILE_UPLOAD": "Відправити на сервер",
         "SAVE": "Зберегти",
-        "FILTER": "Фільтр",
+        "FILTER": "Фільтрувати",
         "SELECTALL": "Вибрати всі",
 
         "ADD_USER": "Додати користувача",
         "EDIT_USER": "Редагувати користувача",
-        "DELETE_USER": "Видалити користувача"
+        "DELETE_USER": "Видалити користувача",
+        "USE_TEMPLATE": "Використовувати шаблон"
     },
 
     "TABLE": {
@@ -74,16 +76,22 @@
         "overtime": "Час дод. маневрових робіт",
         "certificatepresence": "Наявність сертифікату якості",
         "snpresence": "Наявність протоколу безпеки",
-        "grosstime": "Зважування по брутто"
-
+        "grosstime": "Зважування по брутто",
+        "regdate": "Дата реєстрації",
+        "confirmation": "Дозвіл на вивантаження",
+        "confirmationtime": "Дата, час",
+        "confirmationusername": "П.І.Б.",
+        "LOADING": "Завантаження"
     },
     "LABEL": {
         "FROM": "з",
         "TO": " до ",
         "LIST_OF_RAILCARS": "Список залізничних вагонів",
         "PARAMS": "Params",
-        "CURRENT_USER": "Поточний користувач",
-        "LANG": "Мова"
+        "CURRENT_USER": "Поточний користувач: {{ username}} з {{ company }}",
+        "LANG": "Мова",
+        "REFRESH_DATA": "Дата останнього оновлення: {{ time }}",
+        "CURRENT_DISPARITY": "Поточні невідповідності"
     },
 
     "VALUE" : {
@@ -93,5 +101,47 @@
     "RAILCAR" : {
         "FILE_UPLOAD": "Відправити на сервер", 
         "LIST_OF_RAILCARS": "Список залізничних вагонів"
+    },
+
+    "ALERT" : {
+        "INFO": "Інфо",
+        "WARNING": "Попередження",
+        "ERROR": "Помилка",
+        "BUG": "Баг"
+    },
+
+    "CONNECTION" : {
+        "NOT_FOUND": "Помилка з'єднання",
+        "SERVER_CONNECTION_ERROR": "Помилка з'єднання з сервером",
+        "BAD_REQUEST": "Некоректний запит",
+        "USER_NOT_AUTH": "Користувач не авторизований",
+        "USER_AUTH_TIMEOUT": "Перевищено час очікування запиту",
+        "CONFLICT_ERROR": "Одночасне редагування"
+    },
+
+    "ERROR" : {
+        "MUSS_BE_TRAIDER_ACCEPTED": "Потрібно підтвердження трейдера",
+        "MUSS_BE_EMPLOYEER_ACCEPTED": "Потрібно підтвердження роботодавця",
+        "NOT_SELECTED": "Не вибрано вагон"
+    },
+
+    "MESSAGE" : {
+        "LOADING": "Завантаження",
+        "RAILCAR" : {
+            "SUCCES_ADDET": "Успішно додано",
+            "SUCCES_EDIT": "Успішно відредаговано",
+            "TEMPLATE_NOT_SET": "Шаблон не встановлено"
+        }
+    },
+
+    "TITLE" : {
+        "RAILCAR": {
+            "FILE_UPLOAD": "Завантажити на сервер"
+        },
+        "DISPARITY_ACCEPT_MODAL": "Підтвердження невідповідностей"
+    },
+
+    "PLACEHOLDER" : {
+        "FILE_SELECT": "Виберіть файл"
     }
 }

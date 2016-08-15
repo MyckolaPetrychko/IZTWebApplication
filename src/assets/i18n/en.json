@@ -26,9 +26,10 @@
         "VIEW": "View",
         "PRINT": "Print",
         "REFRESH": "Refresh",
+        "RESET": "Reset",
 
         "ACCEPT": "Accept",
-        "OK": "OK",
+        "OK": "Submit",
         "CANCEL": "Cancel",
         "LOADFILE": "Download",
         "DISABLED_TEXT_EDITOR": "File edit mode",
@@ -39,7 +40,8 @@
 
         "ADD_USER": "Add user",
         "EDIT_USER": "Edit user",
-        "DELETE_USER": "Delete user"
+        "DELETE_USER": "Delete user",
+        "USE_TEMPLATE": "Use template"
     },
     "TABLE": {
         "ownername": "Owner", 
@@ -75,16 +77,22 @@
         "overtime": "Additional shunting time",
         "certificatepresence": "Presence qualities certificate",
         "snpresence": "Presence security protocol",
-        "grosstime": "Weighing on gross"
-
+        "grosstime": "Weighing on gross",
+        "regdate": "Registration date",
+        "confirmation": "Permission to unload",
+        "confirmationtime": "Date, time",
+        "confirmationusername": "Full name",
+        "LOADING": "Loading"
     },
     "LABEL": {
         "FROM": "from",
         "TO": " to ",
         "LIST_OF_RAILCARS": "List of railcars",
         "PARAMS": "Params",
-        "CURRENT_USER": "Current user",
-        "LANG": "Language"
+        "CURRENT_USER": "Current user {{ username}} from {{ company }}",
+        "LANG": "Language",
+        "REFRESH_DATA": "Latest updates: {{ time }}",
+        "CURRENT_DISPARITY": "Current disparity"
     },
 
     "VALUE" : {
@@ -94,7 +102,47 @@
     "RAILCAR" : {
         "FILE_UPLOAD": "Upload file", 
         "LIST_OF_RAILCARS": "List of railcars"
+    },
+
+    "ALERT" : {
+        "INFO": "Info",
+        "WARNING": "Warning",
+        "ERROR": "Error",
+        "BUG": "Bug"
+    },
+
+    "CONNECTION" : {
+        "NOT_FOUND": "Not found error",
+        "SERVER_CONNECTION_ERROR": "Error connecting to server",
+        "BAD_REQUEST": "Invalid request",
+        "USER_NOT_AUTH": "The user is not authorized",
+        "USER_AUTH_TIMEOUT": "Request timed out",
+        "CONFLICT_ERROR": "Conflict error"
+    },
+
+    "ERROR" : {
+        "MUSS_BE_TRAIDER_ACCEPTED": "Must be traider accepted",
+        "MUSS_BE_EMPLOYEER_ACCEPTED": "Must be employeer accepted",
+        "NOT_SELECTED": "Railcar not selected"
+    },
+
+    "MESSAGE" : {
+        "LOADING": "Loading",
+        "RAILCAR" : {
+            "SUCCES_ADDET": "Successfully added",
+            "SUCCES_EDIT": "Successfully edited",
+            "TEMPLATE_NOT_SET": "Template not found"
+        }
+    },
+
+    "TITLE" : {
+        "RAILCAR": {
+            "FILE_UPLOAD": "Send to server"
+        },
+        "DISPARITY_ACCEPT_MODAL": "Verification of compliance"
+    },
+
+    "PLACEHOLDER" : {
+        "FILE_SELECT": "Select file"
     }
-
-
 }
