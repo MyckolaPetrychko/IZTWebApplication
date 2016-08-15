@@ -24,6 +24,7 @@ import 'rxjs/add/operator/do';
 
 
 import { IRailcarModel } from './railcars.model';
+import { IRailcarEditModel } from './routed-child/railcar-edit/railcar-edit.model';
 import { IRailcarDisparityModel } from './routed-child/railcar-disparity/railcar-disparity.model';
 import {
     RailcarListApi,
@@ -167,7 +168,7 @@ export class RailcarService {
      * @param {IRailcarModel} _railcar - model of railcar where add
      * @returns {Observable<any>} - result of adding: _railcar with id || only id
      */
-    public addRailcar(_railcar: IRailcarModel): Observable<any> {
+    public addRailcar(_railcar: IRailcarEditModel): Observable<any> {
         // TODO: RailcarService | change to only traider muss add new railcar
         if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService
@@ -202,7 +203,7 @@ export class RailcarService {
      * @param {IRailcarModel} _railcar  - updated model of railcar
      * @returns {Observable<any>}       - result of update _railcar 
      */
-    public updateRailcar(_railcar: IRailcarModel): Observable<any> {
+    public updateRailcar(_railcar: IRailcarEditModel): Observable<any> {
         // TODO: RailcarService | change to only traider muss add new railcar
         if (!this._auth.isAuth('user')) {
             // TODO: #translate | RailcarService

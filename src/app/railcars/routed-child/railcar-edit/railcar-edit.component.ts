@@ -9,9 +9,6 @@ import { Subscription }                   from 'rxjs/Subscription';
 // import 'rxjs/add/observable/fromPromise';
 
 import { TranslatePipe }  from 'ng2-translate';
-
-
-
 import { RailcarService } from '../../railcars.service';
 import { IRailcarEditModel } from './railcar-edit.model';
 
@@ -35,7 +32,8 @@ export class RailcarEditComponent implements OnInit, OnDestroy {
     public id: string;
 
 
-    private typeMode : string;
+    private typeMode: string;
+    private cancelName: string;
 
     private template: IRailcarEditModel;
     private useTemplate: boolean;
@@ -65,7 +63,7 @@ export class RailcarEditComponent implements OnInit, OnDestroy {
         private _railcars: RailcarService,
         private _filters: DataFilterService) {
         this.railcar = <IRailcarEditModel>{};
-        this.template  = <IRailcarEditModel>{};
+        this.template = <IRailcarEditModel>{};
 
         this.visibility = false;
         this.useTemplate = false;
@@ -75,17 +73,26 @@ export class RailcarEditComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this._subscribeRouter = this._router.params.subscribe(params => {
             this.id = params['id'];
-            if (this.id !== 'add') {
-                 this.typeMode = 'EDIT';
-                 this.useTemplate = false;
+            let template = params['template'];
 
-                    this.getRailcar(this.id);
+            if (this.id !== 'add') {
+                this.typeMode = 'EDIT';
+                this.cancelName = 'CANCEL';
+                this.useTemplate = false;
+                this.getRailcar(this.id);
 
             } else {
-                 this.typeMode = 'ADD';
-                 this.railcar = <IRailcarEditModel>{};
+                this.typeMode = 'ADD';
+                                this.cancelName = 'RESET';
+
+                this.railcar = <IRailcarEditModel>{};
                 this.useTemplate = true;
-                  this.getRailcar('550205');
+                if (template) {
+                    this.getRailcar(template);
+                } else {
+                    this.useTemplate = false;
+                }
+
 
             }
         });
@@ -97,52 +104,72 @@ export class RailcarEditComponent implements OnInit, OnDestroy {
         this._subscribeRouter.unsubscribe();
     }
 
+    public save() : void {
+        if (this.typeMode === 'ADD') {
+            this._railcars.addRailcar(this.railcar).subscribe((val : IRailcarEditModel): void => {
+                this.setMessage('MESSAGE.RAILCAR.SUCCESS_ADDET', 5, 'info');
+            }, (err: string):void => {
+                                this.setMessage(err, 0, 'error');
 
-    private getRailcar(id:string) {
-         this.setMessage('MESSAGE.LOADING', 5);
+            });
+        } else {
+            this._railcars.updateRailcar(this.railcar).subscribe((val : IRailcarEditModel): void => {
+                this.setMessage('MESSAGE.RAILCAR.SUCCESS_EDIT', 5, 'info');
+            }, (err: string):void => {
+                                this.setMessage(err, 0, 'error');
+
+            });
+        }
+    }
+
+    private getRailcar(id: string) {
+        this.setMessage('MESSAGE.LOADING', 2);
         this._railcars.getRailcarId(id).subscribe(
-            (val: IRailcarEditModel) : void => {
-                     if (!this.useTemplate) {
-                         this.railcar = val;
-                     } else {
-                        this.template = val;
-                     }
-                }, (err: string) => {
-                    this.setMessage(err, 0, 'error');
-                });
-            }
-
-            private setTemplate(): void {
-                this.railcar = this.template;
-                console.log(this.template);
-                let unprop : Array<string>;
-                unprop = [ 'inventoryid', 
-                'transportnumber',
-                'sampleroutdate',
-                'invoicenumber',
-                'invoicedate',
-                'invoicenet',
-                'invoicegross',
-                'invoicetare'];
-
-                unprop.forEach((prop: string) : void => {
-                    this.railcar[prop] = null;
-                });
-                                console.log(this.railcar);
-
-            }
-
-            private cancel() {
-                if (this.typeMode === 'ADD') {
-                    // TODO: 
-                     this.railcar = <IRailcarEditModel> {};
+            (val: IRailcarEditModel): void => {
+                if (!this.useTemplate) {
+                    this.railcar = val;
                 } else {
-                    // TODO:
-                    
+                    this.template = val;
                 }
-            }
+            }, (err: string) => {
+                this.setMessage(err, 0, 'error');
+            });
+    }
 
-    private  loadDataForFilters(): void {
+    private setTemplate(): void {
+        if (this.template) {
+        this.railcar = this.template;
+        console.log(this.template);
+        let unprop: Array<string>;
+        unprop = ['inventoryid',
+            'transportnumber',
+            'sampleroutdate',
+            'invoicenumber',
+            'invoicedate',
+            'invoicenet',
+            'invoicegross',
+            'invoicetare'];
+
+        unprop.forEach((prop: string): void => {
+            this.railcar[prop] = null;
+        });
+        console.log(this.railcar);
+        } else {
+        this.setMessage('MESSAGE.TEMPLATE_NOT_SET', 5, 'warn');
+        }
+    }
+
+    private cancel() {
+        if (this.typeMode === 'ADD') {
+            this.railcar = <IRailcarEditModel>{};
+        } else {
+            // TODO: back or list
+              window.history.back();
+              this._route.navigate(['/railcars', {id: this.id}]);
+        }
+    }
+
+    private loadDataForFilters(): void {
         this._filters.getCulturesList().subscribe((val: IDataModel[]): void => {
             this._cultures = <IDataModel[]>val;
         });

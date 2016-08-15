@@ -2,15 +2,12 @@
     {{ 'TITLE.RAILCAR.'+ typeMode | translate }}
     <div class="btns">
         <button class="btn btn-light" (click)="setTemplate()" *ngIf="useTemplate"> {{ 'BUTTON.USE_TEMPLATE'| translate}} </button>
-        <!--<button class="btn btn-light" [class.btn-active]="isVisibleAddAsFile" (click)="setVisibleAddAsFile()"> {{'BUTTON.LOADFILE' | translate}}</button>-->
     </div>
 </header>
-
 
 <form class="form-main form-cols" #railcarsForm="ngForm">
     <!-- TODO: Bookmark | RailcarsElement | manual add block | base-data numbers -->
     <div role="group" class="form-fieldset form-rows fixed-3x-subtitle ">
-
         <!-- TODO: Bookmark | RailcarsElement | manual add block | transportnumber -->
         <div role="group" class="form-fieldset form-cols ">
             <div class="form-field form-rows" [ngClass]="{'error-message':!transportnumber.valid}">
@@ -19,8 +16,8 @@
                         <wblg-alert  type="warn" small="true" [open]="transportnumber.errors?.required"></wblg-alert>
                     </label>
                 <div class="div-control form-cols">
-                    <input type="text" [(ngModel)]="railcar.transportnumber" id="transportnumber" name="transportnumber" #transportnumber="ngModel"
-                        required="true" minlength="8" />
+                    <input type="text" [(ngModel)]="railcar.transportnumber" id="transportnumber" name="transportnumber"
+                        #transportnumber="ngModel" required="true" minlength="8" />
                     <wblg-alert [message]="'VALUE.ERROR'" type="error" small="true" [open]="!transportnumber.valid && !transportnumber.errors?.required">
                     </wblg-alert>
                 </div>
@@ -32,8 +29,8 @@
                     </wblg-alert>
                  </label>
                 <div class="div-control form-cols">
-                    <my-date-picker [(ngModel)]="railcar.sampleroutdate" [id]="sampleroutdate" name="sampleroutdate" #sampleroutdate="ngModel"
-                        required="true">
+                    <my-date-picker [(ngModel)]="railcar.sampleroutdate" [id]="sampleroutdate" name="sampleroutdate"
+                        #sampleroutdate="ngModel" required="true">
                     </my-date-picker>
                 </div>
             </div>
@@ -48,7 +45,8 @@
                       <wblg-alert type="warn" small="true" [open]="invoicenumber.errors?.required"> </wblg-alert>
                  </label>
                 <div class="div-control form-cols">
-                    <input type="text" id="invoicenumber" [(ngModel)]="railcar.invoicenumber" name="invoicenumber" #invoicenumber="ngModel" required/>
+                    <input type="text" id="invoicenumber" [(ngModel)]="railcar.invoicenumber" name="invoicenumber"
+                        #invoicenumber="ngModel" required/>
                 </div>
             </div>
             <div class="form-field form-rows" [ngClass]="{ 'error-message':!invoicedate.valid}">
@@ -58,7 +56,8 @@
                 </label>
 
                 <div class="div-control form-cols">
-                    <my-date-picker [(ngModel)]="railcar.invoicedate" [id]="invoicedate" name="invoicedate" #invoicedate="ngModel" required="true">
+                    <my-date-picker [(ngModel)]="railcar.invoicedate" [id]="invoicedate" name="invoicedate"
+                        #invoicedate="ngModel" required="true">
                     </my-date-picker>
                 </div>
             </div>
@@ -68,11 +67,12 @@
         <!-- TODO: Bookmark | RailcarsElement | manual add block | footer-->
         <div class=" form-footer form-cols ">
             <div class="btns">
-                <button type="submit"  class="btn btn-light">
+                <button type="submit" class="btn btn-light" (click)="save()" [disabled]="railcarsForm.invalid">
+
                     <i class="fa fa-save" aria-hidden="true"></i> {{'BUTTON.SAVE' | translate }}
                     </button>
-                <button type="button" class="btn btn-light" (click)="cancel()" > 
-            <i class="fa fa-undo" aria-hidden="true"></i> {{ 'BUTTON.RESET' | translate}}
+                <button type="button" class="btn btn-light" (click)="cancel()"> 
+            <i class="fa fa-undo" aria-hidden="true"></i> {{ 'BUTTON.' + cancelName | translate}}
             </button>
             </div>
             <div class="div-control form-cols">
@@ -104,7 +104,8 @@
                         </wblg-alert>
                      </label>
                 <div class="div-control form-cols">
-                    <wblg-combobox-data [(ngModel)]="railcar.ownerid" dropdown="true" prop="id" [data]="_owners" id="ownername" name="ownername" required="true"            #ownername="ngModel">
+                    <wblg-combobox-data [(ngModel)]="railcar.ownerid" dropdown="true" prop="id" [data]="_owners"
+                        id="ownername" name="ownername" required="true" #ownername="ngModel">
                     </wblg-combobox-data>
                 </div>
             </div>
@@ -117,8 +118,8 @@
                         </wblg-alert>
                      </label>
                 <div class="div-control form-cols">
-                    <wblg-combobox-data [(ngModel)]="railcar.providerid" [dropdown]="true" [data]="_providers" id="providername" name="providername"
-                        required="true" #providername="ngModel">
+                    <wblg-combobox-data [(ngModel)]="railcar.providerid" [dropdown]="true" [data]="_providers"
+                        id="providername" name="providername" required="true" #providername="ngModel">
                     </wblg-combobox-data>
                 </div>
             </div>
@@ -131,7 +132,8 @@
                         </wblg-alert>
                      </label>
                 <div class="div-control form-cols">
-                    <wblg-combobox-data [(ngModel)]="railcar.senderid" dropdown="true" [data]="_senders" id="sendername" name="sendername" required="true" #sendername="ngModel">
+                    <wblg-combobox-data [(ngModel)]="railcar.senderid" dropdown="true" [data]="_senders"
+                        id="sendername" name="sendername" required="true" #sendername="ngModel">
                     </wblg-combobox-data>
                 </div>
             </div>
@@ -156,7 +158,8 @@
                          <wblg-alert type="warn" small="true"  [open]="stationname.errors?.required">  </wblg-alert>
                     </label>
                 <div class="div-control form-cols">
-                    <wblg-combobox-data [(ngModel)]="railcar.stationid" name="stationname" #stationname="ngModel" required dropdown="true" [data]="_stations" id="stationname">
+                    <wblg-combobox-data [(ngModel)]="railcar.stationid" name="stationname" #stationname="ngModel"
+                        required dropdown="true" [data]="_stations" id="stationname">
                     </wblg-combobox-data>
                 </div>
             </div>
@@ -168,7 +171,8 @@
                          <wblg-alert type="warn" small="true" [open]="storagename.errors?.required"></wblg-alert>
                     </label>
                 <div class="div-control form-cols">
-                    <wblg-combobox-data [(ngModel)]="railcar.storageid" name="storagename" #storagename="ngModel" required dropdown="true" id="storagename" [data]="_srorages"></wblg-combobox-data>
+                    <wblg-combobox-data [(ngModel)]="railcar.storageid" name="storagename" #storagename="ngModel"
+                        required dropdown="true" id="storagename" [data]="_srorages"></wblg-combobox-data>
                 </div>
             </div>
 
@@ -179,8 +183,8 @@
                         <wblg-alert  [type]="'warn'" [small]="true" [modal]="false" [open]="scaletypename.errors?.required"></wblg-alert>
                     </label>
                 <div class="div-control form-cols">
-                    <wblg-combobox-data [(ngModel)]="railcar.scaletypeid" name="scaletypename" #scaletypename="ngModel" dropdown="true" id="scaletypename"
-                        [data]="_scales"></wblg-combobox-data>
+                    <wblg-combobox-data [(ngModel)]="railcar.scaletypeid" name="scaletypename" #scaletypename="ngModel"
+                        dropdown="true" id="scaletypename" [data]="_scales"></wblg-combobox-data>
                 </div>
             </div>
 
@@ -198,7 +202,9 @@
                          <wblg-alert  type="warn" small="true"  [open]="cropname.errors?.required"></wblg-alert>
                     </label>
                 <div class="div-control form-cols">
-                    <wblg-combobox-data [(ngModel)]="railcar.cropid" name="cropname" #cropname="ngModel" required="true" dropdown="true" [data]="_cultures" id="cropname"> </wblg-combobox-data>
+                    <wblg-combobox-data [(ngModel)]="railcar.cropid" name="cropname" #cropname="ngModel"
+                        required="true" dropdown="true" [data]="_cultures" id="cropname">
+                    </wblg-combobox-data>
                 </div>
             </div>
 
@@ -209,8 +215,9 @@
                          <wblg-alert  [type]="'warn'" [small]="true" [modal]="false" [open]="classname.errors?.required"></wblg-alert>
                     </label>
                 <div class="div-control form-cols">
-                    <wblg-combobox-data [(ngModel)]="railcar.classid" name="classname" #classname="ngModel" required="true" [dropdown]="true"
-                        [data]="_classes" id="classname"> </wblg-combobox-data>
+                    <wblg-combobox-data [(ngModel)]="railcar.classid" name="classname" #classname="ngModel"
+                        required="true" [dropdown]="true" [data]="_classes" id="classname">
+                    </wblg-combobox-data>
                 </div>
             </div>
 
@@ -221,8 +228,9 @@
                          <wblg-alert  [type]="'warn'" [small]="true" [modal]="false" [open]="sortname.errors?.required"></wblg-alert>
                     </label>
                 <div class="div-control form-cols">
-                    <wblg-combobox-data [(ngModel)]="railcar.sortid" name="sortname" #sortname="ngModel" required="true" [dropdown]="true"
-                        [data]="_sorts" id="sortname"> </wblg-combobox-data>
+                    <wblg-combobox-data [(ngModel)]="railcar.sortid" name="sortname" #sortname="ngModel"
+                        required="true" [dropdown]="true" [data]="_sorts" id="sortname">
+                    </wblg-combobox-data>
                 </div>
             </div>
 
@@ -233,7 +241,8 @@
                         <wblg-alert [type]="'warn'" [small]="true" [modal]="false" [open]="cropyear.errors?.required"> </wblg-alert>
                     </label>
                 <div class="div-control form-cols">
-                    <input type="text" [(ngModel)]="railcar.cropyear" name="cropyear" #cropyear="ngModel" required id="cropyear">
+                    <input type="text" [(ngModel)]="railcar.cropyear" name="cropyear" #cropyear="ngModel"
+                        required id="cropyear">
                 </div>
             </div>
 
@@ -254,7 +263,8 @@
                           <wblg-alert [type]="'warn'" [small]="true" [modal]="false" [open]="invoicetare.errors?.required"> </wblg-alert>
                     </label>
                 <div class="div-control form-cols">
-                    <input type="text" [(ngModel)]="railcar.invoicetare" name="invoicetare" #invoicetare="ngModel" required id="invoicetare">
+                    <input type="text" [(ngModel)]="railcar.invoicetare" name="invoicetare" #invoicetare="ngModel"
+                        required id="invoicetare">
                 </div>
             </div>
 
@@ -265,18 +275,23 @@
                           <wblg-alert [type]="'warn'" [small]="true" [modal]="false" [open]="invoicenet.errors?.required"> </wblg-alert>
                     </label>
                 <div class="div-control form-cols">
-                    <input type="text" [(ngModel)]="railcar.invoicenet" name="invoicenet" #invoicenet="ngModel" required id="invoicenet">
+                    <input type="text" [(ngModel)]="railcar.invoicenet" name="invoicenet" #invoicenet="ngModel"
+                        required id="invoicenet">
                 </div>
             </div>
 
             <!-- TODO: Bookmark | RailcarsElement | manual add block | cultures & weight/invoicegross -->
             <div class="form-field form-rows" [ngClass]="{ 'error-message':!invoicegross.valid}">
                 <label class="label-control" for="invoicegross"> 
-                         <span class = "span-overflow">{{ 'TABLE.invoicegross' | translate}}</span>
+                         <span class = "span-overflow">
+                             {{ 'TABLE.invoicegross' | translate}}
+                          </span>
                           <wblg-alert [type]="'warn'" [small]="true" [modal]="false" [open]="invoicegross.errors?.required"> </wblg-alert>
                     </label>
                 <div class="div-control form-cols">
-                    <input type="text" [(ngModel)]="railcar.invoicegross" name="invoicegross" #invoicegross="ngModel" required id="invoicegross">
+                    <input type="text" 
+                    [(ngModel)]="railcar.invoicegross" name="invoicegross" #invoicegross="ngModel"
+                        required id="invoicegross">
                 </div>
             </div>
         </div>
@@ -286,6 +301,7 @@
 </form>
 
 
-<wblg-alert [message]="message" [type]="type" modal="true" [(open)]="visibility"  [time]="time" close="true"> </wblg-alert>
+<wblg-alert [message]="message" [type]="type" modal="true" [(open)]="visibility"
+    [time]="time" close="true"> </wblg-alert>
 
 <!--<wblg-alert [message]  = "message"  [type]="'info'"  [modal]="false" [open]="!isVisible" ></wblg-alert>-->
