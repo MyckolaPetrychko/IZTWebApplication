@@ -81,21 +81,32 @@
         "confirmation": "Дозвіл на вивантаження",
         "confirmationtime": "Дата, час",
         "confirmationusername": "П.І.Б.",
-        "LOADING": "Завантаження"
+        "LOADING": "Завантаження",
+        "cropname": "Назва культури",
+        "classname": "Клас культури",
+        "sortname": "Сорт культури",
+        "cropyear": "Рік культури",
+        "contractid": "Номер контракту",
+        "invoicedate": "Дата накладної",
+        "storagename": "Склад призначення"
     },
     "LABEL": {
         "FROM": "з",
         "TO": " до ",
         "LIST_OF_RAILCARS": "Список залізничних вагонів",
-        "PARAMS": "Params",
         "CURRENT_USER": "Поточний користувач: {{ username}} з {{ company }}",
         "LANG": "Мова",
         "REFRESH_DATA": "Дата останнього оновлення: {{ time }}",
-        "CURRENT_DISPARITY": "Поточні невідповідності"
+        "CURRENT_DISPARITY": "Поточні невідповідності",
+        "LOGIN": "Логін",
+        "USERNAME": "Ім'я користувача",
+        "COMPANY": "Компанія",
+        "ROLE": "Роль"
     },
 
     "VALUE" : {
-        "REQUIRED": "Поле обов'язкове для заповнення"
+        "REQUIRED": "Поле обов'язкове для заповнення",
+        "ERROR": "Поле заповнене неправильно"
     },
 
     "RAILCAR" : {
@@ -136,8 +147,13 @@
 
     "TITLE" : {
         "RAILCAR": {
-            "FILE_UPLOAD": "Завантажити на сервер"
+            "FILE_UPLOAD": "Завантаження неа сервер",
+            "ADD": "Додавання вагону",
+            "EDIT": "Редагування вагону",
+            "PARAMS": "Налаштування вигляду"
         },
+        "ADD_USER": "Додавання користувача",
+        "EDIT_USER": "Редагування користувача",
         "DISPARITY_ACCEPT_MODAL": "Підтвердження невідповідностей"
     },
 

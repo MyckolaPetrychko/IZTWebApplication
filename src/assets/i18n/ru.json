@@ -83,21 +83,31 @@
         "confirmation": "Разрешение на выгрузку",
         "confirmationtime": "Дата, время",
         "confirmationusername": "Ф.И.О.",
-        "LOADING": "Загрузка"
+        "LOADING": "Загрузка",
+        "cropname": "Название культуры",
+        "sortname": "Класс культуры",
+        "cropyear": "Год культуры",
+        "contractid": "Номер контракта",
+        "invoicedate": "Дата накладной",
+        "storagename": "Склад назначения"
     },
     "LABEL": {
         "FROM": "с",
         "TO": " по ",
         "LIST_OF_RAILCARS": "Список железнодорожных вагонов",
-        "PARAMS": "Params",
         "CURRENT_USER": "Текущий пользователь: {{ username}} из {{ company }}",
         "LANG": "Язык",
         "REFRESH_DATA": "Дата последнего обновления: {{ time }}",
-        "CURRENT_DISPARITY": "Текущие несоответствия"
+        "CURRENT_DISPARITY": "Текущие несоответствия",
+        "LOGIN": "Логин",
+        "USERNAME": "Имя пользователя",
+        "COMPANY": "Компания",
+        "ROLE": "Роль"
     },
 
     "VALUE" : {
-        "REQUIRED": "Поле обязательное для заполнения"
+        "REQUIRED": "Поле обязательное для заполнения",
+        "ERROR": "Поле заполнено неправильно"
     },
 
     "RAILCAR" : {
@@ -138,8 +148,13 @@
     
     "TITLE" : {
         "RAILCAR": {
-            "FILE_UPLOAD": "Отправить на сервер"
+            "FILE_UPLOAD": "Отправить на сервер",
+            "ADD": "Добавление вагона",
+            "EDIT": "Редактирование вагона",
+            "PARAMS": "Настройка вида"
         },
+        "ADD_USER": "Добавление пользователя",
+        "EDIT_USER": "Редактирование позьзователя",
         "DISPARITY_ACCEPT_MODAL": "Подтверждение несоответствий"
     },
 

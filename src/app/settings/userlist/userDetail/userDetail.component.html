@@ -1,6 +1,6 @@
 <div>
     <div class="flex-container">
-        <h2 style="margin: 0 auto;">{{ title_form }}</h2>
+        <h2 style="margin: 0 auto;">{{ title_form | translate }}</h2>
 
         <div>
             <button (click)="cancel()">
@@ -11,37 +11,37 @@
 
     <form>
         <div class="rows">
-            <label class="label">Login: </label>
-            <input type="text" placeholder="Login" [(ngModel)]="currentData.login" name="login" />
+            <label class="label">{{ 'LABEL.LOGIN' |  translate }}:</label>
+            <input type="text" [(ngModel)]="currentData.login" name="login" />
         </div>
 
         <div class="rows">
-            <label class="label">Username: </label>
-            <input type="text" placeholder="Username" [(ngModel)]="currentData.username" name="username" />
+            <label class="label">{{ 'LABEL.USERNAME' |  translate }}:</label>
+            <input type="text" [(ngModel)]="currentData.username" name="username" />
         </div>
 
         <div class="rows">
-            <label class="label">E-mail: </label>
-            <input type="text" placeholder="E-mail" [(ngModel)]="currentData.email" name="email" />
+            <label class="label">E-mail:</label>
+            <input type="text" [(ngModel)]="currentData.email" name="email" />
         </div>
 
         <div class="rows">
-            <label class="label">Company: </label>
+            <label class="label">{{ 'LABEL.COMPANY' |  translate }}:</label>
             <select class="label" [(ngModel)]="currentData.company" name="company">
                     <option *ngFor="let list of UsersList">{{ list.company }}</option>
             </select>
         </div>
 
         <div class="rows">
-            <label class="label">Role: </label>
+            <label class="label">{{ 'LABEL.ROLE' |  translate }}:</label>
             <select class="label" [(ngModel)]="currentData.role" name="role">
                     <option *ngFor="let role of UserRoleList">{{ role }}</option>
             </select>
         </div>
 
         <div class="rows">
-                <input type="button" style="flex-grow: 1" class="btn btn-light" (click)="checkCondition('add') ? addUser() : updateUser()" value="{{ btnSubmitValue() }}" />
-                <input type="button" class="btn btn-light ctrl" *ngIf="checkCondition('edit')" (click)="deleteUser()" value="Delete" />
+                <input type="button" style="flex-grow: 1" class="btn btn-light" (click)="checkCondition('add') ? addUser() : updateUser()" value="{{ title_button | translate }}" />
+                <input type="button" class="btn btn-light ctrl" *ngIf="checkCondition('edit')" (click)="deleteUser()" value="{{ 'BUTTON.DELETE' | translate }}" />
         </div>
     </form>
 </div>

@@ -82,21 +82,31 @@
         "confirmation": "Permission to unload",
         "confirmationtime": "Date, time",
         "confirmationusername": "Full name",
-        "LOADING": "Loading"
+        "LOADING": "Loading",
+        "cropname": "Culture name",
+        "sortname": "Culture class",
+        "cropyear": "Year of culture",
+        "contractid": "Contract number",
+        "invoicedate": "Invoice date",
+        "storagename": "Warehouse destination"
     },
     "LABEL": {
         "FROM": "from",
         "TO": " to ",
         "LIST_OF_RAILCARS": "List of railcars",
-        "PARAMS": "Params",
         "CURRENT_USER": "Current user {{ username}} from {{ company }}",
         "LANG": "Language",
         "REFRESH_DATA": "Latest updates: {{ time }}",
-        "CURRENT_DISPARITY": "Current disparity"
+        "CURRENT_DISPARITY": "Current disparity",
+        "LOGIN": "Login",
+        "USERNAME": "Username",
+        "COMPANY": "Company",
+        "ROLE": "Role"
     },
 
     "VALUE" : {
-        "REQUIRED": "This field is required"
+        "REQUIRED": "This field is required",
+        "ERROR": "Incorrectly filled field"
     },
 
     "RAILCAR" : {
@@ -137,8 +147,13 @@
 
     "TITLE" : {
         "RAILCAR": {
-            "FILE_UPLOAD": "Send to server"
+            "FILE_UPLOAD": "Send to server",
+            "ADD": "Adding a railcar",
+            "EDIT": "Editing the railcar",
+            "PARAMS": "Customize view"
         },
+        "ADD_USER": "Add user",
+        "EDIT_USER": "Edit user",
         "DISPARITY_ACCEPT_MODAL": "Verification of compliance"
     },
 

@@ -6,6 +6,7 @@ import { GridOptions } from 'ag-grid/main';
 import { IAuthUser } from './user-list.model';
 import { UserService } from './user-list.service';
 import { UserProvide } from './user-list.provide';
+import { TranslatePipe } from 'ng2-translate';
 
 import { UserDetailComponent } from './userDetail/userDetail.component';
 
@@ -17,7 +18,8 @@ import { DataFilterUserService } from './user-filter.service';
     templateUrl: './user-list.component.html',
     styleUrls: ['./user-list.component.css'],
     directives: [ComboboxComponent, AgGridNg2, UserDetailComponent],
-    providers: [DataFilterUserService, UserService]
+    providers: [DataFilterUserService, UserService],
+    pipes: [TranslatePipe]
 })
 
 export class DropDownListComponent implements OnInit, OnChanges {
