@@ -1,5 +1,5 @@
 //--> include fonts
-@import  'variable';
+@import  './styles/_variable';
 
 @include include-font($base-font-name, 'Lora-Regular.ttf');
 @include include-font($base-font-name, 'Lora-Bold.ttf', $bold: bold);

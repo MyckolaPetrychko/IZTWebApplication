@@ -6,26 +6,26 @@ import { DatePipe } from '@angular/common';
 import { Subscription } from 'rxjs/Subscription';
 import { AgGridNg2 } from 'ag-grid-ng2/main';
 import { GridOptions } from 'ag-grid/main';
-import { TranslatePipe, TranslateService, LangChangeEvent } from 'ng2-translate';
+import { TranslatePipe, TranslateService, LangChangeEvent } from 'ng2-translate/ng2-translate';
 
 
-import { DisparityProvide } from './disparity.provider';
+// import { DisparityProvide } from './disparity.provider';
 import { DisparityService } from './disparity.service';
-import { NotifyService } from '../../common/servises/notify.server';
+import { RefreshService as NotifyService } from '../common/services/refresh.service';
 
 import { IDisparityModel } from './disparity.model';
-import { AlertComponent } from '../../shared/alert/alert.component';
-import { ModalComponent } from '../../shared/modal/modal.component';
-import  { AuthService } from '../../user/auth.service';
+// import { AlertComponent } from '../../shared/alert/alert.component';
+// import { ModalComponent } from '../../shared/modal/modal.component';
+import  { AuthService } from '../../shared/auth/auth.service';
 
 @Component({
     moduleId: module.id,
     selector: 'wblg-disparity-list',
     templateUrl: 'disparity.component.html',
     // styleUrls: ['disparity.component.css'],
-    providers: [DisparityProvide],
-    directives: [NgIf, AgGridNg2, AlertComponent, ModalComponent],
-    pipes: [TranslatePipe, DatePipe]
+    // providers: [DisparityProvide],
+    // directives: [NgIf, AgGridNg2, AlertComponent, ModalComponent],
+    // pipes: [TranslatePipe, DatePipe]
 })
 
 export class DisparityListComponent implements OnInit, OnDestroy {
@@ -289,7 +289,7 @@ export class DisparityListComponent implements OnInit, OnDestroy {
                 // console.log(_sel[0]);
                                 // console.log(this.selected);
 
-                this._notify.selectedRailcar(this.selected);
+                // this._notify.selectedRailcar(this.selected);
                 // this.selectedItem.next(event.node.data);
             },
             forPrint: false,

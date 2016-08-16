@@ -1,9 +1,0 @@
-@import  '../../variable';
-
-/*.wblg-app {*/
-
-
-.router-page {
-     @include flex-child($grow: 1);
-     height: $app-page-routed-height;
-}

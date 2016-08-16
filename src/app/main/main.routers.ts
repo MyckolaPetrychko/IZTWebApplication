@@ -1,31 +1,38 @@
-import { provideRouter, RouterConfig } from '@angular/router';
+import { Routes,
+         RouterModule,
+       } from '@angular/router';
 
+       import {provide} from '@angular/core' 
+import { LocationStrategy,
+    HashLocationStrategy } from '@angular/common';
 import { SettingsComponent }    from '../settings/settings.component';
-import { railcarsRoutes }    from '../railcars/railcar.route';
+// import { railcarsRoutes }    from '../railcars/railcar.route';
 import { UserLoginComponent }    from '../user/login.component';
 import { UserProfileComponent }    from '../user/profile.component';
 
+import { AuthGuard } from '../shared/auth/auth-user.guard';
+import { AuthAdminGuard } from '../shared/auth/auth-admin.guard';
 
-import { AuthGuard } from '../user/auth.guard';
-import { AuthAdminGuard } from '../user/auth.guard';
-
-
-const routes: RouterConfig = [
+export const routes: Routes = [
   {
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
   },
+    // ...railcarsRoutes,
+  { path: 'railcars', loadChildren: '../railcars/railcar.module' },
 
-  ...railcarsRoutes,
-  //{ path: 'report', component: ReportRailcarComponent, canActivate: [AuthGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthAdminGuard] },
- // { path: 'railcars', component: RailcarsMainComponent, canActivate: [AuthGuard] },
- // { path: 'railcars/:id', component: RailcarsMainComponent, canActivate: [AuthGuard] },
+
+  { path: 'crisis', loadChildren: 'app/crisis/crisis.module' },
+  { path: 'heroes', loadChildren: 'app/hero/hero.module' },
   { path: 'login', component: UserLoginComponent },
   { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard] }
 ];
 
-export const appRouterProviders = [
-  provideRouter(routes)
-];
+export let routerProviders : any = [
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
+]
+
+
+export const routing = RouterModule.forRoot(routes, {useHash: true});

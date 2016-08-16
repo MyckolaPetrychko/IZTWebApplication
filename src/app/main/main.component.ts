@@ -1,56 +1,42 @@
-import {HTTP_PROVIDERS, Http } from '@angular/http';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+// import {HTTP_PROVIDERS, Http } from '@angular/http';
+// import { ROUTER_DIRECTIVES } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 
-import {TranslateService,
-    TranslatePipe,
-    TranslateLoader,
-    TranslateStaticLoader} from 'ng2-translate';
+import {TranslateService} from 'ng2-translate/ng2-translate';
 
 
-import { LocalStorageService } from '../common/servises/storage.service';
-import { NotifyService } from '../common/servises/notify.server';
+// import { LocalStorageService } from '../common/servises/storage.service';
+// import { NotifyService } from '../common/servises/notify.server';
 
 
-import { Component, OnInit, provide } from '@angular/core';
 
 
 // import { RailcarsComponent } from '../railcars/railcar-main-page/railcars.component';
-import { DataFilterService } from '../filters-data/filter-data.service';
-import { RailcarProvide } from '../railcars/railcars.provide';
+// import { DataFilterService } from '../filters-data/filter-data.service';
+// import { RailcarProvide } from '../railcars/railcars.provide';
 
-import {
-    FooterComponent
-} from '../shared/footer/footer.component';
-import {
-    NavComponent
-} from '../shared/nav/nav.component';
-import {SelectRailcarService} from '../common/servises/select-railcar.service';
 
 @Component({
     moduleId: module.id,
     selector: 'wblg-main',
     templateUrl: 'main.component.html',
-    styleUrls: ['main.component.css'],
-    directives: [FooterComponent, NavComponent, ROUTER_DIRECTIVES],
-    pipes: [TranslatePipe],
-    providers: [
-        // HTTP_PROVIDERS,
-        // TRANSLATE_PROVIDERS
-        {
-            provide: TranslateLoader,
-            useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/i18n', '.json'),
-            deps: [Http]
-        },
-        // use TranslateService here, and not TRANSLATE_PROVIDERS (which will define a default TranslateStaticLoader)
-        TranslateService,
-        LocalStorageService,
-        NotifyService,
-        RailcarProvide,
-        DataFilterService,
-        SelectRailcarService
-    ]
+    // providers: [
+
+    //     {
+    //         provide: TranslateLoader,
+    //         useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/i18n', '.json'),
+    //         deps: [Http]
+    //     },
+    //     // use TranslateService here, and not TRANSLATE_PROVIDERS (which will define a default TranslateStaticLoader)
+    //     TranslateService,
+    //     LocalStorageService,
+    //     NotifyService,
+    //     RailcarProvide,
+    //     DataFilterService,
+    //     SelectRailcarService
+    // ]
 })
-export class AppComponent implements OnInit {
+export class AppMainComponent implements OnInit {
     private data: string;
     private daat2: string;
 

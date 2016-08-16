@@ -12,10 +12,10 @@
 		'rxjs': 'node_modules/rxjs',
 		'ag-grid-ng2': 'node_modules/ag-grid-ng2',
         'ag-grid': 'node_modules/ag-grid',
-		// 'ng2-translate': 'node_modules'
+		'ng2-translate': 'node_modules/ng2-translate'
 	    // 'primeng': 'node_modules/primeng',
-		'ng2-bootstrap': 'node_modules/ng2-bootstrap',
-		'moment': 'node_modules/moment/moment.js'			
+		// 'ng2-bootstrap': 'node_modules/ng2-bootstrap',
+		// 'moment': 'node_modules/moment/moment.js'			
 	};
 
 	// packages tells the System loader how to load when no filename and/or no extension
@@ -28,13 +28,15 @@
         'ag-grid': {
             defaultExtension: "js"
         },
-		'ng2-bootstrap' : {
-			main: 'ng2-bootstrap.js', defaultExtension: 'js'
+		'ng2-translate': { 
+			defaultExtension: 'js' 
 		}
+				// 'ng2-bootstrap' : {
+		// 	main: 'ng2-bootstrap.js', defaultExtension: 'js'
+		// }
 		
 		//'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
 		// 'primeng':                    { main: 'primeng.js', defaultExtension: 'js' },
-		// 'ng2-translate': { main: 'ng2-translate.js', defaultExtension: 'js' }
 
 	};
 	var ngPackageNames = [

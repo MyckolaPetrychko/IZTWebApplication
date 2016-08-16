@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslatePipe } from 'ng2-translate';
-import { NgIf, NgClass, JsonPipe } from '@angular/common';
+// import { TranslatePipe } from 'ng2-translate';
+// import { NgIf, NgClass, JsonPipe } from '@angular/common';
 import { DropDownListComponent } from './userlist/user-list.component';
 
 @Component({
     moduleId: module.id,
     selector: 'wblg-settings',
     templateUrl: './settings.component.html',
-    styleUrls: ['./settings.component.css'],
+    // styleUrls: ['./settings.component.css'],
     directives: [DropDownListComponent],
-    pipes: [TranslatePipe, JsonPipe]
+    // pipes: [TranslatePipe, JsonPipe]
 })
 export class SettingsComponent implements OnInit {
     selectedButton: string;

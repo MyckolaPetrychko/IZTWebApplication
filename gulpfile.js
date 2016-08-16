@@ -119,11 +119,12 @@ gulp.task('lib', function() {
         'node_modules/reflect-metadata/Reflect.js',
         'node_modules/systemjs/dist/system.src.js',
         'node_modules/normalize.css/normalize.css',
-        'node_modules/ng2-translate/bundles/ng2-translate.js'
+        // 'node_modules/ng2-translate/bundles/ng2-translate.js'
      //   'node_modules/bootstrap/dist/css/bootstrap.css'
     ])
     .pipe(gulp.dest('./build/node_modules'));
     let res2 =  gulp.src([
+        'node_modules/ng2-translate/**/*.js',
      //   'node_modules/primeng/**/*.js',
         'node_modules/rxjs/**/*js',
         'node_modules/@angular/**/*.umd.js',

@@ -1,4 +1,4 @@
-@import '../../../../variable';
+@import '../../../styles/_variable';
 
 .rows {
     @include flex-main(row);

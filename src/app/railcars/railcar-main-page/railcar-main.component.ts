@@ -1,22 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router /*, ActivatedRoute */} from '@angular/router';
 
-import { TranslatePipe } from 'ng2-translate';
 
 
 import { DisparityListComponent } from '../disparity/disparity.component';
-import { NotifyService } from '../../common/servises/notify.server';
+import { RefreshService as NotifyService } from '../common/services/refresh.service';
 
 
 @Component({
     moduleId: module.id,
     selector: 'wblg-railcars',
     templateUrl: './railcar-main.component.html',
-    directives: [
-         DisparityListComponent,
-         ROUTER_DIRECTIVES
-     ],
-     pipes: [TranslatePipe]
+    // directives: [
+    //      DisparityListComponent,
+    //      ROUTER_DIRECTIVES
+    //  ],
 })
 export class RailcarsMainComponent implements OnInit {
    private refreshAll : number;

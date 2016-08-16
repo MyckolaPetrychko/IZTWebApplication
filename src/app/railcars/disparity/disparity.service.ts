@@ -24,7 +24,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
 
-import { AuthService } from '../../user/auth.service';
+import { AuthService } from '../../shared/auth/auth.service';
+import { handleError } from '../../shared/variable/error-handler.function';
 // Application
 import {
     IDisparityModel
@@ -62,7 +63,7 @@ export class DisparityService {
                     '\n Data: ' +
                     JSON.stringify(data.length));
             })
-            .catch(this.handleError);
+            .catch(handleError);
     }
 
    // TODO: debug only get
@@ -88,7 +89,7 @@ export class DisparityService {
                     '\n Data: ' +
                     JSON.stringify(data));
             })
-            .catch(this.handleError);
+            .catch(handleError);
     }
     /*   
      // PUT 
@@ -116,12 +117,4 @@ export class DisparityService {
      }
  */
 
-    private handleError(err: any): Observable<Response> {
-        // In a real world app, we might use a remote logging infrastructure
-        // We'd also dig deeper into the error to get a better message
-        let errMsg = (err.message) ? err.message :
-            err.status ? `${err.status} - ${err.statusText}` : 'CONNECTION.SERVER_ERROR';
-        console.error(errMsg); // log to console instead
-        return Observable.throw(errMsg);
-    }
 }

@@ -1,5 +1,9 @@
+import { Routes,
+         RouterModule } from '@angular/router';
+
 import { RouterConfig }          from '@angular/router';
-import { AuthGuard } from '../user/auth.guard';
+
+import { AuthGuard } from '../shared/auth/auth-user.guard';
 
 
 // import { CrisisDetailComponent } from './crisis-detail.component';
@@ -9,10 +13,10 @@ import { AuthGuard } from '../user/auth.guard';
 import { RailcarsMainComponent } from './railcar-main-page/railcar-main.component';
 import { RailcarsReportComponent } from './railcar-report-page/report.component';
 
-import { RailcarListComponent } from './routed-child/railcar-list/railcar-list.component';
-import { RailcarEditComponent } from './routed-child/railcar-edit/railcar-edit.component';
-import { RailcarFileUploadComponent } from './routed-child/railcar-file-upload/railcar-file-upload.component';
-import { VisibilityConfigComponent } from './routed-child/railcar-view/view.component';
+import { RailcarListComponent } from './railcars-subcomponents/railcar-list/railcar-list.component';
+import { RailcarEditComponent } from './railcars-subcomponents/railcar-edit/railcar-edit.component';
+import { RailcarFileUploadComponent } from './railcars-subcomponents/railcar-file-upload/railcar-file-upload.component';
+import { VisibilityConfigComponent } from './railcars-subcomponents/railcar-view/view.component';
 
 
 export const railcarsRoutes: RouterConfig = [
@@ -28,3 +32,4 @@ export const railcarsRoutes: RouterConfig = [
 
     }
 ];
+export const routing = RouterModule.forChild(railcarsRoutes);
