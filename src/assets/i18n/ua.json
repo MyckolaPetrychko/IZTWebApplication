@@ -26,8 +26,8 @@
         "REFRESH": "Оновити",
         "RESET": "Скинути зміни",
 
-        "ACCEPT": "Прийняти",
-        "OK": "Підтвердити",
+        "ACCEPT": "Підтвердити",
+        "OK": "OK",
         "CANCEL": "Скасувати",
         "LOADFILE": "Завантажити файл",
         "DISABLED_TEXT_EDITOR": "Режим редагування файлу",
@@ -70,7 +70,7 @@
         "permission": "Рішення по ситуації",
         "permissiondescription": " Рішення ",
         "permissiontime": " Дата, час ",
-        "permissionusername": " П,І,Б",
+        "permissionusername": " П.І.Б.",
         "remark": "Примітка",
         "waitingtime": "Час очікування рішення",
         "overtime": "Час дод. маневрових робіт",
@@ -81,7 +81,6 @@
         "confirmation": "Дозвіл на вивантаження",
         "confirmationtime": "Дата, час",
         "confirmationusername": "П.І.Б.",
-        "LOADING": "Завантаження",
         "cropname": "Назва культури",
         "classname": "Клас культури",
         "sortname": "Сорт культури",
@@ -147,7 +146,7 @@
 
     "TITLE" : {
         "RAILCAR": {
-            "FILE_UPLOAD": "Завантаження неа сервер",
+            "FILE_UPLOAD": "Завантаження на сервер",
             "ADD": "Додавання вагону",
             "EDIT": "Редагування вагону",
             "PARAMS": "Налаштування вигляду"
@@ -159,5 +158,12 @@
 
     "PLACEHOLDER" : {
         "FILE_SELECT": "Виберіть файл"
+    },
+
+    "RADIOBTN": {
+        "shownotreceived": "Без дозволу на розвантаження",
+        "showweighted": "Зважені",
+        "showremoterecords": "Повернені ЗВ",
+        "showdeleted": "Видалені ЗВ"
     }
 }

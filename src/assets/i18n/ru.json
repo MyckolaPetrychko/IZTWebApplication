@@ -29,8 +29,8 @@
         "REFRESH": "Обновить",
         "RESET": "Сбросить изменения",
 
-        "ACCEPT": "Принять",
-        "OK": "Подтвердить",
+        "ACCEPT": "Подтвердить",
+        "OK": "OK",
         "CANCEL": "Отменить",
         "LOADFILE": "Скачать файл",
         "DISABLED_TEXT_EDITOR": "Режим редактирования файла",
@@ -72,7 +72,7 @@
         "permission": "Решение по ситуации",
         "permissiondescription": " решение ",
         "permissiontime": " дата, время ",
-        "permissionusername": " Ф,И,О",
+        "permissionusername": " Ф.И.О.",
         "remark": "Примечание",
         "waitingtime": "Время ожидания решения",
         "overtime": "Время доп. маневровых работ",
@@ -83,7 +83,6 @@
         "confirmation": "Разрешение на выгрузку",
         "confirmationtime": "Дата, время",
         "confirmationusername": "Ф.И.О.",
-        "LOADING": "Загрузка",
         "cropname": "Название культуры",
         "sortname": "Класс культуры",
         "cropyear": "Год культуры",
@@ -148,7 +147,7 @@
     
     "TITLE" : {
         "RAILCAR": {
-            "FILE_UPLOAD": "Отправить на сервер",
+            "FILE_UPLOAD": "Отправка на сервер",
             "ADD": "Добавление вагона",
             "EDIT": "Редактирование вагона",
             "PARAMS": "Настройка вида"
@@ -160,5 +159,12 @@
 
     "PLACEHOLDER" : {
         "FILE_SELECT": "Выберите файл"
+    },
+
+    "RADIOBTN": {
+        "shownotreceived": "Без разрешения на разгрузку",
+        "showweighted": "Взвешенные",
+        "showremoterecords": "Возвращенные ЖВ",
+        "showdeleted": "Удаленные ЖВ"
     }
  }

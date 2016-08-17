@@ -28,8 +28,8 @@
         "REFRESH": "Refresh",
         "RESET": "Reset",
 
-        "ACCEPT": "Accept",
-        "OK": "Submit",
+        "ACCEPT": "Submit",
+        "OK": "OK",
         "CANCEL": "Cancel",
         "LOADFILE": "Download",
         "DISABLED_TEXT_EDITOR": "File edit mode",
@@ -82,7 +82,6 @@
         "confirmation": "Permission to unload",
         "confirmationtime": "Date, time",
         "confirmationusername": "Full name",
-        "LOADING": "Loading",
         "cropname": "Culture name",
         "sortname": "Culture class",
         "cropyear": "Year of culture",
@@ -147,7 +146,7 @@
 
     "TITLE" : {
         "RAILCAR": {
-            "FILE_UPLOAD": "Send to server",
+            "FILE_UPLOAD": "Sending to the server",
             "ADD": "Adding a railcar",
             "EDIT": "Editing the railcar",
             "PARAMS": "Customize view"
@@ -159,5 +158,12 @@
 
     "PLACEHOLDER" : {
         "FILE_SELECT": "Select file"
+    },
+
+    "RADIOBTN": {
+        "shownotreceived": "Without a permit for discharge",
+        "showweighted": "Weighted",
+        "showremoterecords": "Returned RC",
+        "showdeleted": "Deleted RC"
     }
 }
