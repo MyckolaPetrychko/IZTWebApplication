@@ -64,7 +64,7 @@ $app-page-routed-height:        calc( 100% - #{($app-nav-height + $app-footer-he
 $app-page-main-height:          100%;
 $app-table-railcar-list:      $app-table-header-height + 5 * $app-table-row-height;
 $app-table-railcar-disparity: $app-table-header-height + 2 * $app-table-row-height;
-$app-table-disparity-list:    $app-table-header-height + 4 * $app-table-row-height;
+$app-table-disparity-list:    $app-table-header-height + 2 * $app-table-row-height;
 
 $app-block-railcar-list:      $app-table-railcar-list + $app-subtitle-height + $app-filter-height;
 $app-block-railcar-disparity: $app-table-railcar-disparity + $app-subtitle-height;
