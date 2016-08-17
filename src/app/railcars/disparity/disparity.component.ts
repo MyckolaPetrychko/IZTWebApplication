@@ -1,31 +1,29 @@
 // TODO:FIX permissiontime or confirmtime??? as label of type disparity (deviations)
 
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NgIf } from '@angular/common';
+import {
+    Component,
+    OnInit,
+    OnDestroy } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Subscription } from 'rxjs/Subscription';
-import { AgGridNg2 } from 'ag-grid-ng2/main';
+import 'rxjs/add/operator/debounceTime';
+
 import { GridOptions } from 'ag-grid/main';
-import { TranslatePipe, TranslateService, LangChangeEvent } from 'ng2-translate/ng2-translate';
+import {
+    TranslateService,
+    LangChangeEvent
+} from 'ng2-translate/ng2-translate';
 
-
-// import { DisparityProvide } from './disparity.provider';
 import { DisparityService } from './disparity.service';
-import { RefreshService as NotifyService } from '../common/services/refresh.service';
+import { RefreshService } from '../common/services/refresh.service';
 
 import { IDisparityModel } from './disparity.model';
-// import { AlertComponent } from '../../shared/alert/alert.component';
-// import { ModalComponent } from '../../shared/modal/modal.component';
-import  { AuthService } from '../../shared/auth/auth.service';
+import { AuthService } from '../../shared/auth/auth.service';
 
 @Component({
     moduleId: module.id,
     selector: 'wblg-disparity-list',
     templateUrl: 'disparity.component.html',
-    // styleUrls: ['disparity.component.css'],
-    // providers: [DisparityProvide],
-    // directives: [NgIf, AgGridNg2, AlertComponent, ModalComponent],
-    // pipes: [TranslatePipe, DatePipe]
 })
 
 export class DisparityListComponent implements OnInit, OnDestroy {
@@ -36,9 +34,8 @@ export class DisparityListComponent implements OnInit, OnDestroy {
     public selected: IDisparityModel;
     public isSelected: boolean;
 
-
-    private isTraider : boolean;
-    private isEmployyer : boolean;
+    private isTraider: boolean;
+    private isEmployyer: boolean;
 
     private modal: boolean;
     private isNotNull: boolean;
@@ -54,14 +51,14 @@ export class DisparityListComponent implements OnInit, OnDestroy {
     private _datePipe: DatePipe;
 
     constructor(private _disparity: DisparityService,
-        private _notify: NotifyService,
-        private _auth : AuthService,
+        private _refresh: RefreshService,
+        private _auth: AuthService,
         private _translate: TranslateService) {
         this.DisparityList = [];
-        this.selected = <IDisparityModel> {};
+        this.selected = <IDisparityModel>{};
         this.total = 0;
         this.accepted = 0;
-       
+
         this._datePipe = new DatePipe();
         this.isNotNull = false;
         this.isHidden = false;
@@ -79,17 +76,22 @@ export class DisparityListComponent implements OnInit, OnDestroy {
         this.createColunmDef();
         this.createGridOptions();
 
-        this._subTranslate = this._translate.onLangChange.subscribe((event: LangChangeEvent) => {
-            if (this.gridOptions && this.gridOptions.api) { this.gridOptions.api.refreshHeader(); }
-        });
+        this._subTranslate = this._translate.onLangChange
+            .debounceTime(1000)
+            .subscribe((event: LangChangeEvent) => {
+                if (this.gridOptions && this.gridOptions.api) {
+                    this.gridOptions.api.refreshHeader();
+                }
+            });
 
-        this._subRefresh = this._notify.refreshAnnonced.subscribe(() => {
+        this._subRefresh = this._refresh.refreshAnnonced.subscribe(() => {
             this.refreshData();
         });
 
         this.isEmployyer = this._auth.isAuth('employee');
         this.isTraider = this._auth.isAuth('trader');
     }
+
     ngOnDestroy() {
         this._subRefresh.unsubscribe();
         this._subTranslate.unsubscribe();
@@ -97,9 +99,10 @@ export class DisparityListComponent implements OnInit, OnDestroy {
 
     public refreshData(): void {
         this.isNotNull = false;
-        this.message = 'TABLE.LOADING';
+        this.message = 'MESSAGE.LOADING';
         this.type = 'info';
-        this._disparity.getDisparityListCurrent()
+        this._disparity
+            .getDisparityListCurrent()
             .subscribe(res => {
                 this.DisparityList = res;
                 this.total = this.DisparityList.length;
@@ -107,13 +110,13 @@ export class DisparityListComponent implements OnInit, OnDestroy {
                 if (this.total > 0) {
                     this.isNotNull = true;
                     this.DisparityList.forEach(item => {
-                        if (item.permissiontime  === null) {
+                        if (item.permissiontime === null) {
                             this.accepted++;
                         }
                     });
                 } else {
                     this.isNotNull = false;
-                    this.message = 'TABLE.EMPTY';
+                    this.message = 'MESSAGE.EMPTY_TABLE';
                     this.type = 'info';
                 }
             },
@@ -135,29 +138,39 @@ export class DisparityListComponent implements OnInit, OnDestroy {
         let railcarID: number = 0;
         let disparityID: number = 0;
 
-        this._disparity.setDisparityRailcarAcceptApi('' + railcarID, '' + disparityID).subscribe((_val) => {
-            this._notify.refreshData();
-        }, (err) => {
-            this.DisparityList = [];
-            this.isNotNull = false;
-            this.accepted = null;
-            this.total = null;
-            this.type = 'error';
-            this.message = 'Error:' + JSON.stringify(err);
-        });
+        this._disparity
+            .setDisparityRailcarAcceptApi(
+            '' + railcarID,
+            '' + disparityID
+            ).subscribe((_val) => {
+                this._refresh.refreshData();
+            }, (err: string) => {
+                this.DisparityList = [];
+                this.isNotNull = false;
+                this.accepted = null;
+                this.total = null;
+                this.type = 'error';
+                this.message = err;
+            });
     }
 
     private openModal(_val: boolean): void {
-        // console.log(_val + ' ' + this.modal);
         this.modal = _val;
+        console.log(_val);
+        if (_val === false) { 
+                  this.selected = <IDisparityModel>{};
+                   this.gridOptions.api.deselectAll();
+                   this.isSelected = false;
+        }
     }
 
     private ok(): void {
+        console.log('accepnt');
         this.accept();
         this.openModal(false);
     }
 
-    private cancel():void {
+    private cancel(): void {
         this.openModal(false);
     }
 
@@ -266,9 +279,8 @@ export class DisparityListComponent implements OnInit, OnDestroy {
                 return this.translateHeaderName(params);
             },
             getRowClass: (params: any) => {
-                // console.log(params.node.data.permissiontime);
-                return (params.node.data.permissiontime === null)? 
-                        'table-to-confirm-traider ' :'table-to-confirm-employeer ';
+                return (params.node.data.permissiontime === null) ?
+                    'table-to-confirm-traider ' : 'table-to-confirm-employeer ';
             },
             headerHeight: 30,
             rowHeight: 20,
@@ -276,28 +288,25 @@ export class DisparityListComponent implements OnInit, OnDestroy {
                 this.gridOptions.api.sizeColumnsToFit();
             },
             onSelectionChanged: (): void => {
-                let _sel : Array<IDisparityModel> = this.gridOptions.api.getSelectedRows();
-                if ( (_sel.length > 0) && (this.selected) && (this.selected.inventoryid ===  _sel[0].inventoryid)) {
-                    this.selected = <IDisparityModel>{};
-                    this.gridOptions.api.deselectAll();
-                    this.isSelected = false;
+                let _sel: Array<IDisparityModel> = this.gridOptions.api.getSelectedRows();
+                if ((_sel.length > 0) &&
+                    (this.selected) &&
+                    (this.selected.inventoryid === _sel[0].inventoryid)) {
+                    // this.selected = <IDisparityModel>{};
+                    // this.gridOptions.api.deselectAll();
+                                    this.openModal(true);
 
+                    // this.isSelected = false;
                 } else {
                     this.selected = _sel[0];
                     this.isSelected = true;
                 }
-                // console.log(_sel[0]);
-                                // console.log(this.selected);
-
-                // this._notify.selectedRailcar(this.selected);
-                // this.selectedItem.next(event.node.data);
             },
             forPrint: false,
             suppressHorizontalScroll: true,
             suppressMovableColumns: true,
             suppressLoadingOverlay: true,
             suppressNoRowsOverlay: true
-
         };
     }
 }

@@ -114,7 +114,9 @@ export class RailcarListComponent implements OnInit, OnDestroy {
         this.initFilters();
         this.initDatePicker();
 
-        this._subscribeTranslate = this._translate.onLangChange.subscribe((event: LangChangeEvent) => {
+        this._subscribeTranslate = this._translate.onLangChange
+        .debounceTime(1000)
+        .subscribe((event: LangChangeEvent) => {
             if (this.gridOptions && this.gridOptions.api) { this.gridOptions.api.refreshHeader(); }
 
         });
@@ -180,6 +182,7 @@ export class RailcarListComponent implements OnInit, OnDestroy {
 
     private translateHeaderName(params: any): string {
         let translate: string = params.colDef.headerName;
+        let txtGroup = document.getElementsByClassName('ag-header-cell-text');
         this._translate.get(params.colDef.headerName).subscribe((val) => {
             translate = val;
         });
@@ -189,7 +192,7 @@ export class RailcarListComponent implements OnInit, OnDestroy {
     private setFilters(): void {
         this.refreshData();
         this.isNotNull = false;
-        this.message = 'LOADING.MESSAGE';
+        this.message = 'MESSAGE.LOADING';
     }
 
     private initFilters(): void {

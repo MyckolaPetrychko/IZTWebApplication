@@ -34,21 +34,21 @@ import { IRailcarDisparityModel } from './railcar-disparity.model';
     // pipes: [TranslatePipe]
 })
 export class RailcarDisparityComponent implements OnInit, OnDestroy, OnChanges {
-   
+
     /**
      * List of disparity for current railcar
      * 
      * @type {IRailcarDisparityModel[]}
      */
     public DisparityList: IRailcarDisparityModel[];
-    
+
     /**
      * Current railcar id
      * 
      * @type {number}
      */
     public railcarNumber: number;
-    
+
     /**
      * Check is disparity exist
      * 
@@ -56,7 +56,7 @@ export class RailcarDisparityComponent implements OnInit, OnDestroy, OnChanges {
      * @type {boolean}
      */
     private isNotNull: boolean;
-   
+
     /**
      * Alert message 
      * 
@@ -64,7 +64,7 @@ export class RailcarDisparityComponent implements OnInit, OnDestroy, OnChanges {
      * @type {string}
      */
     private message: string;
-   
+
     /**
      * Type alert message
      * 
@@ -80,7 +80,7 @@ export class RailcarDisparityComponent implements OnInit, OnDestroy, OnChanges {
      * @type {*}
      */
     private columnDefs: any;
-   
+
     /**
      * Gridoptions for Ag2-Grid
      * 
@@ -112,7 +112,7 @@ export class RailcarDisparityComponent implements OnInit, OnDestroy, OnChanges {
      * @param {TranslateService} _translate - translate servise
      */
     constructor(private _disparity: RailcarService,
-                private _translate: TranslateService) {
+        private _translate: TranslateService) {
         this._datePipe = new DatePipe();
         this.isNotNull = false;
 
@@ -128,11 +128,13 @@ export class RailcarDisparityComponent implements OnInit, OnDestroy, OnChanges {
         this.createColunmDef();
         this.createGridOptions();
 
-        this._subTranslate = this._translate.onLangChange.subscribe((event: LangChangeEvent) => {
-            if (this.gridOptions && this.gridOptions.api) { this.gridOptions.api.refreshHeader(); }
-        });
+        this._subTranslate = this._translate.onLangChange
+            .debounceTime(1000)
+            .subscribe((event: LangChangeEvent) => {
+                if (this.gridOptions && this.gridOptions.api) { this.gridOptions.api.refreshHeader(); }
+            });
     }
-    
+
     /**
      * Destroy data
      * 
@@ -174,7 +176,7 @@ export class RailcarDisparityComponent implements OnInit, OnDestroy, OnChanges {
      */
     public refreshData(): void {
         this.isNotNull = false;
-        this.message = 'TABLE.LOADING';
+        this.message = 'MESSAGE.LOADING';
         this.type = 'info';
         if (this.railcarNumber !== null && this.railcarNumber !== undefined) {
             this._disparity.getRailcarDisparityList('' + this.railcarNumber)
@@ -184,7 +186,7 @@ export class RailcarDisparityComponent implements OnInit, OnDestroy, OnChanges {
                         this.isNotNull = true;
                     } else {
                         this.isNotNull = false;
-                        this.message = 'TABLE.EMPTY';
+                        this.message = 'MESSAGE.EMPTY_TABLE';
                         this.type = 'info';
                     }
                 },
@@ -192,7 +194,7 @@ export class RailcarDisparityComponent implements OnInit, OnDestroy, OnChanges {
                     this.DisparityList = [];
                     this.isNotNull = false;
                     this.type = 'error';
-                    this.message = 'Error:' + JSON.stringify(err);
+                    this.message = err;
                 });
 
         } else {
@@ -244,7 +246,7 @@ export class RailcarDisparityComponent implements OnInit, OnDestroy, OnChanges {
             },
             {
                 headerName: 'TABLE.permission',
-                
+
                 layoutInterval: 500,
                 children: [
                     {
