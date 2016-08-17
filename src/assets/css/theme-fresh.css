@@ -1,7 +1,7 @@
 .ag-fresh {
-  line-height: 1.4;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  line-height: 1em;
+  font-family: "Lora", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
   color: #222;
 /* this is for the rowGroupPanel, that appears along the top of the grid */
 /* this is for the column drops that appear in the toolPanel */
@@ -53,7 +53,7 @@
   border: 1px solid #a9a9a9;
 }
 .ag-fresh .ag-cell-no-focus {
-  border-right: 1px dotted #808080;
+  border-right: 1px solid #808080;
   border-top: 1px solid transparent;
   border-left: 1px solid transparent;
   border-bottom: 1px solid transparent;
@@ -131,7 +131,7 @@
   background: -ms-linear-gradient(#fff, #d3d3d3);
   background: linear-gradient(#fff, #d3d3d3);
   border-bottom: 1px solid #808080;
-  font-weight: normal;
+  font-weight: bold;
 }
 .ag-fresh .ag-header-icon {
   color: #000;
@@ -146,6 +146,12 @@
   background: linear-gradient(#fff, #d3d3d3);
   border-bottom: 1px solid #808080;
 }
+/* my*/
+.ag-scrolls .ag-header-container
+{
+    white-space: normal;
+}
+
 .ag-fresh .ag-header-cell {
   border-right: 1px solid #808080;
 }
@@ -166,12 +172,26 @@
 .ag-fresh .ag-header-cell-label {
   padding: 4px 2px 4px 2px;
 }
+/* TODO my*/
+.ag-fresh .ag-header-text,
+.ag-fresh .ag-header-group-text
+ {
+  display: inline-block;
+}
+.ag-fresh .ag-header-cell-label,
+.ag-fresh .ag-header-group-cell-label
+ {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1em;
+  }
+
 .ag-fresh .ag-header-cell-text {
-  padding-left: 2px;
+  padding-left: 1px;
 }
 .ag-fresh .ag-header-group-cell-label {
-  padding: 4px;
-  padding-left: 10px;
+  padding: 2px;
+  padding-left: 5px;
 }
 .ag-fresh .ag-header-group-text {
   margin-right: 2px;
@@ -202,6 +222,11 @@
   -o-transition: background-color 0.1s;
   -ms-transition: background-color 0.1s;
   transition: background-color 0.1s;
+  border-top: 1px solid #808080; /*my*/
+}
+/*mu*/
+.ag-fresh .ag-row:last-child {
+	border-bottom: 1px solid #808080;
 }
 .ag-fresh .ag-row-odd {
   background-color: #f6f6f6;
@@ -210,7 +235,7 @@
   background-color: #fff;
 }
 .ag-fresh .ag-row-selected {
-  background-color: #b0e0e6;
+  background-color: #b0e0e6 !important;
 }
 .ag-fresh .ag-floating-top .ag-row {
   background-color: #f0f0f0;

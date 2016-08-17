@@ -1,186 +1,197 @@
 @import 'variable';
 
+.alert-message {
 
-  .alert-message {
-    @include flex-main(column);
-    margin: 10px 20px;
-    padding: 10px;
-    padding-bottom: 20px;
+  @include flex-main(column);
+  margin: 10px 20px;
+  padding: 10px;
+  padding-bottom: 20px;
+  background-color: $base-color-light;
 
-    .title {
-            @include flex-main(row);
+  .title {
+    @include flex-main(row);
+    font-size: 1.5 * $base-font-size;
+    //border: 2px solid $error-color;
+    margin-bottom: 10px;
 
-      font-size: 1.5 * $base-font-size;
-      //border: 2px solid $error-color;
-      margin-bottom: 10px;
-
-      .header {
-            @include titled();
-            text-decoration: underline;
-            @include flex-child($grow: 1);
-      }
-
-      .close-icon {
-        align-self: flex-start;
-      }
-
-      .close-icon:hover {
-        color: $base-hover-color;
-      }
-
-       .close-icon:active {
-        color: $base-active-color;
-      }
+    .header {
+      @include titled();
+      text-decoration: underline;
+      @include flex-child($grow: 1);
     }
 
-    .txt {
-      margin-left: 50px;
+    .close-icon {
+      align-self: flex-start;
     }
 
-    .footer {
-      display: none;
+    .close-icon:hover {
+      color: $base-hover-color;
     }
 
-    .icons {
-      display: none;
+    .close-icon:active {
+      color: $base-active-color;
     }
   }
 
-  .alert-modal {
-    background-color: $background-color;
-    border: 2px solid rgba($base-color-dark, 0.5);
-    padding: 25px;
-    position: absolute;
-    left: 30%;
-    top: 15%;
-    width: 40%;
-
-    .footer {
-      @include flex-main();
-      margin-left: 50px;
-      margin-top: 50px;
-      @include flex-align(center, center);
-      border-top: 2px solid rgba($base-disabled-color, 1);
-
-      .btn {
-          margin-top: 10px;
-          margin-left: 10px;
-          min-height: 30px;
-      }
-    }
-
+  .txt {
+    margin-left: 50px;
   }
 
-  .alert-modality {
-          position: fixed;
-
+  .footer {
+    display: none;
   }
 
-  .alert-small {
-    margin: 0;
-    padding: 2px;
-    font-size: 0.8em;
+  .icons {
+    display: none;
+  }
+}
 
-    .title {
-      display: none;
-    }
+.alert-modal {
+  background-color: $base-color-light;
+  border: 2px solid rgba($base-color-dark, 0.5);
+  padding: 25px;
+  position: absolute;
+  left: 30%;
+  top: 15%;
+  width: 40%;
 
-    .footer {
-      display: none;
-    }
+  .footer {
+    @include flex-main();
+    margin-left: 50px;
+    margin-top: 50px;
+    @include flex-align(center, center);
+    border-top: 2px solid rgba($base-disabled-color, 1);
 
-    .txt {
-      margin-left: 0;
-    }
-
-    .icons {
-      display: inline-block;
+    .btn {
+      margin-top: 10px;
+      margin-left: 10px;
+      min-height: 30px;
     }
   }
+}
+
+.alert-modality {
+  position: fixed;
+}
+
+.alert-small {
+  background-color: inherit;
+
+  margin: 0;
+  padding: 2px;
+  font-size: 0.8em;
+
+  .title {
+    display: none;
+  }
+
+  .footer {
+    display: none;
+  }
+
+  .txt {
+    margin-left: 0;
+  }
+
+  .icons {
+    display: inline-block;
+  }
+}
 
 .alert-big {
-        .footer {
-      display: none;
-    }
+  .footer {
+    display: none;
+  }
 
-    .txt {
-           display: none;
-    }
+  .txt {
+    display: none;
+  }
 
-    .icons {
-            display: none;
-    }
+  .icons {
+    display: none;
+  }
 }
-  .alert-error-message {
-    box-shadow: 3px 3px 3px 3px $error-color;
 
-    &.alert-modal, .footer {
-        border-color: $error-color;
-    }
-    &.alert-small {
-      box-shadow: none;
-      // background-color: rgba($color: $error-color, $alpha: 0.5);
-      .icons {
-        color: $error-color;
-      }
-    }
+.alert-error-message {
+  box-shadow: 3px 3px 3px 3px $error-color;
 
-    .title {
+  &.alert-modal,
+  .footer {
+    border-color: $error-color;
+  }
+
+  &.alert-small {
+    box-shadow: none;
+    // background-color: rgba($color: $error-color, $alpha: 0.5);
+    .icons {
       color: $error-color;
     }
   }
 
-  .alert-info-message {
-    box-shadow: 3px 3px 3px 3px $info-color;
-    &.alert-modal , .footer{
-        border-color: $info-color;
-    }
-     &.alert-small {
-      box-shadow: none;
-      // background-color: rgba($color: $info-color, $alpha: 0.5);
-            .icons {
-        color:  $info-color;
-      }
-    }
+  .title {
+    color: $error-color;
+  }
+}
 
-    .title {
+.alert-info-message {
+  box-shadow: 3px 3px 3px 3px $info-color;
+
+  &.alert-modal,
+  .footer {
+    border-color: $info-color;
+  }
+
+  &.alert-small {
+    box-shadow: none;
+    // background-color: rgba($color: $info-color, $alpha: 0.5);
+    .icons {
       color: $info-color;
     }
   }
 
-  .alert-warn-message {
-    box-shadow: 3px 3px 3px 3px $warn-color;
-   
-    &.alert-modal, .footer{
-        border-color: $warn-color;
-    }
-     &.alert-small {
-      box-shadow: none;
-      // background-color: rgba($color: $warn-color, $alpha: 0.5);
-            .icons {
-        color: $warn-color;
-      }
-    }
+  .title {
+    color: $info-color;
+  }
+}
 
-    .title {
+.alert-warn-message {
+  box-shadow: 3px 3px 3px 3px $warn-color;
+
+  &.alert-modal,
+  .footer {
+    border-color: $warn-color;
+  }
+
+  &.alert-small {
+    box-shadow: none;
+    // background-color: rgba($color: $warn-color, $alpha: 0.5);
+    .icons {
       color: $warn-color;
     }
   }
 
-  .alert-bug-message {
-    box-shadow: 3px 3px 3px 3px $base-disabled-color;
-    &.alert-modal , .footer{
-        border-color: $base-disabled-color;
-    }
-    &.alert-small {
-      box-shadow: none;
-      // background-color: rgba($color: $base-hover-color, $alpha: 0.5);
-            .icons {
-        color:$base-disabled-color;
-      }
-    }
+  .title {
+    color: $warn-color;
+  }
+}
 
-    .title {
+.alert-bug-message {
+  box-shadow: 3px 3px 3px 3px $base-disabled-color;
+
+  &.alert-modal,
+  .footer {
+    border-color: $base-disabled-color;
+  }
+
+  &.alert-small {
+    box-shadow: none;
+    // background-color: rgba($color: $base-hover-color, $alpha: 0.5);
+    .icons {
       color: $base-disabled-color;
     }
   }
+
+  .title {
+    color: $base-disabled-color;
+  }
+}

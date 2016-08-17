@@ -4,14 +4,27 @@
 *
 */
 
-$background-color: #f6ecd6;
-$base-color-dark: #5e311c;
-$base-color-light: #ffffff; 
+// $background-color: #f6ecd6;
+// $base-color-dark: #5e311c;
+// $base-color-light: #ffffff; 
+
+// //--> base hovers and active
+// $base-hover-color: #d5cac4;
+// $base-disabled-color: #ccc;
+// $base-active-color: #316fff;
+
+$background-color: #e6e6e6;
+$base-color-dark: black;
+$base-color-light:  #fff;
 
 //--> base hovers and active
-$base-hover-color: #d5cac4;
+// $base-hover-color: #d5cac4;
+// $base-disabled-color: #ccc;
+// $base-active-color: #316fff;
+
+$base-hover-color: darkgrey;
 $base-disabled-color: #ccc;
-$base-active-color: #316fff;
+$base-active-color: #727aee;
 
 $base-ha-border-width: 2px;
 $base-border-width: 2px;
