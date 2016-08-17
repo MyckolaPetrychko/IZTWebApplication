@@ -25,7 +25,7 @@
         "EDIT": "Редактировать",
         "DELETE": "Удалить",
         "VIEW": "Вид",
-        "PRINT": "Удалить",
+        "PRINT": "Печатать",
         "REFRESH": "Обновить",
         "RESET": "Сбросить изменения",
 
@@ -71,7 +71,7 @@
         "deviationdescription": "Причина задержки выгрузки вагона",
         "permission": "Решение по ситуации",
         "permissiondescription": " решение ",
-        "permissiontime": " дата, время ",
+        "permissiontime": " Дата, время ",
         "permissionusername": " Ф.И.О.",
         "remark": "Примечание",
         "waitingtime": "Время ожидания решения",
@@ -84,7 +84,8 @@
         "confirmationtime": "Дата, время",
         "confirmationusername": "Ф.И.О.",
         "cropname": "Название культуры",
-        "sortname": "Класс культуры",
+        "classname": "Класс культуры",
+        "sortname": "Сорт культуры",
         "cropyear": "Год культуры",
         "contractid": "Номер контракта",
         "invoicedate": "Дата накладной",
@@ -115,7 +116,7 @@
     },
 
     "ALERT" : {
-        "INFO": "Инфо",
+        "INFO": "Информация",
         "WARNING": "Предупреждение",
         "ERROR": "Ошибка",
         "BUG": "Баг"
