@@ -1,14 +1,14 @@
 import { Component, OnInit, OnChanges, SimpleChange, Input } from '@angular/core';
 import {NgFor} from '@angular/common';
 
-import { TranslatePipe } from 'ng2-translate';
+// import { TranslatePipe } from 'ng2-translate';
 
 @Component({
     moduleId: module.id,
     selector: 'wblg-table',
     templateUrl: 'table.component.html',
     styleUrls: ['table.component.css'],
-    pipes: [TranslatePipe]
+    // pipes: [TranslatePipe]
 })
 export class TableComponent implements OnInit, OnChanges {
     @Input() headers: any;

@@ -7,6 +7,7 @@ import { AppMainComponent }  from './main.component';
 
 import { SharedModule } from '../shared/shared.module'
 import { RailcarsModule } from '../railcars/railcar.module';
+import { SettingsModule } from '../settings/settings.module'; 
 
 import { routerProviders } from './main.routers';
 import {routing} from './main.routers';
@@ -16,13 +17,9 @@ import {routing} from './main.routers';
     // FormsModule,
     routing,
     SharedModule.forRoot(),
-    RailcarsModule
-// TranslateModule.forRoot()
-    // TranslateModule.forRoot({
-    //         provide: TranslateLoader,
-    //         useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/i18n', '.json'),
-    //         deps: [Http]
-    //     })
+    RailcarsModule,
+    SettingsModule
+
   ],
   declarations: [AppMainComponent],
   providers: [ ...routerProviders ],

@@ -1,12 +1,12 @@
 import { Component, Input, Output, OnInit, EventEmitter, OnChanges } from '@angular/core';
 
-import { ComboboxComponent } from '../../shared/combobox/combobox.component';
-import { AgGridNg2 } from 'ag-grid-ng2/main';
+// import { ComboboxComponent } from '../../shared/combobox/combobox.component';
 import { GridOptions } from 'ag-grid/main';
 import { IAuthUser } from './user-list.model';
 import { UserService } from './user-list.service';
 import { UserProvide } from './user-list.provide';
-import { TranslatePipe } from 'ng2-translate';
+import { Subscription } from 'rxjs/Subscription';
+import { TranslatePipe, TranslateService, LangChangeEvent } from 'ng2-translate/ng2-translate';
 
 import { UserDetailComponent } from './userDetail/userDetail.component';
 
@@ -17,9 +17,9 @@ import { DataFilterUserService } from './user-filter.service';
     selector: 'wblg-userlist',
     templateUrl: './user-list.component.html',
     styleUrls: ['./user-list.component.css'],
-    directives: [ComboboxComponent, AgGridNg2, UserDetailComponent],
-    providers: [DataFilterUserService, UserService],
-    pipes: [TranslatePipe]
+    // directives: [AgGridNg2, UserDetailComponent],
+    // providers: [DataFilterUserService, UserService],
+    // pipes: [TranslatePipe]
 })
 
 export class DropDownListComponent implements OnInit, OnChanges {
@@ -33,10 +33,11 @@ export class DropDownListComponent implements OnInit, OnChanges {
     public message: string;
     private columnDefs: any;
     private gridOptions: GridOptions;
+    private _subTranslate: Subscription;
 
     birthday: string;
 
-    constructor(private userService: UserService, private _filters: DataFilterUserService) {
+    constructor(private userService: UserService, private _filters: DataFilterUserService, private _translate: TranslateService) {
         this.selectedButton = '';
         this.UsersList = [];
         this.message = 'Null';
@@ -60,7 +61,15 @@ export class DropDownListComponent implements OnInit, OnChanges {
             this.FiltersData[2].data = list;
         });
 
+        this._subTranslate = this._translate.onLangChange.debounceTime(500).subscribe((event: LangChangeEvent) => {
+            if (this.gridOptions && this.gridOptions.api) { this.gridOptions.api.refreshHeader(); }
+        });
+
         this.refreshData();
+    }
+
+    ngOnDestroy() {
+        this._subTranslate.unsubscribe();
     }
 
     ngOnChanges() {
@@ -91,13 +100,13 @@ export class DropDownListComponent implements OnInit, OnChanges {
     private createColunmDef(): void {
         this.columnDefs = [
             {
-                headerName: 'Login',
+                headerName: 'LABEL.LOGIN',
                 field: 'login',
                 width: 100,
                 hidden: false
             },
             {
-                headerName: 'Username',
+                headerName: 'LABEL.USERNAME',
                 field: 'username',
                 width: 100,
                 hidden: false
@@ -109,13 +118,13 @@ export class DropDownListComponent implements OnInit, OnChanges {
                 hidden: false
             },
             {
-                headerName: 'Company',
+                headerName: 'LABEL.COMPANY',
                 field: 'company',
                 width: 120,
                 hidden: false
             },
             {
-                headerName: 'Role',
+                headerName: 'LABEL.ROLE',
                 field: 'role',
                 width: 120,
                 hidden: false
@@ -129,6 +138,20 @@ export class DropDownListComponent implements OnInit, OnChanges {
             rowData: this.UsersList,
             rowSelection: 'single',
             enableColResize: true,
+            headerCellRenderer: (params: any) => {
+                let txtGroup = document.getElementsByClassName('ag-header-group-text');
+                for (let i = 0; i < txtGroup.length; i++) {
+                    let element = txtGroup.item(i);
+                    let text = element.textContent;
+                    let txt = text;
+                    this._translate.get(text).subscribe((val) => {
+                        element.innerHTML = '';
+                        element.appendChild(document.createTextNode(val));
+
+                    });
+                }
+                return this.translateHeaderName(params);
+            },
             onGridReady: () => {
                 // this.gridOptions.api.sizeColumnsToFit();
             },
@@ -157,5 +180,13 @@ export class DropDownListComponent implements OnInit, OnChanges {
 
     hideForm() {
         this.selectedButtonChange.emit('');
+    }
+
+    private translateHeaderName(params: any): string {
+        let translate: string = params.colDef.headerName;
+        this._translate.get(params.colDef.headerName).subscribe((val) => {
+            translate = val;
+        });
+        return translate;
     }
 }

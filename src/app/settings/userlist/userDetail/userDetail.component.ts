@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnChanges } from '@angular/core';
 import { IAuthUser } from '../user-list.model';
-import { TranslatePipe } from 'ng2-translate';
+// import { TranslatePipe } from 'ng2-translate';
 
 import { UserService } from '../user-list.service';
 import { UserProvide } from '../user-list.provide';
@@ -10,8 +10,8 @@ import { UserProvide } from '../user-list.provide';
     selector: 'user-detail',
     templateUrl: './userDetail.component.html',
     styleUrls: ['./userDetail.component.css'],
-    providers: [UserService],
-    pipes: [TranslatePipe]
+    // providers: [UserService],
+    // pipes: [TranslatePipe]
 })
 
 export class UserDetailComponent implements OnInit, OnChanges {

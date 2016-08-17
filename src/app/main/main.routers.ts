@@ -23,9 +23,9 @@ export const routes: Routes = [
   { path: 'railcars', loadChildren: '../railcars/railcar.module' },
 
   { path: 'settings', component: SettingsComponent, canActivate: [AuthAdminGuard] },
-
-  { path: 'crisis', loadChildren: 'app/crisis/crisis.module' },
-  { path: 'heroes', loadChildren: 'app/hero/hero.module' },
+  // { path: ''}
+  // { path: 'crisis', loadChildren: 'app/crisis/crisis.module' },
+  // { path: 'heroes', loadChildren: 'app/hero/hero.module' },
   { path: 'login', component: UserLoginComponent },
   { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard] }
 ];
