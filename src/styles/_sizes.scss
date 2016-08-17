@@ -28,6 +28,15 @@
   width: 100%;
 }
 
+.table-user-list-view {
+    @include flex-child($app-table-user-list, 1);
+    $temp: $app-subtitle-height + $app-filter-height + 2 * 2.5px ;
+    height: calc(100% - #{$temp});
+    min-height: $app-table-user-list;
+    width: 100%;
+}
+
+
 .table-disparity-list-view {
   @include flex-child($app-table-disparity-list, 1);
   height: calc(100% - #{$app-subtitle-height});
@@ -41,6 +50,14 @@
   @include flex-child($app-block-railcar-list, 3);
   min-height: $app-block-railcar-list;
   height: $app-block-railcar-list;
+}
+
+.wblg-user-list {
+    position: relative;
+
+  @include flex-child($app-block-user-list, 3);
+  min-height: $app-block-user-list;
+  height: $app-block-user-list;
 }
 
 .wblg-railcar-disparity {
