@@ -193,3 +193,13 @@
     background-color: #ebebe4 !important; 
     color: inherit;
   }
+
+  .legend {
+    @include flex-align(flex-start, stretch);
+  @include flex-child($grow: 1);
+    padding: 4px;
+    margin: 2px 10px;
+    margin-top: 10px;
+    border-bottom: 1px solid $base-color-dark;
+    @include titled();
+  }

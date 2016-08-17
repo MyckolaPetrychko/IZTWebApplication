@@ -195,3 +195,11 @@
     color: $base-disabled-color;
   }
 }
+.modal-parent {
+  position: fixed;
+  background-color: rgba($base-disabled-color, 0.5);
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
