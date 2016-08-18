@@ -1,9 +1,25 @@
 {
-    "login": "username",
-    "pass": "pass",
-    "role": "admin",
- 
-    "username": "UserTest W.M.", 
-    "company": "UserCompanyWM",
-    "email": "usertest-email@user-company.ltd"
+    "id": 2,
+    "username": "user",
+    "password": null,
+    "roles": [
+        "ROLE_USER"
+    ],
+    "enabled": true,
+    "firstName": "User",
+    "middleName": null,
+    "secondName": "u",
+    "phoneNumber": "123",
+    "email": "user@example.com                                  ",
+    "clients": [
+        0
+    ],
+    "authorities": [
+        {
+            "authority": "ROLE_USER"
+        }
+    ],
+    "credentialsNonExpired": true,
+    "accountNonLocked": true,
+    "accountNonExpired": true
 }

@@ -1,9 +1,13 @@
 export interface IAuthUser {
-    login?: string;
-    pass?: string;
-    role?: string;
- 
-    username?: string;
-    company?: string;
-    email?: string;
+    id: number,
+    username: string,
+    password: string,
+    role: string,
+    
+    firstName?: string,
+    middleName?: string,
+    secondName?: string,
+    email?: string,
+    phoneNumber?: string,
+    clients?: Array<number>
 }

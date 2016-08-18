@@ -30,12 +30,12 @@ export interface IUserRoles {
  *      public - not paroled actions: all + anonym 
  */
 export let USER_ROLES: IUserRoles = {
-    root:       ['root'],
-    admin:      ['root', 'admin'],
-    employee:  ['root', 'admin', 'employee', 'user'],
-    trader:    ['root', 'trader', 'user'],
-    user:       ['root', 'admin', 'employee', 'trader', 'user'],
-    public:     ['root', 'admin', 'employee', 'trader', 'user', 'anonym']
+    root:       ['ROLE_ROOT'],
+    admin:      ['ROLE_ROOT', 'ROLE_ADMIN'],
+    employee:   ['ROLE_ROOT', 'ROLE_IZT'],
+    trader:     ['ROLE_ROOT', 'ROLE_TRADER'],
+    user:       ['ROLE_ROOT', 'ROLE_ADMIN', 'ROLE_IZT', 'ROLE_TRADER'],
+    public:     ['ROLE_ROOT', 'ROLE_ADMIN', 'ROLE_IZT', 'ROLE_TRADER',  'ROLE_ANONYM']
 }
 
 /**

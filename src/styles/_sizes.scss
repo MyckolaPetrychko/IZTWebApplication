@@ -73,3 +73,18 @@
       min-height: $app-block-disparity-list;
       height: $app-block-disparity-list;
 }
+
+.wblg-login-block {
+  @include flex-main();
+  @include flex-align(center, flex-start);
+  @include flex-child($grow: 1);
+
+
+    .form-main {
+    margin: auto;
+    margin-top: 50px;
+    max-width: 400px;
+    
+    }
+    
+}

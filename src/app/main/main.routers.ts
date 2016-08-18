@@ -21,13 +21,11 @@ export const routes: Routes = [
   },
     // ...railcarsRoutes,
   { path: 'railcars', loadChildren: '../railcars/railcar.module' },
+  { path: 'login', loadChildren: '../user/user.module' },
+
 
   { path: 'settings', component: SettingsComponent, canActivate: [AuthAdminGuard] },
-  // { path: ''}
-  // { path: 'crisis', loadChildren: 'app/crisis/crisis.module' },
-  // { path: 'heroes', loadChildren: 'app/hero/hero.module' },
-  { path: 'login', component: UserLoginComponent },
-  { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard] }
+
 ];
 
 export let routerProviders : any = [

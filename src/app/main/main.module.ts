@@ -9,7 +9,7 @@ import { enableProdMode } from '@angular/core';
 import { SharedModule } from '../shared/shared.module'
 import { RailcarsModule } from '../railcars/railcar.module';
 import { SettingsModule } from '../settings/settings.module'; 
-
+import { UserModule } from '../user/user.module';
 import { routerProviders } from './main.routers';
 import {routing} from './main.routers';
 
@@ -22,7 +22,8 @@ enableProdMode();
     routing,
     SharedModule.forRoot(),
     RailcarsModule,
-    SettingsModule
+    SettingsModule,
+    UserModule
 
   ],
   declarations: [AppMainComponent],

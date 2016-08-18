@@ -1,10 +1,10 @@
 @import 'variable';
 
 
-
-
-
-
+.base-height {
+   flex-basis: auto !important;
+   
+}
 .self-end {
     align-self: flex-end;
 }
