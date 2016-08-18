@@ -14,7 +14,7 @@ import { IRailcarModel } from '../../railcars-subcomponents/railcar-list/railcar
 export class SelectRailcarService {
     public selectedAnnonced: Observable<IRailcarModel>;
     private selectedRailcarModel: IRailcarModel;
-    private selectedSource : Subject<IRailcarModel>; 
+    private selectedSource: Subject<IRailcarModel>;
 
     constructor() {
         this.selectedRailcarModel = <IRailcarModel>{};
@@ -23,19 +23,29 @@ export class SelectRailcarService {
     }
 
     public selectRailcar(_selected: IRailcarModel) {
-        this.selectedRailcarModel = _selected;
-        this.selectedSource.next(_selected);
+        if (
+            !!_selected
+            && !!_selected.inventoryid
+            && _selected.inventoryid !== null
+            && _selected.inventoryid !== undefined
+        ) {
+            this.selectedRailcarModel = _selected;
+        } else {
+            this.selectedRailcarModel = null;
+        }
+        this.selectedSource.next(this.selectedRailcarModel);
+
     }
 
     public selectedRailcar(): IRailcarModel {
         return this.selectedRailcarModel;
-    } 
+    }
 
-    public isSelectedRailcar() : boolean {
+    public isSelectedRailcar(): boolean {
         // console.log(this.selectedRailcarModel.inventoryid);
-        return ( !!this.selectedRailcarModel.inventoryid &&
-                 this.selectedRailcarModel.inventoryid !== null &&
-                 this.selectedRailcarModel.inventoryid !== undefined);
+        return (!!this.selectedRailcarModel.inventoryid &&
+            this.selectedRailcarModel.inventoryid !== null &&
+            this.selectedRailcarModel.inventoryid !== undefined);
     }
 
 }

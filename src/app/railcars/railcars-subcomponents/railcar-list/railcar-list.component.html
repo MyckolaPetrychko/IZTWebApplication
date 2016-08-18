@@ -4,23 +4,23 @@
         <div class="form-field form-rows">
             <label class=" label-near"> {{ 'LABEL.FROM'| translate}} </label>
             <div class="div-control form-rows">
-                <my-date-picker [(ngModel)]="dateStart" name="dateStart"  (ngModelChange)="setFilters()"> </my-date-picker>
+                <my-date-picker [(ngModel)]="dateStart" name="dateStart" (ngModelChange)="setFilters()"> </my-date-picker>
             </div>
         </div>
 
         <div class="form-field form-rows">
             <label class="label-near ">{{ 'LABEL.TO'| translate}} </label>
             <div class="div-control form-rows">
-                <my-date-picker [(ngModel)]="dateEnd" name="dateEnd" endDate="true"  (ngModelChange)="setFilters()">
+                <my-date-picker [(ngModel)]="dateEnd" name="dateEnd" endDate="true" (ngModelChange)="setFilters()">
                 </my-date-picker>
             </div>
         </div>
     </div>
 </div>
 
-<form class="form-main form-rows fixed-2x-subtitle unprintable " #filterForm="ngForm" *ngIf="isFullPage">
+<form class="form-main form-rows fixed-2x-subtitle unprintable " *ngIf="isFullPage">
     <div class="form-fieldset form-rows">
-        <div class="form-field form-cols" *ngFor="let f_item of [FiltersData[0],FiltersData[1]] " [ngClass]="{ 'warn-message': !!f_item.value}">
+        <div class="form-field form-cols" *ngFor="let f_item of InputFilterData " [ngClass]="{ 'info-message': !!f_item.value}">
             <label class="label-control" [attr.for]="f_item.label"> 
                          <span class = "span-overflow">{{ f_item.label  | translate}} </span>
                     </label>
@@ -30,19 +30,21 @@
             </div>
         </div>
 
-        <div class="form-field form-cols" *ngFor="let f_item of [FiltersData[2],FiltersData[3],FiltersData[4]]" [ngClass]="{ 'warn-message': !!f_item.value}">
+        <div class="form-field form-cols" *ngFor="let f_item of ComboboxFilterData" [ngClass]="{ 'info-message': !!f_item.value}">
             <label class="label-control" [attr.for]="f_item.label"> 
                          <span class = "span-overflow">{{ f_item.label  | translate}} </span>
                     </label>
             <div class="div-control form-rows">
-                <wblg-combobox-data [(ngModel)]="f_item.value" [dropdown]="f_item.dropdown" [data]="f_item.data" [attr.id]="f_item.label" [name]="f_item.label" prop="name">
+                <wblg-combobox-data [(ngModel)]="f_item.value" dropdown="true" [data]="f_item.data" [attr.id]="f_item.label" [name]="f_item.label"
+                    prop="name">
                 </wblg-combobox-data>
             </div>
         </div>
     </div>
     <div class="form-footer btns">
-        <button class="btn btn-dark" (click)="setFilters()"> 
-       <i class="fa fa-filter"></i> {{'BUTTON.FILTER' | translate}}
+        <button class="btn btn-light" (click)="setFilters()"> 
+       <i class="fa fa-filter"></i> 
+       {{'BUTTON.FILTER' | translate}}
     </button>
     </div>
 </form>
@@ -52,7 +54,6 @@
 </ag-grid-ng2>
 <div class="table-railcar-list-view " *ngIf="!isNotNull"></div>
 
-<wblg-railcar-disparity *ngIf="isFullPage" class="wblg-disparity-railcar unprintable" 
-[railcarId]="selected?.inventoryid"></wblg-railcar-disparity>
+<wblg-railcar-disparity *ngIf="isFullPage" class="wblg-disparity-railcar unprintable" [railcarId]="selected?.inventoryid"></wblg-railcar-disparity>
 
-<wblg-alert [message]="message" type="info" modal="true" [open]="!isNotNull"></wblg-alert>
+<wblg-alert [message]="message" type="info" big="true" modal="true" [open]="!isNotNull"></wblg-alert>

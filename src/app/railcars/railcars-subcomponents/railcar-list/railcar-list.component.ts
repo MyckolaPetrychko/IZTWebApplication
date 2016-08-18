@@ -5,31 +5,25 @@ import {
     OnChanges,
     SimpleChange,
     EventEmitter,
-    Input, Output }
-from '@angular/core';
+    Input, Output
+} from '@angular/core';
 
-// import { NgIf, NgClass, NgSwitch} from '@angular/common';
-// import { FORM_DIRECTIVES} from '@angular/forms';
+import { Subscription } from 'rxjs/Subscription';
+
 import { DatePipe } from '@angular/common';
-
-
-// import { AgGridNg2 } from 'ag-grid-ng2/main';
 import { GridOptions } from 'ag-grid/main';
-import { TranslatePipe, TranslateService, LangChangeEvent } from 'ng2-translate/ng2-translate';
+import {
+    TranslateService,
+    LangChangeEvent
+} from 'ng2-translate/ng2-translate';
 
-
-// import { MyDatePicker } from '../../../shared/my-date-picker/index';
-// import { AlertComponent } from '../../../shared/alert/alert.component';
-
-
-
+import { VisibilityConf } from '../railcar-view/view.model';
 import { IRailcarModel } from './railcars-list.model';
 import { RailcarService } from '../../common/services/railcars-http/railcars.service';
 
-// import { DataComboboxComponent } from '../../../shared/data-combobox/data-combobox.component';
-// import {InputComponent} from '../../../shared/input/input.component';
+
 import { LocalStorageService } from '../../../shared/services/storage.service';
-import { RefreshService as NotifyService } from '../../common/services/refresh.service';
+import { RefreshService } from '../../common/services/refresh.service';
 import { SelectRailcarService } from '../../common/services/select-railcar.service';
 
 import { DataFilterService } from '../../common/services/filters-data/filter-data.service';
@@ -40,9 +34,6 @@ import { RailcarDisparityComponent } from '../railcar-disparity/railcar-disparit
     moduleId: module.id,
     selector: 'wblg-railcar-list',
     templateUrl: './railcar-list.component.html',
-    // directives: [NgIf, NgClass,  AgGridNg2, 
-    //     FORM_DIRECTIVES,  RailcarDisparityComponent],
-    // pipes: [TranslatePipe]
 })
 export class RailcarListComponent implements OnInit, OnDestroy {
     public RailcarList: IRailcarModel[];
@@ -59,10 +50,10 @@ export class RailcarListComponent implements OnInit, OnDestroy {
     };
 
     public message: string;
-    private FiltersData: any[];
+    private InputFilterData: any;
+    private ComboboxFilterData: any;
     private columnDefs: any;
     private gridOptions: GridOptions;
-    private dataSource: any;
 
     private visibleCols: any;
     // private showalarmed: number; //TODO: ??? wtf???
@@ -71,58 +62,54 @@ export class RailcarListComponent implements OnInit, OnDestroy {
     private showremoterecords: number;// повернені
     private showdeleted: number; // deleted
 
-
     private _datePipe: DatePipe;
     private dateStart: Date;
     private dateEnd: Date;
 
 
-    private _subscribeTranslate: any;
-    private _notifyRefresh: any;
-    private isFirstSelection: boolean;
-
+    private _subscribeTranslate: Subscription;
+    private _notifyRefresh: Subscription;
 
     constructor(private _railcar: RailcarService,
         private _filters: DataFilterService,
         private _storage: LocalStorageService,
-        private _notify: NotifyService,
+        private _refresh: RefreshService,
         private _select: SelectRailcarService,
         private _translate: TranslateService
     ) {
         this._datePipe = new DatePipe();
 
-
         this.RailcarList = [];
-        this.selected = <IRailcarModel>{};
+        // this.selected = <IRailcarModel>{};
         this.isFullPage = true;
         this.message = 'LOADING.MESSAGE';
-        this.isFirstSelection = false;
 
         // TODO: table
-        this.FiltersData = [];
+        this.InputFilterData = [];
+        this.ComboboxFilterData = [];
         this.gridOptions = <GridOptions>{};
 
     }
 
     ngOnInit() {
+        this.setSelect(<IRailcarModel>{});
 
         this.changeViews();
-
         this.createColunmDef();
         this.createGridOptions();
-
         this.initFilters();
         this.initDatePicker();
 
         this._subscribeTranslate = this._translate.onLangChange
-        .debounceTime(1000)
-        .subscribe((event: LangChangeEvent) => {
-            if (this.gridOptions && this.gridOptions.api) { this.gridOptions.api.refreshHeader(); }
+            .debounceTime(1000)
+            .subscribe((event: LangChangeEvent) => {
+                if (this.gridOptions && this.gridOptions.api) { this.gridOptions.api.refreshHeader(); }
 
-        });
+            });
 
-        this._notifyRefresh = this._notify.refreshAnnonced.subscribe(() => { 
-            console.log ('refresh ff'); this.setFilters(); })
+        this._notifyRefresh = this._refresh.refreshAnnonced.subscribe(() => {
+            console.log('refresh ff'); this.setFilters();
+        })
 
     }
 
@@ -137,18 +124,7 @@ export class RailcarListComponent implements OnInit, OnDestroy {
     }
 
     public refreshData(): void {
-                 console.log('Refresh ' + new Date);
-                 console.log('Refresh\t' + this.selected.inventoryid 
-                 + '\n\t\t'+ this._select.selectedRailcar().inventoryid);
-
-       
-                if (this._select.isSelectedRailcar()) {
-                   this.selected = this._select.selectedRailcar();
-                } else {
-                    this.selected = <IRailcarModel>{};
-                }
-
-        // this.selected = <IRailcarModel>{};
+        this.setSelect(<IRailcarModel>{});
         this._railcar.getRailcarList(
             this.dateStart.getTime(),
             this.dateEnd.getTime(),
@@ -158,31 +134,27 @@ export class RailcarListComponent implements OnInit, OnDestroy {
             this.showweighted,
             this.showremoterecords,
             this.showdeleted,
-            this.FiltersData[0].value,
-            this.FiltersData[1].value,
-            this.FiltersData[2].value,
-            this.FiltersData[4].value,
-            this.FiltersData[3].value
+            this.InputFilterData[0].value,
+            this.InputFilterData[1].value,
+            this.ComboboxFilterData[0].value,
+            this.ComboboxFilterData[2].value,
+            this.ComboboxFilterData[1].value
         )
             .subscribe((res: IRailcarModel[]): void => {
 
                 this.RailcarList = res;
                 this.isNotNull = (this.RailcarList.length > 0);
-                this.message = (!this.isNotNull) ? 'NOROWS.MESSAGE' : '';
-                 if (this.gridOptions && this.gridOptions.api && this.selected && this.selected.inventoryid ) {
-                      this.selectData(this.selected);
-                 }
+                this.message = (!this.isNotNull) ? 'MESSAGE.EMPTY_TABLE' : null;
 
             },
             (err: string): void => {
                 this.RailcarList = [];
-                this.message = 'Error get data:' + JSON.stringify(err);
+                this.message = err;
             });
     }
 
     private translateHeaderName(params: any): string {
         let translate: string = params.colDef.headerName;
-        let txtGroup = document.getElementsByClassName('ag-header-cell-text');
         this._translate.get(params.colDef.headerName).subscribe((val) => {
             translate = val;
         });
@@ -196,21 +168,23 @@ export class RailcarListComponent implements OnInit, OnDestroy {
     }
 
     private initFilters(): void {
-        this.FiltersData = [
-            { value: '', label: 'TABLE.transportnumber', data: [], dropdown: false },
-            { value: '', label: 'TABLE.invoicenumber', data: [], dropdown: false },
-            { value: '', label: 'TABLE.sendernname', data: [], dropdown: true },
-            { value: '', label: 'TABLE.cropfullname', data: [], dropdown: true },
-            { value: '', label: 'TABLE.stationname', data: [], dropdown: true },
+        this.InputFilterData = [
+            { value: '', label: 'TABLE.transportnumber' },
+            { value: '', label: 'TABLE.invoicenumber' }
+        ];
+        this.ComboboxFilterData = [
+            { value: '', label: 'TABLE.sendernname', data: [] },
+            { value: '', label: 'TABLE.cropfullname', data: [] },
+            { value: '', label: 'TABLE.stationname', data: [] },
         ];
         this._filters.getStationsList().subscribe(list => {
-            this.FiltersData[4].data = list;
+            this.ComboboxFilterData[2].data = list;
         });
         this._filters.getCulturesList().subscribe(list => {
-            this.FiltersData[3].data = list;
+            this.ComboboxFilterData[1].data = list;
         });
         this._filters.getSendersList().subscribe(list => {
-            this.FiltersData[2].data = list;
+            this.ComboboxFilterData[0].data = list;
         });
     }
 
@@ -668,59 +642,32 @@ export class RailcarListComponent implements OnInit, OnDestroy {
                 return carloadClass;
             },
             onSelectionChanged: (): void => {
-                    console.log(!this.isFirstSelection + ' ' + this.isFirstSelection);
+                let _sel: Array<IRailcarModel> = this.gridOptions.api.getSelectedRows();
 
-                if (!this.isFirstSelection) {
-                    let _sel: Array<IRailcarModel> = this.gridOptions.api.getSelectedRows();
-                    if ((_sel.length > 0) && (this.selected) && (this.selected.inventoryid === _sel[0].inventoryid)) {
-                        this.selected = <IRailcarModel>{};
-                        this.gridOptions.api.deselectAll();
-                    } else {
-                        this.selected = _sel[0];
-                    }
-                                        console.log('select');
-
-                    this._select.selectRailcar(this.selected);
-                                        // this.selectedItem.next(event.node.data);
+                if (
+                    (_sel.length > 0)
+                    && (this.selected)
+                    && (this.selected.inventoryid === _sel[0].inventoryid)
+                ) {
+                    this.selected = <IRailcarModel>{};
+                    this.gridOptions.api.deselectAll();
                 } else {
-                    // this.selected = this.gridOptions.api.getSelectedRows()[0];
-                                                            console.log('first select');
-
-                    this.isFirstSelection = false;
+                    this.selected = _sel[0];
                 }
+                this.setSelect(this.selected);
+                // this._select.selectRailcar(this.selected);
             },
             onGridReady: () => {
-                // console.log(this._select.isSelectedRailcar());
-        
-                // if (this._select.isSelectedRailcar()) {
-                //                     this.selected = this._select.selectedRailcar();
-
-                //     this.selectData(this._select.selectedRailcar());
-
-                // } else {
-                //     console.log('none');
-                // }
-
+                // TODO: grid ready
             },
             suppressMovableColumns: true,
             suppressLoadingOverlay: true,
             suppressNoRowsOverlay: true
-
         };
     }
 
-    private selectData(_selected: IRailcarModel): void {
-        console.log('_selected');
-        console.log(_selected);
-        this.isFirstSelection = true;
-        if (_selected && _selected.inventoryid) {
-
-            this.gridOptions.api.forEachNode((_node) => {
-
-                if (_node.data.inventoryid === _selected.inventoryid) {
-                    _node.setSelected(true, true);
-                }
-            });
-        }
+    private setSelect(_val: IRailcarModel) {
+        this.selected = _val;
+        this._select.selectRailcar(_val);
     }
 }
