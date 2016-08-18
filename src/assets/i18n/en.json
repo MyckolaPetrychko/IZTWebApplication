@@ -166,5 +166,15 @@
         "showweighted": "Weighted",
         "showremoterecords": "Returned RC",
         "showdeleted": "Deleted RC"
-    }
+    },
+
+    "COMBOBOX" : {
+        "NO_DATA": "No data"
+    },
+
+    "ROLE_ROOT": "Root",
+    "ROLE_ADMIN": "Administrator",
+    "ROLE_EMPLOYEE": "Employee",
+    "ROLE_TRADER": "Trader",
+    "ROLE_ANONYM": "Unknown"
 }

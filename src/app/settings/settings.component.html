@@ -4,4 +4,114 @@
     <button class="btn btn-light" (click)="defineActiveButton('delete')"> <i class="fa fa-remove"></i> {{'BUTTON.DELETE_USER' | translate }}</button>
 </div>
 
-<wblg-userlist [(selectedButton)]="selectedButton"></wblg-userlist>
+<div class="wblg-sub-title unprintable">
+    {{ 'LABEL.LIST_OF_USERS' | translate }}
+</div>
+
+<form class="form-main form-rows fixed-2x-subtitle unprintable " #filterForm="ngForm">
+	    <div class="form-field form-cols">
+            <label class="label-control" [attr.for]="FiltersData[0].label"> 
+                         <span class = "span-overflow">{{ FiltersData[0].label  | translate}} </span>
+                    </label>
+            <div class="div-control form-rows">
+                <wblg-input [attr.id]="FiltersData[0].label" [(ngModel)]="FiltersData[0].value" [name]="FiltersData[0].label">
+                </wblg-input>
+            </div>
+        </div>
+
+        <div class="form-field form-cols" [ngClass]="{ 'warn-message': !!FiltersData[1].value}">
+            <label class="label-control" [attr.for]="FiltersData[1].label"> 
+                         <span class = "span-overflow">{{ FiltersData[1].label  | translate}} </span>
+                    </label>
+            <div class="div-control form-rows">
+				<wblg-combobox-data [(ngModel)]="FiltersData[1].value" dropdown="true" [data]="FiltersData[1].data" [name]="FiltersData[1].label" prop="name">
+                </wblg-combobox-data>
+            </div>
+        </div>
+
+		<div class="form-field form-cols" [ngClass]="{ 'warn-message': !!FiltersData[2].value}">
+            <label class="label-control" [attr.for]="FiltersData[2].label"> 
+                         <span class = "span-overflow">{{ FiltersData[2].label  | translate}} </span>
+                    </label>
+            <div class="div-control form-rows">
+				<wblg-combobox [(ngModel)]="FiltersData[2].value" dropdown="true" [data]="FiltersData[2].data" [name]="FiltersData[2].label" prop="name">
+                </wblg-combobox>
+            </div>
+        </div>
+    <div class="form-footer btns">
+        <button class="btn btn-dark" (click)="setFilters();"> 
+       <i class="fa fa-filter"></i> {{'BUTTON.FILTER' | translate}}
+    </button>
+    </div>
+</form>
+
+<ag-grid-ng2 #agGrid class="ag-fresh table-user-list-view printable" (rowClicked)="onCellClicked($event)"  [gridOptions]="gridOptions" [rowData]="UsersList">
+</ag-grid-ng2>
+
+<wblg-modal style="height: 100%; width: 100%;" type="info" [(open)]="modal" id="madalId" close="true" >
+    <span class="header">{{ title_form | translate}} </span>
+    <div class="txt" *ngIf="selectedButton === 'add' || selectedButton === 'edit'">
+        <form class="form-main form-cols">
+            <div role="group" class="form-fieldset form-cols">
+                <div class="form-field form-rows">
+					<label class="label-control">
+						<span class = "span-overflow">{{ 'LABEL.LOGIN' |  translate }}:</span>
+					</label>
+					<div class="div-control form-cols">
+						<input type="text" [(ngModel)]="currentData.login" name="login" />
+					</div>
+                </div>
+
+                <div class="form-field form-rows">
+					<label class="label-control">
+						<span class = "span-overflow">{{ 'LABEL.USERNAME' |  translate }}:</span>
+					</label>
+					<div class="div-control form-cols">
+						<input type="text" [(ngModel)]="currentData.username" name="username" />	
+					</div>
+                </div>
+
+                <div class="form-field form-rows">
+					<label class="label-control">
+						<span class = "span-overflow">E-mail:</span>
+					</label>
+					<div class="div-control form-cols">
+						<input type="text" [(ngModel)]="currentData.email" name="email" />
+					</div>
+                </div>
+
+				<div class="form-field form-rows">
+					<label class="label-control">
+						<span class = "span-overflow">{{ 'LABEL.COMPANY' |  translate }}:</span>
+					</label>
+					<div class="div-control form-cols">
+						<select class="label" [(ngModel)]="currentData.company" name="company">
+								<option *ngFor="let list of UsersList">{{ list.company }}</option>
+						</select>
+					</div>
+                </div>
+
+				<div class="form-field form-rows">
+					<label class="label-control">
+						<span class = "span-overflow">{{ 'LABEL.ROLE' |  translate }}:</span>
+					</label>
+					<div class="div-control form-cols">
+						<select class="label" [(ngModel)]="currentData.role" name="role">
+								<option *ngFor="let role of UserRoleList">{{ role }}</option>
+						</select>
+					</div>
+                </div>
+            </div>
+        </form>
+    </div>
+	<div class="footer" *ngIf="selectedButton === 'add' || selectedButton === 'edit'">
+        <button class="btn btn-light" (click)="ok()">
+             <i class="fa fa-check" aria-hidden="true"></i> 
+              {{ title_button | translate }}
+          </button>
+          <button class="btn btn-light" (click)="cancel()"> 
+             <i class="fa fa-undo" aria-hidden="true"></i> 
+             {{ 'BUTTON.CANCEL' | translate }}
+        </button>
+    </div>
+</wblg-modal>

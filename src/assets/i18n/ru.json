@@ -167,5 +167,15 @@
         "showweighted": "Взвешенные",
         "showremoterecords": "Возвращенные ЖВ",
         "showdeleted": "Удаленные ЖВ"
-    }
+    },
+
+    "COMBOBOX" : {
+        "NO_DATA": "Нет данных"
+    },
+
+    "ROLE_ROOT": "Root",
+    "ROLE_ADMIN": "Администратор",
+    "ROLE_EMPLOYEE": "Работник",
+    "ROLE_TRADER": "Трейдер",
+    "ROLE_ANONYM": "Неизвестный"
  }

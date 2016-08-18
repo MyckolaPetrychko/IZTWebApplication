@@ -165,5 +165,15 @@
         "showweighted": "Зважені",
         "showremoterecords": "Повернені ЗВ",
         "showdeleted": "Видалені ЗВ"
-    }
+    },
+
+    "COMBOBOX" : {
+        "NO_DATA": "Немає даних"
+    },
+
+    "ROLE_ROOT": "Root",
+    "ROLE_ADMIN": "Адміністратор",
+    "ROLE_EMPLOYEE": "Працівник",
+    "ROLE_TRADER": "Трейдер",
+    "ROLE_ANONYM": "Невідомий"
 }
