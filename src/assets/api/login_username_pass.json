@@ -3,7 +3,7 @@
     "username": "user",
     "password": null,
     "roles": [
-        "ROLE_USER"
+        "ROLE_IZT"
     ],
     "enabled": true,
     "firstName": "User",
@@ -16,7 +16,7 @@
     ],
     "authorities": [
         {
-            "authority": "ROLE_USER"
+            "authority": "ROLE_IZT"
         }
     ],
     "credentialsNonExpired": true,

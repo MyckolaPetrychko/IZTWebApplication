@@ -5,48 +5,50 @@
 <button (click)="login('anonym')">anonym</button>
 <button (click)="logout()">logout</button>-->
 
-
-<div class="wblg-login-block">
-    <form class="form-main form-rows" #authForm="ngForm">
-        <div role="group" class="form-fieldset form-cols">
-            <div class="legend">
-                <span class="span-owerflow"> {{ 'TITLE.AUTH' | translate}} </span>
-            </div>
-            <div class="form-field form-cols" [ngClass]="{ 'error-message':!username.valid}">
-                <label class="label-control" for="username">
+<wblg-modal type="info" [(open)]="mainModal">
+    <span class="header">{{ 'TITLE.AUTH' | translate}}</span>
+    <div class="txt">
+        <wblg-alert [message]="errRouterMess" type="error" [(open)]="isErrRouterMess" big="true" close="true"> </wblg-alert>
+        <form class="form-main form-rows" #authForm="ngForm">
+            <div role="group" class="form-fieldset form-cols">
+                <div class="form-field form-cols" [ngClass]="{ 'error-message':!username.valid}">
+                    <label class="label-control" for="username">
                <span class = "span-overflow"> {{ 'LABEL.USERNAME' | translate}} </span>  
                 <wblg-alert type="warn" small="true"  [open]="username.errors?.required"> </wblg-alert>
                     </label>
-                <div class="div-control form-cols">
-                    <input type="text" [(ngModel)]="user.username" name="username" #username="ngModel" required id="username">
+                    <div class="div-control form-cols">
+                        <input type="text" [(ngModel)]="user.username" name="username" #username="ngModel" required id="username">
 
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-field form-cols" [ngClass]="{ 'error-message':!password.valid}">
-                <label class="label-control" for="password"> 
+                <div class="form-field form-cols" [ngClass]="{ 'error-message':!password.valid}">
+                    <label class="label-control" for="password"> 
                          <span class = "span-overflow">{{ 'LABEL.PASSWORD' | translate}}</span>
                           <wblg-alert type="warn" small="true" [open]="password.errors?.required"> </wblg-alert>
                     </label>
-                <div class="div-control form-cols">
-                    <input type="password" [(ngModel)]="user.password" name="password" #password="ngModel" required id="password" />
+                    <div class="div-control form-cols">
+                        <input type="password" [(ngModel)]="user.password" name="password" #password="ngModel" required id="password" />
 
+                    </div>
                 </div>
+
             </div>
+        </form>
+        <wblg-alert message="VALUE.REQUIRED" type="warn" small="true" [open]="true"> </wblg-alert>
+        <wblg-alert [message]="message" [type]="type" [(open)]="visibility" big="true" [time]="time" close="true"> </wblg-alert>
+    </div>
+    <div class="footer">
+        <button type="submit" class="btn btn-light" (click)="login()" [disabled]="authForm.invalid">
+            <i class="fa fa-check" aria-hidden="true"></i> 
+               {{'BUTTON.OK' | translate }}
+         </button>
+        <button type="submit" class="btn btn-light" (click)="cancel()" *ngIf="isErrRouterMess">
+            <i class="fa fa-undo" aria-hidden="true"></i> 
+            {{'BUTTON.CANCEL' | translate }}
+          </button>
+    </div>
 
-            <div class="form-footer form-cols base-height ">
-                <div class="div-control form-cols">
-                    <wblg-alert message="VALUE.REQUIRED" type="warn" small="true" [open]="true"> </wblg-alert>
-                </div>
-                <button type="submit" class="btn btn-light" (click)="login()" [disabled]="authForm.invalid">
-                       <i class="fa fa-check" aria-hidden="true"></i> 
-                        {{'BUTTON.OK' | translate }}
-                 </button>
-        </div>
-        </div>
-    </form>
-</div>
-
-<wblg-alert [message]="message" [type]="type" modal="true" [(open)]="visibility" [time]="time" close="true"> </wblg-alert>
+</wblg-modal>
 
 <!--<wblg-alert [message]  = "message"  [type]="'info'"   [open]="!isVisible" ></wblg-alert>-->
