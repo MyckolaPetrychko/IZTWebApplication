@@ -97,12 +97,6 @@ export class RailcarService {
         if (_filter_stationname !== '') { params.set('filter_stationname', _filter_stationname); }
         if (_filter_cropname !== '') { params.set('filter_cropname', _filter_cropname); }
 
-
-        if (!this._auth.isAuth('user')) {
-            // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USER_NOT_AUTH');
-        }
-
         return this._http.get(RailcarListApi, { search: params })
             .map(res => <IRailcarModel[]>res.json())
             // TODO: #debug | RailcarService
@@ -117,11 +111,6 @@ export class RailcarService {
 
 
     public getRailcarDisparityList(railcarId: string): Observable<any> {
-        if (!this._auth.isAuth('user')) {
-            // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USER_NOT_AUTH');
-        }
-
         let urlRailcarIdDisparityApi = RailcarIdDisparityApi.replace('%railcarID%', railcarId);
 
         return this._http.get(urlRailcarIdDisparityApi)
@@ -143,10 +132,6 @@ export class RailcarService {
      * @returns {Observable<IRailcarModel> railcar model }
      */
     public getRailcarId(railcarId: string): Observable<any> {
-        if (!this._auth.isAuth('user')) {
-            // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USER_NOT_AUTH');
-        }
         let urlRailcarIdApi = RailcarIdApi.replace('%railcarID%', railcarId);
         return this._http.get(urlRailcarIdApi)
             .map(res => <IRailcarModel>res.json())
@@ -169,15 +154,6 @@ export class RailcarService {
      * @returns {Observable<any>} - result of adding: _railcar with id || only id
      */
     public addRailcar(_railcar: IRailcarEditModel): Observable<any> {
-        // TODO: RailcarService | change to only traider muss add new railcar
-        if (!this._auth.isAuth('user')) {
-            // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USER_NOT_AUTH');
-        }
-        if (!this._auth.isAuth('trader')) {
-            // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USER_IS_NOT_TRADER');
-        }
         let body = JSON.stringify(_railcar);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
@@ -204,15 +180,6 @@ export class RailcarService {
      * @returns {Observable<any>}       - result of update _railcar 
      */
     public updateRailcar(_railcar: IRailcarEditModel): Observable<any> {
-        // TODO: RailcarService | change to only traider muss add new railcar
-        if (!this._auth.isAuth('user')) {
-            // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USER_NOT_AUTH');
-        }
-        if (!this._auth.isAuth('trader')) {
-            // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USER_IS_NOT_TRADER');
-        }
         // TODO:  RailcarService | check id by railcar
         let url = RailcarIdApi.replace('%railcarID%', _railcar.transportnumber);
         let body = JSON.stringify(_railcar);
@@ -240,14 +207,6 @@ export class RailcarService {
      */
      
     public deleteRailcar(railcarId: string): Observable<any> {
-        if (!this._auth.isAuth('user')) {
-            // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USER_NOT_AUTH');
-        }
-        if (!this._auth.isAuth('trader')) {
-            // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USER_IS_NOT_TRADER');
-        }
         let url = RailcarIdApi.replace('%railcarID%', railcarId);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
@@ -269,14 +228,6 @@ export class RailcarService {
      * @returns {Observable<any>} - parset json
      */
     public getRailcarFile(file: string): Observable<any> {
-        if (!this._auth.isAuth('user')) {
-            // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USER_NOT_AUTH');
-        }
-        if (!this._auth.isAuth('trader')) {
-            // TODO: #translate | RailcarService
-            return Observable.throw('CONNECTION.USER_IS_NOT_TRADER');
-        }
         let headers = new Headers({ 'Content-Type': 'application/xml' });
         let options = new RequestOptions({ headers: headers });
         let body = JSON.stringify(file);
@@ -291,15 +242,6 @@ export class RailcarService {
                               '\nData: ' + JSON.stringify(data));
             })
             .catch(handleError);
-        // return this._http.post(RailcarFileApi, body, options)
-        //     // TODO: #debug | RailcarService
-        //     .do(data => {
-        //         console.debug('RailcarFileApi' +
-        //                       '\nUrl: ' + RailcarFileApi +
-        //                       '\nData Len: ' + 1 + 
-        //                       '\nData: ' + JSON.stringify(data));
-        //     })
-        //     .catch(handleError);
     }
 
 }

@@ -18,7 +18,7 @@ import { DisparityService } from './disparity.service';
 import { RefreshService } from '../common/services/refresh.service';
 
 import { IDisparityModel } from './disparity.model';
-import { AuthService } from '../../shared/auth/auth.service';
+import { UserService } from '../../shared/auth/user.service';
 
 @Component({
     moduleId: module.id,
@@ -52,7 +52,7 @@ export class DisparityListComponent implements OnInit, OnDestroy {
 
     constructor(private _disparity: DisparityService,
         private _refresh: RefreshService,
-        private _auth: AuthService,
+        private _auth: UserService,
         private _translate: TranslateService) {
         this.DisparityList = [];
         this.selected = <IDisparityModel>{};

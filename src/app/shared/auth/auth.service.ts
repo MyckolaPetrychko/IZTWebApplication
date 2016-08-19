@@ -22,7 +22,7 @@ import 'rxjs/add/operator/do';
 // import 'rxjs/add/operator/toPromise';
 
 
-import { UserLoginApi, UserLogoutApi } from './auth.constant';
+import { UserLoginApi, UserLogoutApi, UserIdApi, UserListApi } from './auth.constant';
 import { UserService } from './user.service';
 import { IAuthUser } from './auth-user.model';
 import { USER_ROLES, IUserRoles } from './user-roles.model';
@@ -32,19 +32,10 @@ import { Base64 } from '../variable/base64.class';
 
 @Injectable()
 export class AuthService {
-
-    // public _isLogined: boolean;
-    // public user: IAuthUser;
-    // public role: string;
-    // private _roles: IUserRoles;
-
     constructor(
         private _http: Http,
         private _user: UserService) {
-        // ROD: remove debug
-        // this.role = 'ROLE_ANONYM';
-        // this._roles = USER_ROLES;
-        // this._isLogined = true;
+
     }
 
     public login(user: string, pass: string): Observable<IAuthUser | string> {
@@ -54,26 +45,81 @@ export class AuthService {
         options.headers = new Headers();
         options.headers.append('Authorization', str);
 
-        console.log(options);
         return this._http.get(UserLoginApi, options)
             .map((data: Response): IAuthUser => { return <IAuthUser>data.json(); })
             .catch(handleError);
     }
 
-    // public isAuth(_role: string) {
-    //     return (
-    //         this._isLogined
-    //         && (this._roles[_role].indexOf(this.role) !== -1)
-    //     );
-    // }
-
     public logout() {
         this._user.changeUser(null);
-        // this.role = 'ROLE_ANONYM';
-        // this._isLogined = false;
     }
 
-    // public isLogined() {
-    //     return this._isLogined
-    // }
+    getUserList(): Observable<any> {
+        return this._http.get(UserListApi)
+            .map(res => <IAuthUser[]>res.json())
+            .do(data => {
+                console.debug('UserList' +
+                    '\nUrl: ' + UserListApi +
+                    '\nData: ' + JSON.stringify(data));
+            })
+            .catch(handleError);
+    }
+
+    public getUserId(userId: number): Observable<any> {
+        let urlUserIdApi = UserIdApi.replace('%userID%', '' + userId);
+        return this._http.get(urlUserIdApi)
+            .map(res => <IAuthUser>res.json())
+            .do(data => {
+                console.debug('UserId' +
+                    '\nUrl: ' + urlUserIdApi +
+                    '\nData: ' + JSON.stringify(data));
+            })
+            .catch(handleError);
+    }
+
+    public addUser(_user: IAuthUser): Observable<IAuthUser | string> {
+        let body = JSON.stringify(_user);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this._http.post(UserListApi, body, options)
+            .map(res => <IAuthUser>res.json())
+            .do(data => {
+                console.debug('UserAdd' +
+                    '\nUrl: ' + UserListApi +
+                    '\nData: ' + JSON.stringify(data));
+            })
+            .catch(handleError);
+    }
+
+    public updateUser(userId: number, _newUser: IAuthUser): Observable<IAuthUser | string> {
+        let url = UserIdApi.replace('%railcarID%', '' + userId);
+        let body = JSON.stringify(_newUser);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this._http.put(url, body, options)
+            .map(res => <IAuthUser>res.json())
+            .do(data => {
+                console.debug('UserUpdate' +
+                    '\nUrl: ' + UserListApi +
+                    '\nData: ' + JSON.stringify(data));
+            })
+            .catch(handleError);
+    }
+
+    public deleteUser(userId: number): Observable<IAuthUser | string> {
+        let url = UserIdApi.replace('%railcarID%', '' + userId);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this._http.delete(url, options)
+            .do(data => {
+                console.debug('RailcarDelete' +
+                    '\nUrl: ' + UserListApi +
+                    '\nData: ' + JSON.stringify(data));
+            })
+            .catch(handleError);
+    }
+
 }

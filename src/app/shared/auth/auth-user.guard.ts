@@ -9,9 +9,8 @@ export class AuthGuard implements CanActivate {
     }
 
     canActivate() {
-
         if (this.authService.isAuth('user')) { return true; }
-        this.router.navigate(['/login']);
+        this.router.navigate(['/login', {message: 'CONNECTION.USER_NOT_AUTH'}]);
         return false;
     }
 }

@@ -4,7 +4,7 @@ import { ROUTER_DIRECTIVES, Router /*, ActivatedRoute */} from '@angular/router'
 import { RefreshService } from '../common/services/refresh.service';
 import { SelectRailcarService } from '../common/services/select-railcar.service';
 import { RailcarService } from '../common/services/railcars-http/railcars.service';
-import { AuthService } from '../../shared/auth/auth.service';
+import { UserService } from '../../shared/auth/user.service';
 import { IRailcarModel } from '../railcars-subcomponents/railcar-list/railcars-list.model';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -25,7 +25,7 @@ export class RailcarsMainComponent implements OnInit, OnDestroy {
         private _refresh : RefreshService,
         private _select: SelectRailcarService,
         private _railcar : RailcarService,
-        private _auth : AuthService,
+        private _auth : UserService,
         private _router : Router ) { 
 
     }

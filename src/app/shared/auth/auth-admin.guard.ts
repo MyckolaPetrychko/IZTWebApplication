@@ -10,7 +10,8 @@ export class AuthAdminGuard implements CanActivate {
          private router: Router) {  }
     canActivate() {
         if (this.authService.isAuth('admin')) { return true; }
-        this.router.navigate(['/login']);
+        // this.router.navigate(['/login', {message: 'CONNECTION.USER_MUSS_BE_ADMIN'}]);
+        this.router.navigate(['/login', {message: 'CONNECTION.USER_NOT_AUTH'}]);
         return false;
     }
 }

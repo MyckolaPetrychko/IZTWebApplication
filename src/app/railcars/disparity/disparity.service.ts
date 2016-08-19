@@ -24,7 +24,6 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
 
-import { AuthService } from '../../shared/auth/auth.service';
 import { handleError } from '../../shared/variable/error-handler.function';
 // Application
 import {
@@ -45,16 +44,13 @@ import {
 export class DisparityService {
     // private _role: string;
 
-    constructor(private _http: Http, private _auth : AuthService) {
+    constructor(private _http: Http) {
 
     }
 
     // getDisparityListCurrent(): Observable<IDisparityModel[]> {
     getDisparityListCurrent(): Observable<any> {
-        if (!this._auth.isAuth('user')) {
-             return Observable.throw('CONNECTION.USER_NOT_AUTH'); 
-       }
-        return this._http.get(DisparityListCurrentApi)
+          return this._http.get(DisparityListCurrentApi)
             .map(res => <IDisparityModel[]>res.json())
             .do(data => {
                 // TODO: debug
@@ -71,9 +67,6 @@ export class DisparityService {
     //                                disparityID: string): Observable<IDisparityAcceptModel> {
     setDisparityRailcarAcceptApi(railcarID: string,
         disparityID: string): Observable<any> {
-        if (!this._auth.isAuth('user')) {
-             return Observable.throw('CONNECTION.USER_NOT_AUTH'); 
-          }
 
         let urlDisparityRailcarAcceptApi = DisparityAcceptApi
             .replace('%railcarId%', railcarID)

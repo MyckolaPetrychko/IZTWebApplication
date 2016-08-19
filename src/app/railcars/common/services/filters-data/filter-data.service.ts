@@ -23,7 +23,6 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
-import { AuthService } from '../../../../shared/auth/auth.service';
 import { handleError } from '../../../../shared/variable/error-handler.function';
 
 import {
@@ -54,7 +53,7 @@ export class DataFilterService {
      * @param {Http} _http - Angular2 http module
      * @param {AuthService} _auth - authenticationServise
      */
-    constructor(private _http: Http, private _auth: AuthService) {
+    constructor(private _http: Http) {
 
     }
 
@@ -170,9 +169,6 @@ export class DataFilterService {
         id: string = undefined,
         name: string = undefined)
         : Observable<IDataModel[] | string> {
-        if (!this._auth.isAuth('user')) {
-            return Observable.throw('CONNECTION.USER_NOT_AUTH');
-        }
 
         return this._http.get(url)
             .map(res => <IDataModel[]>(res.json().map((item: { [name: string]: string }): IDataModel => {
