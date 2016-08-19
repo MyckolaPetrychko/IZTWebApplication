@@ -10,7 +10,8 @@
  * @example 'api/railcar'
  */
 // TODO: RailcarConstant | test data
- export let RailcarListApi = 'assets/api/railcar.json';
+//  export let RailcarListApi = 'assets/api/railcar.json';
+ export let RailcarListApi = 'api/railcar';
 
 /**
  * @export RailcarIdApi
@@ -18,7 +19,8 @@
  * @example 'api/railcar/%railcarID%';
  */
 // TODO: RailcarConstant | test data
-export let RailcarIdApi   = 'assets/api/railcar/%railcarID%.json';
+// export let RailcarIdApi   = 'assets/api/railcar/%railcarID%.json';
+export let RailcarIdApi   = 'api/railcar/%railcarID%';
 
 /**
  * @export RailcarIdDisparityApi
@@ -26,6 +28,7 @@ export let RailcarIdApi   = 'assets/api/railcar/%railcarID%.json';
  * @example 'api/railcar/%railcarID%/disparity';
  */
 // TODO: RailcarConstant | test data
+// export let RailcarIdDisparityApi   = 'assets/api/railcar/%railcarID%-disparity.json';
 export let RailcarIdDisparityApi   = 'assets/api/railcar/%railcarID%-disparity.json';
 
 /**
@@ -34,4 +37,5 @@ export let RailcarIdDisparityApi   = 'assets/api/railcar/%railcarID%-disparity.j
  * @example 'api/railcar/file';
  */
 // TODO: RailcarConstant | test data
+// export let RailcarFileApi   = 'assets/api/railcar/add.json';
 export let RailcarFileApi   = 'assets/api/railcar/add.json';
