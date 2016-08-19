@@ -11,7 +11,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {
     TranslateModule,
     TranslateStaticLoader,
-    TranslateLoader, TranslatePipe, TranslateService
+    TranslateLoader
 } from 'ng2-translate/ng2-translate';
 
 import { AgGridNg2 } from 'ag-grid-ng2/main';
@@ -20,6 +20,7 @@ import { AgGridNg2 } from 'ag-grid-ng2/main';
 import { AuthAdminGuard } from './auth/auth-admin.guard';
 import { AuthGuard } from './auth/auth-user.guard';
 import { AuthService } from './auth/auth.service';
+import { UserService } from './auth/user.service';
 
 import { ValueFilterPipe } from './pipes/value-filter.pipe';
 import { DataFilterPipe } from './pipes/data-filter.pipe';
@@ -105,6 +106,7 @@ export class SharedModule {
             providers: [
                 LocalStorageService,
                 AuthService,
+                UserService,
                 AuthAdminGuard,
                 AuthGuard,
 
