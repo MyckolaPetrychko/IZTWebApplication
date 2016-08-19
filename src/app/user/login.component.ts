@@ -63,7 +63,7 @@ export class UserLoginComponent implements OnInit, OnDestroy {
     }
 
     public login() {
-        this._auth.login(this.user.username, this.user.username)
+        this._auth.login(this.user.username, this.user.password)
             .subscribe(
             (data: IAuthUser) => {
                 this._user.changeUser(data);
