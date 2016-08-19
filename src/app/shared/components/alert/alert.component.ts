@@ -54,7 +54,7 @@ export class AlertComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
-        console.log(this.type + ' ' + this.visible);
+        // console.log(this.type + ' ' + this.visible);
     }
     
     ngOnChanges(changes : { [prop:string] : SimpleChange }) {
@@ -64,7 +64,7 @@ export class AlertComponent implements OnInit, OnChanges {
              } else if ( propName === 'message') {
                  this.setMess(changes[propName].currentValue);
              }
-             console.log(propName + ':' + changes[propName].currentValue);
+            //  console.log(propName + ':' + changes[propName].currentValue);
         }
     }
     

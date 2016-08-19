@@ -96,11 +96,12 @@ export class ModalComponent implements OnInit {
      public onClickmain() {
         this.close();
     }
-     onKeyUp(event: KeyboardEvent) {
+
+     OnKeyUp(event: KeyboardEvent) {
     //   if (event.keyCode === 27) {
     //     this.close();
     // }
-    console.log(event);
+    // console.log(event);
     }
 
     ngOnInit() {
