@@ -56,3 +56,35 @@
     }
 }
 
+.wblg-nav {
+    @include flex-main(row);
+    @include flex-child($nav-base-height);
+    @include flex-aling(flex-start, center);
+    height: $nav-base-height;
+    margin: $nav-margin;
+    min-height: $nav-base-height;
+    max-height: $nav-base-height;
+    
+    background-color: $base-color-dark;
+    color: $base-color-light;
+}
+
+.wblg-nav-links {
+    @include flex-main(row);
+    @include flex-aling(flex-start, center);
+    @include flex-child(auto, 1, 1);
+
+    .btn {
+        margin: 5px;
+    }
+
+    .btn:first-child {
+        margin-left: 2px; 
+    }
+}
+
+.wblg-nav-message {
+    font-size: 2 * $base-font-size;
+    @include titled();
+    @include flex-child(auto, 1, 1);
+}

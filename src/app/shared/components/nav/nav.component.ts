@@ -1,35 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+import { UserService } from '../../auth/user.service';
 
-// import {  TranslatePipe } from 'ng2-translate';
-import { AuthService } from '../../auth/auth.service';
-
-import { WblgBtnActiveDirective } from '../button/button-active.directive';
 @Component({
     moduleId: module.id,
     selector: 'wblg-nav',
-    templateUrl: 'nav.component.html',
-    styleUrls: ['nav.component.css'],
-    // directives: [WblgBtnActiveDirective, ROUTER_DIRECTIVES],
-    // pipes: [TranslatePipe]
+    templateUrl: 'nav.component.html'
 })
-export class NavComponent implements OnInit {
-    public isAuth: boolean;
-    
-    private navlink: boolean[];
-    constructor(private auth:AuthService) {
-        this.isAuth = true;
-        this.navlink = [];
-     }
+export class NavComponent implements OnInit, OnDestroy {
+
+    private _userChangeSub: Subscription;
+    private _isLogined: boolean;
+
+    constructor(private _auth: UserService) {  }
 
     ngOnInit() {
-        this.isAuth = false;
-        this.navlink = [true, false, false, false];
-     }
+        this._userChangeSub = this._auth.userChangeAnnonced
+            .subscribe(() => {
+                this._isLogined = this._auth.isLogined();
+            });
+    }
+    ngOnDestroy() {
+        this._userChangeSub.unsubscribe();
+    }
 
-     private isLogined() : boolean {
-         // optimize;
-         //this.auth.isLogined().subscribe((res) => { this.isAuth = res});
-         return this.auth.isLogined();
-     }
 }
