@@ -36,15 +36,18 @@ export class UserService implements OnInit {
     public changeUser(_user: IAuthUser) {
         if (
             !!_user
-            && !!_user.id
+            && !! ('' +_user.id)
             && _user.id !== null
             && _user.id !== undefined
         ) {
+            console.log('auth');
             this.currentUser = _user;
             this._isLogined = true;
             this._role = this.currentUser.roles[0];
             this.saveUser();
         } else {
+                        console.log('not auth');
+
             this._isLogined = false;
             this._role = null;
             this.currentUser = null;
@@ -59,7 +62,7 @@ export class UserService implements OnInit {
         return (
             this._isLogined
             && !!this.currentUser
-            && !!this.currentUser.id
+            && !!(''+this.currentUser.id)
             && this.currentUser.id !== null
             && this.currentUser.id !== undefined
         );

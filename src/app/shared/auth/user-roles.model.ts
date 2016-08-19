@@ -31,11 +31,11 @@ export interface IUserRoles {
  */
 export let USER_ROLES: IUserRoles = {
     root:       ['ROLE_ROOT'],
-    admin:      ['ROLE_ROOT', 'ROLE_ADMIN'],
-    employee:   ['ROLE_ROOT', 'ROLE_IZT'],
+    admin:      ['ROLE_ROOT', 'ROLE_ADMIN', 'ROLE_USER'],
+    employee:   ['ROLE_ROOT', 'ROLE_IZT', 'ROLE_USER'],
     trader:     ['ROLE_ROOT', 'ROLE_TRADER'],
-    user:       ['ROLE_ROOT', 'ROLE_ADMIN', 'ROLE_IZT', 'ROLE_TRADER'],
-    public:     ['ROLE_ROOT', 'ROLE_ADMIN', 'ROLE_IZT', 'ROLE_TRADER',  'ROLE_ANONYM']
+    user:       ['ROLE_ROOT', 'ROLE_ADMIN', 'ROLE_IZT', 'ROLE_TRADER', 'ROLE_USER'],
+    public:     ['ROLE_ROOT', 'ROLE_ADMIN', 'ROLE_IZT', 'ROLE_TRADER',  'ROLE_ANONYM', 'ROLE_USER']
 }
 
 /**
