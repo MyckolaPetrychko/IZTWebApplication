@@ -1,9 +1,10 @@
 // import {HTTP_PROVIDERS, Http } from '@angular/http';
-// import { ROUTER_DIRECTIVES } from '@angular/router';
+import { Router, Event, NavigationEnd } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import {TranslateService} from 'ng2-translate/ng2-translate';
-
+// google analiticks
+declare let ga:Function;
 
 // import { LocalStorageService } from '../common/servises/storage.service';
 // import { NotifyService } from '../common/servises/notify.server';
@@ -41,9 +42,16 @@ export class AppMainComponent implements OnInit {
     private daat2: string;
 
 
-    constructor() {
+constructor(public router:Router) {
+        this.router.events.subscribe(
+            (event:Event) => {
+                if (event instanceof NavigationEnd) {
+                   let newRoute = event.urlAfterRedirects || '/';
+                                    //    console.log(newRoute);
 
-        this.data = 'Data';
+                    ga('send', 'pageview', newRoute);
+                }
+            });
     }
 
     ngOnInit() {

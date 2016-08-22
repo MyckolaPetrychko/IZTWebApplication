@@ -2,42 +2,35 @@
 
 <head>
   <title>Web-Logistic</title>
-  <!--<script>document.write('<base href="' + document.location + '" />');</script>-->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!--ag-grid styles-->
-  <!--<link href="node_modules/ag-grid/dist/styles/ag-grid.css" rel="stylesheet" />-->
-  <!--<link href="node_modules/ag-grid/dist/styles/theme-fresh.css" rel="stylesheet" />-->
-  <!--<link href="app/grid.css" rel="stylesheet" />-->
 
-  <!--<link rel="stylesheet" type="text/css" href="node_mod/ules/primeui/themes/omega/theme.css" />-->
-  <!--<link rel="stylesheet" type="text/css" href="YOUR_PATH/font-awesome.min.css" />-->
-  <!--<link rel="stylesheet" type="text/css" href="node_modules/primeui-ng-all.css" />-->
-  <!--<link rel="stylesheet" type="text/css" href="node_modules/bootstrap.css" />-->
-  <link rel="stylesheet" href="node_modules/normalize.css">
+    <link rel="stylesheet" href="node_modules/normalize.css">
+    <link href="node_modules/ag-grid/dist/styles/ag-grid.css" rel="stylesheet" />
 
-  <link href="node_modules/ag-grid/dist/styles/ag-grid.css" rel="stylesheet" />
-  
-  <!--<link href="assets/css/theme-fresh-upd.css" rel="stylesheet" />-->
+    <!--<link href="assets/css/theme-fresh-upd.css" rel="stylesheet" />-->
     <link href="assets/css/theme-fresh.css" rel="stylesheet" />
 
-  <link rel="stylesheet" type="text/css" href="node_modules/font-awesome/css/font-awesome.css" />
-  <link rel="stylesheet" type="text/css" href="app/shared/components/my-date-picker/my-date-picker.component.css" />
+    <link rel="stylesheet" type="text/css" href="node_modules/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="app/shared/components/my-date-picker/my-date-picker.component.css" />
+    <link rel="stylesheet" href="index.css">
 
-  <link rel="stylesheet" href="index.css">
+
+    <!-- 1. Load libraries -->
+
+    <script src="analitycs.js"></script>
+
+    <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/shim.min.js"></script>
+    <script src="node_modules/zone.js"></script>
+    <script src="node_modules/Reflect.js"></script>
+    <script src="node_modules/system.src.js"></script>
+
+    <!-- 2. Configure SystemJS -->
+    <script src="SjsLoader.js"></script>
 
 
-  <!-- 1. Load libraries -->
-  <!-- Polyfill(s) for older browsers -->
-  <script src="node_modules/shim.min.js"></script>
-  <script src="node_modules/zone.js"></script>
-  <script src="node_modules/Reflect.js"></script>
-  <script src="node_modules/system.src.js"></script>
 
-  <!--<script src="node_modules/ng2-translate.js"></script>-->
-
-  <!-- 2. Configure SystemJS -->
-  <script src="SjsLoader.js"></script>
 </head>
 <!-- 3. Display the application -->
 
@@ -45,6 +38,7 @@
   <wblg-main class="wblg-main">
     <div class="spinner"></div>
   </wblg-main>
+
 </body>
 
 </html>
