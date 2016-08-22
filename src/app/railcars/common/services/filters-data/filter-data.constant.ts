@@ -12,15 +12,15 @@ export let SendersApi: FiltersApiConfig = {
 }
 
 export let OwnersApi: FiltersApiConfig = {
-    url: 'assets/api/clients/owners.json',
-    // url: 'api/clients/owners',
+    // url: 'assets/api/clients/owners.json',
+    url: 'api/clients/owners',
     idValue: 'clientid',
     nameValue: 'clientfullname'
 }
 
 export let ProvidersApi: FiltersApiConfig = {
-    url: 'assets/api/clients/providers.json',
-    // url: 'api/clients/providers',
+    // url: 'assets/api/clients/providers.json',
+    url: 'api/clients/providers',
     idValue: 'clientid',
     nameValue: 'clientfullname'
 }
@@ -40,17 +40,17 @@ export let CulturesApi: FiltersApiConfig = {
 }
 
 export let CulturesClassesApi: FiltersApiConfig = {
-    url: 'assets/api/class.json',
-    // url: 'api/class',
-    idValue: 'classid',
-    nameValue: 'classname'
+    // url: 'assets/api/class.json',
+    url: 'api/crop/%cultureID%/classes',
+    idValue: 'id',
+    nameValue: 'name'
 }
 
 export let CulturesSortesApi: FiltersApiConfig = {
-    url: 'assets/api/sort.json',
-    // url: 'api/sorts',
-    idValue: 'sortid',
-    nameValue: 'sortname'
+    // url: 'assets/api/sort.json',
+    url: 'api/crop/%cultureID%/sorts',
+    idValue: 'id',
+    nameValue: 'name'
 }
 
 export let StoragesApi: FiltersApiConfig = {

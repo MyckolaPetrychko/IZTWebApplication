@@ -51,7 +51,7 @@ export class AuthService {
     }
 
     public logout() {
-        this._user.changeUser(null);
+        this._user.changeUser(<IAuthUser>{});
     }
 
     getUserList(): Observable<any> {

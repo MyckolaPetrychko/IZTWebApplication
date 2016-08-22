@@ -1,13 +1,13 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject }    from 'rxjs/Subject';
 import { IAuthUser } from './auth-user.model';
 
-import {USER_LOCAL_STRORAGE_CONSTANT} from './auth.constant';
+import { USER_LOCAL_STRORAGE_CONSTANT } from './auth.constant';
 import { USER_ROLES, IUserRoles } from './user-roles.model';
 
 @Injectable()
-export class UserService implements OnInit {
+export class UserService {
 
     public userChangeAnnonced: Observable<IAuthUser>;
     private currentUser: IAuthUser;
@@ -25,29 +25,25 @@ export class UserService implements OnInit {
         this.currentUser = <IAuthUser>{};
         this.userSource = new Subject<IAuthUser>();
         this.userChangeAnnonced = this.userSource.asObservable();
-    }
-    ngOnInit() {
 
-        if (this.isUserInLocalStorage) {
+        if (this.isUserInLocalStorage()) {
             this.changeUser (this.getUserFromStorage());
         }
     }
 
     public changeUser(_user: IAuthUser) {
         if (
-            !!_user
+            !! _user
             && !! ('' +_user.id)
             && _user.id !== null
-            && _user.id !== undefined
-        ) {
-            console.log('auth');
+            && _user.id !== undefined) {
+            console.info('User is auth' + _user.username);
             this.currentUser = _user;
             this._isLogined = true;
             this._role = this.currentUser.roles[0];
             this.saveUser();
         } else {
-                        console.log('not auth');
-
+            console.warn('User is not auth' + _user.username);
             this._isLogined = false;
             this._role = null;
             this.currentUser = null;
@@ -59,12 +55,9 @@ export class UserService implements OnInit {
 
 
     public isLogined(): boolean {
+        console.log('Is logined' + this._isLogined);
         return (
             this._isLogined
-            && !!this.currentUser
-            && !!(''+this.currentUser.id)
-            && this.currentUser.id !== null
-            && this.currentUser.id !== undefined
         );
     }
 

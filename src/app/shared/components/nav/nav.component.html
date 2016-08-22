@@ -12,6 +12,6 @@
 
 <div *ngIf="!_isLogined" class="wblg-nav-message">{{'COMPANY.NAME' | translate }}</div>
 
-<a class="btn btn-dark btn-flat" routerLinkActive="btn-active" [routerLink]="['/login']"> 
+<a class="btn btn-dark btn-flat" routerLinkActive="btn-active" [routerLink]="['/login']" (click)="logout()" > 
         {{'NAV.USERS' | translate }}
 </a>
