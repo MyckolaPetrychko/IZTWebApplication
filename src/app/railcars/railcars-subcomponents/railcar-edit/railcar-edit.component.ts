@@ -168,12 +168,7 @@ export class RailcarEditComponent implements OnInit, OnDestroy {
         this._filters.getCulturesList().subscribe((val: IDataModel[]): void => {
             this._cultures = <IDataModel[]>val;
         });
-        this._filters.getCultureClassesList().subscribe((val: IDataModel[]): void => {
-            this._classes = <IDataModel[]>val;
-        });
-        this._filters.getCultureSortesList().subscribe((val: IDataModel[]): void => {
-            this._sorts = <IDataModel[]>val;
-        });
+
         this._filters.getStationsList().subscribe((val: IDataModel[]): void => {
             this._stations = val;
         });
@@ -197,11 +192,11 @@ export class RailcarEditComponent implements OnInit, OnDestroy {
     }
 
     private setGrossWeight() {
-        let sum : number = 0;
-        if ( !!this.railcar.invoicenet) {
+        let sum: number = 0;
+        if (!!this.railcar.invoicenet) {
             sum += +this.railcar.invoicenet;
         }
-        if ( !!this.railcar.invoicetare) {
+        if (!!this.railcar.invoicetare) {
             sum += +this.railcar.invoicetare;
         }
         this.railcar.invoicegross = sum;
@@ -212,6 +207,24 @@ export class RailcarEditComponent implements OnInit, OnDestroy {
         this.time = _time;
         this.type = _type;
         this.visibility = true;
+    }
+
+    private changeCulture(): void {
+        if (
+            this.railcar
+            && '' + this.railcar.cropid
+            && this.railcar.cropid !== null
+            && this.railcar.cropid !== undefined) {
+            this._filters.getCultureClassesList(this.railcar.cropid).subscribe((val: IDataModel[]): void => {
+                this._classes = <IDataModel[]>val;
+            });
+            this._filters.getCultureSortesList(this.railcar.cropid).subscribe((val: IDataModel[]): void => {
+                this._sorts = <IDataModel[]>val;
+            });
+        } else {
+            this._classes = [];
+            this._sorts = [];
+        }
     }
 }
 

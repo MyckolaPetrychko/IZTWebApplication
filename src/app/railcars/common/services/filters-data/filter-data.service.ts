@@ -62,7 +62,7 @@ export class DataFilterService {
      * 
      * @returns {(Observable<IDataModel | string>)}
      */
-    public getSendersList(): Observable<IDataModel[]  | string> {
+    public getSendersList(): Observable<IDataModel[] | string> {
         return this._getFiltersHttp(SendersApi.url,
             SendersApi.idValue,
             SendersApi.nameValue);
@@ -73,7 +73,7 @@ export class DataFilterService {
      * 
      * @returns {(Observable<IDataModel | string>)}
      */
-    public getOwnersList(): Observable<IDataModel[]  | string> {
+    public getOwnersList(): Observable<IDataModel[] | string> {
         return this._getFiltersHttp(OwnersApi.url,
             OwnersApi.idValue,
             OwnersApi.nameValue);
@@ -84,7 +84,7 @@ export class DataFilterService {
      * 
      * @returns {(Observable<IDataModel | string>)}
      */
-    public getProvidersList(): Observable<IDataModel[]  | string> {
+    public getProvidersList(): Observable<IDataModel[] | string> {
         return this._getFiltersHttp(ProvidersApi.url,
             ProvidersApi.idValue,
             ProvidersApi.nameValue);
@@ -96,7 +96,7 @@ export class DataFilterService {
      * 
      * @returns {(Observable<IDataModel | string>)}
      */
-    public getStoragessList(): Observable<IDataModel[]  | string> {
+    public getStoragessList(): Observable<IDataModel[] | string> {
         return this._getFiltersHttp(StoragesApi.url,
             StoragesApi.idValue,
             StoragesApi.nameValue);
@@ -107,7 +107,7 @@ export class DataFilterService {
      * 
      * @returns {(Observable<IDataModel | string>)}
      */
-    public getScalesTypeList(): Observable<IDataModel[]  | string> {
+    public getScalesTypeList(): Observable<IDataModel[] | string> {
         return this._getFiltersHttp(ScalesTypeApi.url,
             ScalesTypeApi.idValue,
             ScalesTypeApi.nameValue);
@@ -117,7 +117,7 @@ export class DataFilterService {
      * 
      * @returns {(Observable<IDataModel | string>)}
      */
-    public getStationsList(): Observable<IDataModel[]  | string> {
+    public getStationsList(): Observable<IDataModel[] | string> {
         return this._getFiltersHttp(StationsApi.url,
             StationsApi.idValue,
             StationsApi.nameValue);
@@ -128,7 +128,7 @@ export class DataFilterService {
      * 
      * @returns {(Observable<IDataModel | string>)}
      */
-    public getCulturesList(): Observable<IDataModel[]  | string> {
+    public getCulturesList(): Observable<IDataModel[] | string> {
         return this._getFiltersHttp(CulturesApi.url,
             CulturesApi.idValue,
             CulturesApi.nameValue);
@@ -139,8 +139,10 @@ export class DataFilterService {
      * 
      * @returns {(Observable<IDataModel | string>)}
      */
-    public getCultureClassesList(): Observable<IDataModel[]  | string> {
-        return this._getFiltersHttp(CulturesClassesApi.url,
+    public getCultureClassesList(cultureID: number): Observable<IDataModel[] | string> {
+        let _url = CulturesClassesApi.url.replace('%cultureID%', '' + cultureID);
+
+        return this._getFiltersHttp(_url,
             CulturesClassesApi.idValue,
             CulturesClassesApi.nameValue);
     }
@@ -150,8 +152,9 @@ export class DataFilterService {
      * 
      * @returns {(Observable<IDataModel | string>)}
      */
-    public getCultureSortesList(): Observable<IDataModel[] | string> {
-        return this._getFiltersHttp(CulturesSortesApi.url,
+    public getCultureSortesList(cultureID: number): Observable<IDataModel[] | string> {
+        let _url = CulturesSortesApi.url.replace('%cultureID%', '' + cultureID);
+        return this._getFiltersHttp(_url,
             CulturesSortesApi.idValue,
             CulturesSortesApi.nameValue);
     }
@@ -181,9 +184,9 @@ export class DataFilterService {
             })))
             .do((data: IDataModel[]): void => {
                 console.debug('Data Filtes:' +
-                              '\nUrl: ' + url +
-                              '\nData Len: ' + data.length + 
-                              '\nData: ' + JSON.stringify(data[0]));
+                    '\nUrl: ' + url +
+                    '\nData Len: ' + data.length +
+                    '\nData: ' + JSON.stringify(data[0]));
             })
             .catch(handleError);
     }
