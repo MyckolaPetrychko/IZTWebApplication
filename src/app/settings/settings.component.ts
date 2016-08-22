@@ -12,8 +12,8 @@ import { USER_ROLES } from '../shared/auth/user-roles.model';
 @Component({
     moduleId: module.id,
     selector: 'wblg-settings',
-    templateUrl: './settings.component.html',
-    styleUrls: ['./userlist/user-list.component.css']
+    templateUrl: './settings.component.html'
+    // styleUrls: ['./userlist/user-list.component.css']
 })
 export class SettingsComponent implements OnInit, OnChanges {
     currentData: IAuthUser;
