@@ -15,62 +15,75 @@
         "SETTINGS": "Налаштування",
         "USERS": "Користувач"
     },
-    
     "BUTTON": {
         "ADD": "Додати",
         "LOAD": "Завантажити",
         "EDIT": "Редагувати",
         "DELETE": "Видалити",
-        "VIEW": "Вигляд",
         "PRINT": "Друкувати",
         "REFRESH": "Оновити",
-        "RESET": "Скинути зміни",
-
-        "ACCEPT": "Підтвердити",
-        "OK": "OK",
-        "CANCEL": "Скасувати",
-        "LOADFILE": "Завантажити файл",
-        "DISABLED_TEXT_EDITOR": "Режим редагування файлу",
-        "FILE_UPLOAD": "Відправити на сервер",
+        "RESET": "Скинути",
         "SAVE": "Зберегти",
+        "OK": "OK",
+        "CANCEL": "Відмінити",
+        "VIEW": "Вигляд",
+        "ACCEPT": "Підтвердити",
+        "LOADFILE": "Завантажити файл",
+        "FILE_UPLOAD": "Відправити файл на сервер",
+        "USE_TEMPLATE": "Вставити шаблон",
         "FILTER": "Фільтрувати",
         "SELECTALL": "Вибрати всі",
-
         "ADD_USER": "Додати користувача",
         "EDIT_USER": "Редагувати користувача",
-        "DELETE_USER": "Видалити користувача",
-        "USE_TEMPLATE": "Використовувати шаблон"
+        "DELETE_USER": "Видалити користувача"
     },
-
+    "CHECKBOX": {
+        "EDIT_MODE": "Режим редагування"
+    },
+    "COMBOBOX": {
+        "NO_DATA": "Немає даних"
+    },
+    "LABEL": {
+        "FROM": "з",
+        "TO": "до",
+        "CURRENT_USER": "Поточний користувач: {{ username}} з {{ company }}",
+        "LANG": "Мова",
+        "REFRESH_DATA": "Дата останнього оновлення: {{ time }}",
+        "LOGIN": "Логін",
+        "USERNAME": "Ім'я користувача",
+        "COMPANY": "Компанія",
+        "PASSWORD": "Пароль",
+        "ROLE": "Роль"
+    },
     "TABLE": {
-        "ownername": "Власник", 
+        "ownername": "Власник",
         "providername": "Постачальник",
-        "transportnumber": "Номер вагону  ",
-        "invoicenumber": "Номер накладної  ",
-        "sampleroutdate": "Дата відвантаження ",
+        "transportnumber": "Номер вагону",
+        "invoicenumber": "Номер накладної",
+        "sampleroutdate": "Дата відвантаження",
         "sendernname": "Експедитор (відправник)",
-        "stationname": "Станція ",
-        "cropfullname": "Культура ",
-        "gmopresence": "Наявність ГМО ",
-        "certificatenumber": "Сертифікат якості ",
+        "stationname": "Станція",
+        "cropfullname": "Культура",
+        "gmopresence": "Наявність ГМО",
+        "certificatenumber": "Сертифікат якості",
         "certificatedate": "Дата внесення сертифікату якості",
-        "snnumber": "Протокол безпеки ",
-        "invoicegross": "Брутто за накладною, кг ",
-        "invoicetare": "Тара за накладною, кг ",
-        "invoicenet": "Нетто за накладною, кг ",
+        "snnumber": "Протокол безпеки",
+        "invoicegross": "Брутто за накладною, кг",
+        "invoicetare": "Тара за накладною, кг",
+        "invoicenet": "Нетто за накладною, кг",
         "deviationtime": " Виявлення невідповідності на ІЗТ",
-        "taretime": "Зважування по тарі   ",
-        "gross": "Брутто на ІЗТ, кг    ",
-        "tare": "Тара на ІЗТ, кг   ",
-        "net": "Нетто на ІЗТ, кг ",
-        "grossdeficite": "Різниця по брутто, кг ",
+        "taretime": "Зважування по тарі",
+        "gross": "Брутто на ІЗТ, кг",
+        "tare": "Тара на ІЗТ, кг",
+        "net": "Нетто на ІЗТ, кг",
+        "grossdeficite": "Різниця по брутто, кг",
         "netdeficite": "Різниця по нетто, кг",
         "scaletypename": "Спосіб визначення ваги при відвантаженні",
         "deviationdescription": "Причина затримки вивантаження вагону",
         "permission": "Рішення по ситуації",
-        "permissiondescription": " Рішення ",
-        "permissiontime": " Дата, час ",
-        "permissionusername": " П.І.Б.",
+        "permissiondescription": "Рішення",
+        "permissiontime": "Дата, час",
+        "permissionusername": "П.І.Б.",
         "remark": "Примітка",
         "waitingtime": "Час очікування рішення",
         "overtime": "Час дод. маневрових робіт",
@@ -89,88 +102,67 @@
         "invoicedate": "Дата накладної",
         "storagename": "Склад призначення"
     },
-    "LABEL": {
-        "FROM": "з",
-        "TO": " до ",
-        "LIST_OF_RAILCARS": "Список залізничних вагонів",
-        "CURRENT_USER": "Поточний користувач: {{ username}} з {{ company }}",
-        "LANG": "Мова",
-        "REFRESH_DATA": "Дата останнього оновлення: {{ time }}",
-        "CURRENT_DISPARITY": "Поточні невідповідності",
-        "LOGIN": "Логін",
-        "USERNAME": "Ім'я користувача",
-        "COMPANY": "Компанія",
-        "ROLE": "Роль"
-    },
-
-    "VALUE" : {
+    "VALUE": {
         "REQUIRED": "Поле обов'язкове для заповнення",
         "ERROR": "Поле заповнене неправильно"
     },
-
-    "RAILCAR" : {
-        "FILE_UPLOAD": "Відправити на сервер", 
-        "LIST_OF_RAILCARS": "Список залізничних вагонів"
-    },
-
-    "ALERT" : {
+    "ALERT": {
         "INFO": "Інформація",
         "WARNING": "Попередження",
         "ERROR": "Помилка",
         "BUG": "Баг"
     },
-
-    "CONNECTION" : {
-        "NOT_FOUND": "Помилка з'єднання",
+    "CONNECTION": {
+        "NOT_FOUND": "Ресурс не знайдено",
         "SERVER_CONNECTION_ERROR": "Помилка з'єднання з сервером",
         "BAD_REQUEST": "Некоректний запит",
-        "USER_NOT_AUTH": "Користувач не авторизований",
-        "USER_AUTH_TIMEOUT": "Перевищено час очікування запиту",
-        "CONFLICT_ERROR": "Одночасне редагування"
+        "USER_NOT_AUTH": "Помилка авторизації користувача",
+        "USER_AUTH_TIMEOUT": "Час сесії користувача вичерпано ",
+        "CONFLICT_ERROR": "Неправильний доступ до даних. Спробуйте знову",
+        "PERMISSION_DENNIED": "Недостатні права для виконання даної операції",
+      "SERVER_INTERNAL_ERROR": "Помилка серверної частини",
+     "BAD_GATEWAY": "Помилка з’єднання з DNS чи Proxy"
     },
-
-    "ERROR" : {
+    "ERROR": {
         "MUSS_BE_TRAIDER_ACCEPTED": "Потрібно підтвердження трейдера",
         "MUSS_BE_EMPLOYEER_ACCEPTED": "Потрібно підтвердження роботодавця",
         "NOT_SELECTED": "Не вибрано вагон"
     },
-
-    "MESSAGE" : {
+    "MESSAGE": {
         "LOADING": "Завантаження",
-        "RAILCAR" : {
-            "SUCCES_ADDET": "Успішно додано",
-            "SUCCES_EDIT": "Успішно відредаговано",
+        "RAILCAR": {
+            "SUCCESS_ADDET": "Успішно додано",
+            "SUCCESS_EDIT": "Успішно відредаговано",
             "TEMPLATE_NOT_SET": "Шаблон не встановлено"
         }
     },
-
-    "TITLE" : {
+    "TITLE": {
         "RAILCAR": {
+            "LIST": "Список залізничних вагонів",
             "FILE_UPLOAD": "Завантаження на сервер",
             "ADD": "Додавання вагону",
             "EDIT": "Редагування вагону",
             "PARAMS": "Налаштування вигляду"
         },
+        "AUTH": "Авторизація",
+        "DISPARITY": {
+            "CURRENT": "Поточні невідповідності"
+        },
+        "MODAL": {
+            "DISPARITY_ACCEPT": "Підтвердження невідповідностей"
+        },
         "ADD_USER": "Додавання користувача",
-        "EDIT_USER": "Редагування користувача",
-        "DISPARITY_ACCEPT_MODAL": "Підтвердження невідповідностей"
+        "EDIT_USER": "Редагування користувача"
     },
-
-    "PLACEHOLDER" : {
+    "PLACEHOLDER": {
         "FILE_SELECT": "Виберіть файл"
     },
-
     "RADIOBTN": {
         "shownotreceived": "Без дозволу на розвантаження",
         "showweighted": "Зважені",
         "showremoterecords": "Повернені ЗВ",
         "showdeleted": "Видалені ЗВ"
     },
-
-    "COMBOBOX" : {
-        "NO_DATA": "Немає даних"
-    },
-
     "ROLE_ROOT": "Root",
     "ROLE_ADMIN": "Адміністратор",
     "ROLE_EMPLOYEE": "Працівник",

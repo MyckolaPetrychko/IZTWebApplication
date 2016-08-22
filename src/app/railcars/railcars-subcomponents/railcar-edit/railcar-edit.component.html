@@ -1,10 +1,10 @@
 <header class="wblg-sub-title">
     {{ 'TITLE.RAILCAR.'+ typeMode | translate }}
-    <div class="btns">
-        <button class="btn btn-light" (click)="setTemplate()" *ngIf="useTemplate"> {{ 'BUTTON.USE_TEMPLATE'| translate}} </button>
-    </div>
+    <!--<div class="btns">-->
+        <button class="btn btn-light" (click)="setTemplate()" > {{ 'BUTTON.USE_TEMPLATE'| translate}} </button>
+    <!--</div>-->
 </header>
-
+<!--*ngIf="useTemplate"-->
 <form class="form-main form-cols" #railcarsForm="ngForm" [class.disabled-form]="disableForm">
     <!-- TODO: Bookmark | RailcarsElement | manual add block | base-data numbers -->
     <div role="group" class="form-fieldset form-rows fixed-3x-subtitle ">
@@ -172,7 +172,7 @@
                     </label>
                 <div class="div-control form-cols">
                     <wblg-combobox-data [(ngModel)]="railcar.storageid" name="storagename" #storagename="ngModel"
-                        required dropdown="true" id="storagename" [data]="_srorages"></wblg-combobox-data>
+                        dropdown="true" id="storagename" [data]="_srorages"></wblg-combobox-data>
                 </div>
             </div>
 
@@ -203,7 +203,8 @@
                     </label>
                 <div class="div-control form-cols">
                     <wblg-combobox-data [(ngModel)]="railcar.cropid" name="cropname" #cropname="ngModel"
-                        required="true" dropdown="true" [data]="_cultures" id="cropname">
+                        required="true" dropdown="true" [data]="_cultures" id="cropname" 
+                        (ngModelChange)="changeCulture()">
                     </wblg-combobox-data>
                 </div>
             </div>
@@ -216,7 +217,7 @@
                     </label>
                 <div class="div-control form-cols">
                     <wblg-combobox-data [(ngModel)]="railcar.classid" name="classname" #classname="ngModel"
-                        required="true" [dropdown]="true" [data]="_classes" id="classname">
+                        [dropdown]="true" [data]="_classes" id="classname">
                     </wblg-combobox-data>
                 </div>
             </div>
@@ -229,7 +230,7 @@
                     </label>
                 <div class="div-control form-cols">
                     <wblg-combobox-data [(ngModel)]="railcar.sortid" name="sortname" #sortname="ngModel"
-                        required="true" [dropdown]="true" [data]="_sorts" id="sortname">
+                         [dropdown]="true" [data]="_sorts" id="sortname">
                     </wblg-combobox-data>
                 </div>
             </div>
@@ -242,7 +243,7 @@
                     </label>
                 <div class="div-control form-cols">
                     <input type="number" [(ngModel)]="railcar.cropyear" name="cropyear" #cropyear="ngModel"
-                        required id="cropyear" pattern="\d{4}">
+                         id="cropyear" pattern="\d{4}">
                     <wblg-alert [message]="'MESSAGE.YEAR_ERROR_WRITE'" type="error" small="true" [open]="!cropyear.valid && !cropyear.errors?.required">
                     </wblg-alert>
                 </div>

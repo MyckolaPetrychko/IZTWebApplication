@@ -1,5 +1,5 @@
 <div class="wblg-sub-title unprintable">
-    {{ 'LABEL.LIST_OF_RAILCARS' | translate }}
+    {{ 'TITLE.RAILCAR.LIST' | translate }}
     <div class="date-div">
         <div class="form-field form-rows">
             <label class=" label-near"> {{ 'LABEL.FROM'| translate}} </label>
@@ -56,4 +56,4 @@
 
 <wblg-railcar-disparity *ngIf="isFullPage" class="wblg-disparity-railcar unprintable" [railcarId]="selected?.inventoryid"></wblg-railcar-disparity>
 
-<wblg-alert [message]="message" type="info" big="true" modal="true" [open]="!isNotNull"></wblg-alert>
+<wblg-alert [message]="message" [type]="typeMess" big="true" modal="true" [open]="!isNotNull"></wblg-alert>

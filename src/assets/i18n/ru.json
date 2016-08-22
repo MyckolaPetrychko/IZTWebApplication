@@ -1,18 +1,14 @@
- {   
+{
     "APPNAME": "IZT ua",
-
     "APP": {
         "TITLE": "Title IZT ua"
     },
-
-     "COMPANY": {
+    "COMPANY": {
         "NAME": "ИЗТ"
     },
-
     "DEVELOPER": {
         "COMPANY": "ИнновиннПром"
     },
-
     "NAV": {
         "RAILCARS": "Вагоны",
         "REPORT": "Отчеты",
@@ -28,7 +24,6 @@
         "PRINT": "Печатать",
         "REFRESH": "Обновить",
         "RESET": "Сбросить изменения",
-
         "ACCEPT": "Подтвердить",
         "OK": "OK",
         "CANCEL": "Отменить",
@@ -38,14 +33,16 @@
         "SAVE": "Сохранить",
         "FILTER": "Фильтр",
         "SELECTALL": "Выбрать все",
-
         "ADD_USER": "Добавить пользователя",
         "EDIT_USER": "Редактировать пользователя",
         "DELETE_USER": "Удалить пользователя",
         "USE_TEMPLATE": "Использовать шаблон"
     },
+    "CHECKBOX": {
+        "EDIT_MODE": "Режим редактирования"
+    },
     "TABLE": {
-        "ownername": "Владелец", 
+        "ownername": "Владелец",
         "providername": "Поставщик",
         "transportnumber": "Номер вагона  ",
         "invoicenumber": "Номер наклaдной  ",
@@ -94,88 +91,85 @@
     "LABEL": {
         "FROM": "с",
         "TO": " по ",
-        "LIST_OF_RAILCARS": "Список железнодорожных вагонов",
         "CURRENT_USER": "Текущий пользователь: {{ username}} из {{ company }}",
         "LANG": "Язык",
         "REFRESH_DATA": "Дата последнего обновления: {{ time }}",
-        "CURRENT_DISPARITY": "Текущие несоответствия",
         "LOGIN": "Логин",
         "USERNAME": "Имя пользователя",
         "COMPANY": "Компания",
         "ROLE": "Роль"
     },
-
-    "VALUE" : {
+    "VALUE": {
         "REQUIRED": "Поле обязательное для заполнения",
         "ERROR": "Поле заполнено неправильно"
     },
-
-    "RAILCAR" : {
-        "FILE_UPLOAD": "Отправить на сервер", 
+    "RAILCAR": {
+        "FILE_UPLOAD": "Отправить на сервер",
         "LIST_OF_RAILCARS": "Список железнодорожных вагонов"
     },
-
-    "ALERT" : {
+    "ALERT": {
         "INFO": "Информация",
         "WARNING": "Предупреждение",
         "ERROR": "Ошибка",
         "BUG": "Баг"
     },
-
-    "CONNECTION" : {
-        "NOT_FOUND": "Ошибка соединения",
+    "CONNECTION": {
+        "NOT_FOUND": "Ресурс не найден",
         "SERVER_CONNECTION_ERROR": "Ошибка соединения с сервером",
         "BAD_REQUEST": "Некорректный запрос",
         "USER_NOT_AUTH": "Пользователь не авторизован",
-        "USER_AUTH_TIMEOUT": "Превышено время ожидания запроса",
-        "CONFLICT_ERROR": "Одновременное редактирование"
+        "USER_AUTH_TIMEOUT": "Превышено время сессии пользователя",
+        "CONFLICT_ERROR": "Одновременное редактирование",
+        "PERMISSION_DENNIED": "Доступ запрещен.",
+        "SERVER_INTERNAL_ERROR": "Ошибка серверной части",
+        "BAD_GATEWAY": "Ошибка соедение с сервером"
     },
-
-    "ERROR" : {
+    "ERROR": {
         "MUSS_BE_TRAIDER_ACCEPTED": "Нужно подтверждение трейдера",
         "MUSS_BE_EMPLOYEER_ACCEPTED": "Нужно подтверждение работодателя",
         "NOT_SELECTED": "Не выбрано вагон"
     },
-
-    "MESSAGE" : {
+    "MESSAGE": {
         "LOADING": "Загрузка",
-        "RAILCAR" : {
-            "SUCCES_ADDET": "Успешно дабавлено",
-            "SUCCES_EDIT": "Успешно отредактировано",
+        "RAILCAR": {
+            "SUCCESS_ADDET": "Успешно дабавлено",
+            "SUCCESS_EDIT": "Успешно отредактировано",
             "TEMPLATE_NOT_SET": "Шаблон не установлен"
         }
     },
-    
-    "TITLE" : {
+    "TITLE": {
         "RAILCAR": {
+            "LIST": "Список железнодорожных вагонов",
             "FILE_UPLOAD": "Отправка на сервер",
             "ADD": "Добавление вагона",
             "EDIT": "Редактирование вагона",
             "PARAMS": "Настройка вида"
         },
+        "AUTH": "Авторизация",
+        "DISPARITY": {
+            "CURRENT": "Текущие несоответствия"
+        },
+        "MODAL": {
+            "DISPARITY_ACCEPT": "Подтверждение несоответствий"
+        },
         "ADD_USER": "Добавление пользователя",
-        "EDIT_USER": "Редактирование позьзователя",
-        "DISPARITY_ACCEPT_MODAL": "Подтверждение несоответствий"
+        "EDIT_USER": "Редактирование позьзователя"
     },
-
-    "PLACEHOLDER" : {
+    "PLACEHOLDER": {
         "FILE_SELECT": "Выберите файл"
     },
-
     "RADIOBTN": {
         "shownotreceived": "Без разрешения на разгрузку",
         "showweighted": "Взвешенные",
         "showremoterecords": "Возвращенные ЖВ",
         "showdeleted": "Удаленные ЖВ"
     },
-
-    "COMBOBOX" : {
+    "COMBOBOX": {
         "NO_DATA": "Нет данных"
     },
-
     "ROLE_ROOT": "Root",
     "ROLE_ADMIN": "Администратор",
     "ROLE_EMPLOYEE": "Работник",
     "ROLE_TRADER": "Трейдер",
     "ROLE_ANONYM": "Неизвестный"
- }
+}
