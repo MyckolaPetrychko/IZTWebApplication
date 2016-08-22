@@ -38,6 +38,7 @@ import { RailcarDisparityComponent } from '../railcar-disparity/railcar-disparit
 export class RailcarListComponent implements OnInit, OnDestroy {
     public RailcarList: IRailcarModel[];
     public selected: IRailcarModel;
+
     public isNotNull: boolean;
     public isFullPage: boolean;
 
@@ -50,6 +51,8 @@ export class RailcarListComponent implements OnInit, OnDestroy {
     };
 
     public message: string;
+        private typeMess: string;
+
     private InputFilterData: any;
     private ComboboxFilterData: any;
     private columnDefs: any;
@@ -80,9 +83,9 @@ export class RailcarListComponent implements OnInit, OnDestroy {
         this._datePipe = new DatePipe();
 
         this.RailcarList = [];
-        // this.selected = <IRailcarModel>{};
         this.isFullPage = true;
-        this.message = 'LOADING.MESSAGE';
+        this.message = 'MESSAGE.LOADING';
+                this.typeMess = 'info';
 
         // TODO: table
         this.InputFilterData = [];
@@ -145,11 +148,14 @@ export class RailcarListComponent implements OnInit, OnDestroy {
                 this.RailcarList = res;
                 this.isNotNull = (this.RailcarList.length > 0);
                 this.message = (!this.isNotNull) ? 'MESSAGE.EMPTY_TABLE' : null;
+                this.typeMess = 'info';
 
             },
             (err: string): void => {
                 this.RailcarList = [];
                 this.message = err;
+                                this.typeMess = 'error';
+
             });
     }
 
