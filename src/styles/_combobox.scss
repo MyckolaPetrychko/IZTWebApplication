@@ -47,7 +47,8 @@ $combobox-down-arror-width: 20px;
     margin: 0;
     padding: 0;
 
-    max-height: 400px;
+    max-height: 300px;
+    overflow: scroll;
   }
 
   .combobox-item {

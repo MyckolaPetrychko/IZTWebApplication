@@ -54,15 +54,15 @@ export let CulturesSortesApi: FiltersApiConfig = {
 }
 
 export let StoragesApi: FiltersApiConfig = {
-    url: 'assets/api/storage.json',
-    // url: 'api/storages',
-    idValue: 'storageid',
-    nameValue: 'storagename'
+    // url: 'assets/api/storage.json',
+    url: 'api/storage',
+    idValue: 'id',
+    nameValue: 'name'
 }
 
 export let ScalesTypeApi: FiltersApiConfig = {
-    url: 'assets/api/scaletype.json',
-    // url: 'api/scaletypes',
-    idValue: 'scaletypeid',
-    nameValue: 'scaletypename'
+    // url: 'assets/api/scaletype.json',
+    url: 'api/scaletype',
+    idValue: 'id',
+    nameValue: 'name'
 }
