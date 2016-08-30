@@ -15,7 +15,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
-import { IAuthUser } from './user-list.model';
+import { IAuthUser } from '../../shared/auth/auth-user.model';
 import {
     UserListApi,
     UserIdApi
@@ -99,13 +99,13 @@ export class UserService {
         if (this._role !== 'anonym') {
             return Observable.throw('User is not authorized');
         }
-        let url = UserIdApi.replace('%railcarID%', userId);
+        let url = UserIdApi.replace('%userID%', userId);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
         return this._http.delete(url, options)
             .do(data => {
-                console.debug('RailcarDelete' +
+                console.debug('UserDelete' +
                     '\nUrl: ' + UserListApi +
                     '\nData: ' + JSON.stringify(data));
             })

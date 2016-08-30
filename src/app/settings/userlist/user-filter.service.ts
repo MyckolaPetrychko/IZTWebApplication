@@ -14,7 +14,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
-import { IAuthUser } from './user-list.model';
+import { IAuthUser } from '../../shared/auth/auth-user.model';
 import {
     CompaniesApi
 } from './user-list.constant';

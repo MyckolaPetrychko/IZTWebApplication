@@ -2,17 +2,27 @@
     {
         "id": "1",
         "login": "user",
-        "username": "user",
+        "password": "1234",
+        "role": "user",
+
+        "firstName": "user",
+        "lastName": "user",
+        "middleName": "user",
         "email": "test@innovinn.ua",
-        "company": "Innovinn",
-        "role": "user"
+        "phoneNumber": "380683627381",
+        "clients": [0, 2, 3888]
     },
     {
         "id": "2",
         "login": "admin",
-        "username": "user",
-        "email": "test@innovinn.ua",
-        "company": "Playtika",
-        "role": "admin"
+        "password": "root",
+        "role": "admin",
+
+        "firstName": "admin",
+        "lastName": "admin",
+        "middleName": "admin",
+        "email": "admin@innovinn.ua",
+        "phoneNumber": "3806833433234",
+        "clients": [3888]
     }
 ]
