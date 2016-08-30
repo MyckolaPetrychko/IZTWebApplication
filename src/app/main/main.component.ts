@@ -38,8 +38,6 @@ declare let ga:Function;
     // ]
 })
 export class AppMainComponent implements OnInit {
-    private data: string;
-    private daat2: string;
 
 
 constructor(public router:Router) {
@@ -55,7 +53,7 @@ constructor(public router:Router) {
     }
 
     ngOnInit() {
-        this.daat2 = 'Data 2';
+        // TODO: init
     }
 
 }

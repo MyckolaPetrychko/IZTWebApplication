@@ -29,7 +29,7 @@ export let StationsApi: FiltersApiConfig = {
     // url: 'assets/api/station.json',
     url: 'api/stations',
     idValue: 'stationid',
-    nameValue: 'stationname'
+    nameValue: 'stationfullname'
 }
 
 export let CulturesApi: FiltersApiConfig = {
