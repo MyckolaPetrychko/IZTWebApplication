@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
-import { IAuthUser } from './userlist/user-list.model';
+import { IAuthUser } from '../shared/auth/auth-user.model';
 import { GridOptions } from 'ag-grid/main';
 import { UserService } from './userlist/user-list.service';
 import { UserProvide } from './userlist/user-list.provide';
@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { TranslatePipe, TranslateService, LangChangeEvent } from 'ng2-translate/ng2-translate';
 
 import { DataFilterService } from '../railcars/common/services/filters-data/filter-data.service';
+import { IDataModel } from '../railcars/common/services/filters-data/data.model';
 import { USER_ROLES } from '../shared/auth/user-roles.model';
 
 @Component({
@@ -23,7 +24,7 @@ export class SettingsComponent implements OnInit, OnChanges {
     UserRoleList: string[];
     modal: boolean;
     public UsersList: IAuthUser[];
-    private FiltersData: any;
+    private OwnersData: any;
     public message: string;
     private columnDefs: any;
     private gridOptions: GridOptions;
@@ -33,28 +34,25 @@ export class SettingsComponent implements OnInit, OnChanges {
     title_button: string;
 
     constructor(private userService: UserService, private _translate: TranslateService,
-   private _filters: DataFilterService) {
+        private _filters: DataFilterService) {
         this.selectedButton = '';
         this.currentData = <IAuthUser>{};
         this.dataSelectedRow = <IAuthUser>{};
-        this.UserRoleList = ["traider", "user", "employeer", "admin", "anonym"];
     }
 
-ngOnInit() {
+    ngOnInit() {
         this.createColunmDef();
         this.createGridOptions();
 
-        this.FiltersData = [
-            { value: '', label: 'LABEL.USERNAME', data: [] },
-            { value: '', label: 'LABEL.COMPANY', data: [] },
-            { value: '', label: 'LABEL.ROLE', data: [] }
-        ];
+        this.OwnersData = { value: '', label: 'LABEL.COMPANY', data: [] };
 
         this._filters.getOwnersList().subscribe(list => {
-            this.FiltersData[1].data = list;
+            this.OwnersData.data = list;
         });
 
-        this.FiltersData[2].data = USER_ROLES['public'];
+        this.dataSelectedRow = <IAuthUser>{};
+        
+        this.OwnersData.data = USER_ROLES['public'];
 
         this._subTranslate = this._translate.onLangChange.debounceTime(500).subscribe((event: LangChangeEvent) => {
             if (this.gridOptions && this.gridOptions.api) { this.gridOptions.api.refreshHeader(); }
@@ -77,9 +75,9 @@ ngOnInit() {
         else {
             if (this.dataSelectedRow)
                 this.currentData = this.dataSelectedRow;
-            if(this.selectedButton === 'delete' && this.dataSelectedRow) {
-                this.userService.deleteUser(this.dataSelectedRow.id);
-                console.log("User " + this.dataSelectedRow.login + " was deleted!"); 
+            if (this.selectedButton === 'delete' && this.dataSelectedRow) {
+                this.userService.deleteUser('' + this.dataSelectedRow.id);
+                console.log("User " + this.dataSelectedRow.username + " was deleted!");
             }
         }
     }
@@ -110,9 +108,21 @@ ngOnInit() {
                 hidden: false
             },
             {
-                headerName: 'LABEL.USERNAME',
-                field: 'username',
-                width: 200,
+                headerName: 'LABEL.FIRST_NAME',
+                field: 'firstName',
+                width: 150,
+                hidden: false
+            },
+            {
+                headerName: 'LABEL.LAST_NAME',
+                field: 'lastName',
+                width: 150,
+                hidden: false
+            },
+            {
+                headerName: 'LABEL.MIDDLE_NAME',
+                field: 'middleName',
+                width: 150,
                 hidden: false
             },
             {
@@ -122,14 +132,8 @@ ngOnInit() {
                 hidden: false
             },
             {
-                headerName: 'LABEL.COMPANY',
-                field: 'company',
-                width: 200,
-                hidden: false
-            },
-            {
-                headerName: 'LABEL.ROLE',
-                field: 'role',
+                headerName: 'LABEL.NUMBER_CLIENTS',
+                field: 'clients',
                 width: 200,
                 hidden: false
             }
@@ -167,20 +171,27 @@ ngOnInit() {
             // },
             suppressMovableColumns: true,
 
-             enableSorting: true,
+            enableSorting: true,
             //  enableFilter: true,
             headerHeight: 30,
         };
     }
 
-    onCellClicked(event: any) {
+    onRowClicked(event: any) {
         if (this.selectedButton === 'add')
             this.currentData = <IAuthUser>{};
         else
-            console.log(event.data)
             this.currentData = event.data;
 
         this.dataSelectedRow = event.data;
+    }
+
+    onRowDoubleClicked() {
+        this.defineActiveButton('edit');
+    }
+
+    onFilterChanged(data: string) {
+        this.gridOptions.api.setQuickFilter(data);
     }
 
     private translateHeaderName(params: any): string {
@@ -201,15 +212,18 @@ ngOnInit() {
                 this.modal = true;
                 break;
             case "edit":
-            this.currentData = this.dataSelectedRow;
+                this.currentData = this.dataSelectedRow;
                 this.title_form = 'TITLE.EDIT_USER';
                 this.title_button = 'BUTTON.EDIT_USER';
                 this.selectedButton = selectedObj;
                 this.modal = true;
                 break;
             case "delete":
+                this.currentData = this.dataSelectedRow;
+                this.title_form = 'TITLE.DELETE_USER';
+                this.title_button = 'BUTTON.DELETE_USER';
                 this.selectedButton = selectedObj;
-                this.title_form = '';
+                this.modal = true;
                 break;
             default:
                 this.selectedButton = '';
@@ -219,11 +233,14 @@ ngOnInit() {
     }
 
     ok() {
-        if(this.selectedButton === 'add') {
+        if (this.selectedButton === 'add') {
             this.userService.addUser(this.currentData);
         }
-        if(this.selectedButton === 'edit') {
+        if (this.selectedButton === 'edit') {
             this.userService.updateUser(this.currentData);
+        }
+        if (this.selectedButton === 'delete') {
+            this.userService.deleteUser(this.currentData.id.toString());
         }
         this.selectedButton = '';
         this.modal = false;
@@ -232,11 +249,5 @@ ngOnInit() {
     cancel() {
         this.selectedButton = '';
         this.modal = false;
-    }
-
-    setFilters() {
-        console.log(this.FiltersData[0].value);
-        console.log(this.FiltersData[1].value);
-        console.log(this.FiltersData[2].value);
     }
 }
