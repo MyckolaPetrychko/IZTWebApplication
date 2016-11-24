@@ -46,14 +46,22 @@
     "LABEL": {
         "FROM": "з",
         "TO": "до",
-        "CURRENT_USER": "Поточний користувач: {{ username}} з {{ company }}",
+        "CURRENT_USER": "Поточний користувач: {{ username }} з {{ company }}",
         "LANG": "Мова",
         "REFRESH_DATA": "Дата останнього оновлення: {{ time }}",
         "LOGIN": "Логін",
-        "USERNAME": "Ім'я користувача",
+        "FIRST_NAME": "Ім'я",
+        "LAST_NAME": "Прізвище",
+        "MIDDLE_NAME": "По батькові",
+        "CLIENTS": "Компанії",
+        "NUMBER_CLIENTS": "Кількість компаній",
         "COMPANY": "Компанія",
         "PASSWORD": "Пароль",
-        "ROLE": "Роль"
+        "RPASSWORD": "Повторіть пароль",
+        "OLD_PASSWORD": "Старий пароль",
+        "ROLE": "Роль",
+        "PHONE": "Номер телефону",
+        "LIST_OF_USERS": "Список користувачів"
     },
     "TABLE": {
         "ownername": "Власник",
@@ -120,7 +128,7 @@
         "USER_AUTH_TIMEOUT": "Час сесії користувача вичерпано ",
         "CONFLICT_ERROR": "Неправильний доступ до даних. Спробуйте знову",
         "PERMISSION_DENNIED": "Недостатні права для виконання даної операції",
-      "SERVER_INTERNAL_ERROR": "Помилка серверної частини",
+      "SERVER_INTERNAL_ERROR": "Помилка серверa",
      "BAD_GATEWAY": "Помилка з’єднання з DNS чи Proxy"
     },
     "ERROR": {
@@ -155,7 +163,8 @@
         "EDIT_USER": "Редагування користувача"
     },
     "PLACEHOLDER": {
-        "FILE_SELECT": "Виберіть файл"
+        "FILE_SELECT": "Виберіть файл",
+        "FILTRATE": "Фільтр"
     },
     "RADIOBTN": {
         "shownotreceived": "Без дозволу на розвантаження",

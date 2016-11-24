@@ -1,6 +1,6 @@
 //export let UserAuthLoginApi = 'api/users/login';
-// export let UserLoginApi: string = 'assets/api/login_username_pass.json';
-export let UserLoginApi: string = 'api/user';
+export let UserLoginApi: string = 'assets/api/login_username_pass.json';
+//export let UserLoginApi: string = 'api/user';
 
 // export let UserLogoutApi: string = 'assets/api/login_username_pass.json';
 export let UserLogoutApi: string = 'assets/api/login_username_pass.json';

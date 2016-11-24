@@ -12,8 +12,8 @@ export let SendersApi: FiltersApiConfig = {
 }
 
 export let OwnersApi: FiltersApiConfig = {
-    // url: 'assets/api/clients/owners.json',
-    url: 'api/clients/owners',
+    url: 'assets/api/clients/owners.json',
+    // url: 'api/clients/owners',
     idValue: 'clientid',
     nameValue: 'clientfullname'
 }

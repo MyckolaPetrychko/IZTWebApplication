@@ -3,11 +3,11 @@ export interface IAuthUser {
     username: string,
     password?: string,
     role?: string,
-    roles: Array<string>,
+    roles?: Array<string>,
 
     firstName?: string,
+    lastName?: string,
     middleName?: string,
-    secondName?: string,
     email?: string,
     phoneNumber?: string,
     clients?: Array<number>

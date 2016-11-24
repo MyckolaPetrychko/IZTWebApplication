@@ -1,7 +1,7 @@
 [
     {
         "id": "1",
-        "login": "user",
+        "username": "user",
         "password": "1234",
         "role": "user",
 
@@ -14,7 +14,7 @@
     },
     {
         "id": "2",
-        "login": "admin",
+        "username": "admin",
         "password": "root",
         "role": "admin",
 

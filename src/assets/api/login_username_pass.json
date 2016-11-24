@@ -3,7 +3,7 @@
     "username": "user",
     "password": null,
     "roles": [
-        "ROLE_IZT"
+        "ROLE_ADMIN"
     ],
     "enabled": true,
     "firstName": "User",

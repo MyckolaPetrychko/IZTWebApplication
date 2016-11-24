@@ -50,8 +50,6 @@ export class SettingsComponent implements OnInit, OnChanges {
             this.OwnersData.data = list;
         });
 
-        this.dataSelectedRow = <IAuthUser>{};
-        
         this.OwnersData.data = USER_ROLES['public'];
 
         this._subTranslate = this._translate.onLangChange.debounceTime(500).subscribe((event: LangChangeEvent) => {
@@ -180,8 +178,9 @@ export class SettingsComponent implements OnInit, OnChanges {
     onRowClicked(event: any) {
         if (this.selectedButton === 'add')
             this.currentData = <IAuthUser>{};
-        else
-            this.currentData = event.data;
+        else    
+        console.log(event.data);
+        this.currentData = event.data;
 
         this.dataSelectedRow = event.data;
     }
@@ -239,7 +238,7 @@ export class SettingsComponent implements OnInit, OnChanges {
         if (this.selectedButton === 'edit') {
             this.userService.updateUser(this.currentData);
         }
-        if (this.selectedButton === 'delete') {
+        if(this.selectedButton === 'delete') {
             this.userService.deleteUser(this.currentData.id.toString());
         }
         this.selectedButton = '';
