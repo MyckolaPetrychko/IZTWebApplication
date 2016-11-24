@@ -1,0 +1,53 @@
+/**
+*
+* Variables
+*
+*/
+/*
+ *  Min-sizes of content main page
+ *  1024*768( - 50)
+ */
+/**
+*
+* Mixins
+*
+*/
+:host {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  flex-basis: 40px;
+  flex-grow: 0;
+  flex-shrink: 1;
+  align-items: center;
+  justify-content: flex-start;
+  height: 40px;
+  margin: 0;
+  min-height: 40px;
+  max-height: 40px;
+  background-color: #5e311c;
+  color: #ffffff; }
+
+.wblg-nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  flex-basis: auto;
+  flex-grow: 1;
+  flex-shrink: 1; }
+  .wblg-nav .btn {
+    margin: 5px; }
+  .wblg-nav .btn:first-child {
+    margin-left: 2px; }
+
+.wblg-message {
+  font-size: 28px;
+  font-weight: bold;
+  font-style: italic;
+  flex-basis: auto;
+  flex-grow: 1;
+  flex-shrink: 1; }
+
+/*# sourceMappingURL=nav.component.css.map */

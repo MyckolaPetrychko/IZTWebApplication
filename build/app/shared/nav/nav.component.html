@@ -1,0 +1,17 @@
+<nav *ngIf="isLogined()" class="wblg-nav">
+    <a class="btn btn-dark btn-flat " [routerLink]="['/railcars']" routerLinkActive="btn-active"> 
+        {{'NAV.RAILCARS' | translate }}
+    </a>
+    <a class="btn btn-dark btn-flat "  routerLinkActive="btn-active" [routerLink]="['/report']">
+         {{'NAV.REPORT' | translate }} 
+    </a>
+    <a class="btn btn-dark btn-flat "  routerLinkActive="btn-active" [routerLink]="['/settings']">
+         {{'NAV.SETTINGS' | translate}} 
+    </a>
+</nav>
+
+<div *ngIf="!isLogined()" class="wblg-message">{{'COMPANY.NAME' | translate }}</div>
+
+<a class="btn btn-dark btn-flat " routerLinkActive="btn-active" [routerLink]="['/login']"> 
+        {{'NAV.USERS' | translate }}
+</a>

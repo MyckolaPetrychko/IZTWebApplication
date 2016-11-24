@@ -1,0 +1,175 @@
+{
+    "APPNAME": "IZT ua",
+    "APP": {
+        "TITLE": "Title IZT ua"
+    },
+    "COMPANY": {
+        "NAME": "ИЗТ"
+    },
+    "DEVELOPER": {
+        "COMPANY": "ИнновиннПром"
+    },
+    "NAV": {
+        "RAILCARS": "Вагоны",
+        "REPORT": "Отчеты",
+        "SETTINGS": "Настройки",
+        "USERS": "Пользователи"
+    },
+    "BUTTON": {
+        "ADD": "Добавить",
+        "LOAD": "Загрузить",
+        "EDIT": "Редактировать",
+        "DELETE": "Удалить",
+        "VIEW": "Вид",
+        "PRINT": "Печатать",
+        "REFRESH": "Обновить",
+        "RESET": "Сбросить изменения",
+        "ACCEPT": "Подтвердить",
+        "OK": "OK",
+        "CANCEL": "Отменить",
+        "LOADFILE": "Скачать файл",
+        "DISABLED_TEXT_EDITOR": "Режим редактирования файла",
+        "FILE_UPLOAD": "Отправить на сервер",
+        "SAVE": "Сохранить",
+        "FILTER": "Фильтр",
+        "SELECTALL": "Выбрать все",
+        "ADD_USER": "Добавить пользователя",
+        "EDIT_USER": "Редактировать пользователя",
+        "DELETE_USER": "Удалить пользователя",
+        "USE_TEMPLATE": "Использовать шаблон"
+    },
+    "CHECKBOX": {
+        "EDIT_MODE": "Режим редактирования"
+    },
+    "TABLE": {
+        "ownername": "Владелец",
+        "providername": "Поставщик",
+        "transportnumber": "Номер вагона  ",
+        "invoicenumber": "Номер наклaдной  ",
+        "sampleroutdate": "Дата отгрузки ",
+        "sendernname": "Экспедитор (отправитель)",
+        "stationname": "Станция ",
+        "cropfullname": "Культура ",
+        "gmopresence": "Наличие ГМО ",
+        "certificatenumber": "Сертификат качества ",
+        "certificatedate": "Дата внесения сертификата качества",
+        "snnumber": "Протокол безопасности ",
+        "invoicegross": "Брутто по накладной, кг ",
+        "invoicetare": "Тара по накладной, кг ",
+        "invoicenet": "Нетто по накладной, кг ",
+        "deviationtime": " Обнаружение несоответсвия на ИЗТ",
+        "taretime": "Взвешивание по таре   ",
+        "gross": "Бруттто на ИЗТ, кг    ",
+        "tare": "Тара на изт, кг   ",
+        "net": "Нетто на ИЗТ, кг ",
+        "grossdeficite": "Разница по брутто, кг ",
+        "netdeficite": "Разница по нетто, кг",
+        "scaletypename": "Способ определения веса при отгрузке",
+        "deviationdescription": "Причина задержки выгрузки вагона",
+        "permission": "Решение по ситуации",
+        "permissiondescription": " решение ",
+        "permissiontime": " Дата, время ",
+        "permissionusername": " Ф.И.О.",
+        "remark": "Примечание",
+        "waitingtime": "Время ожидания решения",
+        "overtime": "Время доп. маневровых работ",
+        "certificatepresence": "Наличие сертификата качества",
+        "snpresence": "Наличие протокола безопасности",
+        "grosstime": "Взвешивание по брутто",
+        "regdate": "Дата регистрации",
+        "confirmation": "Разрешение на выгрузку",
+        "confirmationtime": "Дата, время",
+        "confirmationusername": "Ф.И.О.",
+        "cropname": "Название культуры",
+        "classname": "Класс культуры",
+        "sortname": "Сорт культуры",
+        "cropyear": "Год культуры",
+        "contractid": "Номер контракта",
+        "invoicedate": "Дата накладной",
+        "storagename": "Склад назначения"
+    },
+    "LABEL": {
+        "FROM": "с",
+        "TO": " по ",
+        "CURRENT_USER": "Текущий пользователь: {{ username}} из {{ company }}",
+        "LANG": "Язык",
+        "REFRESH_DATA": "Дата последнего обновления: {{ time }}",
+        "LOGIN": "Логин",
+        "USERNAME": "Имя пользователя",
+        "COMPANY": "Компания",
+        "ROLE": "Роль"
+    },
+    "VALUE": {
+        "REQUIRED": "Поле обязательное для заполнения",
+        "ERROR": "Поле заполнено неправильно"
+    },
+    "RAILCAR": {
+        "FILE_UPLOAD": "Отправить на сервер",
+        "LIST_OF_RAILCARS": "Список железнодорожных вагонов"
+    },
+    "ALERT": {
+        "INFO": "Информация",
+        "WARNING": "Предупреждение",
+        "ERROR": "Ошибка",
+        "BUG": "Баг"
+    },
+    "CONNECTION": {
+        "NOT_FOUND": "Ресурс не найден",
+        "SERVER_CONNECTION_ERROR": "Ошибка соединения с сервером",
+        "BAD_REQUEST": "Некорректный запрос",
+        "USER_NOT_AUTH": "Пользователь не авторизован",
+        "USER_AUTH_TIMEOUT": "Превышено время сессии пользователя",
+        "CONFLICT_ERROR": "Одновременное редактирование",
+        "PERMISSION_DENNIED": "Доступ запрещен.",
+        "SERVER_INTERNAL_ERROR": "Ошибка серверной части",
+        "BAD_GATEWAY": "Ошибка соедение с сервером"
+    },
+    "ERROR": {
+        "MUSS_BE_TRAIDER_ACCEPTED": "Нужно подтверждение трейдера",
+        "MUSS_BE_EMPLOYEER_ACCEPTED": "Нужно подтверждение работодателя",
+        "NOT_SELECTED": "Не выбрано вагон"
+    },
+    "MESSAGE": {
+        "LOADING": "Загрузка",
+        "RAILCAR": {
+            "SUCCESS_ADDET": "Успешно дабавлено",
+            "SUCCESS_EDIT": "Успешно отредактировано",
+            "TEMPLATE_NOT_SET": "Шаблон не установлен"
+        }
+    },
+    "TITLE": {
+        "RAILCAR": {
+            "LIST": "Список железнодорожных вагонов",
+            "FILE_UPLOAD": "Отправка на сервер",
+            "ADD": "Добавление вагона",
+            "EDIT": "Редактирование вагона",
+            "PARAMS": "Настройка вида"
+        },
+        "AUTH": "Авторизация",
+        "DISPARITY": {
+            "CURRENT": "Текущие несоответствия"
+        },
+        "MODAL": {
+            "DISPARITY_ACCEPT": "Подтверждение несоответствий"
+        },
+        "ADD_USER": "Добавление пользователя",
+        "EDIT_USER": "Редактирование позьзователя"
+    },
+    "PLACEHOLDER": {
+        "FILE_SELECT": "Выберите файл"
+    },
+    "RADIOBTN": {
+        "shownotreceived": "Без разрешения на разгрузку",
+        "showweighted": "Взвешенные",
+        "showremoterecords": "Возвращенные ЖВ",
+        "showdeleted": "Удаленные ЖВ"
+    },
+    "COMBOBOX": {
+        "NO_DATA": "Нет данных"
+    },
+    "ROLE_ROOT": "Root",
+    "ROLE_ADMIN": "Администратор",
+    "ROLE_EMPLOYEE": "Работник",
+    "ROLE_TRADER": "Трейдер",
+    "ROLE_ANONYM": "Неизвестный"
+}

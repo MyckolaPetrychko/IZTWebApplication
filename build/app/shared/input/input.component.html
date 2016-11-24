@@ -1,0 +1,8 @@
+<div class="combobox">
+    <div class="combobox-toogle" [class.active]="isOpenedMenu">
+        <input type="text" class="combobox-input" [(ngModel)]="value" (blur)="onBlur(value)" [id]="idName" [name]="idName" />
+        <span class="combobox-caret" (click)="value=''">
+              <i class="fa" [class.fa-remove]="value"></i>
+        </span>
+    </div>
+</div>

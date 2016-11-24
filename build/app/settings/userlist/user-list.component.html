@@ -1,0 +1,44 @@
+<div class="wblg-sub-title unprintable">
+    {{ 'LABEL.LIST_OF_USERS' | translate }}
+</div>
+
+<form class="form-main form-rows fixed-2x-subtitle unprintable " #filterForm="ngForm">
+        <div class="form-field form-cols" *ngFor="let f_item of [FiltersData[0], FiltersData[1], FiltersData[2]] " [ngClass]="{ 'warn-message': !!f_item.value}">
+            <label class="label-control" [attr.for]="f_item.label"> 
+                         <span class = "span-overflow">{{ f_item.label  | translate}} </span>
+                    </label>
+            <div class="div-control form-rows">
+                <wblg-input [(ngModel)]="f_item.value" [attr.id]="f_item.label" [name]="f_item.label" prop="name">
+                </wblg-input>
+            </div>
+        </div>
+    <div class="form-footer btns">
+        <button class="btn btn-dark" (click)="setFilters()"> 
+       <i class="fa fa-filter"></i> {{'BUTTON.FILTER' | translate}}
+    </button>
+    </div>
+</form>
+
+<!--<div >-->
+<ag-grid-ng2 #agGrid class="ag-fresh table-user-list-view printable"  [gridOptions]="gridOptions" [rowData]="UsersList">
+</ag-grid-ng2>
+<!--<div class="table-railcar-list-view " *ngIf="!isNotNull"></div>-->
+
+
+<!--<div class="filter">
+    <div class="text-div">
+       <wblg-combobox *ngFor="let f_item of FiltersData" [value]="f_item.value" [dropdown]="f_item.dropdown"
+            [data]="f_item.data"></wblg-combobox>
+    </div>
+</div>
+
+<div class="container">
+    <div id="grid">
+        <ag-grid-ng2 #agGrid class="ag-fresh" style="height: 350px; width: 100%;" [gridOptions]="gridOptions" [rowData]="UsersList"
+            (rowClicked)="onCellClicked($event)">
+        </ag-grid-ng2>
+    </div>
+
+    <user-detail class="form" [UsersList]="UsersList" [currentData]="currentData" [(visible)]="selectedButton" (selectedButton)="hideForm()"
+        *ngIf="selectedButton === 'add' || selectedButton === 'edit'"></user-detail>
+</div>-->

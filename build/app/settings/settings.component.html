@@ -1,0 +1,140 @@
+<!-- TOP SUBNAV BUTTON -->
+<div class="wblg-sub-nav">
+    <button class="btn btn-light" (click)="defineActiveButton('add')"> <i class="fa fa-plus"></i> {{ 'BUTTON.ADD_USER' | translate }}</button>
+    <button class="btn btn-light" [disabled]="!currentData?.id" (click)="defineActiveButton('edit')"> <i class="fa fa-edit"></i> {{'BUTTON.EDIT_USER' | translate }}</button>
+    <button class="btn btn-light" [disabled]="!currentData?.id" (click)="defineActiveButton('delete')"> <i class="fa fa-remove"></i> {{'BUTTON.DELETE_USER' | translate }}</button>
+</div>
+
+<div class="wblg-sub-title unprintable">
+    {{ 'LABEL.LIST_OF_USERS' | translate }}
+</div>
+
+<!-- FILTRATING INPUT -->
+<form class="form-main form-rows fixed-2x-subtitle unprintable " #filterForm="ngForm">
+    <div class="form-field form-cols">
+        <input placeholder="{{ PLACEHOLDER.FILTRATE | translate }}..." type="text" (input)="onFilterChanged($event.target.value)" />
+    </div>
+</form>
+
+
+<!-- AG-GRID -->
+<ag-grid-ng2 #agGrid class="ag-fresh table-user-list-view printable" (rowClicked)="onRowClicked($event)" 
+(rowDoubleClicked)="onRowDoubleClicked()" [gridOptions]="gridOptions"
+    [rowData]="UsersList">
+</ag-grid-ng2>
+
+<wblg-modal type="info" [(open)]="modal" close="true">
+    <span class="header">{{ title_form | translate}} </span>
+    <div class="txt" *ngIf="selectedButton === 'add' || selectedButton === 'edit'">
+        <form class="form-main form-cols">
+            <div role="group" class="form-fieldset form-cols">
+                <div class="form-field form-rows">
+                    <label class="label-control">
+						<span class = "span-overflow">{{ 'LABEL.LOGIN' |  translate }}:</span>
+					</label>
+                    <div class="div-control form-cols">
+                        <input type="text" [(ngModel)]="currentData.login" name="login" />
+                    </div>
+                </div>
+
+                <div class="form-field form-rows">
+                    <label class="label-control">
+						<span class = "span-overflow">{{ 'LABEL.FIRST_NAME' |  translate }}:</span>
+					</label>
+                    <div class="div-control form-cols">
+                        <input type="text" [(ngModel)]="currentData.firstName" name="username" />
+                    </div>
+                </div>
+
+                <div class="form-field form-rows">
+                    <label class="label-control">
+						<span class = "span-overflow">{{ 'LABEL.LAST_NAME' |  translate }}:</span>
+					</label>
+                    <div class="div-control form-cols">
+                        <input type="text" [(ngModel)]="currentData.lastName" name="username" />
+                    </div>
+                </div>
+
+                <div class="form-field form-rows">
+                    <label class="label-control">
+						<span class = "span-overflow">{{ 'LABEL.MIDDLE_NAME' |  translate }}:</span>
+					</label>
+                    <div class="div-control form-cols">
+                        <input type="text" [(ngModel)]="currentData.middleName" name="username" />
+                    </div>
+                </div>
+
+                <div class="form-field form-rows" *ngIf="selectedButton === 'edit'">
+                    <label class="label-control">
+						<span class = "span-overflow">{{ 'LABEL.OLD_PASSWORD' |  translate }}:</span>
+					</label>
+                    <div class="div-control form-cols">
+                        <input type="password" name="oldpassword" />
+                    </div>
+                </div>
+
+                <div class="form-field form-rows">
+                    <label class="label-control">
+						<span class = "span-overflow">{{ 'LABEL.PASSWORD' |  translate }}:</span>
+					</label>
+                    <div class="div-control form-cols">
+                        <input type="password" name="password" />
+                    </div>
+                </div>
+
+                <div class="form-field form-rows">
+                    <label class="label-control">
+						<span class = "span-overflow">{{ 'LABEL.RPASSWORD' |  translate }}:</span>
+					</label>
+                    <div class="div-control form-cols">
+                        <input type="password" name="rpassword" />
+                    </div>
+                </div>
+
+                <div class="form-field form-rows">
+                    <label class="label-control">
+						<span class = "span-overflow">E-mail:</span>
+					</label>
+                    <div class="div-control form-cols">
+                        <input type="text" [(ngModel)]="currentData.email" name="email" />
+                    </div>
+                </div>
+
+                <div class="form-field form-rows">
+                    <label class="label-control">
+						<span class = "span-overflow">{{ 'LABEL.PHONE' | translate }}:</span>
+					</label>
+                    <div class="div-control form-cols">
+                        <input type="text" [(ngModel)]="currentData.phoneNumber" name="phone" />
+                    </div>
+                </div>
+            </div>
+
+            <div role="group" class="form-fieldset form-cols">
+                <label class="label-control">
+						<span class = "span-overflow">{{ 'LABEL.CLIENTS' |  translate }}:</span>
+
+				</label>
+                <div class="form-field form-rows" *ngFor="let client of currentData.clients">
+                    <div class="div-control form-cols">
+                        <div class="div-control form-rows">
+                            <wblg-combobox-data [ngModel]="client" dropdown="true" [data]="OwnersData.data" [name]="OwnersData.label" prop="id">
+                            </wblg-combobox-data>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="footer">
+        <button class="btn btn-light" (click)="ok()">
+             <i class="fa fa-check" aria-hidden="true"></i> 
+              {{ 'BUTTON.SAVE' | translate }}
+          </button>
+        <button class="btn btn-light" (click)="cancel()"> 
+             <i class="fa fa-undo" aria-hidden="true"></i> 
+             {{ 'BUTTON.CANCEL' | translate }}
+        </button>
+    </div>
+</wblg-modal>

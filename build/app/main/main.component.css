@@ -1,0 +1,22 @@
+/**
+*
+* Variables
+*
+*/
+/*
+ *  Min-sizes of content main page
+ *  1024*768( - 50)
+ */
+/**
+*
+* Mixins
+*
+*/
+/*.wblg-app {*/
+.router-page {
+  flex-basis: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+  height: calc( 100% - 60px); }
+
+/*# sourceMappingURL=main.component.css.map */

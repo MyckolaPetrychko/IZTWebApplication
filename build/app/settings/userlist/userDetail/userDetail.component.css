@@ -1,0 +1,56 @@
+/**
+*
+* Variables
+*
+*/
+/*
+ *  Min-sizes of content main page
+ *  1024*768( - 50)
+ */
+/**
+*
+* Mixins
+*
+*/
+.rows {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  flex-basis: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+  align-items: stretch;
+  justify-content: space-between;
+  margin-top: 22px; }
+  .rows label {
+    display: block;
+    width: 150px;
+    text-align: left; }
+  .rows input, .rows select {
+    width: 140px; }
+
+.ctrl {
+  margin-left: 10px; }
+
+.button {
+  height: 40px;
+  width: 142px; }
+
+.buttonCancel {
+  margin-left: 150px; }
+
+.btn {
+  height: 40px; }
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  flex-basis: auto;
+  flex-grow: 1;
+  flex-shrink: 1; }
+
+.rows:last-child {
+  margin-bottom: 0px; }
+
+/*# sourceMappingURL=userDetail.component.css.map */

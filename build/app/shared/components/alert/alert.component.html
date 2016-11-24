@@ -1,0 +1,17 @@
+<!--TODO: ErrorModal-->
+<div class="alert-message" [ngClass]="typeClass"  [class.alert-modal]="modal"  [class.alert-small]="small" 
+[class.alert-big]="big" *ngIf="visible">
+    <div class="title">
+        <span class="fa-stack" aria-hidden="true"> 
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-stack-1x fa-inverse "  [ngClass]="iconClass" ></i>
+        </span> <span class="header">{{ typeTitle | translate }}</span> 
+         <i class="close-icon fa fa-close" (click)="close()" *ngIf="closeBtn" ></i>
+    </div>
+    <div class="txt">
+        <span class="icons" aria-hidden="true"> 
+              <i class="fa"  [ngClass]="iconClass" ></i>
+        </span> 
+        {{ mess | translate}}
+    </div>
+</div>

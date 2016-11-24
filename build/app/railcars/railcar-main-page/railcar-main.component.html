@@ -1,0 +1,120 @@
+<div class="wblg-sub-nav unprintable">
+	<button class="btn btn-light" (click)="gotoAddRailcar()">
+		  <i class="fa fa-plus"></i> {{'BUTTON.ADD' | translate}}
+	</button>
+	<button class="btn btn-light" [routerLink]="['/railcars', 'file']"> 
+		  <i class="fa fa-plus"></i> {{'BUTTON.LOAD' | translate}}
+	</button>
+
+	<button class="btn btn-light" (click)="gotoEditRailcar()" *ngIf="isSelected"> 
+		   <i class="fa fa-edit"></i> {{'BUTTON.EDIT' | translate}}
+	</button>
+	<button class="btn btn-light" *ngIf="isSelected" (click)="openModal(true)">
+		 <i class="fa fa-remove"></i> 	{{'BUTTON.DELETE' | translate}}
+	</button>
+	<button class="btn btn-light" [routerLink]="['/railcars', 'view']">
+		    <i class="fa fa-bars"></i> {{'BUTTON.VIEW' | translate}}
+	</button>
+
+	<button class="btn btn-light" (click)="setRefresh()"> 
+		   <i class="fa fa-refresh" ></i> {{'BUTTON.REFRESH' | translate}}
+	</button>
+</div>
+
+<router-outlet class="set-child-class-by"></router-outlet>
+<div></div>
+
+<wblg-disparity-list class="wblg-disparity-list  unprintable"></wblg-disparity-list>
+
+<!-- Modal -->
+<wblg-modal type="info" [(open)]="modal" close="true">
+	<span class="header">{{ 'TITLE.DELETE_RAILCAR_MODAL' | translate}}</span>
+	<div class="txt" *ngIf="selected?.transportnumber">
+		<form class="form-main form-cols">
+			<div role="group" class="form-fieldset form-cols">
+				<div class="form-field form-rows">
+					<label class="label-control" for="transportnumber"> 
+                        <span class = "span-overflow"> {{ 'TABLE.transportnumber' | translate}} </span>
+                    </label>
+					<div class="div-control form-cols">
+						<input type="text" [value]="selected.transportnumber" id="transportnumber" disabled />
+					</div>
+				</div>
+				<div class="form-field form-rows">
+					<label class="label-control" for="invoicenumber"> 
+                        <span class = "span-overflow"> {{ 'TABLE.invoicenumber' | translate}} </span>
+                    </label>
+					<div class="div-control form-cols">
+						<input type="text" [value]="selected.invoicenumber" id="invoicenumber" disabled />
+					</div>
+				</div>
+								<div class="divider-horz"></div>
+
+				<div class="form-field form-rows" >
+					<label class="label-control" for="ownername"> 
+                         <span class = "span-overflow">{{ 'TABLE.ownername' | translate}} </span>
+                     </label>
+					<div class="div-control form-cols">
+																		<input type="text" [value]="selected.ownername" id="ownername" disabled/>
+
+					</div>
+				</div>
+
+				<!-- TODO: Bookmark | RailcarsElement | manual add block | clients/providername -->
+				<div class="form-field form-rows">
+					<label class="label-control" for="providername"> 
+                         <span class = "span-overflow">{{ 'TABLE.providername' | translate}} </span>
+   
+                     </label>
+					<div class="div-control form-cols">
+												<input type="text" [value]="selected.providername" id="providername" disabled/>
+					</div>
+				</div>
+
+				<!-- TODO: Bookmark | RailcarsElement | manual add block | clients/sendernname -->
+				<div class="form-field form-rows">
+					<label class="label-control" for="sendernname"> 
+                         <span class = "span-overflow">{{ 'TABLE.sendernname' | translate}} </span>
+                     </label>
+					<div class="div-control form-cols">
+						<input type="text" [value]="selected.sendernname" id="sendernname" disabled/>
+
+					</div>
+				</div>
+
+				<div class="divider-horz"></div>
+
+				<!-- TODO: Bookmark | RailcarsElement | manual add block | clients/stationname -->
+				<div class="form-field form-rows">
+					<label class="label-control" for="stationname"> 
+                        <span class = "span-overflow"> {{ 'TABLE.stationname' | translate}} </span> 
+                    </label>
+					<div class="div-control form-cols">
+						<input type="text" [value]="selected.stationname" id="stationname" disabled/>
+					</div>
+				</div>
+
+				<div class="form-field form-rows">
+					<label for="cropfullname" class="label-control"> 
+                        <span class = "span-overflow"> {{ 'TABLE.cropfullname' | translate}}</span>
+                    </label>
+					<div class="div-control form-cols">
+						<input type="text" [value]="selected.cropfullname" id="cropfullname" disabled/>
+					</div>
+				</div>
+			</div>
+		</form>
+		<wblg-alert [message]="'ERROR.MUSS_BE_TRAIDER'" type="warn" small="true" [open]="!isTraider"></wblg-alert>
+	</div>
+	<div class="footer" *ngIf="selected?.transportnumber">
+		<button class="btn btn-light" (click)="ok()" 
+		[disabled]="!(isSelected && isTrader) ">
+             <i class="fa fa-check" aria-hidden="true"></i> 
+              {{ 'BUTTON.OK' | translate}}
+          </button>
+		<button class="btn btn-light" (click)="cancel();"> 
+             <i class="fa fa-undo" aria-hidden="true"></i> 
+             {{ 'BUTTON.CANCEL' | translate}}
+        </button>
+	</div>
+</wblg-modal>

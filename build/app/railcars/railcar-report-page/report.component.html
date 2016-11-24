@@ -1,0 +1,13 @@
+<div class="wblg-sub-nav unprintable">
+	<button class="btn btn-light" >
+		  <i class="fa fa-print"></i> {{'BUTTON.PRINT' | translate}}
+	</button>
+	<button class="btn btn-light">
+		    <i class="fa fa-bars"></i> {{'BUTTON.VIEW' | translate}}
+	</button>
+
+	<button class="btn btn-light" (click)="setRefresh()"> 
+		   <i class="fa fa-refresh" ></i> {{'BUTTON.REFRESH' | translate}}
+	</button>
+</div>
+<wblg-railcar-list [filter] = "false" class="wblg-railcar-list"></wblg-railcar-list>

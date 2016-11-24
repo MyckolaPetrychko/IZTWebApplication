@@ -1,0 +1,33 @@
+/**
+*
+* Variables
+*
+*/
+/*
+ *  Min-sizes of content main page
+ *  1024*768( - 50)
+ */
+/**
+*
+* Mixins
+*
+*/
+.wblg-sub-nav {
+  background-color: #d5cac4;
+  color: #5e311c;
+  height: 30px;
+  min-height: 30px;
+  max-height: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  flex-basis: 30px;
+  flex-grow: 0;
+  flex-shrink: 1; }
+  .wblg-sub-nav .btn {
+    max-height: 25px;
+    margin: 0 5px; }
+
+/*# sourceMappingURL=settings.component.css.map */

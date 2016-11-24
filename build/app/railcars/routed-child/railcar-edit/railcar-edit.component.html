@@ -1,0 +1,308 @@
+<header class="wblg-sub-title">
+    {{ 'TITLE.RAILCAR.'+ typeMode | translate }}
+    <div class="btns">
+        <button class="btn btn-light" (click)="setTemplate()" *ngIf="useTemplate"> {{ 'BUTTON.USE_TEMPLATE'| translate}} </button>
+    </div>
+</header>
+
+<form class="form-main form-cols" #railcarsForm="ngForm" [class.disabled-form]="disableForm">
+    <!-- TODO: Bookmark | RailcarsElement | manual add block | base-data numbers -->
+    <div role="group" class="form-fieldset form-rows fixed-3x-subtitle ">
+        <!-- TODO: Bookmark | RailcarsElement | manual add block | transportnumber -->
+        <div role="group" class="form-fieldset form-cols ">
+            <div class="form-field form-rows" [ngClass]="{'error-message':!transportnumber.valid}">
+                <label class="label-control" for="transportnumber"> 
+                        <span class = "span-overflow"> {{ 'TABLE.transportnumber' | translate}} </span>
+                        <wblg-alert  type="warn" small="true" [open]="transportnumber.errors?.required"></wblg-alert>
+                    </label>
+                <div class="div-control form-cols">
+                    <input type="number" [(ngModel)]="railcar.transportnumber" id="transportnumber" name="transportnumber"
+                        #transportnumber="ngModel" required="true" railcarNumber />
+                    <wblg-alert [message]="'MESSAGE.VALUE_WITH_ERROR'" type="error" small="true" [open]="!transportnumber.valid && !transportnumber.errors?.required">
+                    </wblg-alert>
+                </div>
+            </div>
+            <div class="form-field form-rows" [ngClass]="{ 'error-message':!sampleroutdate.valid}">
+                <label class="label-control" for="sampleroutdate">
+                    <span class = "span-overflow"> {{ 'TABLE.sampleroutdate' | translate}}  </span>
+                    <wblg-alert  type="warn" small="true"  [open]="sampleroutdate.errors?.required">
+                    </wblg-alert>
+                 </label>
+                <div class="div-control form-cols">
+                    <my-date-picker [(ngModel)]="railcar.sampleroutdate" [id]="sampleroutdate" name="sampleroutdate"
+                        #sampleroutdate="ngModel" required="true">
+                    </my-date-picker>
+                </div>
+            </div>
+        </div>
+        <!-- end transportnumber -->
+
+        <!-- TODO: Bookmark | RailcarsElement | manual add block | invoicenumber -->
+        <div role="group" class="form-fieldset form-cols ">
+            <div class="form-field form-rows" [ngClass]="{ 'error-message':!invoicenumber.valid}">
+                <label class="label-control" for="invoicenumber">
+                     <span class = "span-overflow"> {{ 'TABLE.invoicenumber' | translate}} </span>
+                      <wblg-alert type="warn" small="true" [open]="invoicenumber.errors?.required"> </wblg-alert>
+                 </label>
+                <div class="div-control form-cols">
+                    <input type="text" id="invoicenumber" [(ngModel)]="railcar.invoicenumber" name="invoicenumber"
+                        #invoicenumber="ngModel" required/>
+                </div>
+            </div>
+            <div class="form-field form-rows" [ngClass]="{ 'error-message':!invoicedate.valid}">
+                <label class="label-control" for="invoicedate">
+                    <span class = "span-overflow"> {{ 'TABLE.invoicedate' | translate}} </span>
+                    <wblg-alert  type="warn" small="true" [open]="invoicedate.errors?.required"></wblg-alert>
+                </label>
+
+                <div class="div-control form-cols">
+                    <my-date-picker [(ngModel)]="railcar.invoicedate" [id]="invoicedate" name="invoicedate"
+                        #invoicedate="ngModel" required="true">
+                    </my-date-picker>
+                </div>
+            </div>
+        </div>
+        <!-- end invoicenumber -->
+
+        <!-- TODO: Bookmark | RailcarsElement | manual add block | footer-->
+        <div class=" form-footer form-cols ">
+            <div class="btns">
+                <button type="submit" class="btn btn-light" (click)="save()" [disabled]="railcarsForm.invalid">
+
+                    <i class="fa fa-save" aria-hidden="true"></i> {{'BUTTON.SAVE' | translate }}
+                    </button>
+                <button type="button" class="btn btn-light" (click)="cancel()"> 
+            <i class="fa fa-undo" aria-hidden="true"></i> {{ 'BUTTON.' + cancelName | translate}}
+            </button>
+            </div>
+            <div class="div-control form-cols">
+                <wblg-alert message="VALUE.REQUIRED" type="warn" small="true" [open]="true"> </wblg-alert>
+                <wblg-alert message="VALUE.ERROR" type="error" small="true" [open]="true">
+                </wblg-alert>
+            </div>
+
+        </div>
+        <!-- end footer-->
+    </div>
+    <!-- end base-data numbers -->
+
+
+    <!-- TODO: Bookmark | RailcarsElement | manual add block | divider -->
+    <div class="divider-horz"></div>
+
+    <!-- TODO: Bookmark | RailcarsElement | manual add block | railcars info -->
+    <div role="group" class="form-fieldset form-rows">
+
+        <!-- TODO: Bookmark | RailcarsElement | manual add block | clients -->
+        <div role="group" class="form-fieldset form-cols">
+
+            <!-- TODO: Bookmark | RailcarsElement | manual add block | clients/ownername -->
+            <div class="form-field form-rows" [ngClass]="{ 'error-message':!ownername.valid}">
+                <label class="label-control" for="ownername"> 
+                         <span class = "span-overflow">{{ 'TABLE.ownername' | translate}} </span>
+                         <wblg-alert type="warn" small="true"  [open]="ownername.errors?.required">
+                        </wblg-alert>
+                     </label>
+                <div class="div-control form-cols">
+                    <wblg-combobox-data [(ngModel)]="railcar.ownerid" dropdown="true" prop="id" [data]="_owners"
+                        id="ownername" name="ownername" required="true" #ownername="ngModel">
+                    </wblg-combobox-data>
+                </div>
+            </div>
+
+            <!-- TODO: Bookmark | RailcarsElement | manual add block | clients/providername -->
+            <div class="form-field form-rows" [ngClass]="{ 'error-message':!providername.valid}">
+                <label class="label-control" for="providername"> 
+                         <span class = "span-overflow">{{ 'TABLE.providername' | translate}} </span>
+                         <wblg-alert type="warn" small="true"  [open]="providername.errors?.required">
+                        </wblg-alert>
+                     </label>
+                <div class="div-control form-cols">
+                    <wblg-combobox-data [(ngModel)]="railcar.providerid" [dropdown]="true" [data]="_providers"
+                        id="providername" name="providername" required="true" #providername="ngModel">
+                    </wblg-combobox-data>
+                </div>
+            </div>
+
+            <!-- TODO: Bookmark | RailcarsElement | manual add block | clients/sendernname -->
+            <div class="form-field form-rows" [ngClass]="{ 'error-message':!sendername.valid}">
+                <label class="label-control" for="sendernname"> 
+                         <span class = "span-overflow">{{ 'TABLE.sendernname' | translate}} </span>
+                         <wblg-alert type="warn" small="true"  [open]="sendername.errors?.required">
+                        </wblg-alert>
+                     </label>
+                <div class="div-control form-cols">
+                    <wblg-combobox-data [(ngModel)]="railcar.senderid" dropdown="true" [data]="_senders"
+                        id="sendername" name="sendername" required="true" #sendername="ngModel">
+                    </wblg-combobox-data>
+                </div>
+            </div>
+
+            <!-- TODO: Bookmark | RailcarsElement | manual add block | clients/contractid -->
+            <div class="form-field form-rows" [ngClass]="{ 'error-message':!contractid.valid}">
+                <label class="label-control" for="contractid"> 
+                        <span class = "span-overflow"> {{ 'TABLE.contractid' | translate}}</span> 
+                        <wblg-alert  type="warn" small="true"  [open]="contractid.errors?.required"></wblg-alert>
+                     </label>
+                <div class="div-control form-cols">
+                    <input [(ngModel)]="railcar.contractid" id="contractid" name="contractid" #contractid="ngModel">
+                </div>
+            </div>
+
+            <div class="divider-horz"></div>
+
+            <!-- TODO: Bookmark | RailcarsElement | manual add block | clients/stationname -->
+            <div class="form-field form-rows" [ngClass]="{ 'error-message':!stationname.valid}">
+                <label class="label-control" for="stationname"> 
+                        <span class = "span-overflow"> {{ 'TABLE.stationname' | translate}} </span> 
+                         <wblg-alert type="warn" small="true"  [open]="stationname.errors?.required">  </wblg-alert>
+                    </label>
+                <div class="div-control form-cols">
+                    <wblg-combobox-data [(ngModel)]="railcar.stationid" name="stationname" #stationname="ngModel"
+                        required dropdown="true" [data]="_stations" id="stationname">
+                    </wblg-combobox-data>
+                </div>
+            </div>
+
+            <!-- TODO: Bookmark | RailcarsElement | manual add block | clients/storagename -->
+            <div class="form-field form-rows" [ngClass]="{ 'error-message':!storagename.valid}">
+                <label class="label-control" for="storagename"> 
+                         <span  class = "span-overflow">{{ 'TABLE.storagename' | translate}}</span>
+                         <wblg-alert type="warn" small="true" [open]="storagename.errors?.required"></wblg-alert>
+                    </label>
+                <div class="div-control form-cols">
+                    <wblg-combobox-data [(ngModel)]="railcar.storageid" name="storagename" #storagename="ngModel"
+                        required dropdown="true" id="storagename" [data]="_srorages"></wblg-combobox-data>
+                </div>
+            </div>
+
+            <!-- TODO: Bookmark | RailcarsElement | manual add block | cultures & weight/scaletypename -->
+            <div class="form-field form-rows" [ngClass]="{ 'error-message':!scaletypename.valid}">
+                <label for="scaletypename" class="label-control">
+                        <span class = "span-overflow">{{ 'TABLE.scaletypename' | translate}} </span>
+                        <wblg-alert  type="warn" small="true"  [open]="scaletypename.errors?.required"></wblg-alert>
+                    </label>
+                <div class="div-control form-cols">
+                    <wblg-combobox-data [(ngModel)]="railcar.scaletypeid" name="scaletypename" #scaletypename="ngModel"
+                        dropdown="true" id="scaletypename" [data]="_scales"></wblg-combobox-data>
+                </div>
+            </div>
+
+        </div>
+        <!-- end clients -->
+
+
+        <!-- TODO: Bookmark | RailcarsElement | manual add block | cultures & weight  -->
+        <div role="group" class="form-fieldset form-cols">
+
+            <!-- TODO: Bookmark | RailcarsElement | manual add block | cultures & weight/cropname -->
+            <div class="form-field form-rows" [ngClass]="{ 'error-message':!cropname.valid}">
+                <label for="cropname" class="label-control"> 
+                        <span class = "span-overflow"> {{ 'TABLE.cropname' | translate}}</span>
+                         <wblg-alert  type="warn" small="true"  [open]="cropname.errors?.required"></wblg-alert>
+                    </label>
+                <div class="div-control form-cols">
+                    <wblg-combobox-data [(ngModel)]="railcar.cropid" name="cropname" #cropname="ngModel"
+                        required="true" dropdown="true" [data]="_cultures" id="cropname">
+                    </wblg-combobox-data>
+                </div>
+            </div>
+
+            <!-- TODO: Bookmark | RailcarsElement | manual add block | cultures & weight/classname -->
+            <div class="form-field form-rows" [ngClass]="{ 'error-message':!classname.valid}">
+                <label for="classname" class="label-control"> 
+                        <span class = "span-overflow"> {{ 'TABLE.classname' | translate}}</span>
+                         <wblg-alert  type="warn" small="true" [open]="classname.errors?.required"></wblg-alert>
+                    </label>
+                <div class="div-control form-cols">
+                    <wblg-combobox-data [(ngModel)]="railcar.classid" name="classname" #classname="ngModel"
+                        required="true" [dropdown]="true" [data]="_classes" id="classname">
+                    </wblg-combobox-data>
+                </div>
+            </div>
+
+            <!-- TODO: Bookmark | RailcarsElement | manual add block | cultures & weight/sortname -->
+            <div class="form-field form-rows" [ngClass]="{ 'error-message':!sortname.valid}">
+                <label for="sortname" class="label-control"> 
+                        <span class = "span-overflow"> {{ 'TABLE.sortname' | translate}}</span>
+                         <wblg-alert  type="warn" small="true" [open]="sortname.errors?.required"></wblg-alert>
+                    </label>
+                <div class="div-control form-cols">
+                    <wblg-combobox-data [(ngModel)]="railcar.sortid" name="sortname" #sortname="ngModel"
+                        required="true" [dropdown]="true" [data]="_sorts" id="sortname">
+                    </wblg-combobox-data>
+                </div>
+            </div>
+
+            <!-- TODO: Bookmark | RailcarsElement | manual add block | cultures & weight/cropfyear -->
+            <div class="form-field form-rows" [ngClass]="{ 'error-message':!cropyear.valid}">
+                <label class="label-control" for="cropyear">
+                        <span class = "span-overflow"> {{ 'TABLE.cropyear' | translate}} </span>  
+                        <wblg-alert type="warn" small="true"  [open]="cropyear.errors?.required"> </wblg-alert>
+                    </label>
+                <div class="div-control form-cols">
+                    <input type="number" [(ngModel)]="railcar.cropyear" name="cropyear" #cropyear="ngModel"
+                        required id="cropyear" pattern="\d{4}">
+                    <wblg-alert [message]="'MESSAGE.YEAR_ERROR_WRITE'" type="error" small="true" [open]="!cropyear.valid && !cropyear.errors?.required">
+                    </wblg-alert>
+                </div>
+            </div>
+
+            <!-- TODO: Bookmark | RailcarsElement | manual add block | cultures & weight/gmopresence -->
+            <div class="form-field form-rows">
+                <label for="gmopresence" class="label-control margin-label ">   
+                        <input type="checkbox" [(ngModel)]="railcar.gmopresence" name="gmopresence" id="gmopresence">
+                        <span class = "span-overflow"> {{ 'TABLE.gmopresence' | translate}}</span>
+                     </label>
+            </div>
+
+            <div class="divider-horz"></div>
+
+            <!-- TODO: Bookmark | RailcarsElement | manual add block | cultures & weight/invoicetare -->
+            <div class="form-field form-rows" [ngClass]="{ 'error-message':!invoicetare.valid}">
+                <label class="label-control" for="invoicetare"> 
+                         <span class = "span-overflow">{{ 'TABLE.invoicetare' | translate}}</span>
+                          <wblg-alert type="warn" small="true" [open]="invoicetare.errors?.required"> </wblg-alert>
+                    </label>
+                <div class="div-control form-cols">
+                    <input type="number" [(ngModel)]="railcar.invoicetare" name="invoicetare" #invoicetare="ngModel"
+                        required id="invoicetare" (change)="setGrossWeight()">
+                </div>
+            </div>
+
+            <!-- TODO: Bookmark | RailcarsElement | manual add block | cultures & weight/invoicenet -->
+            <div class="form-field form-rows" [ngClass]="{ 'error-message':!invoicenet.valid}">
+                <label class="label-control" for="invoicenet"> 
+                     <span class = "span-overflow">{{ 'TABLE.invoicenet' | translate}}</span>
+                     <wblg-alert type="warn" small="true" [open]="invoicenet.errors?.required"> </wblg-alert>
+                 </label>
+                <div class="div-control form-cols">
+                    <input type="number" [(ngModel)]="railcar.invoicenet" name="invoicenet" #invoicenet="ngModel"
+                        required id="invoicenet" (change)="setGrossWeight()">
+                </div>
+            </div>
+
+            <!-- TODO: Bookmark | RailcarsElement | manual add block | cultures & weight/invoicegross -->
+            <div class="form-field form-rows" [ngClass]="{ 'error-message':!invoicegross.valid}">
+                <label class="label-control" for="invoicegross"> 
+                     <span class = "span-overflow">
+                             {{ 'TABLE.invoicegross' | translate}}
+                      </span>
+                       <wblg-alert type="warn" small="true" [open]="invoicegross.errors?.required"> </wblg-alert>
+                    </label>
+                <div class="div-control form-cols">
+                    <input type="number" [(ngModel)]="railcar.invoicegross" name="invoicegross" #invoicegross="ngModel"
+                         id="invoicegross" required="required">
+                </div>
+            </div>
+        </div>
+        <!--end cultures & weight  -->
+    </div>
+    <!-- end railcars info -->
+</form>
+
+
+<wblg-alert [message]="message" [type]="type" modal="true" [(open)]="visibility"
+    [time]="time" close="true"> </wblg-alert>
+
+<!--<wblg-alert [message]  = "message"  [type]="'info'"   [open]="!isVisible" ></wblg-alert>-->

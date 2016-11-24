@@ -1,0 +1,32 @@
+[
+    {
+        "stationid": 0,
+        "transportsubtypeid": 0,
+        "stationcode": 0,
+        "stationname": "Station 0",
+        "stationfullname": "Station 0 Full",
+        "regionid": 0,
+        "distance": 0,
+        "comment": "Station comment"
+    },
+     {
+        "stationid": 1,
+        "transportsubtypeid": 1,
+        "stationcode": 1,
+        "stationname": "Station 1",
+        "stationfullname": "Station 1 Full",
+        "regionid": 1,
+        "distance": 1,
+        "comment": "Station comment"
+    },
+     {
+        "stationid": 2,
+        "transportsubtypeid": 2,
+        "stationcode": 2,
+        "stationname": "Station 2",
+        "stationfullname": "Station 2 Full",
+        "regionid": 2,
+        "distance": 2,
+        "comment": "Station comment"
+    }
+]

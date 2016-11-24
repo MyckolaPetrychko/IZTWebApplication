@@ -1,0 +1,25 @@
+{
+    "id": 2,
+    "username": "user",
+    "password": null,
+    "roles": [
+        "ROLE_ADMIN"
+    ],
+    "enabled": true,
+    "firstName": "User",
+    "middleName": null,
+    "secondName": "u",
+    "phoneNumber": "123",
+    "email": "user@example.com                                  ",
+    "clients": [
+        0
+    ],
+    "authorities": [
+        {
+            "authority": "ROLE_IZT"
+        }
+    ],
+    "credentialsNonExpired": true,
+    "accountNonLocked": true,
+    "accountNonExpired": true
+}
