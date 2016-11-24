@@ -6,7 +6,7 @@ node_modules/*
 .vscode/*
 
 #ignore typings
-typings/*
+
 
 #ignore testdata
 #ignore img
@@ -29,7 +29,7 @@ src/**/*.js.map
 !lite-serve.js
 
 #ignore realese and build
-build/**
+
 realese/**
 
 # ignore txt, *.zip
